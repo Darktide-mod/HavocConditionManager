@@ -5,7 +5,6 @@ Internal configuration and validation stay in publishing/ and build/.
 from pathlib import Path, PurePosixPath
 import argparse
 import hashlib
-import io
 import json
 import os
 import re
@@ -15,6 +14,7 @@ import sys
 import tempfile
 import zipfile
 import strip_debug as diagnostics
+from archive_guard import assert_no_nested_archives
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'publishing'
@@ -114,12 +114,12 @@ def collect_sources(strip_debug=False):
         data = source.read_bytes()
         if relative in NATIVE_PAYLOADS:
             assert hashlib.sha256(data).hexdigest() == NATIVE_PAYLOADS[relative], 'Unexpected controller resource: ' + relative
-        assert not zipfile.is_zipfile(io.BytesIO(data)) and not data.startswith((b'7z\xbc\xaf\x27\x1c', b'Rar!')), source
         payloads[source.relative_to(STAGING).as_posix()] = data
     for required in (name + '/' + name + '.mod', f'{name}/scripts/mods/{name}/{name}.lua', name + '/info.json'):
         assert required in payloads, required
     assert not any(path.endswith('.dll') for path in payloads), 'Current runtime needs no native helper.'
     payloads = diagnostics.payloads(payloads,strip_debug)
+    assert_no_nested_archives(payloads)
     if strip_debug:
         if category == 'Optional Files':
             config['release_id'] = config.get('stripped_release_id',version + '-r2')
@@ -159,7 +159,9 @@ def validate(batch, config, version, documents, payloads):
             path = PurePosixPath(entry.filename)
             assert path.parts[0] == name and '..' not in path.parts and not path.is_absolute()
             assert not entry.flag_bits & 1 and entry.compress_type == zipfile.ZIP_DEFLATED
-            assert z.read(entry.filename) == payloads[entry.filename]
+            data = z.read(entry)
+            assert data == payloads[entry.filename]
+            assert_no_nested_archives({entry.filename: data})
     return {'mod': name, 'release_id': config['release_id'], 'version': version, 'status': 'passed',
         'files': sorted(p.name for p in batch.iterdir()), 'archive_entries': len(payloads),
         'nested_archives': 0, 'diagnostics_stripped': config.get('diagnostics_stripped',False), 'vortex_installer': vortex_check(name, payloads)}
