@@ -1,0 +1,66 @@
+{
+  "description": {
+    "en": "At 100 metres of progress, publish diy_pressure for 30 seconds. HED rules can require this signal.",
+    "zh-cn": "主路径推进达到 100 米时，发布持续 30 秒的 diy_pressure 信号；HED 规则可引用此信号。",
+    "zh-tw": "主路徑推進達到 100 米時，發佈持續 30 秒的 diy_pressure 信號；HED 規則可引用此信號。"
+  },
+  "entries": [
+    {
+      "conditions": [],
+      "description": {
+        "en": "At 100 metres of progress, publish diy_pressure for 30 seconds. HED rules can require this signal.",
+        "zh-cn": "沿任务主路径推进达到 100 米时，发布持续 30 秒的增援信号，每局发布一次。信号本身不会生成敌人；可由“编队请求示例”或配置好的敌人导演规则接收。",
+        "zh-tw": "沿任務主路徑推進達到 100 米時，釋出持續 30 秒的增援訊號，每局釋出一次。訊號本身不會生成敵人；可由“編隊請求示例”或配置好的敵人導演規則接收。"
+      },
+      "enabled": true,
+      "id": "director_signal",
+      "match": "all",
+      "name": {
+        "en": "Director signal example",
+        "zh-cn": "导演信号示例",
+        "zh-tw": "導演信號示例"
+      },
+      "rules": [
+        {
+          "actions": [
+            {
+              "duration": 30,
+              "name": "diy_pressure",
+              "type": "signal"
+            }
+          ],
+          "chance": 1,
+          "conditions": [
+            {
+              "field": "progress",
+              "op": "ge",
+              "value": 100
+            }
+          ],
+          "cooldown": 0,
+          "delay": 0,
+          "event": "interval",
+          "id": "signal",
+          "interval": 1,
+          "match": "all",
+          "max_triggers": 1,
+          "scope": "global"
+        }
+      ],
+      "targets": {
+        "kind": "players"
+      },
+      "tier": 2,
+      "weight": 1
+    }
+  ],
+  "format": "Darktide.DIY",
+  "id": "starter_conditions",
+  "kind": "conditions",
+  "name": {
+    "en": "Director signal example",
+    "zh-cn": "导演信号示例",
+    "zh-tw": "導演信號示例"
+  },
+  "version": 1
+}

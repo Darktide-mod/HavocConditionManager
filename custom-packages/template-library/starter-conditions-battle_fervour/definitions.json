@@ -1,0 +1,66 @@
+{
+  "description": {
+    "en": "Each enemy death grants matching enemies 0.1% power for 30 seconds, up to 500 stacks; each death refreshes the shared timer.",
+    "zh-cn": "每次敌人死亡，敌方获得 0.1% 能量，最多 500 层；30 秒共用计时在击杀后刷新。未添加减伤层。",
+    "zh-tw": "每次敵人死亡，敵方獲得 0.1% 能量，最多 500 層；30 秒共用計時在擊殺後刷新。未添加減傷層。"
+  },
+  "entries": [
+    {
+      "conditions": [],
+      "description": {
+        "en": "Each enemy death grants matching enemies 0.1% power for 30 seconds, up to 500 stacks; each death refreshes the shared timer.",
+        "zh-cn": "每次有敌人死亡，全体敌人的能量提高 0.1%，最多叠加 500 层，即提高 50%。新一次有效死亡事件会刷新整组增益的 30 秒持续时间；连续 30 秒未刷新时，全部层数失效。只增加能量，不附加伤害减免。",
+        "zh-tw": "每次有敵人死亡，全體敵人的能量提高 0.1%，最多疊加 500 層，即提高 50%。新一次有效死亡事件會重新整理整組增益的 30 秒持續時間；連續 30 秒未重新整理時，全部層數失效。只增加能量，不附加傷害減免。"
+      },
+      "enabled": true,
+      "id": "battle_fervour",
+      "match": "all",
+      "name": {
+        "en": "Battle fervour",
+        "zh-cn": "战斗狂热",
+        "zh-tw": "戰鬥狂熱"
+      },
+      "rules": [
+        {
+          "actions": [
+            {
+              "duration": 30,
+              "effects": {
+                "stats": {
+                  "power_level_modifier": 0.001
+                }
+              },
+              "max_stacks": 500,
+              "target": "matching",
+              "type": "effect"
+            }
+          ],
+          "chance": 1,
+          "conditions": [],
+          "cooldown": 0.05,
+          "delay": 0,
+          "event": "enemy_died",
+          "id": "fervour",
+          "match": "all",
+          "max_triggers": 0,
+          "scope": "global"
+        }
+      ],
+      "source_row": 21,
+      "targets": {
+        "kind": "minions"
+      },
+      "tier": 2,
+      "weight": 1
+    }
+  ],
+  "format": "Darktide.DIY",
+  "id": "starter_conditions",
+  "kind": "conditions",
+  "name": {
+    "en": "Battle fervour",
+    "zh-cn": "战斗狂热",
+    "zh-tw": "戰鬥狂熱"
+  },
+  "version": 1
+}

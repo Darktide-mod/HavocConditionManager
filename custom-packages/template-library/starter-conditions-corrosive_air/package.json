@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Lose 1% toughness per second; at zero toughness, lose 0.3 health per second.",
+    "zh-cn": "每秒扣除最大韧性的 1%。当韧性已经耗尽时，每秒额外造成 0.3 点生命伤害；恢复韧性后不再满足这项生命扣除条件。",
+    "zh-tw": "每秒扣除最大韌性的 1%。當韌性已經耗盡時，每秒額外造成 0.3 點生命傷害；恢復韌性後不再滿足這項生命扣除條件。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-corrosive_air",
+  "kind": "conditions",
+  "name": {
+    "en": "Corrosive air",
+    "zh-cn": "腐蚀环境",
+    "zh-tw": "腐蝕環境"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

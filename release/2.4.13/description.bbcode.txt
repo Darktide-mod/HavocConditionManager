@@ -1,0 +1,109 @@
+[size=5][b]English[/b][/size]
+
+[size=5][b]Havoc Condition Manager[/b][/size]
+
+Configure mission conditions, environments and enemy multipliers for SoloPlay and Realms. Havoc Condition Manager can run independently; Havoc Enemy Director is optional.
+
+[size=4][b]Conditions and environments[/b][/size]
+
+[list]
+[*]Combine supported conditions without the original fixed slot count.
+[*]Browse separate Havoc, Auric/Maelstrom, event and faction categories.
+[*]Select an environment independently from the mission. Unsupported map/environment combinations fall back to a supported option.
+[*]Use original game Buff templates and identifiers. Some conditions add effects without adding a spawn source.
+[/list]
+
+[size=4][b]Enemy multipliers[/b][/size]
+
+Set common enemies, elites, specialists and bosses separately from 1–5×. Choose quantity, spawn speed or a mixture of both.
+
+Basic mode combines the selected native condition effects and adjusts spawning parameters while retaining native generators, pools and capacity rules. Conditions can impose their own faction and pool changes. Native capacity still limits the number of enemies alive, so a 5× multiplier does not guarantee five times the population.
+
+[size=4][b]Controls and compatibility[/b][/size]
+
+Open Havoc Condition Manager in Mod Options. Use the side arrows to choose conditions, environment and multipliers before starting a mission. Realms uses the host's mission configuration. Adding Havoc Enemy Director provides an Advanced page for editable generators, pools and capacities.
+
+The Darktide Mod Framework switch applies immediately in the hub. Changes during a mission apply to the next mission, while the current mission keeps its starting configuration. Disabling the manager restores SoloPlay's original menu for future missions and suspends the optional Director. Saved settings are retained.
+
+English, Simplified Chinese and Traditional Chinese follow the game language. Native names use the game's available translations.
+
+Environments are selected individually. Opposite forced factions and conditions writing the same native setting do not necessarily combine additively. Other mods replacing condition selection or spawning may conflict. The mod is intended for SoloPlay and player-hosted Realms sessions.
+
+[size=4][b]Requirements[/b][/size]
+
+Darktide Mod Loader, Darktide Mod Framework and SoloPlay are required. Realms is optional for co-op. Havoc Enemy Director is optional for advanced spawning controls.
+
+[size=4][b]Vortex installation[/b][/size]
+
+[list]
+[*]Close the game and install the requirements. Import this mod's ZIP with Install From File, enable it and select Deploy Mods.
+[*]Enable HavocConditionManager in Load Order after SoloPlay. If installed, place HavocEnemyDirector after HavocConditionManager.
+[*]Start the game and open Havoc Condition Manager from Mod Options.
+[/list]
+
+[size=4][b]Manual installation[/b][/size]
+
+[list]
+[*]Close the game. Extract the ZIP into Darktide/mods, producing mods/HavocConditionManager.
+[*]Add HavocConditionManager on its own line after SoloPlay in mods/mod_load_order.txt. Place the optional HavocEnemyDirector after it.
+[*]Start the game and open the mod in Mod Options.
+[/list]
+
+[size=4][b]Credits[/b][/size]
+
+SoloPlay and the original UI foundation: deluxghost. Native game systems and referenced assets: Fatshark. Game-source reference: Aussiemon/Darktide-Source-Code.
+
+[size=5][b]简体中文[/b][/size]
+
+[size=5][b]浩劫词条管理器[/b][/size]
+
+为 SoloPlay 和 Realms 配置任务词条、环境及敌人倍率。浩劫词条管理器可以独立使用，高级生成器是可选扩展。
+
+[size=4][b]词条与环境[/b][/size]
+
+[list]
+[*]组合支持的词条，不受原版固定词条槽位数量限制。
+[*]按浩劫、金级／大漩涡、活动及阵营分类浏览。
+[*]独立于任务选择环境；地图不支持所选环境时，回退至支持的选项。
+[*]使用游戏原版 Buff 模板和编号。部分词条只添加效果，不产生额外刷怪来源。
+[/list]
+
+[size=4][b]刷怪倍率[/b][/size]
+
+普通敌人、精英、特感和 Boss 分别设置 1–5 倍，可选择调整数量、刷新速度或混合调整。
+
+基础模式组合所选原版词条效果，调整刷怪参数，并保留原版生成器、池子和容量规则。词条自身要求的阵营及池子变化仍然生效。原版容量会限制存活敌人数，因此 5 倍倍率不代表场上敌人必然达到 5 倍。
+
+[size=4][b]操作与兼容[/b][/size]
+
+从 Mod Options 打开浩劫词条管理器，通过侧边箭头切换页面，在开局前选择词条、环境和倍率。Realms 以房主的任务配置为准。安装浩劫高级敌人生成器后，可进入“高级”页编辑生成器、池子和容量。
+
+Darktide Mod Framework 开关在大厅中立即应用；任务中的修改用于下一局，当前任务保留开局配置。关闭管理器后，后续任务恢复 SoloPlay 原版菜单，并暂停可选高级生成器。已保存的设置保留。
+
+英文、简体中文和繁体中文跟随游戏语言。原生名称使用游戏已有翻译。
+
+环境为单选。相反的强制阵营、同时修改同一原版字段的词条，不一定能够独立叠加。替换相同词条选择或刷怪逻辑的其他 mod 可能冲突。本 mod 用于 SoloPlay 和玩家房主的 Realms 会话。
+
+[size=4][b]使用前提[/b][/size]
+
+需要 Darktide Mod Loader、Darktide Mod Framework 和 SoloPlay。联机可安装 Realms；需要高级刷怪设置时，可安装浩劫高级敌人生成器。
+
+[size=4][b]Vortex 安装[/b][/size]
+
+[list]
+[*]退出游戏并安装依赖。使用 Install From File 导入本 mod 的 ZIP，启用后选择 Deploy Mods。
+[*]在 Load Order 中将 HavocConditionManager 放在 SoloPlay 后面。安装 HavocEnemyDirector 时，将其放在 HavocConditionManager 后面。
+[*]启动游戏，从 Mod Options 打开浩劫词条管理器。
+[/list]
+
+[size=4][b]手动安装[/b][/size]
+
+[list]
+[*]退出游戏，将 ZIP 解压到 Darktide/mods，得到 mods/HavocConditionManager。
+[*]在 mods/mod_load_order.txt 中，SoloPlay 后单独添加一行 HavocConditionManager。可选的 HavocEnemyDirector 放在其后。
+[*]启动游戏，在 Mod Options 中打开本 mod。
+[/list]
+
+[size=4][b]致谢[/b][/size]
+
+SoloPlay 与原有界面基础：deluxghost。原版游戏系统与引用素材：Fatshark。游戏源码参考：Aussiemon/Darktide-Source-Code。

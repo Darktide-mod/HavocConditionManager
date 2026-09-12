@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "No ammunition consumption, no heat gain and 80% shorter combat ability cooldown.",
+    "zh-cn": "武器射击不消耗弹药，也不产生热量；战斗技能冷却缩短 80%。用于测试或自定义玩法，仍保留装填、动作衔接等未被本条修改的机制。",
+    "zh-tw": "武器射擊不消耗彈藥，也不產生熱量；戰鬥技能冷卻縮短 80%。用於測試或自定義玩法，仍保留裝填、動作銜接等未被本條修改的機制。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-infinite_test",
+  "kind": "conditions",
+  "name": {
+    "en": "Infinite-fire test",
+    "zh-cn": "无限火力测试",
+    "zh-tw": "無限火力測試"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

@@ -1,0 +1,1 @@
+Choose SoloPlay conditions and tune enemy intensity, elites, specialists and boss/patrol encounters. Gradually deploy elite patrols and recycle eligible rear enemies to checked forward positions. Supports Realms co-op and optional Havoc Enemy Director overrides.

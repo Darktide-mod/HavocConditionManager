@@ -1,0 +1,25 @@
+{
+  "release_id": "2.4.8",
+  "status": "passed",
+  "archives": [
+    {
+      "mod": "HavocConditionManager",
+      "version": "2.4.8",
+      "file": "files/HavocConditionManager-2.4.8.zip",
+      "bytes": 79431,
+      "entries": 29,
+      "root": "HavocConditionManager/",
+      "nested_archives": 0
+    }
+  ],
+  "install_path_conflicts": 0,
+  "ui_images": 9,
+  "english_ui_images": 3,
+  "vortex_installer": {
+    "status": "passed",
+    "mods": 1,
+    "installed_paths": 29,
+    "unexpected_root_install_warnings": 0
+  },
+  "nexus_upload_performed": false
+}

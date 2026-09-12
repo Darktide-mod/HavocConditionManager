@@ -1,0 +1,19 @@
+{
+  "name": "Havoc Condition Manager",
+  "description": "Configure SoloPlay and Realms conditions, enemy intensity and pacing. Automatically recycle eligible distant rear enemies and disengaged patrols through native systems. Optional Havoc Enemy Director provides precise template overrides.",
+  "version": "4.4.9",
+  "author": "IRONCROWY",
+  "dependencies": {
+    "required": [
+      "SoloPlay"
+    ]
+  },
+  "localization": {
+    "zh-cn": {
+      "name": "浩劫词条管理器"
+    },
+    "zh-tw": {
+      "name": "浩劫詞條管理器"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+Configure SoloPlay and Realms with mission conditions and 18 enemy-pacing sliders. Set all multipliers together up to 10x, or tune them individually with detailed hover help. Optional Havoc Enemy Director adds precise edits to enemy and encounter settings.

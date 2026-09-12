@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Monster ranged-damage multiplier is zero. Damage paths that bypass this native stat are unaffected.",
+    "zh-cn": "将怪物受到的远程伤害倍率设为 0。普通远程伤害因此受到阻挡，近战伤害仍正常结算；不读取这项远程承伤倍率的特殊伤害来源仍可能造成伤害。",
+    "zh-tw": "將怪物受到的遠端傷害倍率設為 0。普通遠端傷害因此受到阻擋，近戰傷害仍正常結算；不讀取這項遠端承傷倍率的特殊傷害來源仍可能造成傷害。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-ranged_monster_shield",
+  "kind": "conditions",
+  "name": {
+    "en": "Ranged monster shield",
+    "zh-cn": "怪物远程壁垒",
+    "zh-tw": "怪物遠程壁壘"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

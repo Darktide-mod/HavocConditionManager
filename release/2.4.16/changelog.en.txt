@@ -1,0 +1,64 @@
+2.4.16
+- Retain the native Buff proc-event capacity when HCM runs alone, or Havoc Enemy Director is unavailable, disabled or using native generation.
+- Expand saturated local-server proc pools only while the advanced director owns spawning. Check its state only when native capacity is exhausted.
+- Preserve existing expanded-ring reclamation, nested-event order, the finite 2400 ceiling and deferred mission switches.
+- Native-capacity and advanced-director regressions cover overflow, event identity, queue reuse and remote clients. Live-game FPS changes have not been measured; fully restart after updating.
+
+2.4.15
+- Set the public author name to IRONCROWY.
+- No gameplay, UI, settings or saved-data changes.
+
+2.4.14
+- Cache the localized settings view and paging module across repeated openings; reuse one prepared SoloPlay UI catalog for option builders.
+- Build the common control template once. Native widget initialization still creates isolated content and style instances.
+- Avoid unchanged selection writes, per-frame color table replacement, redundant viewport allocation and repeated help-text formatting.
+- Preserve condition behavior, native spawn scaling, current selections, language refresh and disable/re-enable handling.
+- Offline repeated-open, independent-mode, native behavior and lifecycle regressions passed. Live UI latency and FPS gains have not been measured.
+
+2.4.13
+- Release the stimmed-minion aggro listener left registered by native mutator deactivation at mission end.
+- Clean only listeners belonging to the mutator instances loaded by this mod; retain other listeners and native spawning behavior.
+- Clean up before a deferred DMF disable removes hooks. Repeated cleanup and authority loss are supported.
+- Verify against native mutator and event-manager methods. No per-frame polling or Buff template/ID changes. Live game retesting is still required.
+
+2.4.12
+
+- Native spawning skips composition traversal when all four enemy categories have the same speed factor. Settings are read live; differing category speeds retain the existing selection logic.
+- Speed-only and 1x specialist spawning skip an unnecessary replacement lookup. Inactive guaranteed faction switching passes the native roamer update through without a temporary result table.
+- Keep native generators, pools, caps, condition-forced factions and original Buff templates/IDs. A 5x quantity multiplier is still limited by native capacity.
+- Recheck shared mutator deduplication, map-compatible environments, health stations, pickups, barrels and faction restrictions. Opposite forced factions and writes to the same native field are not independent additive effects.
+- Standalone HCM regressions and director integration checks passed. These changes reduce extra Lua work; actual frame-rate gains have not been measured.
+
+2.4.11
+
+- Prevent duplicate close requests for the page shared with the advanced director when DMF toggles change. A page already exiting is not closed again.
+- Verify native SoloPlay menu fallback, blocked reopening while disabled and hidden advanced-director entry. Saved conditions and generator configuration are preserved.
+- Existing initialized mission spawning still changes next mission, while menu entry points follow the framework toggle immediately.
+- Pass standalone HCM and HCM/director toggle regressions. Havoc Enemy Director 1.5.9 needs no code change and can be used with this version. Live-game retesting remains pending.
+
+Version 2.4.10
+
+- Fixed redundant presence updates when Realms and Modular Menu Buttons are used together during local Havoc gameplay. Genuine activity changes and menu behavior are preserved.
+- Added low-frequency workload records for expanded player Buff queues: at most one event-batch sample every five seconds, with summaries every thirty seconds. Sampling reuses native parameter reclamation; no per-unit Buff-update hook is added.
+- Preserved native Buff templates and network IDs, proc order, overflow protection, condition effects, multipliers and saved settings.
+- Fully exit and restart the game after updating. Log-based workload checks do not establish an average-FPS improvement.
+
+Version 2.4.9
+
+- Removed the per-unit Buff-update diagnostic callback. Expanded proc queues report through their existing reclamation path, retaining overflow protection, nested-event order and the finite ceiling.
+- Skipped native composition analysis while the advanced director owns spawning.
+- Preserved native Buff templates and network IDs, condition effects, multipliers and saved settings.
+- Added independent regression coverage for native proc overflow and nested dispatch. No live-game FPS improvement has been measured; fully exit and restart the game after updating.
+
+Version 2.4.8
+
+- Nurgle's Blessing now uses the original game Buff template and network ID.
+- Removed the duplicate Buff registration that could shift IDs assigned by other custom-buff mods.
+- Retained the existing condition selection, enemy effects and optional Havoc-rank spawn probability scaling.
+- Fully exit the game before updating, then restart. Co-op players who use an older version of this mod should also update and restart.
+
+Version 2.4.7
+
+- Enabled the Darktide Mod Framework toggle.
+- Hub switches apply immediately; in-mission switches apply next mission and keep the current runtime consistent.
+- Retained saved settings and added three-language switch guidance.

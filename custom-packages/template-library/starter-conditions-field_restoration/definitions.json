@@ -1,0 +1,64 @@
+{
+  "description": {
+    "en": "On first spawn remove up to full-health corruption and heal up to full health, subject to native restrictions.",
+    "zh-cn": "首次生成时按最大生命量清除腐化并治疗，仍受原生治疗限制。",
+    "zh-tw": "首次生成時按最大生命量清除腐化並治療，仍受原生治療限制。"
+  },
+  "entries": [
+    {
+      "conditions": [],
+      "description": {
+        "en": "On first spawn remove up to full-health corruption and heal up to full health, subject to native restrictions.",
+        "zh-cn": "每名玩家首次生成时，尝试清除相当于最大生命量的腐化，并恢复相当于最大生命量的生命，每局一次。实际恢复受到当前可恢复上限和任务治疗限制约束。",
+        "zh-tw": "每名玩家首次生成時，嘗試清除相當於最大生命量的腐化，並恢復相當於最大生命量的生命，每局一次。實際恢復受到當前可恢復上限和任務治療限制約束。"
+      },
+      "enabled": true,
+      "id": "field_restoration",
+      "match": "all",
+      "name": {
+        "en": "Field restoration",
+        "zh-cn": "治疗伤势",
+        "zh-tw": "治療傷勢"
+      },
+      "rules": [
+        {
+          "actions": [
+            {
+              "amount": 1,
+              "amount_kind": "fraction",
+              "type": "corruption"
+            },
+            {
+              "amount": 1,
+              "amount_kind": "fraction",
+              "type": "heal"
+            }
+          ],
+          "chance": 1,
+          "conditions": [],
+          "cooldown": 0,
+          "delay": 0,
+          "event": "mission_start",
+          "id": "restore",
+          "match": "all",
+          "max_triggers": 1
+        }
+      ],
+      "source_row": 70,
+      "targets": {
+        "kind": "players"
+      },
+      "tier": 2,
+      "weight": 1
+    }
+  ],
+  "format": "Darktide.DIY",
+  "id": "starter_conditions",
+  "kind": "conditions",
+  "name": {
+    "en": "Field restoration",
+    "zh-cn": "治疗伤势",
+    "zh-tw": "治療傷勢"
+  },
+  "version": 1
+}

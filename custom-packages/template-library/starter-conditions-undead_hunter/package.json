@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Deal 50% more damage to poxwalkers and newly infected enemies.",
+    "zh-cn": "对瘟疫行尸和新感染者造成的伤害提高 50%。其他敌人不受这项增伤影响；不会改变它们的生命、数量或生成位置。",
+    "zh-tw": "對瘟疫行屍和新感染者造成的傷害提高 50%。其他敵人不受這項增傷影響；不會改變它們的生命、數量或生成位置。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-undead_hunter",
+  "kind": "conditions",
+  "name": {
+    "en": "Undead hunter",
+    "zh-cn": "亡灵杀手",
+    "zh-tw": "亡靈殺手"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

@@ -1,0 +1,1 @@
+Requires SoloPlay and also supports Realms sessions. Combine Havoc, Auric/Maelstrom and event conditions, choose a compatible environment, and adjust enemy spawn quantity or frequency from 1x to 5x. Havoc Enemy Director is optional.

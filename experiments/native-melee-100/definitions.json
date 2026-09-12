@@ -1,0 +1,36 @@
+{
+  "format": "Darktide.DIY",
+  "version": 1,
+  "kind": "conditions",
+  "id": "starter-conditions",
+  "name": {
+    "en": "Frenzied assault",
+    "zh-cn": "狂暴攻势",
+    "zh-tw": "狂暴攻勢"
+  },
+  "entries": [
+    {
+      "id": "frenzied_assault",
+      "name": {
+        "en": "Frenzied assault",
+        "zh-cn": "狂暴攻势",
+        "zh-tw": "狂暴攻勢"
+      },
+      "description": {
+        "zh-cn": "原生动画试验：全体敌人的常规近战攻击速度 +100%，同步命中、连击、扫击与动作时长。需要配套动画资源；目前仅支持本地单人/机器人房间。尚未通过实机验证。",
+        "zh-tw": "原生動畫試驗：全體敵人的常規近戰攻擊速度 +100%，同步命中、連擊、掃擊與動作時長。需要配套動畫資源；目前僅支援本地單人/機器人房間。尚未通過實機驗證。",
+        "en": "Native-controller experiment: +100% ordinary enemy melee playback and matching hit, combo, sweep and end timings. Requires matching controller resources. Local solo/bot sessions only; not yet validated in the game."
+      },
+      "enabled": true,
+      "tier": 3,
+      "weight": 1,
+      "targets": {
+        "kind": "minions"
+      },
+      "conditions": [],
+      "match": "all",
+      "rules": [],
+      "script": true
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "On first spawn remove up to full-health corruption and heal up to full health, subject to native restrictions.",
+    "zh-cn": "每名玩家首次生成时，尝试清除相当于最大生命量的腐化，并恢复相当于最大生命量的生命，每局一次。实际恢复受到当前可恢复上限和任务治疗限制约束。",
+    "zh-tw": "每名玩家首次生成時，嘗試清除相當於最大生命量的腐化，並恢復相當於最大生命量的生命，每局一次。實際恢復受到當前可恢復上限和任務治療限制約束。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-field_restoration",
+  "kind": "conditions",
+  "name": {
+    "en": "Field restoration",
+    "zh-cn": "治疗伤势",
+    "zh-tw": "治療傷勢"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

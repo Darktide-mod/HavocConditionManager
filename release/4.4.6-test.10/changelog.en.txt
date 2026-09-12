@@ -1,0 +1,350 @@
+4.4.6-test.10
+- Update Frenzied assault to 1.7.0. Replace per-layer playhead seeks with per-unit time scaling at four audited native animation update entries. State clocks, blend transitions, playback and animation events follow normal engine evaluation, including internal clip changes.
+- Remove the old seek bridge and translation compensation; native root movement must not receive the old distance multiplier a second time. Preserve movement starts/stops/turns, stagger, obstacle geometry and navigation release. Keep the +100% speed test values and synchronized disabled victims.
+- Include the official MinHook 1.3.4 x64 helper and license. Verify game identity, entry signatures, unit generations and owner relationships. Native worker hooks perform only a bounded-table lookup and dt multiplication; they never call Lua. The rate table is published only during the selected world's synchronous animation update.
+- Disable the native hooks when the condition ends. Retain the helper and trampolines for process lifetime. Resolve the helper from the executable location rather than the working directory; no game executable files are patched.
+- Validate actual x64 detours on owned synthetic functions, full package/DMF upgrades from 1.6.1/1.6.3/1.6.5/1.6.6, native actions and traversal, ownership refusal, world-error cleanup and one-time native invocation diagnostics. Synthetic 100/200/400-unit performance checks use zero layer getters or seeks. In-game rendering, frame rate and worker scheduling remain unverified.
+- Install this complete HCM ZIP through Vortex, then update/extract Frenzied assault to 1.7.0 in the hub and start a new mission. The new helper loads on first use; subsequent Lua rule/package refreshes apply next mission without restarting. Replacing an already loaded helper or changing the installed native hook ABI requires a game restart. Release artifacts only; no deployment to game, AppData or Vortex.
+
+4.4.6-test.9
+- Update Frenzied assault to package 1.6.6. Remove repeated per-layer OS memory queries and object resolution from the working 1.6.5 animation path.
+- Resolve each unit and validate its generation/layout once per synchronous pre-world pass. Reuse memory-region permissions only within that pass, expire prepared pointers before native world evaluation, and retain per-layer event-boundary and seek-readback checks.
+- Precompile FFI types, remove three redundant whole-unit getters per animated unit, reuse AI swap buffers and cache diagnostic labels. Empty auxiliary layers are normal skips and can reactivate without a public clip change.
+- Preserve per-frame animation advancement, +100% speed test values, fixed grenadier clips, hound custom blends, native movement transitions and obstacle traversal. No animation update throttling.
+- Compare the released 1.6.5 modules with the fix using real Windows VirtualQuery on isolated memory. A 200-unit / two-active-layer sample fell from 77.36 to 0.48 ms per animation pass while preserving 400 seeks per frame. This is a synthetic bridge benchmark, not game FPS; real native seek, rendering and AI costs are not measured by it.
+- Add memory-cache invalidation, expired-context, inactive-layer recovery, allocation-reuse and deterministic performance regression checks. Retain native action/traversal and in-process 1.6.1/1.6.3/1.6.5 package upgrade tests.
+- Return to the hub, update/extract the external Frenzied assault package to 1.6.6, then start a new mission. Lua package refresh does not require a process restart. Release artifacts only; no game, AppData or Vortex deployment.
+
+4.4.6-test.8
+- Update Frenzied assault to package 1.6.5. Fix the logged animation regression in 1.6.4: valid game unit handles were rejected before entering the animation function.
+- Match the audited native getter by taking the low 32 bits and shifting out the two tag bits. Do not require zero tag bits or reject a nonzero upper word; preserve precise cdata until truncation.
+- Retain executable signatures, generation/layout checks, event boundaries, in-place blending and native obstacle traversal. Keep the +100% speed test values and new-mission package refresh.
+- Reproduce 1.6.4 rejection with its released module; test tagged handles, upper words and actual Lua lightuserdata. The real internal seek is not executed by offline tests; in-game animation and performance remain unverified.
+- Mortis UI updates are a separate mod: the installed 4.6.0 still has the old catalog. Also install MortisBuffManager 4.6.2 for the counted Available/DIY/Selected/Unavailable tabs, route filtering and pruning, wheel browsing and page-lifecycle fix. Installing this HCM ZIP alone does not update Mortis.
+- Release artifacts only; no game, AppData or Vortex deployment.
+
+4.4.6-test.7
+- Update Frenzied assault to package 1.6.4, retaining +100% regular movement, firearm, melee and special-action test values.
+- Replace per-frame layer restoration and movement-variable writes with a guarded call to the engine's in-place animation seek. Cover fixed-speed grenadier clips and hound custom blends without rebuilding their layers or discarding outgoing blends.
+- Keep authored movement starts, stops and turns, stagger, climb, vault, gap-jump and landing handling. Stop cancelling the navigation multiplier on unaccelerated animation-derived movement.
+- Leave upcoming animation events and clip ends for normal engine evaluation. Validate executable identity, function signatures, unit generations, memory layout and clock/state/clip readback; quarantine failed layers and report each breed/action once.
+- This experimental animation path supports only the audited Windows 1.12.5 executable. Unknown builds fail the custom-hook activation with an explicit error; no unguarded fallback or executable patching is used.
+- Verify fixed clips/custom blends, 374 native melee events, grenadier throws, mutant attacks, obstacle traversal and in-process 1.6.1/1.6.3 package upgrades. Separate isolated FFI tests validate the guard and call contract without executing game code. Actual gameplay visuals, event cadence, performance and remote-client presentation still require in-game verification.
+- Return to the hub, update/extract the external DIY package, then start a new mission. No process restart is required for this Lua-only package update. Release artifacts only; no local deployment.
+
+4.4.6-test.6
+- Update Frenzied assault to package 1.6.3. Keep +100% regular movement, firearm, melee and special-action speed test values and in-game package refresh.
+- Stop reconstructing animation layers during locomotion. Drive the existing native movement variable while retaining start, stop and turn transitions and tracking native gas/charge variable writes without accumulation.
+- Preserve native climb, vault, gap-jump and landing durations and exact horizontal/vertical trajectory scales. Do not apply attack root-motion compensation to smart-object traversal. These traversal actions now run at native speed.
+- Avoid multiplying animation-derived navigation speed a second time during movement starts. Restore the native movement variable for idle, received stagger, traversal and cleanup.
+- If an attack layer fails restore readback, leave that state/clip on native playback instead of repeatedly rebuilding it every frame. A different native state or clip may retry.
+- Verify real native climb/jump entry, blend thresholds, fence falling/landing, exact endpoint placement and release of navigation ownership. Extend transition and failed-layer regression coverage; retain all 374 native melee event checks. Actual visual quality and remote-client presentation still need in-game verification.
+- Install the ZIP, return to the hub and use Extract DIY templates to update the external package, then begin a new mission without exiting the game. Release artifacts only; no local deployment.
+
+4.4.6-test.5
+- Update Frenzied assault to package 1.6.2. Package updates now load in game for the next mission, without restarting the game.
+- Replace HCM's existing DMF hook handlers in place after the previous mission has cleaned up. Temporarily enable same-owner rehooking only during registration, restore the original permission even on failure, and use a fresh routing state so retired hooks cannot regain effects. Other mods' hooks remain in their original chain positions.
+- Reload package-local Lua modules on each mission, including edits that keep the same package version. Scanning during a mission retains its frozen package snapshot; the next mission uses the refreshed files.
+- Keep the +100% movement, firearm, melee and special-action test values and the native animation restoration fix from the previous test release. This change does not establish in-game visual or remote-client animation validation.
+- To update while the game remains open: return to the hub, finish installing this ZIP, then use Extract DIY templates. For files already placed directly in the external DIY package directory, use Refresh packages. Select the condition and begin a new mission. Template extraction reads the installed file again; the running manager's displayed version can retain its startup value.
+- Release artifacts only; no changes to the local game, Vortex or AppData installation.
+
+4.4.6-test.4
+- Update Frenzied assault to package 1.6.1 while retaining +100% movement, conventional firearm, melee and special-action speed. Corresponding windups, hit/release timings, recovery and attack cooldowns retain the half-duration test values.
+- Audit the latest two local-host missions: package 1.6.0 activated successfully without the previous restart-guard failure. Its animation_clock=running message counted animation-time setter calls; it did not verify visible playback, sustained animation speed or attack frequency.
+- Fix the confirmed engine API contract error: animation_set_time only stages pending data. Commit the native time, animation and state restoration sequence before animation evaluation, advancing stable layers from their measured native progress and sampling state, clip and loop changes before further correction. Skip untargeted layers and avoid mutating animations in parallel callbacks.
+- Replace the old success counter with live-clock readback and continued advancement checks. Log animation_clock=verified with restored unit/layer counts only after these checks; report restore_failed when restoration cannot be verified. Correct the regression model that previously made the time setter update live playback directly.
+- Add one melee and one shooting timing sample per mission from the native action's runtime data: first-hit, action-end and first-shot delays. These samples distinguish shortened action windows from animation playback; they do not measure actual damage events or a complete attack cycle.
+- Keep received stagger, wall stuns and native crowd-attack gates. Restoring state reconstructs the targeted animation layers; blending, paired actions, entry/sound events, root motion and remote-client presentation require in-game verification. This remains an Optional Files test release.
+- Install the updated mod, use Extract DIY templates to update the separate AppData Frenzied assault package to 1.6.1, then restart the game before a new mission. Updating the mod alone does not replace extracted DIY files. Release artifacts only; no deployment.
+
+4.4.6-test.3
+- Set Frenzied assault package 1.6.0 to +100% movement, conventional firearm, melee and special-action speed for a more visible comparison. Corresponding windups, hit/release timings, recovery and cooldowns are halved; animation correction follows the same rate.
+- Diagnose the logged update failure: the first mission used extracted package 1.4.0; updating it to 1.5.1 between missions left old process hooks and rejected the next script activation. Passive stats are independent of this script failure.
+- Keep the restart guard and add a localized on-screen notice with the old and new versions, once per update. Include both versions in the error log and reproduce the cross-mission update in regression checks.
+- Install this ZIP, re-extract the DIY templates to package 1.6.0, then restart the game before testing a new mission. Updating the mod alone does not replace extracted DIY files.
+- Retain received stagger, wall stuns and native crowd-attack gates. Native timing regressions cover 374 melee events; actual rendering and remote-client animation validation remain pending. Release artifacts only; no deployment.
+
+4.4.6-test.2
+- Update Frenzied assault to +40% movement for all enemies, +20% conventional firearm attack speed, and +40% melee and special-action speed.
+- Scale windups, hit/release markers, recovery and repeat cooldowns proportionally. Remove the previous 80% cooldown cut and preserve native crowd-attack gates.
+- Avoid double-scaling shared first-shot/step-shot timings and burst intervals. Cover sniper timing, hound damage intervals, liquid-beam timing and native blocked recovery.
+- Keep internal action-rate metadata out of native nested animation and asset tables.
+- Reuse the existing animation playhead correction with the matching action rates. Rendered animation, root-motion, audio events and remote clients still need in-game verification; this is an Optional Files test release.
+- Re-extract DIY templates to update Frenzied assault to package 1.5.1, then restart the game before the next mission. No local installation was changed.
+
+4.4.5-test.1
+- Update Frenzied assault to +30% movement for all enemies, including specialists and monsters. Keep +40% melee/ranged attack speed and remove the received-stagger reduction.
+- Match attack windups, damage, grenade release, recovery and animation layer clocks. Align walking/running animations, mutant charge stride speed, paired grab/slam/throw animations and first-shot warning effects. Prevent native melee recovery from applying the attack-speed factor twice.
+- Retain the existing 80% attack-cooldown reduction and crowd-budget relaxation. Preserve native stagger, wall stuns, airborne trajectories, projectile lifetimes and unowned players.
+- Add native mutant, walk/run, grenade, melee and stagger method coverage plus simulated animation-layer transition, cleanup and authority checks. This is a local-authority animation test release; rendered movement, audio and remote-client presentation remain unverified.
+- Re-extract the DIY templates to update Frenzied assault to package 1.4.0, then restart the game before the next mission. Build artifacts only; no local installation was changed.
+
+4.4.4
+- Increase Frenzied assault to +40% melee/ranged attack speed, +30% specialist movement and +20% other-enemy movement. Halve attack windups and aiming, reduce attack cooldowns by 80%, accelerate grenade throws and relax crowd attack budgets. Ordinary received stagger is 90% shorter.
+- Fix Frenzied assault cleanup errors caused by destroyed movement extensions and expired temporary Vector3 values. Re-extract the DIY templates to update an existing Frenzied assault package.
+
+4.4.3
+- Fix a crash when an enemy with native Buffs is destroyed while enemy DIY effects are active: mark Buff extension teardown before removal callbacks can re-register updates.
+- Remove destroyed extensions from shared DIY ownership and skip already-destroyed references during cleanup. Preserve ordinary Buff expiration and updates required by another manager.
+- Add native lifecycle regression coverage for both manager load orders, multiple Buffs, mission reuse, and stale references. In-game verification remains pending.
+
+4.4.2
+- Add DIY conditions to the main native condition selector and All/Enabled filters, ordered Havoc, Maelstrom, Events, DIY, All, Enabled.
+- Replace the separate DIY selector with package management and readable paged descriptions.
+- Embed 35 hidden templates. Explicit extraction replaces matching folders, retains backups, and reloads the library without choosing effects.
+- Add Frenzied assault: enemy movement, melee timing, ranged attack speed, and the native red-stimm attack gate. Include the revised map medical restrictions.
+- Validated with offline native-method and UI checks; in-game acceptance remains pending.
+
+4.4.1
+- Fix a shared DIY crash during enemy spawn and Buff events: classify native breed types before calling the player-only archetype method. Minion, prop and companion data never calls that unsupported getter.
+- Preserve local-player and remote-player archetype filters and guard player-only resource actions. Reproduce the HCM 4.3.0 failure with native unit-data methods, then verify both managers across spawn, hit, death, selectors and Lua callbacks.
+- Include the complete named resource API and original-image examples from the preceding resource update. The crash fix does not require SimpleAssets.
+- Offline regression and Vortex installation checks pass. Live Realms gameplay and native external-asset rendering still require in-game acceptance.
+
+4.4.0
+- Publication revision r3: align the editor schema, isolate changed cursor hotspots, and keep client scopes independent of binary package buffers.
+- Add API 1.1 named external resources with strict per-entry declarations and the optional SimpleAssets v2 interface. Existing packages remain supported.
+- Stage immutable content-addressed resource copies during package refresh, including declared companions; preserve active mission content.
+- Reuse concurrent and successful loads, isolate failures and timeouts, suppress stale callbacks, and provide local client view scopes with explicit cleanup.
+- Document native lifetime limits and include independent original-image loading examples in all three languages.
+- Offline resource, lifecycle and installation checks pass; native rendering and multiplayer visual acceptance remain unverified.
+
+4.3.0
+- Make DIY conditions a checked-entry list: apply every enabled checked condition, with no random draw or selection quota. Ignore legacy weights and exclusion groups for HCM selection.
+- Follow the hovered condition in the detail panel without changing its checkbox. Remove selection seed and quota controls from the condition list.
+- Move the condition-event seed to Overall tuning > Random seeds. A separate fixed-seed switch enables exact integer input; off follows the mission seed, with a per-mission random fallback.
+- Create one independent starter/import folder per condition with JSON, Lua and resources. Preserve legacy starter identities and original files in package-backups during migration.
+- Offline regression and installation checks cover these changes; live gameplay and multiplayer acceptance remain outstanding.
+
+4.2.1
+- Synchronize the shared DIY library with Mortis support for 99 talent points. HCM retains its existing 0-32 condition total limit.
+- Keep package management separate from selection, retain automatic startup loading and next-mission refresh, and preserve tier as a display label only. Update the shared authoring guides.
+
+4.2.0
+- Make tier a display label only. Remove tier quotas from weighted selection and ignore legacy saved tier limits. Pool membership, equipment eligibility and positive weights determine candidates; total and exclusive-group limits remain.
+- Separate package management from selection and reward settings. Package pages contain only discovery, refresh, import, export, enable/disable and status controls. Startup discovery and next-mission package snapshots are preserved.
+- Give the DIY conditions page a separate Package manager subpage. Keep selection controls on the entries page and use native minus/plus and direct numeric editing for the total limit.
+- Verify the actual package library with native HCM page/numeric callbacks, zero/max/fraction validation, mission selection lock and runtime package refresh in three languages. Live gameplay acceptance remains outstanding.
+
+4.1.0
+- Add strict folder packages with package.json, definitions.json, optional Lua modules and declared resources. Discover and merge valid packages automatically at startup; refresh handles files added or edited in game.
+- Keep each mission on frozen definitions, Lua and resource bytes. Runtime refresh and package enable/disable apply to the next mission; no frame or kill-path directory polling.
+- Execute trusted local Lua callbacks for selected entries on the authority. Provide per-package environments and module caches, dependencies, resource reads, validated actions/effects, scoped signals and cleanup; isolate callback errors.
+- Version the package format, Lua API and individual packages separately. Validate dependencies, version ranges, conflicts, required mods, capabilities, complete file inventories and aggregate limits. Keep independent valid packages available when another fails.
+- Migrate legacy JSON and saved selections without overwriting author files. Export complete packages and report loaded counts, individual errors and existing starter packages clearly. Include three-language package/API guides, an editor schema and executable examples.
+- Offline verification covers actual Windows Unicode IO in temporary APPDATA, SHA-256 vectors, real LuaJIT module/callback execution, native loader backups and strict globals, startup discovery, dependency recovery, complete-package limits, resource snapshots and both production manager factories. Live multiplayer and game rendering acceptance remain outstanding.
+
+4.0.3
+- Fix startup errors by deferring DIY native Buff hooks until the game has registered network types and loaded each concrete class.
+- Initialize gameplay utilities on use and deduplicate callbacks across repeated native file loads.
+- Prevent repeated update and teardown errors when DMF reports a failed DIY module initialization.
+- Reproduce the original native startup failure in offline tests; cover cold, preloaded and mixed class order, two-mod hooks, repeat loads and 1,000 failed-initialization updates. Live game verification remains outstanding.
+
+4.0.2
+- Synchronize shared DIY schema, selector, templates, localization and documentation with the unified Mortis update.
+- Support zero-weight manual-only entries in shared weighted selection. The ranged salvo modifier remains Mortis-only; condition gameplay and protocols are unchanged.
+- Pass condition, director and shared DIY offline regressions; live acceptance remains outstanding.
+
+4.0.1
+- Update shared DIY modules and identifier catalogs for Mortis equipment eligibility while preserving global condition selection behavior.
+- Include the updated Mortis starter declarations and three-language eligibility audit and guides.
+- Pass the existing condition/director regressions and DIY suites offline; live gameplay acceptance remains outstanding.
+
+4.0.0
+- Add the DIY conditions page and validated JSON runtime, with 34 editable conditions and interface examples.
+- Support selectors, initial enemy health, passive effects, events, timed/stacked actions, signals, native pacing pauses and bounded HED reinforcement requests.
+- Add mission-frozen host selections and validated expiring Realms effect snapshots; keep official condition selection independent.
+- Share signal/active-condition predicates with HED rules and retain ordinary DIY spawn provenance through the common path.
+- Coordinate native player/minion hooks and empty-buff enemy updates across both DIY mods, including final-owner cleanup.
+- Include three-language guides, a full native identifier catalog and an explicit feasibility assessment covering all 120 image rows.
+- Native-method, lifecycle, network, UI and regression checks passed offline. Live gameplay and four-player acceptance testing remain outstanding.
+
+3.6.11 — Native door paths and removal of runtime diagnostics
+- Remove HCM's additional door-state, opening-permission and navigation-link checks from extra patrol, supplemental encounter and recovery placement. Door and terrain connections now follow the native path result.
+- Retain complete enemy-to-player paths, current player floor, distance, visibility, formation connectivity and live-path validation, including final validation when deferred requests create units.
+- Remove placement and recovery debug samples, spawn-batch and patrol reports, encounter reports, mission summaries, and their diagnostic counters and retained records. Required error handling remains.
+- Preserve native spawn ownership tracking, recovery and replacement allowances, pacing limits and cleanup. The creation listener continues to support recovery without collecting statistics.
+- Update regression checks to verify native entity creation and pending allowance directly, including door-state-only changes, invalid native paths, 21-member patrols and silent recovery under sustained blocking.
+- Fully exit the game before replacing HCM; apply this update on the next mission.
+
+3.6.10 — Native terrain routes and live door validation
+- Allow native terrain transitions in extra patrol, supplemental encounter and recovery placement instead of refusing every navigation-graph route. Keep complete enemy-to-player path, actual player floor, distance, visibility and formation-position checks.
+- Validate each door on the selected route: its unit and AI navigation link must remain available, and the doorway must already be traversable or permit the native AI opening action. Reject disabled, non-openable or unresolved door links without opening a door or operating a player control panel.
+- Recheck door state when asynchronous searches finish, shared routes are reused and native deferred queues consume replacement requests. Failed final checks preserve replacement allowance.
+- Retain one shared asynchronous search, at most one new query per second and existing bounded diagnostics. Receipts now distinguish terrain approvals, door approvals/refusals and failed door rechecks; refusal samples include the smart-object ID.
+- Add native door and graph-component regressions, including player-panel state, closed/non-openable doors, disabled links, mixed terrain plus door routes creating all 21 crushers, removed doors and late-lock cancellation. Physics, real map navigation and specific mission-door authoring still require live validation.
+- Fully exit the game before replacing HCM; apply this update on the next mission.
+
+3.6.9 — Fair, persistent recovery redeployment
+- Keep accepted replacement allowance until mission end, with a fixed limit of 32 records and 256 pending units. Remove the 180-second expiry that also shortened newly merged credits. Capacity overflow remains bounded and counted; each original still earns at most one replacement.
+- Select ready batches in rotation so a paused first class cannot block later classes. Remove the extra eight-second gap between batches and use at most four replacement requests per second, one per update and one globally in flight. Cancellation and non-head completion preserve the correct allowance and native group lifetime.
+- Prefer nearby candidates when recovery needs a new position. Favor the actual player floor among authored nearby candidates and supplement them with at most eight local mesh samples per four seconds, retaining at most four local candidates. Alternate 28- and 40-metre sampling radii.
+- Keep complete enemy-to-player route validation, conservative navigation-transition refusal, all-teammate distance/visibility checks, current-floor checks and final native dequeue validation. Nearby mesh samples are candidates, never permission to spawn. Continue sharing one asynchronous route search, at most one start per second.
+- Expand replacement positions in blocks of at most eight while retaining compatible native group and health metadata. Add final allowance-peak, capacity-overflow, completed-batch-age and blocking-category receipts, plus local mesh sample counts.
+- Add native regressions showing 103 earned credits survive a wait beyond the former expiry and all recreate within 26 seconds once capacity and placement allow. Cover a paused queue head, non-head cancellation/completion, one request in flight, capacity pressure, bounded local candidates, actual player floor, delayed paths and transition/visibility refusals. These offline engine-boundary fixtures do not guarantee a live-map replenishment percentage.
+- Fully exit the game before replacing HCM; apply this update on the next mission.
+
+3.6.8 — Rear backlog and untouched ambient recovery
+- Increase the fixed ready ring from 16 to 64 entries. Final removal attempts are spaced at least 0.25 seconds apart, at most four per second and one per update; never catch up in a burst after a slow frame.
+- Admit untouched authored ambient roamers on linear maps when their recorded position is at least 60 metres behind cached rear-player progress and the unit remains within 12 metres of that position. Apply the same 35-metre all-teammate distance, visibility and 30-second quiet checks, including final revalidation if the team returns. Unknown/open-map/moved records and ahead encounters retain native handling.
+- Remember observed engagement or actual damage so a return to passive state does not grant permanent immunity. Protect passive records already unregistered for retirement until native engine deletion and dead-record cleanup finish.
+- Read native cached progress only; recovery adds no enemy route projection or pathfinding. Keep protected enemy types, mission ownership, finite replacement allowance and pre-spawn reachability validation.
+- Add queue peak/full-sample counts, maximum extra wait among completed removals, untouched rear removal totals and rear-gap/queue fields to existing bounded diagnostics.
+- Add native lifetime and cached-progress regressions, forward/between-team/returning-team guards, a 240-enemy backlog draining within 95 seconds including its initial quiet period, and per-update/rate-limit/slow-frame checks. Engine navigation and physics remain explicit offline test boundaries.
+- Fully exit the game before replacing HCM; apply this update on the next mission.
+
+3.6.7 — Reachable extra spawns with nearby fallback
+- Check extra patrol, supplemental encounter and recycled-enemy positions before creating any unit. Require a complete enemy-to-player route to the actual player floor; do not treat a main-path projection or an occluded spawn point as proof of reachability.
+- Conservatively refuse paths relying on door, vault, drop or other navigation-graph transitions. Prefer hidden forward positions; when unsuitable, use a verified nearby hidden point at least 20 metres from every teammate, including bots. Nearby points can be to the side or rear. Missing, unfinished or failed checks preserve pending allowance instead of spawning a test enemy.
+- Share one asynchronous search and live path, start at most one new search per second, bound local candidates and recent rejected points, and reuse successful results across members. Each formation position must connect to its approved anchor; target movement, floor changes, live-path invalidation and current visibility are checked again. Native queued replacements repeat validation at actual creation.
+- Use the verified player floor as the passive patrol destination. Release owned path resources before native traversal-rule destruction. Keep native event doors, ordinary horde placement, the 35-metre/30-second recovery rule and finite replacement budgets.
+- Add bounded placement diagnostics and per-patrol nearby/recycled counts, so mission logs can distinguish unsuccessful placement from later cleanup.
+- Add native creation/queue/group regressions for a 21-crusher group with blocked far points and a reachable near fallback, delayed queries, directional paths, multi-storey targets, stale routes, footprint connectivity, queue cancellation and native teardown. Engine navigation and physics are explicit test boundaries; live-map behavior still needs gameplay validation.
+- Fully exit the game before replacing HCM; apply this update on the next mission.
+
+3.6.6 — Simple out-of-contact recovery and lightweight debug
+- Replace motion/progress classification and main-route requirements with one 30-second out-of-contact rule at 35 metres from every living teammate. Apply it to engaged common enemies/elites and already committed pacing patrols. Moving units, loops, stale patrol flags, missing route data and smart-object flags no longer confer permanent immunity.
+- Recognize ordinary native minions at creation, including non-objective scripted event waves. Do not wait for every event to end before cleaning event leftovers. Retain explicit mission-target/controller/player ownership, invulnerability and protected enemy-type safeguards, plus native handling of untouched passive ambient enemies.
+- Retire patrol members independently. Reuse native perception samples every five seconds and a fixed 16-unit ready ring; retain at most one final attempt/removal per second and fresh native visibility checks. Remove the old 256-record observation queue, motion history, group-retirement job and recovery route queries.
+- Actual damage restarts the same quiet timer. Persistent marks/effect flags alone no longer block recovery. Preserve native non-death cleanup, finite allowance and one recreation per original; combine compatible allowances into bounded native replacement batches.
+- Enable lightweight recovery debug by default. Record a local unit ID, source, reason, timing, nearest player distance/index, position and ownership/cached navigation fields. Limit persistent refusal samples to one per unit/reason, at least ten seconds apart globally and 48 per mission; record the first 16 successful removals and final totals. Debug adds no path/physics queries or whole-enemy scan.
+- Verify actual event nodes and door queues while the event remains active, required-objective exclusion, native deletion/recreation, group/buff cleanup, late damage/visibility/teammate checks, 240-unit throughput and debug rate/cap limits. Live mission outcomes still need confirmation.
+- Fully exit the game before installing. Debug needs no separate switch and applies with the update on the next mission.
+
+3.6.5 — Rear pursuit recovery and combat-patrol state
+- Recover known, safely separated enemies that repeatedly move without establishing new pursuit progress for 120 seconds. Retain high-water marks for the enemy's main-route advance and approach to a fixed team position; player motion, path replanning and revisiting old positions cannot indefinitely restart this deadline.
+- Keep the 30-second stationary route, with accumulated movement above 0.5 metres resetting that short timer. Preserve slow pursuit and actual branch/stair progress; recheck progress immediately before removal.
+- Read the native aggro state when deciding whether a patrol member can retire independently. Native combat entry can retain should_patrol=true, so that stale flag no longer blocks an otherwise eligible combat straggler.
+- Preserve removal protection during smart-object traversal while retaining long-term progress evidence across repeated door/ledge attempts. Renewed combat, damage, ownership and other safety conditions reset qualification.
+- Use the existing perception scheduler, 256-entry candidate queue, four detailed checks per second, one removal per second and native final visibility checks. Add scalar progress records, without independent path searches, remaining-path queries, extra enemy scans or boxed-vector allocations. Moving candidates share the existing budget; this is not a claim of measured zero FPS cost.
+- Add bounded position/timing/combat-state evidence and actual no-progress removal totals. Keep native spawn doors, current intensity settings, protected enemy types, finite replacement allowance and one-transfer ownership.
+- Add actual-native patrol-condition, smart-object and lifecycle regressions, moving/stationary stress coverage, late recovery cancellation and single-transfer checks. Real map reachability and live gameplay still require validation.
+- Fully exit the game before replacing HCM. Apply the update to the next mission.
+
+3.6.4 — Bounded rear retirement and restored native spawn admission
+- Remove the independent navigation probe, central-horde route approval, synchronous trickle relocation and mission-door selection introduced in 3.6.3. Native event doors, including Courtroom rear entrances, remain possible. Preserve native queues, composition, completion accounting and existing intensity settings.
+- Detect a stalled enemy from its own physical displacement. Player/bot motion, target changes and path replanning no longer restart the quiet period. Accumulate slow movement across samples and recheck movement before removal. Keep one 30-second quiet period instead of stacking approach and retirement waits.
+- Store three coordinate numbers per observed unit without allocating boxed vectors or requesting remaining path distance. Reuse the native perception schedule and existing FIFO; keep the four detailed checks and one removal per second limits. Retain queued observations after selecting a ready candidate rather than discarding their opportunity until the next sample.
+- Permit ordinary horde leftovers with a retained native group target. Allow an individually qualified combat-patrol straggler to retire while active teammates remain; protect walking formations, assembling groups and external ownership.
+- Track recorded, non-objective scripted-event elites without adding records for large scripted common waves. Begin qualification only after active events, event trickles and queued event starts have ended. Preserve required-objective, automatic-event, current damage, DOT, visibility, traversal and player-ownership protections.
+- Preserve native removal/recreation, finite one-transfer allowance, forward hidden replacement positions, and non-death rotten-armour cleanup. Health and random modifiers may reset.
+- Extend actual-native regressions for stationary counterexamples, slow pursuit, final movement checks, independent combat-group retirement, native event doors and queue IDs, event completion and objective exclusion, full/expanded queue throughput and single-transfer replacement. Physics, map navigation, entity synchronization and FPS still require live validation.
+- Fully exit the game before replacing HCM. Apply the update to the next mission.
+
+3.6.3 — Rear recycling and spawn-route correction
+- Qualify distant enemies by recent combat and effective approach. Persistent modifiers, retained distant targets and historical injuries no longer permanently veto recycling. Require 30 seconds of disengagement, 35 metres from every living teammate and 60 metres behind the whole team; retain active damage, visibility, slow pursuit, marking, traversal and mission/ownership protections.
+- Keep a bounded candidate queue independent of unrelated perception population. Include ordinary central-queue horde origins, preserve whole-patrol eligibility and retain finite single-transfer replacement allowance.
+- Remove and recreate through native systems. Health and random modifiers can reset. Suppress the native rotten-armour death payload only during HCM non-death retirement, including delayed destruction; preserve normal death and unrelated buff cleanup.
+- Add one asynchronous native navigation probe with at most four new searches per second, a 24-request queue and short local caching. Check actual routes for staged patrols, ordinary synchronous trickle groups, central-queue hordes and recycled reinforcements. Reject disconnected, partial and excessive detour paths without spending pending unit allowance; rotate blocked central requests so later units can proceed.
+- Select nearby reachable authored event exits before native nodes allocate their spawn queues. The Courtroom ascender event can choose among its original three door groups. Preserve native composition, queue IDs, ownership and completion accounting. Required-objective nodes retain native behavior; after ten seconds without an approved route, use the original event pool and log that fallback instead of blocking mission progression.
+- Add bounded source/batch/door/position/route receipts and preserve existing intensity settings, HED overrides and UI.
+- Extend offline regressions with actual native distant-target selection, modifier patrols, slow pursuit, Buff destruction/death callbacks, complete ascender node/door queues and completion, synchronous trickle creation, and full/expanded central-ring deferral. Engine navigation, real map geometry, multiplayer synchronization and frame performance still need live validation.
+- Fully exit the game before replacing HCM. Apply the package to the next mission; random modifiers and health are not transferred from removed enemies.
+
+3.6.2 — Patrol engagement and rear-group eligibility fixes
+- Give supplemental patrol members a current native combat target at creation. Route patrols retain passive formations, use the native main-path destination and assign index 1 to a replacement leader when earlier staged members have died.
+- Restore known pacing followers after their leader dies through throttled native alert/aggro calls. Keep mission and player ownership protections, and prevent staged recycling from waking its own remaining members.
+- Treat the native unassigned objective name as unassigned. Preserve protection for named or registered objectives and unknown objective interfaces.
+- Check living group members instead of waiting for native corpse destruction. Corpses do not block otherwise eligible survivors and never provide replacement allowance, including deaths during staged retirement.
+- Allow known stopped patrols and disengaged ordinary trickle combat groups to reach the existing rear-distance, quiet-time and visibility checks. Keep pursuit, combat, health, status-effect and ownership protections.
+- Add bounded eligibility/refusal summaries, initial combat state and crusher counts in deployment receipts, and up to eight example removals and orphan recoveries per mission.
+- Verify native objective initialization/registration, lingering corpses, mid-retirement deaths, orphan recovery, staged leader death, route destinations and current reserve targets offline. Existing safe-zone, final-position, queue, timing and capacity checks remain in force; live mission results still require testing.
+
+3.6.1 — Safer forward reinforcements and gradual patrol deployment
+- Fix encounter reserves starting inside the native spawn safe zone. Start their 20-second interval after the restriction ends.
+- Replace synchronous route/reserve elite-patrol creation with one native-initialized member at least every 0.15 seconds. Preserve composition, formation links, group sounds and partial progress; count a reserve patrol only after its final member exists.
+- Prefer a hidden region around 60 metres ahead, using the real native spawn-group count. Check every expanded member position for current visibility, at least 35 metres from each valid teammate including bots, and 30–120 metres of forward route progress. Retain pending members when no safe position is available.
+- Stage recycled patrol members through the native queue at least 0.15 seconds apart. Recheck at actual consumption; cancel stale requests and retain their allowance. Separate transfers keep their 8-second interval and existing finite lifetime.
+- Reuse native route, navigation, horde LOS, unit creation, grouping and perception facilities. Keep bounded local position searches and existing ordinary queue/spawner smoothing.
+- Add bounded patrol completion receipts with member counts, deployment time and verified minimum distances; include cancelled replacement requests in the recycling receipt.
+- Reproduce the previous hidden-anchor/unsafe-expanded-position path using game Lua. Validate safe-zone behavior, complete quotas, per-member guards, 30/60/144 FPS admission, boxed position lifetime, moving players, queue refusal/expiry and group cleanup offline. Live frame-time improvement remains unmeasured.
+- Fully exit the game before replacing HCM. Existing intensity values and HED overrides are preserved; use the new package for the next mission.
+
+3.6.0 — Automatic rear-enemy and patrol recycling
+- Add automatic recycling at every local-host intensity level, without a new switch. Level 1 retains native spawn multipliers and includes recycling.
+- Reuse native perception scheduling, group membership, route progress, LOS, despawn bookkeeping and spawn queues. Require sustained distance behind every living teammate, including bots; a step or checkpoint crossing alone does not qualify.
+- Include walking native patrols only when the whole group is disengaged and not closing its route gap. Recycle across frames and stop on renewed combat, player return, visibility or protected state. Preserve ordinary path-following pursuers, wounded/marked units, mission ownership, bosses, specialists and externally controlled patrols.
+- Transfer only actually removed original units, preserving breed and patrol composition/group membership. Use hidden forward spawn points, native pacing/capacity checks and the native creation queue. Retain at most 24 records/96 units for 180 seconds; replacements never produce another allowance. Whole patrol admission waits for enough capacity and distinct positions.
+- Bound observations to four candidates per second and removal to one unit per second. Process one patrol at a time. Add mission-end recycling and patrol receipts, including actual creation and query totals.
+- Correct native EventManager registration/unregistration argument order so successful creation receipts receive real game events, including level 1.
+- Validate real native perception, patrol creation, group retirement, despawn and queue consumers, protection/interruption cases, 240-unit scheduling and two 64-member patrols offline. Live frame-time improvement remains unmeasured.
+- Fully exit the game before replacing HCM; use the new package for the next mission.
+
+3.5.0 — Growing enemy curves and fair encounter scheduling
+- Rebuild every intensity from 1 through 10. Level 1 retains the selected native baseline; ordinary enemies grow gradually, while elites, specialists and monsters gain more pressure. Keep ordinary horde wave counts native to avoid multiplying both wave size and wave count.
+- Scale common and elite composition counts independently. Add existing elite patrol members without replacing ordinary members. Keep native roamer/event selection ratios and raise their population or budget.
+- Add a coordinated combat-load control. Supported upper limits are 35 / 70 / 105 at levels 1 / 5 / 10, retaining capable-player and pacing-stage predicates. HED append and replacement rules keep their intended precedence.
+- Share encounter overflow opportunities between bosses and patrols, with weighted turns and protection against long waits. Preserve quotas on failure, try the other ready class, and retain the shared 20-second interval and existing concurrency limits.
+- Fix fractional native trickle cooldown modifiers being rounded or clamped upward when frequency increases.
+- Add bounded game-log receipts for successful spawns, actual combat load by category, blocked coordinated checks and unfinished encounter quotas. Record native spawn events without changing the spawn method; remove the listener at mission end.
+- Automatically migrate exact saved old presets to the same new level. Preserve other custom settings and HED overrides; expand the advanced UI to 20 controls.
+- Validate all ten curves, native consumers, rule precedence, weighted queues, bounded reporting and three-language UI offline. Live FPS and exact mission kill counts remain unmeasured.
+- Fully exit the game before replacing HCM. Changes take effect on the next mission.
+
+3.4.0 — More elites and bosses, fewer ordinary troops
+- Rebalance intensity toward existing elite breeds without increasing mixed group size. Add an advanced elite composition control for patrols, roamers, mixed hordes and automatic combat-event pools; scale relevant roamer elite limits.
+- At level 10, reduce horde/trickle wave size to 0.65x, horde waves to 2x, horde frequency to 1.35x and combat capacity to 2x. Reduce route population to 0.85x; keep event budget, camp count and trickle frequency at baseline.
+- Raise level-10 map monster allowance from 5x to 8x. Retain patrol count 6x, specialist capacity 3x and replenishment 3.25x.
+- Preserve encounter allowance that cannot fit authored positions. Retry later hidden navigation positions with at least 20 seconds between supplemental encounters and bounded active supplemental groups; retain native pauses, spawning and objectives.
+- Validate composition conservation, native point-pool selection, roamer limits, finite encounter replenishment and all three UI languages offline. No live FPS improvement or exact spawn count is claimed.
+- Fully exit the game before replacing HCM, then re-select an intensity level to apply the new profile. Saved values and Havoc Enemy Director field overrides are preserved.
+
+3.3.0
+- Fix patrol starvation when multiplied map monsters consumed all shared encounter sections. Supplement native plans with unused authored positions and preserve native spawning, patrol groups and objectives.
+- Scale specialist same-breed and player-dependent disabler allowances, coordinated attack size, slot spacing and coordinated refill intervals with capacity/frequency.
+- Link combat-load settings to enemy admission thresholds and ordinary horde frequency to wave gaps. Level 10 pacing capacity is 3x; horde size remains 1.35x.
+- Keep the main UI compact and show elite patrol, boss and specialist values. Retain staged spawners, queue integrity and the 300-entry Buff event pool.
+- Add native encounter and specialist-consumer regressions. Offline tests do not measure live spawn rates or frame performance.
+
+3.2.1 — Fix duplicate update hook
+
+- Merge pacing-context refresh and repeated-warning flushing into one PacingManager.update hook. Fix the DMF rehook warning and restore per-update context refresh.
+- Enforce DMF's one-hook-per-mod/function registration rule in the test harness, including mixed hook and hook_safe registrations. Reproduce the previous package's conflict and verify the merged callback.
+- Keep intensity values, compact UI and spawn smoothing unchanged. Fully exit the game before replacing HCM; existing settings and HED compatibility are retained.
+
+3.2.0 — Sustained pressure and smoother spawning
+
+- Prioritize overall intensity and collapse all 18 individual multipliers into Advanced settings. Keep the main page concise and explanations in hover help.
+- Strengthen the upper levels: level 10 uses 6× ordinary horde waves, 1.35× wave size, 2.25× trigger frequency, 3× specialist slots and 3.25× replenishment frequency, with increased patrol and map monster requests. Retain wave spacing and native capacity constraints.
+- Admit at most two due native spawners per update, fairly deferring the others without dequeuing their enemies. Preserve queue IDs, enemy order, objective parameters and completion callbacks.
+- Defer ordinary/coordinated horde waves when the central pending queue reaches 48; native retries preserve unsent waves. Leave trickle attempts unchanged.
+- Summarize repeated Buff-capacity warnings to reduce log writes. Keep the native pool and overflow rejection unchanged; flush remaining counts and release session references on exit.
+- Remove duplicate template discovery, copy each modified compiler branch once and restrict per-frame hover checks to relevant controls.
+- Retain spawn-ring growth, deferred map encounter preservation and temporary-vector fixes. Validate with actual game Lua and three-language layout checks; no live FPS or difficulty-multiplier measurement is claimed.
+- Compatible with Havoc Enemy Director 2.0.0. Fully exit the game before replacing HCM, then re-select an intensity level. Existing values are preserved until changed.
+
+3.1.0 — Coordinated intensity and spawn integrity
+
+- Replace the all-equal overall multiplier with coordinated intensity levels 1–10. Levels emphasize elite patrols, specialist reinforcements and map monster encounters through sustained waves.
+- Keep ordinary enemy density, enemies per wave, ordinary horde frequency, event budgets and escalation at baseline in the profile. Increase wave counts and specialist scheduling moderately; retain wave spacing and concurrent-enemy limits.
+- Preserve existing saved values. Re-select an intensity level to replace old combined multipliers; individual controls retain their 10x ceiling and HED overrides remain available.
+- Fix a reproduced overflow in the 256-entry minion spawn ring. Grow the existing ring before an unread request is overwritten, preserving request order, positions and attached event/objective parameters. Continue processing one request per update.
+- Fix unspawned map enemies being deleted when pacing temporarily refuses activation. Modified configurations retain these plans and retry within the normal update budget. Active and dead-unit cleanup remains intact.
+- Reproduce both failure paths using the game's Lua. Verify large wrapped queues, callback-driven growth, deferred elite recovery, cleanup, profile mappings and three-language UI layouts offline.
+- Compatible with Havoc Enemy Director 2.0.0. Replace HCM and fully restart the game. Live in-game confirmation is still needed.
+
+3.0.1 — Sliders, clearer help and high-density placement fix
+
+- Replace multiplier step buttons with sliders, narrow title columns and remove the separate reset controls.
+- Add Overall intensity to set all 18 multipliers together; raise every multiplier ceiling to 10x.
+- Show mixed individual settings as Custom and retain direct numeric entry.
+- Move detailed explanations into hover panels. Define combat load, specialist slots, coordinated tactics, recovery and escalation; remove arithmetic-only examples in all three languages.
+- Clarify that recovery may end before its timer when tension falls.
+- Reclaim temporary vectors after each map enemy placement group while preserving boxed results, enemy counts and random calls. This targets the engine temporary-marker failure reported during high-density map loading; the engine crash still needs live confirmation.
+- Check the actual game slider mouse logic at three UI scales and verify every hover panel in English, Simplified Chinese and Traditional Chinese.
+- Compatible with Havoc Enemy Director 2.0.0. Fully restart the game after replacing HCM.
+- No live in-game playtest is included; the high-density regression uses the game Lua with explicit engine boundaries.
+
+3.0.0 — Native template redesign
+
+- Import eligible condition rows from SoloPlay without registering separate Havoc or Maelstrom definitions.
+- Replace category multipliers with 18 controls across six native pacing groups.
+- Share the native-template registry and exact-field pipeline with Havoc Enemy Director.
+- Retain native scheduling, encounter budgets, shared-mutator deduplication and mission-owned cleanup.
+- Migrate valid condition IDs while preserving the previous saved value; old multiplier modes start from new defaults.
+- Save edits for the next mission and retain the running mission's initial configuration.
+- Provide English, Simplified Chinese and Traditional Chinese controls and installation documents.
+- Completely remove diagnostics, sampling hooks, switches, translations and diagnostic modules.
+- Validate Lua syntax/imports, native-manager behavior, input controls and package installation layout offline. No live in-game playtest or measured FPS claim is included.
+- Install current companion versions and fully restart the game. For manual upgrades, remove the old mod installation folder first.

@@ -1,0 +1,1 @@
+Choose SoloPlay conditions and tune 1–10 enemy intensity with gradual common-enemy growth, stronger elite and specialist pressure, and fair boss/patrol scheduling. Uses native templates with optional Havoc Enemy Director edits and Realms co-op.

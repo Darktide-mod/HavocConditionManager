@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Each enemy death grants matching enemies 0.1% power for 30 seconds, up to 500 stacks; each death refreshes the shared timer.",
+    "zh-cn": "每次有敌人死亡，全体敌人的能量提高 0.1%，最多叠加 500 层，即提高 50%。新一次有效死亡事件会刷新整组增益的 30 秒持续时间；连续 30 秒未刷新时，全部层数失效。只增加能量，不附加伤害减免。",
+    "zh-tw": "每次有敵人死亡，全體敵人的能量提高 0.1%，最多疊加 500 層，即提高 50%。新一次有效死亡事件會重新整理整組增益的 30 秒持續時間；連續 30 秒未重新整理時，全部層數失效。只增加能量，不附加傷害減免。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-battle_fervour",
+  "kind": "conditions",
+  "name": {
+    "en": "Battle fervour",
+    "zh-cn": "战斗狂热",
+    "zh-tw": "戰鬥狂熱"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

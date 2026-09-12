@@ -1,0 +1,12 @@
+Version 2.4.8
+
+- Nurgle's Blessing now uses the original game Buff template and network ID.
+- Removed the duplicate Buff registration that could shift IDs assigned by other custom-buff mods.
+- Retained the existing condition selection, enemy effects and optional Havoc-rank spawn probability scaling.
+- Fully exit the game before updating, then restart. Co-op players who use an older version of this mod should also update and restart.
+
+Version 2.4.7
+
+- Enabled the Darktide Mod Framework toggle.
+- Hub switches apply immediately; in-mission switches apply next mission and keep the current runtime consistent.
+- Retained saved settings and added three-language switch guidance.

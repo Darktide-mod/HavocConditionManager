@@ -1,0 +1,49 @@
+{
+  "description": {
+    "en": "Movement +10%, block cost −20%, stamina regeneration +100%, spread −50%.",
+    "zh-cn": "移动速度 +10%、格挡体力消耗 −20%、体力恢复 +100%、散布 −50%。",
+    "zh-tw": "移動速度 +10%、格擋體力消耗 −20%、體力恢復 +100%、散佈 −50%。"
+  },
+  "entries": [
+    {
+      "conditions": [],
+      "description": {
+        "en": "Movement +10%, block cost −20%, stamina regeneration +100%, spread −50%.",
+        "zh-cn": "移动速度提高 10%，格挡体力消耗降低 20%，体力恢复速度提高 100%，武器散布降低 50%。整局持续生效；不会直接增加生命、韧性或伤害。",
+        "zh-tw": "移動速度提高 10%，格擋體力消耗降低 20%，體力恢復速度提高 100%，武器散佈降低 50%。整局持續生效；不會直接增加生命、韌性或傷害。"
+      },
+      "enabled": true,
+      "id": "agility_blessing",
+      "match": "all",
+      "name": {
+        "en": "Agility blessing",
+        "zh-cn": "圣凯恩的赐福",
+        "zh-tw": "聖凱恩的賜福"
+      },
+      "passive": {
+        "stats": {
+          "block_cost_multiplier": 0.8,
+          "movement_speed": 0.1,
+          "spread_modifier": -0.5,
+          "stamina_regeneration_modifier": 1
+        }
+      },
+      "rules": [],
+      "source_row": 73,
+      "targets": {
+        "kind": "players"
+      },
+      "tier": 2,
+      "weight": 1
+    }
+  ],
+  "format": "Darktide.DIY",
+  "id": "starter_conditions",
+  "kind": "conditions",
+  "name": {
+    "en": "Agility blessing",
+    "zh-cn": "圣凯恩的赐福",
+    "zh-tw": "聖凱恩的賜福"
+  },
+  "version": 1
+}

@@ -1,0 +1,55 @@
+{
+  "game": "Warhammer 40,000: Darktide",
+  "titles": {
+    "en": "Havoc Condition Manager - Solo Play Expansion",
+    "zh-CN": "浩劫词条管理器",
+    "zh-TW": "浩劫詞條管理器"
+  },
+  "version": "2.4.8",
+  "suggested_category": "Gameplay",
+  "required": [
+    "Darktide Mod Loader",
+    "Darktide Mod Framework",
+    "Solo Play"
+  ],
+  "optional": [
+    "Realms — for player-hosted sessions",
+    "Havoc Enemy Director"
+  ],
+  "languages": [
+    "English",
+    "Chinese (Simplified)",
+    "Chinese (Traditional)"
+  ],
+  "suggested_tags": [
+    "Gameplay",
+    "English",
+    "Chinese",
+    "Solo Play",
+    "Realms"
+  ],
+  "image_type": "UI layout renders with sample configurations; not gameplay screenshots",
+  "images": [
+    "images/01-conditions.en.png",
+    "images/02-multipliers.en.png",
+    "images/03-environment.en.png"
+  ],
+  "alternate_images": [
+    "images/01-conditions.zh-cn.png",
+    "images/01-conditions.zh-tw.png",
+    "images/02-multipliers.zh-cn.png",
+    "images/02-multipliers.zh-tw.png",
+    "images/03-environment.zh-cn.png",
+    "images/03-environment.zh-tw.png"
+  ],
+  "summaries": {
+    "en": "Requires SoloPlay and also supports Realms sessions. Combine Havoc, Auric/Maelstrom and event conditions, choose a compatible environment, and adjust enemy spawn quantity or frequency from 1x to 5x. Havoc Enemy Director is optional.",
+    "zh-CN": "以 SoloPlay 为前提，同时支持 Realms 联机会话。组合浩劫、金级／大漩涡及活动词条，选择兼容环境，并按敌人类别调整 1–5 倍刷新数量或速度。无需安装高级生成器即可使用。",
+    "zh-TW": "以 SoloPlay 為前提，同時支援 Realms 聯機會話。組合浩劫、金級／大漩渦及活動詞條，選擇相容環境，並按敵人類別調整 1–5 倍刷新數量或速度。無需安裝高階生成器即可使用。"
+  },
+  "main_file": "../files/HavocConditionManager-2.4.8.zip",
+  "main_file_description": "Requires SoloPlay and also supports Realms sessions. Combine Havoc, Auric/Maelstrom and event conditions, choose a compatible environment, and adjust enemy spawn quantity or frequency from 1x to 5x. Havoc Enemy Director is optional.",
+  "file_category": "Main Files",
+  "archive_root": "HavocConditionManager/",
+  "manual_extract_to": "Darktide/mods/"
+}

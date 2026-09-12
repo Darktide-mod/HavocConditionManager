@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Each ammo collection has a 50% chance of restoring zero ammunition. This does not invalidate medical or deployable crates.",
+    "zh-cn": "每次收取弹药时，有 50% 概率不获得弹药。本条只改变弹药获取结果，不使医疗包失效，也不将部署型补给箱整体判定为失效。",
+    "zh-tw": "每次收取彈藥時，有 50% 機率不獲得彈藥。本條只改變彈藥獲取結果，不使醫療包失效，也不將部署型補給箱整體判定為失效。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-empty_ammo",
+  "kind": "conditions",
+  "name": {
+    "en": "Empty ammo",
+    "zh-cn": "空弹药盒",
+    "zh-tw": "空彈藥盒"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

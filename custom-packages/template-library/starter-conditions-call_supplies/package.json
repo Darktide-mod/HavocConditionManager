@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "After 60 seconds, once per player, drop an ammo crate and a medical crate nearby.",
+    "zh-cn": "词条开始运行 60 秒后，在每名玩家身旁各生成一个可携带弹药箱和一个医疗箱，每名玩家每局各获得一次。生成的是可拾取物资，需要自行拾取和部署；不会直接补满生命或弹药。",
+    "zh-tw": "詞條開始執行 60 秒後，在每名玩家身旁各生成一個可攜帶彈藥箱和一個醫療箱，每名玩家每局各獲得一次。生成的是可拾取物資，需要自行拾取和部署；不會直接補滿生命或彈藥。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-call_supplies",
+  "kind": "conditions",
+  "name": {
+    "en": "Call supplies",
+    "zh-cn": "呼叫补给",
+    "zh-tw": "呼叫補給"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

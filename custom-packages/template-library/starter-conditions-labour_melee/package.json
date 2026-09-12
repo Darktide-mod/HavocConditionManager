@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Melee hits spend two stamina. Empty stamina reduces melee speed by 20% and melee damage by 10%.",
+    "zh-cn": "近战命中时消耗 2 点体力，最多每 0.05 秒扣除一次。体力耗尽时，近战攻速降低 20%，近战伤害降低 10%；每 0.2 秒检查并短暂刷新惩罚，恢复体力后惩罚很快消退。",
+    "zh-tw": "近戰命中時消耗 2 點體力，最多每 0.05 秒扣除一次。體力耗盡時，近戰攻速降低 20%，近戰傷害降低 10%；每 0.2 秒檢查並短暫重新整理懲罰，恢復體力後懲罰很快消退。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-labour_melee",
+  "kind": "conditions",
+  "name": {
+    "en": "Labouring melee",
+    "zh-cn": "近战疲劳",
+    "zh-tw": "近戰疲勞"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

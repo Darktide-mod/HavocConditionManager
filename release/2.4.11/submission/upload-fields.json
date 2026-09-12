@@ -1,0 +1,55 @@
+{
+  "game": "Warhammer 40,000: Darktide",
+  "titles": {
+    "en": "Havoc Condition Manager - Solo Play Expansion",
+    "zh-CN": "浩劫词条管理器",
+    "zh-TW": "浩劫詞條管理器"
+  },
+  "version": "2.4.11",
+  "suggested_category": "Gameplay",
+  "required": [
+    "Darktide Mod Loader",
+    "Darktide Mod Framework",
+    "Solo Play"
+  ],
+  "optional": [
+    "Realms — for player-hosted sessions",
+    "Havoc Enemy Director"
+  ],
+  "languages": [
+    "English",
+    "Chinese (Simplified)",
+    "Chinese (Traditional)"
+  ],
+  "suggested_tags": [
+    "Gameplay",
+    "English",
+    "Chinese",
+    "Solo Play",
+    "Realms"
+  ],
+  "image_type": "UI layout renders with sample configurations; not gameplay screenshots",
+  "images": [
+    "images/01-conditions.en.png",
+    "images/02-multipliers.en.png",
+    "images/03-environment.en.png"
+  ],
+  "alternate_images": [
+    "images/01-conditions.zh-cn.png",
+    "images/01-conditions.zh-tw.png",
+    "images/02-multipliers.zh-cn.png",
+    "images/02-multipliers.zh-tw.png",
+    "images/03-environment.zh-cn.png",
+    "images/03-environment.zh-tw.png"
+  ],
+  "summaries": {
+    "en": "Requires SoloPlay; supports Realms. Select Havoc, Auric/Maelstrom and event conditions, environments and 1–5× spawn multipliers. Fixes duplicate shared-page closing during DMF toggles while preserving native effects and saved configuration.",
+    "zh-CN": "以 SoloPlay 为前提，支持 Realms。分类选择浩劫、金级、大漩涡和活动词条，调整环境及1–5倍刷怪。本版修复 DMF 开关时与高级生成器共用页面的重复关闭，保留原版效果和已保存配置。",
+    "zh-TW": "以 SoloPlay 為前提，支援 Realms。分類選擇浩劫、金級、大漩渦和活動詞條，調整環境及1–5倍刷怪。本版修復 DMF 開關時與高階生成器共用頁面的重複關閉，保留原版效果和已儲存配置。"
+  },
+  "main_file": "../files/HavocConditionManager-2.4.11.zip",
+  "main_file_description": "Requires SoloPlay; supports Realms. Select Havoc, Auric/Maelstrom and event conditions, environments and 1–5× spawn multipliers. Fixes duplicate shared-page closing during DMF toggles while preserving native effects and saved configuration.",
+  "file_category": "Main Files",
+  "archive_root": "HavocConditionManager/",
+  "manual_extract_to": "Darktide/mods/"
+}

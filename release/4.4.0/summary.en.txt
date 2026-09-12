@@ -1,0 +1,1 @@
+Choose mission conditions, tune native enemy pacing and load DIY affix libraries with editable templates, events, effects, seeded selection and HED reinforcements. Supports SoloPlay and host-authoritative Realms sessions.

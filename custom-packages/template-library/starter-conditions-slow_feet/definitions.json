@@ -1,0 +1,47 @@
+{
+  "description": {
+    "en": "Dodge distance and speed are reduced by 10%.",
+    "zh-cn": "闪避距离与速度降低 10%；未覆盖所有闪避恢复计时。",
+    "zh-tw": "閃避距離與速度降低 10%；未覆蓋所有閃避恢復計時。"
+  },
+  "entries": [
+    {
+      "conditions": [],
+      "description": {
+        "en": "Dodge distance and speed are reduced by 10%.",
+        "zh-cn": "闪避距离和闪避速度各降低 10%。只影响这两项属性，不统一修改所有武器的闪避恢复时间、有效闪避次数或其他独立闪避机制。",
+        "zh-tw": "閃避距離和閃避速度各降低 10%。隻影響這兩項屬性，不統一修改所有武器的閃避恢復時間、有效閃避次數或其他獨立閃避機制。"
+      },
+      "enabled": true,
+      "id": "slow_feet",
+      "match": "all",
+      "name": {
+        "en": "Slow feet",
+        "zh-cn": "脚扭了",
+        "zh-tw": "腳扭了"
+      },
+      "passive": {
+        "stats": {
+          "dodge_distance_modifier": -0.1,
+          "dodge_speed_multiplier": 0.9
+        }
+      },
+      "rules": [],
+      "source_row": 17,
+      "targets": {
+        "kind": "players"
+      },
+      "tier": 1,
+      "weight": 1
+    }
+  ],
+  "format": "Darktide.DIY",
+  "id": "starter_conditions",
+  "kind": "conditions",
+  "name": {
+    "en": "Slow feet",
+    "zh-cn": "脚扭了",
+    "zh-tw": "腳扭了"
+  },
+  "version": 1
+}

@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Melee kills restore five health. Coherency grants 10% power.",
+    "zh-cn": "近战击杀敌人时恢复 5 点生命，仍受治疗限制。连携计数达到 2 或更多时，能量提高 10%；每秒检查一次，离开连携后这项短暂增益会消退。",
+    "zh-tw": "近戰擊殺敵人時恢復 5 點生命，仍受治療限制。連攜計數達到 2 或更多時，能量提高 10%；每秒檢查一次，離開連攜後這項短暫增益會消退。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-martyr_blessing",
+  "kind": "conditions",
+  "name": {
+    "en": "Martyr blessing",
+    "zh-cn": "圣梅基丽娜的赐福",
+    "zh-tw": "聖梅基麗娜的賜福"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

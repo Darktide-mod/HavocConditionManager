@@ -1,0 +1,203 @@
+[size=5][b]English[/b][/size]
+
+[size=5][b]Havoc Condition Manager[/b][/size]
+
+Choose SoloPlay mission conditions and adjust enemy pacing. HCM provides broad controls; the optional Havoc Enemy Director edits individual fields in the same game templates. Realms sessions use the local host's settings.
+
+[size=4][b]Conditions and mission setup[/b][/size]
+
+[list]
+[*]Import the current SoloPlay condition list and group eligible entries as Havoc, Auric/Maelstrom, events and general conditions.
+[*]Add or remove conditions without a fixed slot count. A shared native mutator loads once even when several selected conditions include it.
+[*]Choose mission, faction, difficulty and environment in the mission page. An unsupported map/environment pair falls back to Default.
+[*]Apply the selected native pickup, health-station and hazard settings. Native replacement rules still govern conflicting effects.
+[/list]
+
+Available entries depend on the installed game and SoloPlay. HCM supplies no separate Havoc or Maelstrom condition definitions.
+
+[size=4][b]Overall tuning[/b][/size]
+
+Open HCM in Mod Options and select Overall tuning. The main page shows the intensity slider and linked values. The 20 individual controls are in Advanced settings; hover titles for details.
+
+Level 1 preserves the native spawn configuration for the selected mission, difficulty and conditions when HED overrides are also at baseline. Levels 2–10 increase ordinary enemies gradually and increase elite, specialist and monster pressure more strongly. Intermediate levels interpolate between the following anchors; integer allowances may remain equal across adjacent levels. A level describes a preset, not a measured difficulty or kill-count multiplier.
+
+[list]
+[*]Route population: 1× / 1.2× / 1.5× at levels 1 / 5 / 10. Camp count and event budget: 1× / 1.1× / 1.25×.
+[*]Ordinary enemies per horde or trickle wave: 1× / 1.1× / 1.25×. Horde frequency: 1× / 1.08× / 1.2×; trickle frequency: 1× / 1.05× / 1.1×. Ordinary horde wave counts stay native.
+[*]Existing elite members in horde compositions and patrol teams: 1× / 1.75× / 3×. Ordinary members keep their separate counts. A patrol with 8 elites and 8 ordinary troops requests 24 elites and 8 ordinary troops at 3× elite members. Roamer packs and point-budget events keep native selection ratios and grow through population and budget.
+[*]Specialist capacity: 1× / 2× / 3×; refill frequency: 1× / 2× / 3.25×; surge allowance: 1× / 3× / 6×. Capacity and frequency together represent nominal scheduling capacity, subject to native pauses, player-dependent limits and spawn checks.
+[*]Map monster encounter allowance: 1× / 4× / 8×. Elite patrol encounter allowance: 1× / 3× / 6×. These counts are separate from patrol team size.
+[*]Coordinated tactic allowance: 1× / 2× / 3×. Supported tactics' upper combat-load limit rises from 35 to 70 to 105. The medium-load lower bound stays at 8; capable-player, pacing-stage and other native conditions still apply. HED can append requirements to the adjusted conditions or explicitly replace them.
+[*]General combat capacity: 1× / 1.5× / 2×; recovery duration: 1× / 0.85× / 0.7×. At level 10, the living-plus-queued admission threshold is 290 and the difficulty-5 horde threshold is 190. Condition encounter counts, escalation, mission objectives and separate scripted-event limits retain their settings.
+[/list]
+
+Patrols and monsters first use unused authored encounter points. Overflow waits for valid hidden navigation positions. Both queues share a minimum 20-second interval and receive turns weighted by their starting overflow quotas. A ready queue gets a turn after at most three successful admissions of the other queue. If one class is blocked or fails to spawn, the other may try; only successful spawns consume allowance. Supplemental bosses wait while three ordinary map monsters are alive, and at most two supplemental patrol groups remain active. Native pauses, positions and mission length can still leave allowance unused.
+
+Route and supplemental elite patrols create one member at a time, at least 0.15 seconds apart, while retaining native breeds, group sounds and unit initialization. Route patrols use native formation links and a main-path walking destination. Supplemental patrols spawn with a current combat target and native combat behavior. Every final member position must be hidden from the current valid team, at least 35 metres from each teammate including bots, and 30–120 metres ahead along the main path. Unavailable positions delay the remaining members. Supplemental encounters wait until the native safe-zone restriction ends, then start their 20-second interval; a patrol consumes its encounter allowance only after all members are created.
+
+Supplemental encounters and recycled enemies prefer an existing hidden spawn region around 60 metres ahead of the leading player. Searches use the actual native spawn-group count and a bounded local region. The final distance and visibility checks also apply to positions expanded from a patrol anchor, so a hidden anchor alone is insufficient. These checks reuse native route queries, navigation placement and the horde visibility helper.
+
+Ordinary hordes and mission events use native position selection, authored door groups and the adjusted template pacing. This includes the Courtroom ascender event and its native rear entrances. HCM adds no navigation-route approval or waiting period to those spawns.
+
+Selecting a level replaces all 20 HCM values; individual edits show Custom. Exact saved presets from the previous curve migrate to the same level on the new curve. Other custom values and HED overrides remain. Changes save automatically and apply next mission.
+
+Due spawners run across successive updates while retaining queues, order and completion callbacks. Ordinary and coordinated hordes defer their next wave while the central queue is congested. Temporary pacing refusals preserve unspawned map encounters. Repeated Buff-capacity warnings are summarized; the Buff event pool remains 300.
+
+HCM-hosted missions at every intensity level record a final count of successfully created common enemies, elites, specialists, monsters and other units. This is a spawn receipt, not a kill counter. Blocked coordinated selections can record actual engaged counts and load by category at most once per 30 seconds, capped at 120 snapshots per mission. Encounter overflow reports successful admissions and final unused allowance with blocking reasons. These bounded records use the game log.
+
+Known pacing patrol followers that lose their leader can rejoin native combat once, with recoveries spaced at least 0.15 seconds apart. This uses the existing perception updates and native alert/aggro methods. Mission ownership, player-owned units and traversal protections still apply, and a patrol being recycled is not woken by its own staged removal.
+
+[size=4][b]Automatic rear-enemy recycling[/b][/size]
+
+Recycling is active at every intensity level while HCM runs on the local mission host, with no separate switch. Level 1 keeps native spawn multipliers and includes this behavior.
+
+Known common enemies and elites can qualify when they are at least 35 metres from every living teammate, including bots, at least 60 metres behind the entire team along the main path, and remain disengaged and effectively stationary for at least 30 seconds. Movement is measured from the enemy's own position: more than 3 metres from its observation anchor restarts the quiet period. Slow movement accumulates across samples. Player movement, changing targets and replanned path lengths do not count as enemy movement. A retained distant target, persistent modifier or old injury alone does not block recycling. Unavailable main-path information retains the enemy.
+
+Sources include known native roamers, pacing patrols, ordinary trickle groups and ordinary hordes with recorded origins. A retained ordinary-horde group target does not imply mission ownership. Intact walking patrols require all living members to qualify. An individually qualified, stationary member of a combat patrol can retire while its active teammates remain. Groups above 64 members, groups still being assembled and externally controlled patrols remain excluded. Native corpses neither block survivors nor provide allowance.
+
+Recorded non-objective event elites can enter the quiet period only when active scripted events, event trickles and queued event starts have ended. Ordinary scripted event waves receive no additional observation records. Required mission targets and automatic-event ownership remain protected, as do specialists, bosses, captains, companions and player-owned units. Recent damage, active combat effects, marks, invulnerability, traversal and visibility also prevent removal. Each removal rechecks actual movement, current team distance, main-path position and native immediate visibility.
+
+Recycling uses native removal and recreation. Each removed original can provide one replacement of the same breed; whole-patrol transfers retain the removed members' composition and grouping. Health is initialized again and random modifiers can be rerolled. Non-death retirement of rotten-armour units suppresses only the death liquid, sound and visual payload. Normal kills and other buff cleanup retain native behavior.
+
+Replacements wait for native pacing, capacity and a suitable hidden forward position. Allowance is limited to 24 records and 96 units, expires after 180 seconds and can remain unused at mission end. Different transfers are at least 8 seconds apart; whole-patrol members enter the native queue at least 0.15 seconds apart. Consumption rechecks current positions and visibility; rejected requests retain their allowance. Retiring a replacement never produces another credit.
+
+Observation reuses the native perception schedule and existing candidate queue. Movement samples store three numbers without allocating boxed vectors or querying remaining navigation distance. Detailed checks remain limited to four per second and removal to one unit per second. Whole-patrol retirement processes one group at a time, with at least 20 seconds between group starts. There is no added whole-map enemy scan or independent pathfinding probe. Ready observations remain queued for the next available removal slot.
+
+Bounded game-log receipts distinguish removal, replacement allowance, queued/cancelled requests, actual creation and unused allowance. Spawn-batch records retain source, event door group, first position and counts. Patrol completion records are capped at 64 per mission; the first eight removals and orphan recoveries are logged. Eligibility figures count observations and changes in refusal reasons, not unique remaining enemies.
+
+[size=4][b]Fine editing and saved settings[/b][/size]
+
+Havoc Enemy Director adds Detailed tuning. HCM first supplies broad changes; a HED field override then sets that field's exact value. Native difficulty and condition modifiers can still change the final result. Mission combat-node budgets are a specific case: HCM's event-budget multiplier scales the final budget and its native cap after the node's base values and native modifiers.
+
+Values save automatically and apply when the next mission starts. A running mission retains its starting configuration. DMF switches apply immediately in the hub and are deferred during a mission. Disabling HCM restores SoloPlay's menu and suspends HED for later missions.
+
+The first use imports valid native IDs from the previous HCM selection. Retired condition aliases are omitted; the original saved value is retained. Old category multipliers and custom-generator settings are not converted into native template edits. Start from the new defaults and configure the controls before your next mission.
+
+English, Simplified Chinese and Traditional Chinese follow the game language. Native identifiers remain visible where needed to distinguish exact templates.
+
+[size=4][b]Requirements[/b][/size]
+
+Darktide Mod Loader, Darktide Mod Framework and SoloPlay are required. Realms is optional for co-op. Havoc Enemy Director is optional. Other mods replacing the same native templates or scheduling methods may conflict.
+
+[size=4][b]Vortex installation[/b][/size]
+
+[list]
+[*]Close the game and install the requirements. Import this ZIP with Install From File, enable it and select Deploy Mods.
+[*]Enable HavocConditionManager in Load Order after SoloPlay. Place the optional HavocEnemyDirector after HavocConditionManager.
+[*]Restart the game and open Havoc Condition Manager in Mod Options.
+[/list]
+
+[size=4][b]Manual installation[/b][/size]
+
+[list]
+[*]Close the game. When upgrading, remove the previous HavocConditionManager installation folder before extracting the new ZIP; saved settings are stored separately.
+[*]Extract the ZIP into Darktide/mods, producing mods/HavocConditionManager.
+[*]Add HavocConditionManager on its own line after SoloPlay in mods/mod_load_order.txt. Place the optional HavocEnemyDirector after it.
+[*]Restart the game and open HCM in Mod Options.
+[/list]
+
+[size=4][b]Credits[/b][/size]
+
+SoloPlay and the original UI foundation: deluxghost. Native game systems and assets: Fatshark. Game-source reference: Aussiemon/Darktide-Source-Code.
+
+[size=5][b]简体中文[/b][/size]
+
+[size=5][b]浩劫词条管理器[/b][/size]
+
+配置 SoloPlay 任务词条，并整体调整敌人调度。HCM 提供整体调节，可选的 Havoc Enemy Director 对同一套游戏模板逐项精调。Realms 房间使用本地主机的设置。
+
+[size=4][b]词条与任务设置[/b][/size]
+
+[list]
+[*]导入当前 SoloPlay 词条列表，将可用条目分为浩劫、金标／漩涡、活动和通用。
+[*]添加或删除词条，没有固定槽位上限。多个词条包含同一原版机制时只加载一次。
+[*]在任务页选择地图、阵营、难度和环境。不支持的地图／环境组合回退为默认环境。
+[*]应用所选词条的原版拾取物、医疗站和危险物设置。冲突效果仍遵循游戏自身的覆盖规则。
+[/list]
+
+可选内容取决于已安装的游戏和 SoloPlay。HCM 不另行定义浩劫或金标词条。
+
+[size=4][b]整体调节[/b][/size]
+
+从模组选项打开 HCM，进入“整体调节”。主界面显示强度滑条和联动数值，20 项单独控件收在“高级设置”中，详细说明放在标题悬停提示中。
+
+HED 也没有额外覆盖时，1 档保留所选地图、难度和词条下的原版刷怪配置。2～10 档让普通敌人缓慢增加，精英、特感和怪物的投入增长更快。中间档位按以下锚点插值；整数额度允许相邻档持平。档位表示组合预设，不代表实测难度或击杀数量的倍数。
+
+[list]
+[*]沿途人数：1／5／10 档分别为 1×／1.2×／1.5×。营地数量和事件预算为 1×／1.1×／1.25×。
+[*]尸潮与小股潮的单波普通人数：1×／1.1×／1.25×。尸潮频率为 1×／1.08×／1.2×，小股潮频率为 1×／1.05×／1.1×；普通尸潮波数保留原版。
+[*]尸潮编成与巡逻队中已有的精英人数：1×／1.75×／3×，普通成员使用独立人数设置。原有 8 名精英和 8 名普通兵的巡逻队，在精英人数 3× 时请求 24 名精英和 8 名普通兵。沿途敌群和点数事件保留原版抽选比例，通过人数和预算增加投入。
+[*]特感容量：1×／2×／3×，补充频率为 1×／2×／3.25×，爆发额度为 1×／3×／6×。容量与频率叠加形成名义投放能力，仍受原版暂停、按玩家人数计算的限制和出生检查影响。
+[*]地图怪物遭遇额度：1×／4×／8×。精英巡逻遭遇额度：1×／3×／6×；巡逻次数与每队人数分别计算。
+[*]协同战术额度：1×／2×／3×。受支持攻势的战斗负荷上限由 35 提高到 70、105；中等负荷下界保持 8，有效人数、战斗阶段和其他原版条件继续生效。HED 可以在调整后的条件上追加要求，或明确替换条件列表。
+[*]常规战斗容量：1×／1.5×／2×，恢复阶段时长为 1×／0.85×／0.7×。10 档存活敌人加待生成请求的总容量门槛为 290，难度 5 的尸潮门槛为 190。词条遭遇数、持续加压、任务目标及独立脚本事件限制保留各自设置。
+[/list]
+
+巡逻与怪物先使用未占用的地图预设遭遇点，溢出额度等待后续有效遮挡位置。两个后补队列共用至少 20 秒的间隔，按各自初始溢出额度分配机会；另一类连续成功补入最多三次后，已就绪的队列会获得一次机会。一类受阻或生成失败时，另一类可以尝试，只有生成成功才扣额度。已有 3 只普通地图怪物存活时暂缓额外 Boss，同时最多保留 2 支额外巡逻队。原版暂停、可用位置和任务时长仍可能使额度未用完。
+
+路线与后补精英巡逻队逐个创建成员，相邻成员至少间隔 0.15 秒，保留原版兵种、队伍音效和单位初始化。路线巡逻保留原版编队跟随，并使用主路线上的行走目标。后补巡逻创建时取得当前交战目标，使用原版战斗行为。每名成员的最终位置都必须对当前有效队员不可见，距每名队员（包括 BOT）至少 35 米，并在主路线上领先队伍 30–120 米。点位不合适时延后剩余成员。遭遇后补先等待原版出生安全区限制解除，再开始 20 秒间隔；巡逻队全员创建完成后才扣除这一队的遭遇额度。
+
+遭遇后补和回收补投优先寻找领先玩家前方约 60 米处的已有遮挡出生区域，使用实际原版出生点分组数，并限制局部搜索范围。巡逻队从集结点展开后的每个位置都要检查实际距离和视线，不能仅凭集结点被遮挡就放行整队。这些检查复用原版路线查询、导航点位和尸潮视线检测。
+
+普通尸潮和任务事件由原版逻辑选择点位、出生门，并执行调整后的模板节奏。法庭密牢旋转楼梯事件也保留地图原有的后方入口。HCM 不为这些出生增加导航路径审批或等待。
+
+选档会替换全部 20 项 HCM 数值，单项修改后显示“自定义”。完全匹配旧曲线预设的保存值会迁移到新曲线的同一档位，其他自定义值和 HED 覆盖保留。修改自动保存并在下一局生效。
+
+到期出生器分帧执行，保留各自队列、生成顺序和完成通知。普通与协同尸潮在中央队列积压时暂缓下一波，待发波次和受临时容量限制的地图敌人计划继续保留。重复增益容量警告按次数汇总，Buff 事件池维持 300。
+
+HCM 本地主机任务在所有强度档都会于结束时汇总实际成功生成的普通兵、精英、特感、怪物与其他单位数量，口径为生成数，不能当作击杀数。协同攻势受阻时，可记录实际交战人数和各类负荷；每 30 秒最多一次，每局最多 120 条。后补队列记录成功补入、结束时的剩余额度和受阻原因。这些有界记录写入游戏日志。
+
+已知调度巡逻的跟随者失去队长后，可通过原版警觉／仇恨方法恢复接敌一次，相邻恢复至少间隔 0.15 秒。检查复用已有感知更新，保留任务归属、玩家所有权和穿越动作保护；正在逐个回收的队伍不会被自身回收过程重新唤醒。
+
+[size=4][b]自动回收后方敌人[/b][/size]
+
+HCM 在本地主机任务中运行时，所有强度档均包含回收，无独立开关。1 档保留原版生成倍率，同时包含此行为。
+
+已知来源的普通兵和精英，距每名存活队员（包括 BOT）至少 35 米、主路线进度落后全队至少 60 米，并持续至少 30 秒脱战且没有有效移动时，可进入回收。位移只看敌人自身：相对观察起点移动超过 3 米便重新计时，缓慢移动会跨多次采样累计。玩家移动、目标改变和路径重算不算敌人移动。远处仇恨目标、常驻词条或旧伤本身不阻止回收；主路线信息不可靠时保留敌人。
+
+来源包括已知原版沿途单位、调度巡逻、小股潮和带来源记录的普通尸潮。普通尸潮保留队伍目标不等于任务归属。仍在编队行走的巡逻须全部存活成员符合条件；已转入战斗的巡逻中，个别长期停滞且独立满足条件的成员可回收，其他交战成员保留。超过 64 人、仍在组建或受外部控制的巡逻队不接管。尸体由原版清理，不阻止存活成员，也不产生额度。
+
+带来源记录、未绑定必要目标的事件精英，须等当前事件、事件小股潮及排队启动的事件全部结束后，才能开始脱战计时。大型脚本事件中的普通兵不增加观察记录。必要任务目标、自动事件归属仍受保护；特感、Boss、队长、同伴及玩家所有单位不纳入。近期伤害、持续战斗效果、标记、无敌、穿越动作和视线仍会阻止回收。每次移除前重新检查自身位移、当前队员距离、主路线位置及原版即时视线。
+
+回收使用原版移除和重新生成。每个已移除的原单位最多补投一次相同兵种；整队回收保留已回收成员的编成和同队关系。生命值重新初始化，随机词条可重新抽取。回收腐烂护甲单位时只抑制此次非死亡移除的死亡毒池和音效／特效，正常击杀及其他增益清理仍按原版执行。
+
+补投等待原版调度允许、有容量且找到合适前方遮挡位置。额度最多 24 条、合计 96 人，保留 180 秒，局末可能仍未用完。不同补投批次至少间隔 8 秒，整队成员逐个进入原版队列，相邻成员至少间隔 0.15 秒。实际出队前重新检查当前点位和视线；不合适时撤回请求并保留额度。补投单位再次被回收时只清理，不再产生额度。
+
+观察复用原版感知调度和现有候选队列。位移采样只保存三个数值，不反复创建向量对象，也不查询剩余导航距离。详细检查每秒最多 4 人，移除每秒最多 1 人；整队回收同时只处理 1 队，两队开始至少间隔 20 秒。不增加全图敌人扫描或独立寻路探针。其余已就绪观察留在队列中，等待下一次移除机会。
+
+有界日志区分回收、补投额度、入队／撤回、实际创建与剩余额度。出生批次保留来源、事件门组、首个位置和数量。巡逻完成回执每局最多 64 条；最先发生的 8 次回收和 8 次失去队长后的接敌恢复会记录。资格统计表示观察次数和拒绝原因变化次数，不是未回收敌人的独立数量。
+
+[size=4][b]精调与设置保存[/b][/size]
+
+安装 Havoc Enemy Director 后增加“详细调节”页。先应用 HCM 整体倍率，再由 HED 对单个字段写入精确值；原版难度和词条修正仍可能继续改变最终结果。任务战斗节点预算有一项例外：节点基础值与原版修正计算后，HCM 事件预算倍率继续调整最终预算及原版预算封顶。
+
+修改自动保存，在下一局开始时生效；正在运行的任务保持开局配置。DMF 开关在大厅立即生效，任务中切换则延后应用。关闭 HCM 会恢复 SoloPlay 菜单，并在后续任务中暂停 HED。
+
+首次使用会从旧 HCM 选择中导入仍有效的原版词条 ID，省略已移除的别名，保留原始保存值。旧版按敌种分类的倍率和自定义生成器设置不转换为原版模板修改，请从新默认值重新配置。
+
+英文、简体中文和繁体中文随游戏语言切换；为区分具体模板，必要处保留原版标识符。
+
+[size=4][b]使用前提[/b][/size]
+
+需要 Darktide Mod Loader、Darktide Mod Framework 和 SoloPlay。Realms 为可选联机依赖，Havoc Enemy Director 为可选精调扩展。其他替换同一原版模板或调度方法的模组可能冲突。
+
+[size=4][b]Vortex 安装[/b][/size]
+
+[list]
+[*]关闭游戏并安装前置。使用 Install From File 导入本 ZIP，启用后选择 Deploy Mods。
+[*]在 Load Order 中将 HavocConditionManager 放在 SoloPlay 后；如安装 HavocEnemyDirector，将其放在 HavocConditionManager 后。
+[*]重新启动游戏，从模组选项打开浩劫词条管理器。
+[/list]
+
+[size=4][b]手动安装[/b][/size]
+
+[list]
+[*]关闭游戏。升级时先移除旧 HavocConditionManager 安装文件夹，再解压新包；已保存设置存放在其他位置。
+[*]将 ZIP 解压到 Darktide/mods，得到 mods/HavocConditionManager。
+[*]在 mods/mod_load_order.txt 中单独一行填写 HavocConditionManager，排在 SoloPlay 后；可选的 HavocEnemyDirector 排在其后。
+[*]重新启动游戏，从模组选项打开 HCM。
+[/list]
+
+[size=4][b]致谢[/b][/size]
+
+SoloPlay 与原始界面基础：deluxghost。原版游戏系统和资源：Fatshark。游戏源码参考：Aussiemon/Darktide-Source-Code。

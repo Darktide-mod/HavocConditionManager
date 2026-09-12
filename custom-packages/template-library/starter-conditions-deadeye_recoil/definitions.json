@@ -1,0 +1,46 @@
+{
+  "description": {
+    "en": "Remove the native recoil modifier; other sources of weapon movement may remain.",
+    "zh-cn": "将原生后坐力倍率降为零；不移除其他来源的武器晃动。",
+    "zh-tw": "將原生後坐力倍率降爲零；不移除其他來源的武器晃動。"
+  },
+  "entries": [
+    {
+      "conditions": [],
+      "description": {
+        "en": "Remove the native recoil modifier; other sources of weapon movement may remain.",
+        "zh-cn": "将武器后坐力修正降低 100%。这只作用于后坐力，瞄准晃动、散布和其他独立镜头动作仍按各自规则处理。",
+        "zh-tw": "將武器後坐力修正降低 100%。這隻作用於後坐力，瞄準晃動、散佈和其他獨立鏡頭動作仍按各自規則處理。"
+      },
+      "enabled": true,
+      "id": "deadeye_recoil",
+      "match": "all",
+      "name": {
+        "en": "Recoil control",
+        "zh-cn": "无后座",
+        "zh-tw": "無後座"
+      },
+      "passive": {
+        "stats": {
+          "recoil_modifier": -1
+        }
+      },
+      "rules": [],
+      "source_row": 110,
+      "targets": {
+        "kind": "players"
+      },
+      "tier": 3,
+      "weight": 1
+    }
+  ],
+  "format": "Darktide.DIY",
+  "id": "starter_conditions",
+  "kind": "conditions",
+  "name": {
+    "en": "Recoil control",
+    "zh-cn": "无后座",
+    "zh-tw": "無後座"
+  },
+  "version": 1
+}

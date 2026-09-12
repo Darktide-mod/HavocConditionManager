@@ -1,0 +1,69 @@
+{
+  "description": {
+    "en": "Using a stim applies the native power, speed and ability stims for up to 15 seconds.",
+    "zh-cn": "使用药剂后，附加原生能量、速度和技能药剂效果，最长 15 秒。",
+    "zh-tw": "使用藥劑後，附加原生能量、速度和技能藥劑效果，最長 15 秒。"
+  },
+  "entries": [
+    {
+      "conditions": [],
+      "description": {
+        "en": "Using a stim applies the native power, speed and ability stims for up to 15 seconds.",
+        "zh-cn": "使用任意针剂后，同时附加能量、速度和技能针剂的原有效果，最长持续 15 秒，触发冷却 2 秒。效果强度与相应针剂一致，仍受游戏对针剂共存、持续时间和覆盖关系的处理影响。",
+        "zh-tw": "使用任意針劑後，同時附加能量、速度和技能針劑的原有效果，最長持續 15 秒，觸發冷卻 2 秒。效果強度與相應針劑一致，仍受遊戲對針劑共存、持續時間和覆蓋關係的處理影響。"
+      },
+      "enabled": true,
+      "id": "mixed_stimms",
+      "match": "all",
+      "name": {
+        "en": "Mixed stimms",
+        "zh-cn": "混合物",
+        "zh-tw": "混合物"
+      },
+      "rules": [
+        {
+          "actions": [
+            {
+              "duration": 15,
+              "name": "syringe_power_boost_buff",
+              "type": "native_buff"
+            },
+            {
+              "duration": 15,
+              "name": "syringe_speed_boost_buff",
+              "type": "native_buff"
+            },
+            {
+              "duration": 15,
+              "name": "syringe_ability_boost_buff",
+              "type": "native_buff"
+            }
+          ],
+          "chance": 1,
+          "conditions": [],
+          "cooldown": 2,
+          "delay": 0,
+          "event": "on_syringe_used",
+          "id": "mix",
+          "match": "all",
+          "max_triggers": 0
+        }
+      ],
+      "source_row": 106,
+      "targets": {
+        "kind": "players"
+      },
+      "tier": 3,
+      "weight": 1
+    }
+  ],
+  "format": "Darktide.DIY",
+  "id": "starter_conditions",
+  "kind": "conditions",
+  "name": {
+    "en": "Mixed stimms",
+    "zh-cn": "混合物",
+    "zh-tw": "混合物"
+  },
+  "version": 1
+}

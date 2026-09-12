@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "First spawn removes half the ammunition currently held by each weapon and all grenades.",
+    "zh-cn": "每名玩家首次生成时，扣除各武器当前所持弹药的 50%，并清空手雷。扣弹时先扣备用弹药，不足部分再扣弹匣；每名玩家每局仅处理一次。",
+    "zh-tw": "每名玩家首次生成時，扣除各武器當前所持彈藥的 50%，並清空手雷。扣彈時先扣備用彈藥，不足部分再扣彈匣；每名玩家每局僅處理一次。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-supply_tax",
+  "kind": "conditions",
+  "name": {
+    "en": "Supply tax",
+    "zh-cn": "克扣物资",
+    "zh-tw": "剋扣物資"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

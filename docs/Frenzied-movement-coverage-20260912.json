@@ -1,0 +1,1860 @@
+[
+  {
+    "breed": "chaos_armored_hound",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_armored_hound_breed.lua",
+    "resource": "content/characters/enemy/chaos_hound/third_person/base",
+    "bundle": "b92b903bbda43f3d",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "73334af5e4a6752c",
+        "size": 75116,
+        "variables": [
+          {
+            "index": 1,
+            "default": 1.0,
+            "count": 3,
+            "offset": 74011,
+            "keys": [
+              "762c6dc0",
+              "c26e7939",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "expression_refs": 1
+          }
+        ],
+        "sha256": "e98bbd5790ab62fd88338467a9062df34bd994d04435f7ad213eb6b8f25f9812"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_armored_infected",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_armored_infected_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_newly_infected",
+    "bundle": "d0b59f431d186b93",
+    "declared": true,
+    "initialized": true,
+    "assets": [
+      {
+        "hash": "d0b59f431d186b93",
+        "size": 2047823,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 2038759,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 2
+          }
+        ],
+        "sha256": "605f75c64077054899102d9943ac0a5d88ebb4ce1baff58dcd4e46cee6e4de75"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_beast_of_nurgle",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_beast_of_nurgle_breed.lua",
+    "resource": "content/characters/enemy/chaos_beast_of_nurgle/third_person/base",
+    "bundle": "31f3eee7632bd92e",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "55f31f2d43c49afe",
+        "size": 114406,
+        "variables": [
+          {
+            "index": 1,
+            "default": 1.0,
+            "count": 3,
+            "offset": 102340,
+            "keys": [
+              "6aeac317",
+              "c26e7939",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "08dc7bd5b23786625a8d143d0bddcebc9ffda95d1bb0806d7166c1aff06e5756"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_daemonhost",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_daemonhost_breed.lua",
+    "resource": "content/characters/enemy/chaos_daemonhost_witch/third_person/base",
+    "bundle": "8e3ade84d2f65303",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "44f71471e3f37aa7",
+        "size": 54600,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 53331,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "22742e46",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "d6952de87d52cc9a0c7c388aaf78c499c2087ceb67ec0c7628a018e3bc59d94a"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_hound",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_hound_breed.lua",
+    "resource": "content/characters/enemy/chaos_hound/third_person/base",
+    "bundle": "b92b903bbda43f3d",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "73334af5e4a6752c",
+        "size": 75116,
+        "variables": [
+          {
+            "index": 1,
+            "default": 1.0,
+            "count": 3,
+            "offset": 74011,
+            "keys": [
+              "762c6dc0",
+              "c26e7939",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "expression_refs": 1
+          }
+        ],
+        "sha256": "e98bbd5790ab62fd88338467a9062df34bd994d04435f7ad213eb6b8f25f9812"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_hound_mutator",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_hound_mutator_breed.lua",
+    "resource": "content/characters/enemy/chaos_hound/third_person/base",
+    "bundle": "b92b903bbda43f3d",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "73334af5e4a6752c",
+        "size": 75116,
+        "variables": [
+          {
+            "index": 1,
+            "default": 1.0,
+            "count": 3,
+            "offset": 74011,
+            "keys": [
+              "762c6dc0",
+              "c26e7939",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "expression_refs": 1
+          }
+        ],
+        "sha256": "e98bbd5790ab62fd88338467a9062df34bd994d04435f7ad213eb6b8f25f9812"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_lesser_mutated_poxwalker",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_lesser_mutated_poxwalker_breed.lua",
+    "resource": "content/characters/enemy/chaos_poxwalker/third_person/base",
+    "bundle": "cc7f3a20e6a8b82e",
+    "declared": true,
+    "initialized": true,
+    "assets": [
+      {
+        "hash": "aca72223000067d9",
+        "size": 1754030,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 3,
+            "offset": 1750078,
+            "keys": [
+              "c26e7939",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              2.0,
+              1.0
+            ],
+            "expression_refs": 5
+          }
+        ],
+        "sha256": "9ebde0f01808ca858ec2bf9a7acb9d8c2099b860b22adb6b99ca92095ded4340"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_mutated_poxwalker",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_mutated_poxwalker_breed.lua",
+    "resource": "content/characters/enemy/chaos_poxwalker/third_person/base_tentacle",
+    "bundle": "a1c28e5e34407bf7",
+    "declared": true,
+    "initialized": true,
+    "assets": [
+      {
+        "hash": "aca72223000067d9",
+        "size": 1754030,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 3,
+            "offset": 1750078,
+            "keys": [
+              "c26e7939",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              2.0,
+              1.0
+            ],
+            "expression_refs": 5
+          }
+        ],
+        "sha256": "9ebde0f01808ca858ec2bf9a7acb9d8c2099b860b22adb6b99ca92095ded4340"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_mutator_daemonhost",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_mutator_daemonhost_breed.lua",
+    "resource": "content/characters/enemy/chaos_daemonhost_witch/third_person/base",
+    "bundle": "8e3ade84d2f65303",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "44f71471e3f37aa7",
+        "size": 54600,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 53331,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "22742e46",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "d6952de87d52cc9a0c7c388aaf78c499c2087ceb67ec0c7628a018e3bc59d94a"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_mutator_ritualist",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_mutator_ritualist_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_cultist",
+    "bundle": "b287476707e5dcc4",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "b287476707e5dcc4",
+        "size": 4344010,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 4334930,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 3
+          }
+        ],
+        "sha256": "18505a7a9c6672b2784d2af6dc3c7131c1b0dc8529fb54b744b08c75bac20cd4"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_newly_infected",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_newly_infected_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_newly_infected",
+    "bundle": "d0b59f431d186b93",
+    "declared": true,
+    "initialized": true,
+    "assets": [
+      {
+        "hash": "d0b59f431d186b93",
+        "size": 2047823,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 2038759,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 2
+          }
+        ],
+        "sha256": "605f75c64077054899102d9943ac0a5d88ebb4ce1baff58dcd4e46cee6e4de75"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_ogryn_bulwark",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_ogryn_bulwark_breed.lua",
+    "resource": "content/characters/enemy/chaos_ogryn/third_person/animations/chaos_ogryn_bulwark",
+    "bundle": "927ed2f6df398b8c",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "927ed2f6df398b8c",
+        "size": 351439,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 341407,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 2
+          }
+        ],
+        "sha256": "6c5fdee0bc55d115e65bae5eb63f97a5cb63c5852ec9ebb0e94a1a1762a2ef93"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_ogryn_executor",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_ogryn_executor_breed.lua",
+    "resource": "content/characters/enemy/chaos_ogryn/third_person/animations/chaos_ogryn_executor",
+    "bundle": "5266d735100376cc",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "5266d735100376cc",
+        "size": 444845,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 435445,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 2
+          }
+        ],
+        "sha256": "6a611f17ddaa5f14819119aea0d77cd8bc8768bfba6b270dc7f58d3bc98ba312"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_ogryn_gunner",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_ogryn_gunner_breed.lua",
+    "resource": "content/characters/enemy/chaos_ogryn/third_person/animations/chaos_ogryn_gunner",
+    "bundle": "564f6b82bb35743f",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "564f6b82bb35743f",
+        "size": 271256,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 257890,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 1
+          }
+        ],
+        "sha256": "55d19d3e4399476f98540756e3d231c0d4b39bb0a3bfc4ad4da2c2beecea15c1"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_ogryn_houndmaster",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_ogryn_houndmaster_breed.lua",
+    "resource": "content/characters/enemy/chaos_ogryn/third_person/animations/chaos_ogryn_houndmaster",
+    "bundle": "f9c7eea4464c4fc5",
+    "declared": true,
+    "initialized": true,
+    "assets": [
+      {
+        "hash": "f9c7eea4464c4fc5",
+        "size": 370589,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 361189,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 2
+          }
+        ],
+        "sha256": "3ce916a38cc120e391acfe69dedbe4eb692720e38d202cc3e4acd4baa04be160"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_plague_ogryn",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_plague_ogryn_breed.lua",
+    "resource": "content/characters/enemy/chaos_plague_ogryn/third_person/base",
+    "bundle": "4abb95a6fa663b9e",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "efa798053b269d22",
+        "size": 65209,
+        "variables": [
+          {
+            "index": 3,
+            "default": 0.0,
+            "count": 7,
+            "offset": 60697,
+            "keys": [
+              "992619d0",
+              "22742e46",
+              "711d028a",
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              3.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "6f2dd99b9b77f7cbc9bd98c5c81b3dd078e22bb49540ed1d9b90fccbcd5ad724"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_poxwalker_bomber",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_poxwalker_bomber_breed.lua",
+    "resource": "content/characters/enemy/chaos_poxwalker_bomber/third_person/base",
+    "bundle": "eb772a352917743a",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "e32b417bc1b62eb9",
+        "size": 20675,
+        "variables": [
+          {
+            "index": 1,
+            "default": 1.0,
+            "count": 3,
+            "offset": 20515,
+            "keys": [
+              "22742e46",
+              "c26e7939",
+              "4781ca70"
+            ],
+            "defaults": [
+              0.0,
+              1.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "317d366ce69d1b50e2e0a81448a12c92f4a14492b56479ec3078534a59ce4945"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_poxwalker",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_poxwalker_breed.lua",
+    "resource": "content/characters/enemy/chaos_poxwalker/third_person/base",
+    "bundle": "cc7f3a20e6a8b82e",
+    "declared": true,
+    "initialized": true,
+    "assets": [
+      {
+        "hash": "aca72223000067d9",
+        "size": 1754030,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 3,
+            "offset": 1750078,
+            "keys": [
+              "c26e7939",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              2.0,
+              1.0
+            ],
+            "expression_refs": 5
+          }
+        ],
+        "sha256": "9ebde0f01808ca858ec2bf9a7acb9d8c2099b860b22adb6b99ca92095ded4340"
+      }
+    ]
+  },
+  {
+    "breed": "chaos_spawn",
+    "source": "scripts/settings/breed/breeds/chaos/chaos_spawn_breed.lua",
+    "resource": "content/characters/enemy/chaos_spawn/third_person/base",
+    "bundle": "dbfdfa17636f96a8",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "5b4d58769f622d91",
+        "size": 388046,
+        "variables": [
+          {
+            "index": 23,
+            "default": 1.0,
+            "count": 26,
+            "offset": 352248,
+            "keys": [
+              "7cac33dc",
+              "bfcebe6f",
+              "e16bf82a",
+              "2adc09cf",
+              "accc6c20",
+              "30fa76d0",
+              "a8641fd5",
+              "3a0b9ea2",
+              "cc1408af",
+              "f62c3080",
+              "a5acf995",
+              "ad85bcc9",
+              "3ad4c802",
+              "84194497",
+              "6c21d30f",
+              "f904ef1f",
+              "577167b8",
+              "d7e2e366",
+              "0716a858",
+              "8a97dfbc",
+              "9d43bae6",
+              "ae06cda0",
+              "9fc492c2",
+              "c26e7939",
+              "22742e46",
+              "4781ca70"
+            ],
+            "defaults": [
+              10.0,
+              5000.0,
+              5000.0,
+              7500.0,
+              5.0,
+              15.0,
+              0.5,
+              1.0,
+              1.5,
+              2.0,
+              6000.0,
+              4000.0,
+              400.0,
+              25.0,
+              20.0,
+              15.0,
+              4000.0,
+              1000.0,
+              1000.0,
+              200.0,
+              3000.0,
+              4.0,
+              6.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "4d637931d9eb872e6c63d534eb13980fea6768ec8eaff1f63848879cf09daea1"
+      }
+    ]
+  },
+  {
+    "breed": "cultist_assault",
+    "source": "scripts/settings/breed/breeds/cultist/cultist_assault_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/base",
+    "bundle": "b3bc6f7359fb372a",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "aade93c57c6dc0d8",
+        "size": 5134880,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 5125816,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 20
+          }
+        ],
+        "sha256": "4824d28e5ebe0c7a5a447f2998c5dc9a53680206a74102b5b3cdb227b89b90a0"
+      }
+    ]
+  },
+  {
+    "breed": "cultist_berzerker",
+    "source": "scripts/settings/breed/breeds/cultist/cultist_berzerker_breed.lua",
+    "resource": "content/characters/enemy/chaos_cultist_melee_elite/third_person/base",
+    "bundle": "3a2626c3793cdb3d",
+    "declared": true,
+    "initialized": true,
+    "assets": [
+      {
+        "hash": "f3c908e812a95fe9",
+        "size": 341568,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 335782,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 4
+          }
+        ],
+        "sha256": "35257a82998c04091351e5531b012581d0a343e68a75f0fcc180113989b63a40"
+      }
+    ]
+  },
+  {
+    "breed": "cultist_captain",
+    "source": "scripts/settings/breed/breeds/cultist/cultist_captain_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_captain",
+    "bundle": "6de7c7d2287b2bcf",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "6de7c7d2287b2bcf",
+        "size": 3953138,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 3941720,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "70e0afd6460eb1c8ad67c090361c452df5ba1a5d8b986d0020cc888628a0f6ed"
+      }
+    ]
+  },
+  {
+    "breed": "cultist_flamer",
+    "source": "scripts/settings/breed/breeds/cultist/cultist_flamer_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_flamer",
+    "bundle": "c7fc3a84636743b7",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "c7fc3a84636743b7",
+        "size": 2297780,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 2288700,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "3cccde0cd11f7c07302f97abf1e81f477ffb5bcde2291ec7f8304fac5fa9dbca"
+      }
+    ]
+  },
+  {
+    "breed": "cultist_grenadier",
+    "source": "scripts/settings/breed/breeds/cultist/cultist_grenadier_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_grenadier",
+    "bundle": "cdc2933a0b1ff854",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "cdc2933a0b1ff854",
+        "size": 902636,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 896222,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "22742e46",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "6fb4c564960ff389919a172cf955a0517d1759dd63238aa2b8a11b2274c6ae2d"
+      }
+    ]
+  },
+  {
+    "breed": "cultist_gunner",
+    "source": "scripts/settings/breed/breeds/cultist/cultist_gunner_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_elite_gunner",
+    "bundle": "c60da19b2bcda8ab",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "c60da19b2bcda8ab",
+        "size": 2545114,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 2536050,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 7
+          }
+        ],
+        "sha256": "ec406daf2fc33a8639d9d5b8dc7096ca2766e579b1a5a6bf66f82ded9150b3d1"
+      }
+    ]
+  },
+  {
+    "breed": "cultist_melee",
+    "source": "scripts/settings/breed/breeds/cultist/cultist_melee_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_cultist",
+    "bundle": "b287476707e5dcc4",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "b287476707e5dcc4",
+        "size": 4344010,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 4334930,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 3
+          }
+        ],
+        "sha256": "18505a7a9c6672b2784d2af6dc3c7131c1b0dc8529fb54b744b08c75bac20cd4"
+      }
+    ]
+  },
+  {
+    "breed": "cultist_mutant",
+    "source": "scripts/settings/breed/breeds/cultist/cultist_mutant_breed.lua",
+    "resource": "content/characters/enemy/chaos_mutant_charger/third_person/base",
+    "bundle": "4055b925a80b3a3b",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "758e1d423169d226",
+        "size": 71114,
+        "variables": [
+          {
+            "index": 2,
+            "default": 1.0,
+            "count": 4,
+            "offset": 70922,
+            "keys": [
+              "d838414d",
+              "22742e46",
+              "c26e7939",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "expression_refs": 6
+          }
+        ],
+        "sha256": "0274ff2a83240077fa17af68ea3de36adca633f83368bb76debe2c4b81309a7b"
+      }
+    ]
+  },
+  {
+    "breed": "cultist_mutant_mutator",
+    "source": "scripts/settings/breed/breeds/cultist/cultist_mutant_mutator_breed.lua",
+    "resource": "content/characters/enemy/chaos_mutant_charger/third_person/base",
+    "bundle": "4055b925a80b3a3b",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "758e1d423169d226",
+        "size": 71114,
+        "variables": [
+          {
+            "index": 2,
+            "default": 1.0,
+            "count": 4,
+            "offset": 70922,
+            "keys": [
+              "d838414d",
+              "22742e46",
+              "c26e7939",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "expression_refs": 6
+          }
+        ],
+        "sha256": "0274ff2a83240077fa17af68ea3de36adca633f83368bb76debe2c4b81309a7b"
+      }
+    ]
+  },
+  {
+    "breed": "cultist_ritualist",
+    "source": "scripts/settings/breed/breeds/cultist/cultist_ritualist_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_cultist",
+    "bundle": "b287476707e5dcc4",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "b287476707e5dcc4",
+        "size": 4344010,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 4334930,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 3
+          }
+        ],
+        "sha256": "18505a7a9c6672b2784d2af6dc3c7131c1b0dc8529fb54b744b08c75bac20cd4"
+      }
+    ]
+  },
+  {
+    "breed": "cultist_shocktrooper",
+    "source": "scripts/settings/breed/breeds/cultist/cultist_shocktrooper_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_elite_shocktrooper",
+    "bundle": "000957451622b061",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "000957451622b061",
+        "size": 3637863,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 3626749,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 7
+          }
+        ],
+        "sha256": "c633a1f6e078bba0619f98de9ce08f46214cdb1e7fe5f75fe78973af796fdbf1"
+      }
+    ]
+  },
+  {
+    "breed": "cultist_vanguard",
+    "source": "scripts/settings/breed/breeds/cultist/cultist_vanguard_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_vanguard",
+    "bundle": "5e24a1b726720f71",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "5e24a1b726720f71",
+        "size": 3176573,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 3167509,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 12
+          }
+        ],
+        "sha256": "23f59eb8f91dfbf28a737f5f87bb3ad37e403336227798486c5f6b621cf44d37"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_assault",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_assault_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/base",
+    "bundle": "b3bc6f7359fb372a",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "aade93c57c6dc0d8",
+        "size": 5134880,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 5125816,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 20
+          }
+        ],
+        "sha256": "4824d28e5ebe0c7a5a447f2998c5dc9a53680206a74102b5b3cdb227b89b90a0"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_berzerker",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_berzerker_breed.lua",
+    "resource": "content/characters/enemy/chaos_cultist_melee_elite/third_person/base",
+    "bundle": "3a2626c3793cdb3d",
+    "declared": true,
+    "initialized": true,
+    "assets": [
+      {
+        "hash": "f3c908e812a95fe9",
+        "size": 341568,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 335782,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 4
+          }
+        ],
+        "sha256": "35257a82998c04091351e5531b012581d0a343e68a75f0fcc180113989b63a40"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_captain",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_captain_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_captain",
+    "bundle": "6de7c7d2287b2bcf",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "6de7c7d2287b2bcf",
+        "size": 3953138,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 3941720,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "70e0afd6460eb1c8ad67c090361c452df5ba1a5d8b986d0020cc888628a0f6ed"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_executor",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_executor_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_elite_executor",
+    "bundle": "3ceac34588c0729e",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "3ceac34588c0729e",
+        "size": 707466,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 698414,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 6
+          }
+        ],
+        "sha256": "71da4d9b4e0b0ac5636682f25908d73bf6e314aa922c725063eba18bb795e220"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_flamer",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_flamer_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_flamer",
+    "bundle": "c7fc3a84636743b7",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "c7fc3a84636743b7",
+        "size": 2297780,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 2288700,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "3cccde0cd11f7c07302f97abf1e81f477ffb5bcde2291ec7f8304fac5fa9dbca"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_flamer_mutator",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_flamer_mutator_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_flamer",
+    "bundle": "c7fc3a84636743b7",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "c7fc3a84636743b7",
+        "size": 2297780,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 2288700,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "3cccde0cd11f7c07302f97abf1e81f477ffb5bcde2291ec7f8304fac5fa9dbca"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_grenadier",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_grenadier_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_grenadier",
+    "bundle": "cdc2933a0b1ff854",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "cdc2933a0b1ff854",
+        "size": 902636,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 896222,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "22742e46",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "6fb4c564960ff389919a172cf955a0517d1759dd63238aa2b8a11b2274c6ae2d"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_gunner",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_gunner_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_elite_gunner",
+    "bundle": "c60da19b2bcda8ab",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "c60da19b2bcda8ab",
+        "size": 2545114,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 2536050,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 7
+          }
+        ],
+        "sha256": "ec406daf2fc33a8639d9d5b8dc7096ca2766e579b1a5a6bf66f82ded9150b3d1"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_melee",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_melee_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/base",
+    "bundle": "b3bc6f7359fb372a",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "aade93c57c6dc0d8",
+        "size": 5134880,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 5125816,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 20
+          }
+        ],
+        "sha256": "4824d28e5ebe0c7a5a447f2998c5dc9a53680206a74102b5b3cdb227b89b90a0"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_netgunner",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_netgunner_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_netgunner",
+    "bundle": "6147316365cd5a6a",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "6147316365cd5a6a",
+        "size": 1257771,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 1251357,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "22742e46",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "e72a835dae41eb1bb621408d4a77c020d099fa4346d7f08781132d479e72d072"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_plasma_gunner",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_plasma_gunner_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_elite_shocktrooper",
+    "bundle": "000957451622b061",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "000957451622b061",
+        "size": 3637863,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 3626749,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 7
+          }
+        ],
+        "sha256": "c633a1f6e078bba0619f98de9ce08f46214cdb1e7fe5f75fe78973af796fdbf1"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_radio_operator",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_radio_operator_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_elite_gunner",
+    "bundle": "c60da19b2bcda8ab",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "c60da19b2bcda8ab",
+        "size": 2545114,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 2536050,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 7
+          }
+        ],
+        "sha256": "ec406daf2fc33a8639d9d5b8dc7096ca2766e579b1a5a6bf66f82ded9150b3d1"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_rifleman",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_rifleman_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/base",
+    "bundle": "b3bc6f7359fb372a",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "aade93c57c6dc0d8",
+        "size": 5134880,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 5125816,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 20
+          }
+        ],
+        "sha256": "4824d28e5ebe0c7a5a447f2998c5dc9a53680206a74102b5b3cdb227b89b90a0"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_shocktrooper",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_shocktrooper_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_elite_shocktrooper",
+    "bundle": "000957451622b061",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "000957451622b061",
+        "size": 3637863,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 3626749,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 7
+          }
+        ],
+        "sha256": "c633a1f6e078bba0619f98de9ce08f46214cdb1e7fe5f75fe78973af796fdbf1"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_sniper",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_sniper_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_sniper",
+    "bundle": "532090aa16e2c460",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "532090aa16e2c460",
+        "size": 1560530,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 1551450,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "7950577dc9f81b73198f69531791136de0c83cbdc36f90121415ec7de4f55b51"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_twin_captain",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_twin_captain_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_captain",
+    "bundle": "6de7c7d2287b2bcf",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "6de7c7d2287b2bcf",
+        "size": 3953138,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 3941720,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "70e0afd6460eb1c8ad67c090361c452df5ba1a5d8b986d0020cc888628a0f6ed"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_twin_captain_two",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_twin_captain_two_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_captain",
+    "bundle": "6de7c7d2287b2bcf",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "6de7c7d2287b2bcf",
+        "size": 3953138,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 5,
+            "offset": 3941720,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "22742e46",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 0
+          }
+        ],
+        "sha256": "70e0afd6460eb1c8ad67c090361c452df5ba1a5d8b986d0020cc888628a0f6ed"
+      }
+    ]
+  },
+  {
+    "breed": "renegade_vanguard",
+    "source": "scripts/settings/breed/breeds/renegade/renegade_vanguard_breed.lua",
+    "resource": "content/characters/enemy/chaos_traitor_guard/third_person/animations/chaos_traitor_guard_vanguard",
+    "bundle": "5e24a1b726720f71",
+    "declared": true,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "5e24a1b726720f71",
+        "size": 3176573,
+        "variables": [
+          {
+            "index": 0,
+            "default": 1.0,
+            "count": 4,
+            "offset": 3167509,
+            "keys": [
+              "c26e7939",
+              "d838414d",
+              "ee9fd076",
+              "4781ca70"
+            ],
+            "defaults": [
+              1.0,
+              1.0,
+              0.0,
+              1.0
+            ],
+            "expression_refs": 12
+          }
+        ],
+        "sha256": "23f59eb8f91dfbf28a737f5f87bb3ad37e403336227798486c5f6b621cf44d37"
+      }
+    ]
+  },
+  {
+    "breed": "attack_valkyrie",
+    "source": "scripts/settings/breed/breeds/valkyrie/attack_valkyrie_breed.lua",
+    "resource": "content/characters/enemy/valkyrie/third_person/attack_valkyrie",
+    "bundle": "cfbd467d4d499b83",
+    "declared": false,
+    "initialized": false,
+    "assets": [
+      {
+        "hash": "f7d5ecbcd4bf1dfe",
+        "size": 233,
+        "variables": [],
+        "sha256": "40a4782c58b760e4186faca837053eb660a260c0134655898b34559fd83a34e4"
+      }
+    ]
+  }
+]

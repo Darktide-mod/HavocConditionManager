@@ -1,0 +1,1 @@
+Choose SoloPlay conditions and tune combat intensity, elite patrols, bosses and specialist replenishment. Uses native game templates, with optional Havoc Enemy Director for detailed edits and Realms for co-op.

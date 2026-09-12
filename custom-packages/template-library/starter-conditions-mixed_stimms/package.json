@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Using a stim applies the native power, speed and ability stims for up to 15 seconds.",
+    "zh-cn": "使用任意针剂后，同时附加能量、速度和技能针剂的原有效果，最长持续 15 秒，触发冷却 2 秒。效果强度与相应针剂一致，仍受游戏对针剂共存、持续时间和覆盖关系的处理影响。",
+    "zh-tw": "使用任意針劑後，同時附加能量、速度和技能針劑的原有效果，最長持續 15 秒，觸發冷卻 2 秒。效果強度與相應針劑一致，仍受遊戲對針劑共存、持續時間和覆蓋關係的處理影響。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-mixed_stimms",
+  "kind": "conditions",
+  "name": {
+    "en": "Mixed stimms",
+    "zh-cn": "混合物",
+    "zh-tw": "混合物"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

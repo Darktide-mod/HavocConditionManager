@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Elite death queues 10 direct health damage to nearby minions after two seconds. Radius is centred on the corpse if it still exists.",
+    "zh-cn": "精英敌人死亡 2 秒后，对尸体周围 8 米内的敌人各造成 10 点直接生命伤害。全局冷却 3 秒，每局最多触发 10 次；若届时无法取得尸体位置，则跳过本次伤害。",
+    "zh-tw": "精英敵人死亡 2 秒後，對屍體周圍 8 米內的敵人各造成 10 點直接生命傷害。全域性冷卻 3 秒，每局最多觸發 10 次；若屆時無法取得屍體位置，則跳過本次傷害。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-delayed_retribution",
+  "kind": "conditions",
+  "name": {
+    "en": "Delayed retribution example",
+    "zh-cn": "延迟惩戒示例",
+    "zh-tw": "延遲懲戒示例"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

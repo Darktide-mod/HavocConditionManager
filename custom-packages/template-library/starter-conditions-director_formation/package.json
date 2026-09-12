@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "While diy_pressure is active, request the HED formation f1 once. Create or import that formation first.",
+    "zh-cn": "收到增援信号后，向敌人导演请求部署一号编队，每局最多请求一次。需要启用敌人导演，并事先创建对应编队；可与“导演信号示例”配合使用。",
+    "zh-tw": "收到增援訊號後，向敵人導演請求部署一號編隊，每局最多請求一次。需要啟用敵人導演，並事先建立對應編隊；可與“導演訊號示例”配合使用。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-director_formation",
+  "kind": "conditions",
+  "name": {
+    "en": "Formation request example",
+    "zh-cn": "编队请求示例",
+    "zh-tw": "編隊請求示例"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

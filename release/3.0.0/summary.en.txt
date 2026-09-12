@@ -1,0 +1,1 @@
+Configure SoloPlay and Realms with imported native conditions and 18 broad controls for map enemies, hordes, specialists, monsters, events and combat pacing. Optional Havoc Enemy Director adds precise edits to the same native templates.

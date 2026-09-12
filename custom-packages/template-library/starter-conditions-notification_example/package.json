@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "On first spawn, display a local notification and play an existing UI sound.",
+    "zh-cn": "首名玩家生成时，在房主本地显示“DIY 效果已启用”的通知，并播放一次已有界面音效。每局只提示一次，不改变角色属性或敌人行为。",
+    "zh-tw": "首名玩家生成時，在房主本地顯示“DIY 效果已啟用”的通知，並播放一次已有介面音效。每局只提示一次，不改變角色屬性或敵人行為。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-notification_example",
+  "kind": "conditions",
+  "name": {
+    "en": "Notification example",
+    "zh-cn": "提示示例",
+    "zh-tw": "提示示例"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

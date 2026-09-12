@@ -1,0 +1,139 @@
+[size=5][b]English[/b][/size]
+
+[size=5][b]Havoc Condition Manager[/b][/size]
+
+Choose SoloPlay mission conditions and adjust enemy pacing. HCM provides broad controls; the optional Havoc Enemy Director edits individual fields in the same game templates. Realms sessions use the local host's settings.
+
+[size=4][b]Conditions and mission setup[/b][/size]
+
+[list]
+[*]Import the current SoloPlay condition list and group eligible entries as Havoc, Auric/Maelstrom, events and general conditions.
+[*]Add or remove conditions without a fixed slot count. A shared native mutator loads once even when several selected conditions include it.
+[*]Choose mission, faction, difficulty and environment in the mission page. An unsupported map/environment pair falls back to Default.
+[*]Apply the selected native pickup, health-station and hazard settings. Native replacement rules still govern conflicting effects.
+[/list]
+
+Available entries depend on the installed game and SoloPlay. HCM supplies no separate Havoc or Maelstrom condition definitions.
+
+[size=4][b]Overall tuning[/b][/size]
+
+[color=#ff6666]Open HCM in Mod Options and select Overall tuning. The main page shows the overall intensity slider and a short summary of linked values. The 18 individual multipliers are folded into Advanced settings by default. Click values to type; hover titles for details.[/color]
+
+Intensity offers coordinated levels from 1 to 10. Higher levels add follow-up waves, elite patrols and specialist replenishment. Level 1 uses baseline values. The level is not a measured multiplier for enemy count or final difficulty.
+
+[list]
+[*]Level 5: ordinary horde waves 3×, enemies per wave 1.15× and trigger frequency 1.6×; specialist slots and replenishment frequency each 2×; patrol and map monster requests each 3×.
+[*]Level 10: ordinary horde waves 6×, enemies per wave 1.35× and trigger frequency 2.25×; specialist slots 3× and replenishment frequency 3.25×; patrol requests 6× and map monster requests 5×.
+[*]Higher levels also raise tactic and specialist-surge allowances, modestly increase route population, camps, event budgets and trickle frequency, and shorten recovery. Trickle wave size, condition encounter counts and the escalation curve stay at baseline.
+[/list]
+
+Wave spacing, same-breed limits, map sections and concurrent-enemy limits remain in effect. Patrol and monster settings scale planned requests; available map locations may prevent the full count. Coordinated tactics retain their own wave plans.
+
+Selecting a level replaces all 18 HCM values. Advanced settings provides six groups for individual edits up to 10×; configurations outside a profile appear as Custom. HED field overrides remain. Upgrades preserve saved values: select a level again to apply the revised profile. Changes save automatically and apply next mission.
+
+With tuning active, due spawners run across successive updates while retaining their queues, order and completion callbacks. Ordinary and coordinated hordes defer their next wave while the central queue is congested. Temporary pacing refusals preserve unspawned map encounters. Repeated Buff-capacity warnings are summarized by count; capacity and overflow behavior remain unchanged.
+
+[size=4][b]Fine editing and saved settings[/b][/size]
+
+Havoc Enemy Director adds Detailed tuning. HCM first supplies broad changes; a HED field override then sets that field's exact value. Native difficulty and condition modifiers can still change the final result. Mission combat-node budgets are a specific case: HCM's event-budget multiplier scales the final budget and its native cap after the node's base values and native modifiers.
+
+Values save automatically and apply when the next mission starts. A running mission retains its starting configuration. DMF switches apply immediately in the hub and are deferred during a mission. Disabling HCM restores SoloPlay's menu and suspends HED for later missions.
+
+The first use imports valid native IDs from the previous HCM selection. Retired condition aliases are omitted; the original saved value is retained. Old category multipliers and custom-generator settings are not converted into native template edits. Start from the new defaults and configure the controls before your next mission.
+
+English, Simplified Chinese and Traditional Chinese follow the game language. Native identifiers remain visible where needed to distinguish exact templates.
+
+[size=4][b]Requirements[/b][/size]
+
+Darktide Mod Loader, Darktide Mod Framework and SoloPlay are required. Realms is optional for co-op. Havoc Enemy Director is optional. Other mods replacing the same native templates or scheduling methods may conflict.
+
+[size=4][b]Vortex installation[/b][/size]
+
+[list]
+[*]Close the game and install the requirements. Import this ZIP with Install From File, enable it and select Deploy Mods.
+[*]Enable HavocConditionManager in Load Order after SoloPlay. Place the optional HavocEnemyDirector after HavocConditionManager.
+[*]Restart the game and open Havoc Condition Manager in Mod Options.
+[/list]
+
+[size=4][b]Manual installation[/b][/size]
+
+[list]
+[*]Close the game. When upgrading, remove the previous HavocConditionManager installation folder before extracting the new ZIP; saved settings are stored separately.
+[*]Extract the ZIP into Darktide/mods, producing mods/HavocConditionManager.
+[*]Add HavocConditionManager on its own line after SoloPlay in mods/mod_load_order.txt. Place the optional HavocEnemyDirector after it.
+[*]Restart the game and open HCM in Mod Options.
+[/list]
+
+[size=4][b]Credits[/b][/size]
+
+SoloPlay and the original UI foundation: deluxghost. Native game systems and assets: Fatshark. Game-source reference: Aussiemon/Darktide-Source-Code.
+
+[size=5][b]简体中文[/b][/size]
+
+[size=5][b]浩劫词条管理器[/b][/size]
+
+配置 SoloPlay 任务词条，并整体调整敌人调度。HCM 提供整体调节，可选的 Havoc Enemy Director 对同一套游戏模板逐项精调。Realms 房间使用本地主机的设置。
+
+[size=4][b]词条与任务设置[/b][/size]
+
+[list]
+[*]导入当前 SoloPlay 词条列表，将可用条目分为浩劫、金标／漩涡、活动和通用。
+[*]添加或删除词条，没有固定槽位上限。多个词条包含同一原版机制时只加载一次。
+[*]在任务页选择地图、阵营、难度和环境。不支持的地图／环境组合回退为默认环境。
+[*]应用所选词条的原版拾取物、医疗站和危险物设置。冲突效果仍遵循游戏自身的覆盖规则。
+[/list]
+
+可选内容取决于已安装的游戏和 SoloPlay。HCM 不另行定义浩劫或金标词条。
+
+[size=4][b]整体调节[/b][/size]
+
+[color=#ff6666]从模组选项打开 HCM，进入“整体调节”。主界面保留整体强度滑条与关键联动数值；18 项单独倍率默认收在“高级设置”中。点击数值可输入，详细说明放在标题悬停提示中。[/color]
+
+整体强度提供 1～10 档联动预设，高档位增加连续波次、精英巡逻和特感补充。1 档使用基准设置；档位不代表实测敌人数或最终难度倍数。
+
+[list]
+[*]5 档：普通尸潮波数 3×、单波人数 1.15×、触发频率 1.6×；特感槽位和补充频率各 2×；巡逻与地图怪物遭遇各 3×。
+[*]10 档：普通尸潮波数 6×、单波人数 1.35×、触发频率 2.25×；特感槽位 3×、补充频率 3.25×；巡逻遭遇 6×、地图怪物遭遇 5×。
+[*]高档位同时增加协同战术和特感爆发额度，适度增加沿途敌群、营地、事件预算及小股潮频率，并缩短恢复阶段。小股潮单波人数、词条专属遭遇数与持续加压曲线保持基准。
+[/list]
+
+波间等待、同类特感限制、地图区段和同时存活限制仍然生效。巡逻与怪物倍率调整的是计划请求，地图位置不足时不能保证兑现全部次数；协同战术仍使用各自的波次安排。
+
+选择档位会替换全部 18 项 HCM 数值。展开高级设置后，可按六个分组单独修改，最高 10×；不符合预设时显示“自定义”。HED 精确覆盖保留。升级保留已有数值，需重新选择一次整体档位才能应用新的联动，修改自动保存并在下一局生效。
+
+启用调节时，多个到期出生器分帧执行，保持各自队列、生成顺序与完成通知。普通和协同尸潮在中央队列积压时暂缓下一波，保留待发波次。临时容量限制下的地图敌人计划继续保留。重复的增益容量警告按次数汇总，容量和溢出处理保持不变。
+
+[size=4][b]精调与设置保存[/b][/size]
+
+安装 Havoc Enemy Director 后增加“详细调节”页。先应用 HCM 整体倍率，再由 HED 对单个字段写入精确值；原版难度和词条修正仍可能继续改变最终结果。任务战斗节点预算有一项例外：节点基础值与原版修正计算后，HCM 事件预算倍率继续调整最终预算及原版预算封顶。
+
+修改自动保存，在下一局开始时生效；正在运行的任务保持开局配置。DMF 开关在大厅立即生效，任务中切换则延后应用。关闭 HCM 会恢复 SoloPlay 菜单，并在后续任务中暂停 HED。
+
+首次使用会从旧 HCM 选择中导入仍有效的原版词条 ID，省略已移除的别名，保留原始保存值。旧版按敌种分类的倍率和自定义生成器设置不转换为原版模板修改，请从新默认值重新配置。
+
+英文、简体中文和繁体中文随游戏语言切换；为区分具体模板，必要处保留原版标识符。
+
+[size=4][b]使用前提[/b][/size]
+
+需要 Darktide Mod Loader、Darktide Mod Framework 和 SoloPlay。Realms 为可选联机依赖，Havoc Enemy Director 为可选精调扩展。其他替换同一原版模板或调度方法的模组可能冲突。
+
+[size=4][b]Vortex 安装[/b][/size]
+
+[list]
+[*]关闭游戏并安装前置。使用 Install From File 导入本 ZIP，启用后选择 Deploy Mods。
+[*]在 Load Order 中将 HavocConditionManager 放在 SoloPlay 后；如安装 HavocEnemyDirector，将其放在 HavocConditionManager 后。
+[*]重新启动游戏，从模组选项打开浩劫词条管理器。
+[/list]
+
+[size=4][b]手动安装[/b][/size]
+
+[list]
+[*]关闭游戏。升级时先移除旧 HavocConditionManager 安装文件夹，再解压新包；已保存设置存放在其他位置。
+[*]将 ZIP 解压到 Darktide/mods，得到 mods/HavocConditionManager。
+[*]在 mods/mod_load_order.txt 中单独一行填写 HavocConditionManager，排在 SoloPlay 后；可选的 HavocEnemyDirector 排在其后。
+[*]重新启动游戏，从模组选项打开 HCM。
+[/list]
+
+[size=4][b]致谢[/b][/size]
+
+SoloPlay 与原始界面基础：deluxghost。原版游戏系统和资源：Fatshark。游戏源码参考：Aussiemon/Darktide-Source-Code。

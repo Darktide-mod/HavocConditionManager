@@ -1,0 +1,97 @@
+3.6.1 — Safer forward reinforcements and gradual patrol deployment
+- Fix encounter reserves starting inside the native spawn safe zone. Start their 20-second interval after the restriction ends.
+- Replace synchronous route/reserve elite-patrol creation with one native-initialized member at least every 0.15 seconds. Preserve composition, formation links, group sounds and partial progress; count a reserve patrol only after its final member exists.
+- Prefer a hidden region around 60 metres ahead, using the real native spawn-group count. Check every expanded member position for current visibility, at least 35 metres from each valid teammate including bots, and 30–120 metres of forward route progress. Retain pending members when no safe position is available.
+- Stage recycled patrol members through the native queue at least 0.15 seconds apart. Recheck at actual consumption; cancel stale requests and retain their allowance. Separate transfers keep their 8-second interval and existing finite lifetime.
+- Reuse native route, navigation, horde LOS, unit creation, grouping and perception facilities. Keep bounded local position searches and existing ordinary queue/spawner smoothing.
+- Add bounded patrol completion receipts with member counts, deployment time and verified minimum distances; include cancelled replacement requests in the recycling receipt.
+- Reproduce the previous hidden-anchor/unsafe-expanded-position path using game Lua. Validate safe-zone behavior, complete quotas, per-member guards, 30/60/144 FPS admission, boxed position lifetime, moving players, queue refusal/expiry and group cleanup offline. Live frame-time improvement remains unmeasured.
+- Fully exit the game before replacing HCM. Existing intensity values and HED overrides are preserved; use the new package for the next mission.
+
+3.6.0 — Automatic rear-enemy and patrol recycling
+- Add automatic recycling at every local-host intensity level, without a new switch. Level 1 retains native spawn multipliers and includes recycling.
+- Reuse native perception scheduling, group membership, route progress, LOS, despawn bookkeeping and spawn queues. Require sustained distance behind every living teammate, including bots; a step or checkpoint crossing alone does not qualify.
+- Include walking native patrols only when the whole group is disengaged and not closing its route gap. Recycle across frames and stop on renewed combat, player return, visibility or protected state. Preserve ordinary path-following pursuers, wounded/marked units, mission ownership, bosses, specialists and externally controlled patrols.
+- Transfer only actually removed original units, preserving breed and patrol composition/group membership. Use hidden forward spawn points, native pacing/capacity checks and the native creation queue. Retain at most 24 records/96 units for 180 seconds; replacements never produce another allowance. Whole patrol admission waits for enough capacity and distinct positions.
+- Bound observations to four candidates per second and removal to one unit per second. Process one patrol at a time. Add mission-end recycling and patrol receipts, including actual creation and query totals.
+- Correct native EventManager registration/unregistration argument order so successful creation receipts receive real game events, including level 1.
+- Validate real native perception, patrol creation, group retirement, despawn and queue consumers, protection/interruption cases, 240-unit scheduling and two 64-member patrols offline. Live frame-time improvement remains unmeasured.
+- Fully exit the game before replacing HCM; use the new package for the next mission.
+
+3.5.0 — Growing enemy curves and fair encounter scheduling
+- Rebuild every intensity from 1 through 10. Level 1 retains the selected native baseline; ordinary enemies grow gradually, while elites, specialists and monsters gain more pressure. Keep ordinary horde wave counts native to avoid multiplying both wave size and wave count.
+- Scale common and elite composition counts independently. Add existing elite patrol members without replacing ordinary members. Keep native roamer/event selection ratios and raise their population or budget.
+- Add a coordinated combat-load control. Supported upper limits are 35 / 70 / 105 at levels 1 / 5 / 10, retaining capable-player and pacing-stage predicates. HED append and replacement rules keep their intended precedence.
+- Share encounter overflow opportunities between bosses and patrols, with weighted turns and protection against long waits. Preserve quotas on failure, try the other ready class, and retain the shared 20-second interval and existing concurrency limits.
+- Fix fractional native trickle cooldown modifiers being rounded or clamped upward when frequency increases.
+- Add bounded game-log receipts for successful spawns, actual combat load by category, blocked coordinated checks and unfinished encounter quotas. Record native spawn events without changing the spawn method; remove the listener at mission end.
+- Automatically migrate exact saved old presets to the same new level. Preserve other custom settings and HED overrides; expand the advanced UI to 20 controls.
+- Validate all ten curves, native consumers, rule precedence, weighted queues, bounded reporting and three-language UI offline. Live FPS and exact mission kill counts remain unmeasured.
+- Fully exit the game before replacing HCM. Changes take effect on the next mission.
+
+3.4.0 — More elites and bosses, fewer ordinary troops
+- Rebalance intensity toward existing elite breeds without increasing mixed group size. Add an advanced elite composition control for patrols, roamers, mixed hordes and automatic combat-event pools; scale relevant roamer elite limits.
+- At level 10, reduce horde/trickle wave size to 0.65x, horde waves to 2x, horde frequency to 1.35x and combat capacity to 2x. Reduce route population to 0.85x; keep event budget, camp count and trickle frequency at baseline.
+- Raise level-10 map monster allowance from 5x to 8x. Retain patrol count 6x, specialist capacity 3x and replenishment 3.25x.
+- Preserve encounter allowance that cannot fit authored positions. Retry later hidden navigation positions with at least 20 seconds between supplemental encounters and bounded active supplemental groups; retain native pauses, spawning and objectives.
+- Validate composition conservation, native point-pool selection, roamer limits, finite encounter replenishment and all three UI languages offline. No live FPS improvement or exact spawn count is claimed.
+- Fully exit the game before replacing HCM, then re-select an intensity level to apply the new profile. Saved values and Havoc Enemy Director field overrides are preserved.
+
+3.3.0
+- Fix patrol starvation when multiplied map monsters consumed all shared encounter sections. Supplement native plans with unused authored positions and preserve native spawning, patrol groups and objectives.
+- Scale specialist same-breed and player-dependent disabler allowances, coordinated attack size, slot spacing and coordinated refill intervals with capacity/frequency.
+- Link combat-load settings to enemy admission thresholds and ordinary horde frequency to wave gaps. Level 10 pacing capacity is 3x; horde size remains 1.35x.
+- Keep the main UI compact and show elite patrol, boss and specialist values. Retain staged spawners, queue integrity and the 300-entry Buff event pool.
+- Add native encounter and specialist-consumer regressions. Offline tests do not measure live spawn rates or frame performance.
+
+3.2.1 — Fix duplicate update hook
+
+- Merge pacing-context refresh and repeated-warning flushing into one PacingManager.update hook. Fix the DMF rehook warning and restore per-update context refresh.
+- Enforce DMF's one-hook-per-mod/function registration rule in the test harness, including mixed hook and hook_safe registrations. Reproduce the previous package's conflict and verify the merged callback.
+- Keep intensity values, compact UI and spawn smoothing unchanged. Fully exit the game before replacing HCM; existing settings and HED compatibility are retained.
+
+3.2.0 — Sustained pressure and smoother spawning
+
+- Prioritize overall intensity and collapse all 18 individual multipliers into Advanced settings. Keep the main page concise and explanations in hover help.
+- Strengthen the upper levels: level 10 uses 6× ordinary horde waves, 1.35× wave size, 2.25× trigger frequency, 3× specialist slots and 3.25× replenishment frequency, with increased patrol and map monster requests. Retain wave spacing and native capacity constraints.
+- Admit at most two due native spawners per update, fairly deferring the others without dequeuing their enemies. Preserve queue IDs, enemy order, objective parameters and completion callbacks.
+- Defer ordinary/coordinated horde waves when the central pending queue reaches 48; native retries preserve unsent waves. Leave trickle attempts unchanged.
+- Summarize repeated Buff-capacity warnings to reduce log writes. Keep the native pool and overflow rejection unchanged; flush remaining counts and release session references on exit.
+- Remove duplicate template discovery, copy each modified compiler branch once and restrict per-frame hover checks to relevant controls.
+- Retain spawn-ring growth, deferred map encounter preservation and temporary-vector fixes. Validate with actual game Lua and three-language layout checks; no live FPS or difficulty-multiplier measurement is claimed.
+- Compatible with Havoc Enemy Director 2.0.0. Fully exit the game before replacing HCM, then re-select an intensity level. Existing values are preserved until changed.
+
+3.1.0 — Coordinated intensity and spawn integrity
+
+- Replace the all-equal overall multiplier with coordinated intensity levels 1–10. Levels emphasize elite patrols, specialist reinforcements and map monster encounters through sustained waves.
+- Keep ordinary enemy density, enemies per wave, ordinary horde frequency, event budgets and escalation at baseline in the profile. Increase wave counts and specialist scheduling moderately; retain wave spacing and concurrent-enemy limits.
+- Preserve existing saved values. Re-select an intensity level to replace old combined multipliers; individual controls retain their 10x ceiling and HED overrides remain available.
+- Fix a reproduced overflow in the 256-entry minion spawn ring. Grow the existing ring before an unread request is overwritten, preserving request order, positions and attached event/objective parameters. Continue processing one request per update.
+- Fix unspawned map enemies being deleted when pacing temporarily refuses activation. Modified configurations retain these plans and retry within the normal update budget. Active and dead-unit cleanup remains intact.
+- Reproduce both failure paths using the game's Lua. Verify large wrapped queues, callback-driven growth, deferred elite recovery, cleanup, profile mappings and three-language UI layouts offline.
+- Compatible with Havoc Enemy Director 2.0.0. Replace HCM and fully restart the game. Live in-game confirmation is still needed.
+
+3.0.1 — Sliders, clearer help and high-density placement fix
+
+- Replace multiplier step buttons with sliders, narrow title columns and remove the separate reset controls.
+- Add Overall intensity to set all 18 multipliers together; raise every multiplier ceiling to 10x.
+- Show mixed individual settings as Custom and retain direct numeric entry.
+- Move detailed explanations into hover panels. Define combat load, specialist slots, coordinated tactics, recovery and escalation; remove arithmetic-only examples in all three languages.
+- Clarify that recovery may end before its timer when tension falls.
+- Reclaim temporary vectors after each map enemy placement group while preserving boxed results, enemy counts and random calls. This targets the engine temporary-marker failure reported during high-density map loading; the engine crash still needs live confirmation.
+- Check the actual game slider mouse logic at three UI scales and verify every hover panel in English, Simplified Chinese and Traditional Chinese.
+- Compatible with Havoc Enemy Director 2.0.0. Fully restart the game after replacing HCM.
+- No live in-game playtest is included; the high-density regression uses the game Lua with explicit engine boundaries.
+
+3.0.0 — Native template redesign
+
+- Import eligible condition rows from SoloPlay without registering separate Havoc or Maelstrom definitions.
+- Replace category multipliers with 18 controls across six native pacing groups.
+- Share the native-template registry and exact-field pipeline with Havoc Enemy Director.
+- Retain native scheduling, encounter budgets, shared-mutator deduplication and mission-owned cleanup.
+- Migrate valid condition IDs while preserving the previous saved value; old multiplier modes start from new defaults.
+- Save edits for the next mission and retain the running mission's initial configuration.
+- Provide English, Simplified Chinese and Traditional Chinese controls and installation documents.
+- Completely remove diagnostics, sampling hooks, switches, translations and diagnostic modules.
+- Validate Lua syntax/imports, native-manager behavior, input controls and package installation layout offline. No live in-game playtest or measured FPS claim is included.
+- Install current companion versions and fully restart the game. For manual upgrades, remove the old mod installation folder first.

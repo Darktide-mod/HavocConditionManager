@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Remove the native recoil modifier; other sources of weapon movement may remain.",
+    "zh-cn": "将武器后坐力修正降低 100%。这只作用于后坐力，瞄准晃动、散布和其他独立镜头动作仍按各自规则处理。",
+    "zh-tw": "將武器後坐力修正降低 100%。這隻作用於後坐力，瞄準晃動、散佈和其他獨立鏡頭動作仍按各自規則處理。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-deadeye_recoil",
+  "kind": "conditions",
+  "name": {
+    "en": "Recoil control",
+    "zh-cn": "无后座",
+    "zh-tw": "無後座"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

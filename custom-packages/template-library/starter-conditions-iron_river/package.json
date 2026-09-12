@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Recover toughness equal to damage dealt, with a 0.1-second cooldown.",
+    "zh-cn": "造成伤害后，按该次事件记录的伤害值等量恢复韧性，最多每 0.1 秒触发一次。恢复不会超过韧性上限；它不是生命吸取。",
+    "zh-tw": "造成傷害後，按該次事件記錄的傷害值等量恢復韌性，最多每 0.1 秒觸發一次。恢復不會超過韌性上限；它不是生命吸取。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-iron_river",
+  "kind": "conditions",
+  "name": {
+    "en": "Iron river",
+    "zh-cn": "铁斩波",
+    "zh-tw": "鐵斬波"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

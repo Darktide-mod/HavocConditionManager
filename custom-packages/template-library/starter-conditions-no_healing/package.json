@@ -1,0 +1,35 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Keep stations whose batteries start plugged in, with zero charges. Remove empty-socket stations and their nearby batteries. Medical stims and medical crates do not spawn; other healing remains available.",
+    "zh-cn": "开局电池已经插入的医疗站予以保留，但可用次数设为 0。开局电池舱为空、需要从附近搬运电池的医疗站，会连同配套电池一起移除。地图不再刷新医疗针剂和医疗包；技能、天赋等其他治疗仍可使用。已携带物品的正常丢弃不受这项地图刷新限制影响。",
+    "zh-tw": "開局電池已經插入的醫療站予以保留，但可用次數設為 0。開局電池艙為空、需要從附近搬運電池的醫療站，會連同配套電池一起移除。地圖不再重新整理醫療針劑和醫療包；技能、天賦等其他治療仍可使用。已攜帶物品的正常丟棄不受這項地圖重新整理限制影響。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json",
+    "lua/main.lua"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-no_healing",
+  "kind": "conditions",
+  "name": {
+    "en": "No healing",
+    "zh-cn": "禁止治疗",
+    "zh-tw": "禁止治療"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2,
+  "entrypoint": "lua/main.lua",
+  "capabilities": [
+    "native.v1",
+    "cleanup.v1"
+  ]
+}

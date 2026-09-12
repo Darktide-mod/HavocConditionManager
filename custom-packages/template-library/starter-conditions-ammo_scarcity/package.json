@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Ammo pickups yield 75% of their native result, after native modifiers.",
+    "zh-cn": "每次拾取弹药时，只获得正常结算量的 75%。先计算浩劫、难度等已有弹药修正，再将结果乘以 0.75；不会降低当前已经携带的弹药。",
+    "zh-tw": "每次拾取彈藥時，只獲得正常結算量的 75%。先計算浩劫、難度等已有彈藥修正，再將結果乘以 0.75；不會降低當前已經攜帶的彈藥。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-ammo_scarcity",
+  "kind": "conditions",
+  "name": {
+    "en": "Ammo scarcity",
+    "zh-cn": "弹药匮乏",
+    "zh-tw": "彈藥匱乏"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

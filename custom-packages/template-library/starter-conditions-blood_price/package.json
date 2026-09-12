@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Melee attacks spend five toughness; melee speed +10%, power +20%, toughness regeneration rate +150%.",
+    "zh-cn": "近战攻速提高 10%，近战能量提高 20%，韧性恢复速度提高 150%。每次开始近战挥击消耗 5 点韧性，无需命中；这项消耗最多每 0.1 秒触发一次。",
+    "zh-tw": "近戰攻速提高 10%，近戰能量提高 20%，韌性恢復速度提高 150%。每次開始近戰揮擊消耗 5 點韌性，無需命中；這項消耗最多每 0.1 秒觸發一次。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-blood_price",
+  "kind": "conditions",
+  "name": {
+    "en": "Blood price",
+    "zh-cn": "血手之怒",
+    "zh-tw": "血手之怒"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

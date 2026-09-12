@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "A melee kill grants three seconds of invisibility, with a five-second cooldown.",
+    "zh-cn": "近战击杀后获得 3 秒隐身，冷却 5 秒。隐身按游戏的敌人感知规则生效；不等于无敌，也不会保证已经发出的攻击停止。",
+    "zh-tw": "近戰擊殺後獲得 3 秒隱身，冷卻 5 秒。隱身按遊戲的敵人感知規則生效；不等於無敵，也不會保證已經發出的攻擊停止。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-melee_shelter",
+  "kind": "conditions",
+  "name": {
+    "en": "Melee shelter",
+    "zh-cn": "近战庇护",
+    "zh-tw": "近戰庇護"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

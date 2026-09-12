@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Players take 10% more damage.",
+    "zh-cn": "受到的伤害按原有结算结果乘以 1.1，即提高 10%。与其他独立承伤倍率叠加；不会直接扣除当前生命。",
+    "zh-tw": "受到的傷害按原有結算結果乘以 1.1，即提高 10%。與其他獨立承傷倍率疊加；不會直接扣除當前生命。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-deeper_wounds",
+  "kind": "conditions",
+  "name": {
+    "en": "Deeper wounds",
+    "zh-cn": "受伤加深",
+    "zh-tw": "受傷加深"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

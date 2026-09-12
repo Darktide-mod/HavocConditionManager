@@ -1,0 +1,12 @@
+3.0.0 — Native template redesign
+
+- Import eligible condition rows from SoloPlay without registering separate Havoc or Maelstrom definitions.
+- Replace category multipliers with 18 controls across six native pacing groups.
+- Share the native-template registry and exact-field pipeline with Havoc Enemy Director.
+- Retain native scheduling, encounter budgets, shared-mutator deduplication and mission-owned cleanup.
+- Migrate valid condition IDs while preserving the previous saved value; old multiplier modes start from new defaults.
+- Save edits for the next mission and retain the running mission's initial configuration.
+- Provide English, Simplified Chinese and Traditional Chinese controls and installation documents.
+- Completely remove diagnostics, sampling hooks, switches, translations and diagnostic modules.
+- Validate Lua syntax/imports, native-manager behavior, input controls and package installation layout offline. No live in-game playtest or measured FPS claim is included.
+- Install current companion versions and fully restart the game. For manual upgrades, remove the old mod installation folder first.

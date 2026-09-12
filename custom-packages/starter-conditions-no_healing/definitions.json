@@ -1,0 +1,42 @@
+{
+  "description": {
+    "en": "Apply the native keyword that prevents healing.",
+    "zh-cn": "应用原生禁止治疗关键词；不替换敌人或增加任务事件。",
+    "zh-tw": "應用原生禁止治療關鍵詞；不替換敵人或增加任務事件。"
+  },
+  "entries": [
+    {
+      "conditions": [],
+      "description": {
+        "en": "Keep stations whose batteries start plugged in, with zero charges. Remove empty-socket stations and their nearby batteries. Medical stims and medical crates do not spawn; other healing remains available.",
+        "zh-cn": "保留开局已插电池的医疗站，剩余次数为零；移除空电池舱医疗站及其附近配套电池。医疗针剂和医疗包不刷新，其他治疗效果仍可使用。",
+        "zh-tw": "保留開局已插電池的醫療站，剩餘次數為零；移除空電池艙醫療站及其附近配套電池。醫療針劑和醫療包不刷新，其他治療效果仍可使用。"
+      },
+      "enabled": true,
+      "id": "no_healing",
+      "match": "all",
+      "name": {
+        "en": "No healing",
+        "zh-cn": "禁止治疗",
+        "zh-tw": "禁止治療"
+      },
+      "rules": [],
+      "source_row": 46,
+      "targets": {
+        "kind": "players"
+      },
+      "tier": 4,
+      "weight": 1,
+      "script": true
+    }
+  ],
+  "format": "Darktide.DIY",
+  "id": "starter_conditions",
+  "kind": "conditions",
+  "name": {
+    "en": "No healing",
+    "zh-cn": "禁止治疗",
+    "zh-tw": "禁止治療"
+  },
+  "version": 1
+}

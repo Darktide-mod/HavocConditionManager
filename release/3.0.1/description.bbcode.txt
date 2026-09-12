@@ -1,0 +1,145 @@
+[size=5][b]English[/b][/size]
+
+[size=5][b]Havoc Condition Manager[/b][/size]
+
+Choose SoloPlay mission conditions and adjust enemy pacing. HCM provides broad controls; the optional Havoc Enemy Director edits individual fields in the same game templates. Realms sessions use the local host's settings.
+
+[size=4][b]Conditions and mission setup[/b][/size]
+
+[list]
+[*]Import the current SoloPlay condition list and group eligible entries as Havoc, Auric/Maelstrom, events and general conditions.
+[*]Add or remove conditions without a fixed slot count. A shared native mutator loads once even when several selected conditions include it.
+[*]Choose mission, faction, difficulty and environment in the mission page. An unsupported map/environment pair falls back to Default.
+[*]Apply the selected native pickup, health-station and hazard settings. Native replacement rules still govern conflicting effects.
+[/list]
+
+Available entries depend on the installed game and SoloPlay. HCM supplies no separate Havoc or Maelstrom condition definitions.
+
+[size=4][b]Overall tuning[/b][/size]
+
+[color=#ff6666]Open HCM in Mod Options and select Overall tuning. Drag a slider or click its value to type. Hover a control title for an explanation of its purpose, effect and limits.[/color]
+
+The Overall intensity slider sets all 18 multipliers to the same value, up to 10×. Individual controls also support 10×. When individual values differ, it displays Custom; using the overall slider replaces those values. Setting it to 1× returns all HCM multipliers to their defaults. Precise HED field edits are retained.
+
+The controls are arranged in six groups:
+
+[list]
+[*]Map population: route enemy count, encampments and elite patrols.
+[*]Horde encounters: enemies per wave, encounter frequency, waves and coordinated tactic allowance.
+[*]Trickle waves: enemies per group and encounter frequency.
+[*]Specialists: base scheduling slots, replenishment frequency and coordinated surge allowance.
+[*]Monsters and events: map monster encounters, combat-event budgets and condition-specific encounter counts.
+[*]Combat pacing: combat load tolerance, recovery duration and escalation strength.
+[/list]
+
+Higher frequency shortens waiting or travel requirements. Recovery duration works differently: raising it extends the recovery end timer, and recovery may still end earlier when tension falls. Overall intensity includes this setting. Hover explanations describe the relevant game mechanisms without requiring knowledge of template fields.
+
+Multipliers adjust existing enemy sources. A source with no encounter allowance remains at zero. The game still chooses spawn positions and applies its scheduling and group limits, so the final enemy count may rise by less than the selected multiplier. The numeric input shows each control's allowed range.
+
+[size=4][b]Fine editing and saved settings[/b][/size]
+
+Havoc Enemy Director adds Detailed tuning. HCM first supplies broad changes; a HED field override then sets that field's exact value. Native difficulty and condition modifiers can still change the final result. Mission combat-node budgets are a specific case: HCM's event-budget multiplier scales the final budget and its native cap after the node's base values and native modifiers.
+
+Values save automatically and apply when the next mission starts. A running mission retains its starting configuration. DMF switches apply immediately in the hub and are deferred during a mission. Disabling HCM restores SoloPlay's menu and suspends HED for later missions.
+
+The first use imports valid native IDs from the previous HCM selection. Retired condition aliases are omitted; the original saved value is retained. Old category multipliers and custom-generator settings are not converted into native template edits. Start from the new defaults and configure the controls before your next mission.
+
+English, Simplified Chinese and Traditional Chinese follow the game language. Native identifiers remain visible where needed to distinguish exact templates.
+
+[size=4][b]Requirements[/b][/size]
+
+Darktide Mod Loader, Darktide Mod Framework and SoloPlay are required. Realms is optional for co-op. Havoc Enemy Director is optional. Other mods replacing the same native templates or scheduling methods may conflict.
+
+[size=4][b]Vortex installation[/b][/size]
+
+[list]
+[*]Close the game and install the requirements. Import this ZIP with Install From File, enable it and select Deploy Mods.
+[*]Enable HavocConditionManager in Load Order after SoloPlay. Place the optional HavocEnemyDirector after HavocConditionManager.
+[*]Restart the game and open Havoc Condition Manager in Mod Options.
+[/list]
+
+[size=4][b]Manual installation[/b][/size]
+
+[list]
+[*]Close the game. When upgrading, remove the previous HavocConditionManager installation folder before extracting the new ZIP; saved settings are stored separately.
+[*]Extract the ZIP into Darktide/mods, producing mods/HavocConditionManager.
+[*]Add HavocConditionManager on its own line after SoloPlay in mods/mod_load_order.txt. Place the optional HavocEnemyDirector after it.
+[*]Restart the game and open HCM in Mod Options.
+[/list]
+
+[size=4][b]Credits[/b][/size]
+
+SoloPlay and the original UI foundation: deluxghost. Native game systems and assets: Fatshark. Game-source reference: Aussiemon/Darktide-Source-Code.
+
+[size=5][b]简体中文[/b][/size]
+
+[size=5][b]浩劫词条管理器[/b][/size]
+
+配置 SoloPlay 任务词条，并整体调整敌人调度。HCM 提供整体调节，可选的 Havoc Enemy Director 对同一套游戏模板逐项精调。Realms 房间使用本地主机的设置。
+
+[size=4][b]词条与任务设置[/b][/size]
+
+[list]
+[*]导入当前 SoloPlay 词条列表，将可用条目分为浩劫、金标／漩涡、活动和通用。
+[*]添加或删除词条，没有固定槽位上限。多个词条包含同一原版机制时只加载一次。
+[*]在任务页选择地图、阵营、难度和环境。不支持的地图／环境组合回退为默认环境。
+[*]应用所选词条的原版拾取物、医疗站和危险物设置。冲突效果仍遵循游戏自身的覆盖规则。
+[/list]
+
+可选内容取决于已安装的游戏和 SoloPlay。HCM 不另行定义浩劫或金标词条。
+
+[size=4][b]整体调节[/b][/size]
+
+[color=#ff6666]从模组选项打开 HCM，进入“整体调节”。拖动滑条或点击数值输入；悬停控件标题可查看其具体含义、调节效果和限制。[/color]
+
+“整体强度”可将全部 18 项倍率统一设为同一个值，最高 10×；各单项也支持最高 10×。各项数值不同时显示“分别设置”，此时操作整体滑条会替换所有单项数值。将整体强度设为 1×，即可让全部 HCM 倍率回到默认值；HED 的单项精确设置仍保留。
+
+六个分组包含：
+
+[list]
+[*]地图布置：地图敌群数量、驻军营地和精英巡逻队。
+[*]尸潮遭遇：单波人数、触发频率、波数和协同战术整局额度。
+[*]小股敌潮：单波人数和触发频率。
+[*]特感调度：基础调度槽位、补充频率和爆发整局额度。
+[*]怪物与事件：地图怪物遭遇、战斗事件预算和词条专属遭遇数。
+[*]战斗节奏：战斗负担容忍度、恢复阶段时长和持续加压强度。
+[/list]
+
+频率调高会缩短等待时间或推进距离要求。恢复阶段时长则会在调高后延长结束计时，阶段也可能因紧张值回落而提前结束；整体强度同样包含这项。各悬停说明会解释相关游戏机制，无需先了解模板字段。
+
+倍率作用于已有敌人来源，本来没有遭遇额度的来源仍保持为零。游戏继续选择出生位置并执行调度与敌群限制，因此最终人数未必按所选倍率同比增加。数值输入框会显示每项允许范围。
+
+[size=4][b]精调与设置保存[/b][/size]
+
+安装 Havoc Enemy Director 后增加“详细调节”页。先应用 HCM 整体倍率，再由 HED 对单个字段写入精确值；原版难度和词条修正仍可能继续改变最终结果。任务战斗节点预算有一项例外：节点基础值与原版修正计算后，HCM 事件预算倍率继续调整最终预算及原版预算封顶。
+
+修改自动保存，在下一局开始时生效；正在运行的任务保持开局配置。DMF 开关在大厅立即生效，任务中切换则延后应用。关闭 HCM 会恢复 SoloPlay 菜单，并在后续任务中暂停 HED。
+
+首次使用会从旧 HCM 选择中导入仍有效的原版词条 ID，省略已移除的别名，保留原始保存值。旧版按敌种分类的倍率和自定义生成器设置不转换为原版模板修改，请从新默认值重新配置。
+
+英文、简体中文和繁体中文随游戏语言切换；为区分具体模板，必要处保留原版标识符。
+
+[size=4][b]使用前提[/b][/size]
+
+需要 Darktide Mod Loader、Darktide Mod Framework 和 SoloPlay。Realms 为可选联机依赖，Havoc Enemy Director 为可选精调扩展。其他替换同一原版模板或调度方法的模组可能冲突。
+
+[size=4][b]Vortex 安装[/b][/size]
+
+[list]
+[*]关闭游戏并安装前置。使用 Install From File 导入本 ZIP，启用后选择 Deploy Mods。
+[*]在 Load Order 中将 HavocConditionManager 放在 SoloPlay 后；如安装 HavocEnemyDirector，将其放在 HavocConditionManager 后。
+[*]重新启动游戏，从模组选项打开浩劫词条管理器。
+[/list]
+
+[size=4][b]手动安装[/b][/size]
+
+[list]
+[*]关闭游戏。升级时先移除旧 HavocConditionManager 安装文件夹，再解压新包；已保存设置存放在其他位置。
+[*]将 ZIP 解压到 Darktide/mods，得到 mods/HavocConditionManager。
+[*]在 mods/mod_load_order.txt 中单独一行填写 HavocConditionManager，排在 SoloPlay 后；可选的 HavocEnemyDirector 排在其后。
+[*]重新启动游戏，从模组选项打开 HCM。
+[/list]
+
+[size=4][b]致谢[/b][/size]
+
+SoloPlay 与原始界面基础：deluxghost。原版游戏系统和资源：Fatshark。游戏源码参考：Aussiemon/Darktide-Source-Code。

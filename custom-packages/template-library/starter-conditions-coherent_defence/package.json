@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "In coherency with at least two units, take 35% less toughness damage.",
+    "zh-cn": "当连携计数达到 2 或更多时，受到的韧性伤害降低 35%。离开满足条件的连携范围后失效；不减少直接扣除生命的伤害。",
+    "zh-tw": "當連攜計數達到 2 或更多時，受到的韌性傷害降低 35%。離開滿足條件的連攜範圍後失效；不減少直接扣除生命的傷害。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-coherent_defence",
+  "kind": "conditions",
+  "name": {
+    "en": "Coherent defence",
+    "zh-cn": "连携防御",
+    "zh-tw": "連攜防禦"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

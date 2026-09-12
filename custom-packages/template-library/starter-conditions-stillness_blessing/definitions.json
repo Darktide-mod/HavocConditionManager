@@ -1,0 +1,53 @@
+{
+  "description": {
+    "en": "While not sprinting, take half toughness damage and gain 20% power.",
+    "zh-cn": "不在疾跑时，韧性承伤减半，能量提高 20%。",
+    "zh-tw": "不在疾跑時，韌性承傷減半，能量提高 20%。"
+  },
+  "entries": [
+    {
+      "conditions": [
+        {
+          "field": "sprinting",
+          "op": "eq",
+          "value": false
+        }
+      ],
+      "description": {
+        "en": "While not sprinting, take half toughness damage and gain 20% power.",
+        "zh-cn": "只要没有疾跑，受到的韧性伤害降低 50%，能量提高 20%。步行、站立时均可生效；开始疾跑后这两项增益失效。",
+        "zh-tw": "只要沒有疾跑，受到的韌性傷害降低 50%，能量提高 20%。步行、站立時均可生效；開始疾跑後這兩項增益失效。"
+      },
+      "enabled": true,
+      "id": "stillness_blessing",
+      "match": "all",
+      "name": {
+        "en": "Stillness blessing",
+        "zh-cn": "圣亚瑞克的赐福",
+        "zh-tw": "聖亞瑞克的賜福"
+      },
+      "passive": {
+        "stats": {
+          "power_level_modifier": 0.2,
+          "toughness_damage_taken_multiplier": 0.5
+        }
+      },
+      "rules": [],
+      "source_row": 72,
+      "targets": {
+        "kind": "players"
+      },
+      "tier": 2,
+      "weight": 1
+    }
+  ],
+  "format": "Darktide.DIY",
+  "id": "starter_conditions",
+  "kind": "conditions",
+  "name": {
+    "en": "Stillness blessing",
+    "zh-cn": "圣亚瑞克的赐福",
+    "zh-tw": "聖亞瑞克的賜福"
+  },
+  "version": 1
+}

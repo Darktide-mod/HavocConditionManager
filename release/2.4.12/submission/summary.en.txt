@@ -1,0 +1,1 @@
+Requires SoloPlay; supports Realms. Select Havoc, Auric/Maelstrom and event conditions, environments and 1–5x spawn multipliers. Reduces unnecessary native-mode Lua work while preserving original spawning rules and Buff IDs.

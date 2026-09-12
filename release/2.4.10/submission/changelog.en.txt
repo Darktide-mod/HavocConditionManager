@@ -1,0 +1,26 @@
+Version 2.4.10
+
+- Fixed redundant presence updates when Realms and Modular Menu Buttons are used together during local Havoc gameplay. Genuine activity changes and menu behavior are preserved.
+- Added low-frequency workload records for expanded player Buff queues: at most one event-batch sample every five seconds, with summaries every thirty seconds. Sampling reuses native parameter reclamation; no per-unit Buff-update hook is added.
+- Preserved native Buff templates and network IDs, proc order, overflow protection, condition effects, multipliers and saved settings.
+- Fully exit and restart the game after updating. Log-based workload checks do not establish an average-FPS improvement.
+
+Version 2.4.9
+
+- Removed the per-unit Buff-update diagnostic callback. Expanded proc queues report through their existing reclamation path, retaining overflow protection, nested-event order and the finite ceiling.
+- Skipped native composition analysis while the advanced director owns spawning.
+- Preserved native Buff templates and network IDs, condition effects, multipliers and saved settings.
+- Added independent regression coverage for native proc overflow and nested dispatch. No live-game FPS improvement has been measured; fully exit and restart the game after updating.
+
+Version 2.4.8
+
+- Nurgle's Blessing now uses the original game Buff template and network ID.
+- Removed the duplicate Buff registration that could shift IDs assigned by other custom-buff mods.
+- Retained the existing condition selection, enemy effects and optional Havoc-rank spawn probability scaling.
+- Fully exit the game before updating, then restart. Co-op players who use an older version of this mod should also update and restart.
+
+Version 2.4.7
+
+- Enabled the Darktide Mod Framework toggle.
+- Hub switches apply immediately; in-mission switches apply next mission and keep the current runtime consistent.
+- Retained saved settings and added three-language switch guidance.

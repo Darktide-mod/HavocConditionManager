@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Each elite death requests two poxwalkers from HED. They arrive at valid native spawn locations, not at the corpse.",
+    "zh-cn": "每当精英敌人死亡，向敌人导演请求增援 2 个瘟疫行尸。全局冷却 3 秒，每局最多请求 20 次；增援还受导演预算与有效落点限制，不会保证出现在尸体原地。需要启用敌人导演。",
+    "zh-tw": "每當精英敵人死亡，向敵人導演請求增援 2 個瘟疫行屍。全域性冷卻 3 秒，每局最多請求 20 次；增援還受導演預算與有效落點限制，不會保證出現在屍體原地。需要啟用敵人導演。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-split_reinforcements",
+  "kind": "conditions",
+  "name": {
+    "en": "Split reinforcements",
+    "zh-cn": "双生增援",
+    "zh-tw": "雙生增援"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

@@ -1,0 +1,63 @@
+{
+  "description": {
+    "en": "Elite death queues 10 direct health damage to nearby minions after two seconds. Radius is centred on the corpse if it still exists.",
+    "zh-cn": "精英死亡后 2 秒，对尸体附近敌人造成 10 点直接生命伤害；尸体位置不可用时跳过。",
+    "zh-tw": "精英死亡後 2 秒，對屍體附近敵人造成 10 點直接生命傷害；屍體位置不可用時跳過。"
+  },
+  "entries": [
+    {
+      "conditions": [],
+      "description": {
+        "en": "Elite death queues 10 direct health damage to nearby minions after two seconds. Radius is centred on the corpse if it still exists.",
+        "zh-cn": "精英敌人死亡 2 秒后，对尸体周围 8 米内的敌人各造成 10 点直接生命伤害。全局冷却 3 秒，每局最多触发 10 次；若届时无法取得尸体位置，则跳过本次伤害。",
+        "zh-tw": "精英敵人死亡 2 秒後，對屍體周圍 8 米內的敵人各造成 10 點直接生命傷害。全域性冷卻 3 秒，每局最多觸發 10 次；若屆時無法取得屍體位置，則跳過本次傷害。"
+      },
+      "enabled": true,
+      "id": "delayed_retribution",
+      "match": "all",
+      "name": {
+        "en": "Delayed retribution example",
+        "zh-cn": "延迟惩戒示例",
+        "zh-tw": "延遲懲戒示例"
+      },
+      "rules": [
+        {
+          "actions": [
+            {
+              "amount": 10,
+              "radius": 8,
+              "target": "nearby_minions",
+              "type": "damage"
+            }
+          ],
+          "chance": 1,
+          "conditions": [],
+          "cooldown": 3,
+          "delay": 2,
+          "event": "enemy_died",
+          "id": "blast",
+          "match": "all",
+          "max_triggers": 10,
+          "scope": "global"
+        }
+      ],
+      "targets": {
+        "kind": "minions",
+        "tags": [
+          "elite"
+        ]
+      },
+      "tier": 2,
+      "weight": 1
+    }
+  ],
+  "format": "Darktide.DIY",
+  "id": "starter_conditions",
+  "kind": "conditions",
+  "name": {
+    "en": "Delayed retribution example",
+    "zh-cn": "延迟惩戒示例",
+    "zh-tw": "延遲懲戒示例"
+  },
+  "version": 1
+}

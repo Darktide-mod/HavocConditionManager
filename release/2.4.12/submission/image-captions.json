@@ -1,0 +1,47 @@
+{
+  "01-conditions.en.png": {
+    "en": "Condition categories. UI layout render with sample values; not an in-game screenshot.",
+    "zh-CN": "词条分类。根据控件布局渲染，采用示例配置，非游戏实拍。",
+    "zh-TW": "詞條分類。根據控制元件佈局渲染，採用示例配置，非遊戲實拍。"
+  },
+  "03-environment.en.png": {
+    "en": "Environment selection. UI layout render with sample values; not an in-game screenshot.",
+    "zh-CN": "环境选择。根据控件布局渲染，采用示例配置，非游戏实拍。",
+    "zh-TW": "環境選擇。根據控制元件佈局渲染，採用示例配置，非遊戲實拍。"
+  },
+  "02-multipliers.en.png": {
+    "en": "Spawn multipliers. UI layout render with sample values; not an in-game screenshot.",
+    "zh-CN": "生成倍率。根据控件布局渲染，采用示例配置，非游戏实拍。",
+    "zh-TW": "生成倍率。根據控制元件佈局渲染，採用示例配置，非遊戲實拍。"
+  },
+  "01-conditions.zh-cn.png": {
+    "en": "Condition categories. UI layout render with sample values; not an in-game screenshot.",
+    "zh-CN": "词条分类。根据控件布局渲染，采用示例配置，非游戏实拍。",
+    "zh-TW": "詞條分類。根據控制元件佈局渲染，採用示例配置，非遊戲實拍。"
+  },
+  "03-environment.zh-cn.png": {
+    "en": "Environment selection. UI layout render with sample values; not an in-game screenshot.",
+    "zh-CN": "环境选择。根据控件布局渲染，采用示例配置，非游戏实拍。",
+    "zh-TW": "環境選擇。根據控制元件佈局渲染，採用示例配置，非遊戲實拍。"
+  },
+  "02-multipliers.zh-cn.png": {
+    "en": "Spawn multipliers. UI layout render with sample values; not an in-game screenshot.",
+    "zh-CN": "生成倍率。根据控件布局渲染，采用示例配置，非游戏实拍。",
+    "zh-TW": "生成倍率。根據控制元件佈局渲染，採用示例配置，非遊戲實拍。"
+  },
+  "01-conditions.zh-tw.png": {
+    "en": "Condition categories. UI layout render with sample values; not an in-game screenshot.",
+    "zh-CN": "词条分类。根据控件布局渲染，采用示例配置，非游戏实拍。",
+    "zh-TW": "詞條分類。根據控制元件佈局渲染，採用示例配置，非遊戲實拍。"
+  },
+  "03-environment.zh-tw.png": {
+    "en": "Environment selection. UI layout render with sample values; not an in-game screenshot.",
+    "zh-CN": "环境选择。根据控件布局渲染，采用示例配置，非游戏实拍。",
+    "zh-TW": "環境選擇。根據控制元件佈局渲染，採用示例配置，非遊戲實拍。"
+  },
+  "02-multipliers.zh-tw.png": {
+    "en": "Spawn multipliers. UI layout render with sample values; not an in-game screenshot.",
+    "zh-CN": "生成倍率。根据控件布局渲染，采用示例配置，非游戏实拍。",
+    "zh-TW": "生成倍率。根據控制元件佈局渲染，採用示例配置，非遊戲實拍。"
+  }
+}

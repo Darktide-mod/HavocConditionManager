@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Multiplies initial health of the three freely spawnable monsters.",
+    "zh-cn": "混沌卵、纳垢野兽和瘟疫欧格林生成时，初始生命乘以 1.5。正常生成和敌人导演生成都适用；不包含其他首领种类。与“怪物生命 ×2”同时启用时，两项相乘，最终为原来的 3 倍。",
+    "zh-tw": "混沌卵、納垢野獸和瘟疫歐格林生成時，初始生命乘以 1.5。正常生成和敵人導演生成都適用；不包含其他首領種類。與“怪物生命 ×2”同時啟用時，兩項相乘，最終為原來的 3 倍。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-monster_health_150",
+  "kind": "conditions",
+  "name": {
+    "en": "Monster health ×1.5",
+    "zh-cn": "怪物生命 ×1.5",
+    "zh-tw": "怪物生命 ×1.5"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

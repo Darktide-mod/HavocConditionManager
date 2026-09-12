@@ -1,0 +1,149 @@
+[size=5][b]English[/b][/size]
+
+[size=5][b]Havoc Condition Manager[/b][/size]
+
+Choose SoloPlay mission conditions and adjust enemy pacing. HCM provides broad controls; the optional Havoc Enemy Director edits individual fields in the same game templates. Realms sessions use the local host's settings.
+
+[size=4][b]Conditions and mission setup[/b][/size]
+
+[list]
+[*]Import the current SoloPlay condition list and group eligible entries as Havoc, Auric/Maelstrom, events and general conditions.
+[*]Add or remove conditions without a fixed slot count. A shared native mutator loads once even when several selected conditions include it.
+[*]Choose mission, faction, difficulty and environment in the mission page. An unsupported map/environment pair falls back to Default.
+[*]Apply the selected native pickup, health-station and hazard settings. Native replacement rules still govern conflicting effects.
+[/list]
+
+Available entries depend on the installed game and SoloPlay. HCM supplies no separate Havoc or Maelstrom condition definitions.
+
+[size=4][b]Overall tuning[/b][/size]
+
+Open HCM in Mod Options and select Overall tuning. The main page shows the intensity slider and linked values. The 19 individual controls are folded into Advanced settings; hover titles for details.
+
+Levels 1–10 put more emphasis on elites, specialists and map monsters while reducing ordinary troop volume. Level 1 uses baseline values. A level is a coordinated preset, not a measured multiplier for enemy count or difficulty.
+
+[list]
+[*]Level 5: elite composition bias 1.75×, patrol count 3×, map monster count 4×; specialist capacity and replenishment each 2×.
+[*]Level 10: elite composition bias 3×, patrol count 6×, map monster count 8×, specialist capacity 3×, replenishment 3.25× and surge allowance 6×.
+[/list]
+
+Elite composition bias shifts existing mixed patrols, roamer groups and horde compositions toward their existing elite breeds. It preserves group size, or the adjusted wave size for hordes. For example, a 16-member patrol with 8 elites becomes 12 elites and 4 ordinary troops at 3× bias. Roamer pack weights and relevant elite limits also increase. Automatic combat events favor existing elite pools within their point budget. Pure ordinary groups retain their breeds; specialists, bosses and required objective characters use separate settings.
+
+Patrol and monster settings first use separated, unused authored encounter points. If those cannot fit the requested count, the remaining allowance is retained for later encounters at valid hidden navigation positions. Additional encounters are at least 20 seconds apart, subject to native pacing and spawn checks. Supplemental bosses wait while three ordinary map monsters are alive, and at most two supplemental patrol groups remain active. These checks govern supplemental admissions; they do not cap mission-scripted bosses or all patrols. Short missions, combat pauses or missing positions can leave allowance unused. Native spawning, formations and mission objectives remain in use.
+
+Specialist capacity also scales same-breed limits, coordinated attack size and finite disabler allowances based on eligible players. Replenishment shortens slot spacing and coordinated attack/surge refill intervals. Native breed selection, protection duration, trigger chance, rush/loner checks and spawn-position checks still apply.
+
+Level 10 uses 0.65× horde and trickle wave size, 2× ordinary horde waves, 1.35× horde frequency and 3× coordinated tactic allowance. Trickle frequency, encampment count and event budget stay at 1×; route population is 0.85×. Combat capacity is 2×: the overall living-plus-queued admission threshold becomes 290 and the difficulty-5 horde threshold becomes 190. Recovery duration is 0.7×. Mission pauses, tension/heat stages, condition encounter counts, escalation and independent scripted-event limits retain their rules.
+
+Selecting a level replaces all 19 HCM values. Individual edits appear as Custom; HED field overrides remain. Upgrades preserve saved values, so select a level again to apply the revised profile. Changes save automatically and apply next mission.
+
+Due spawners run across successive updates while retaining queues, order and completion callbacks. Ordinary and coordinated hordes defer their next wave while the central queue is congested. Temporary pacing refusals preserve unspawned map encounters. Repeated Buff-capacity warnings are summarized by count; the Buff event pool remains 300.
+
+[size=4][b]Fine editing and saved settings[/b][/size]
+
+Havoc Enemy Director adds Detailed tuning. HCM first supplies broad changes; a HED field override then sets that field's exact value. Native difficulty and condition modifiers can still change the final result. Mission combat-node budgets are a specific case: HCM's event-budget multiplier scales the final budget and its native cap after the node's base values and native modifiers.
+
+Values save automatically and apply when the next mission starts. A running mission retains its starting configuration. DMF switches apply immediately in the hub and are deferred during a mission. Disabling HCM restores SoloPlay's menu and suspends HED for later missions.
+
+The first use imports valid native IDs from the previous HCM selection. Retired condition aliases are omitted; the original saved value is retained. Old category multipliers and custom-generator settings are not converted into native template edits. Start from the new defaults and configure the controls before your next mission.
+
+English, Simplified Chinese and Traditional Chinese follow the game language. Native identifiers remain visible where needed to distinguish exact templates.
+
+[size=4][b]Requirements[/b][/size]
+
+Darktide Mod Loader, Darktide Mod Framework and SoloPlay are required. Realms is optional for co-op. Havoc Enemy Director is optional. Other mods replacing the same native templates or scheduling methods may conflict.
+
+[size=4][b]Vortex installation[/b][/size]
+
+[list]
+[*]Close the game and install the requirements. Import this ZIP with Install From File, enable it and select Deploy Mods.
+[*]Enable HavocConditionManager in Load Order after SoloPlay. Place the optional HavocEnemyDirector after HavocConditionManager.
+[*]Restart the game and open Havoc Condition Manager in Mod Options.
+[/list]
+
+[size=4][b]Manual installation[/b][/size]
+
+[list]
+[*]Close the game. When upgrading, remove the previous HavocConditionManager installation folder before extracting the new ZIP; saved settings are stored separately.
+[*]Extract the ZIP into Darktide/mods, producing mods/HavocConditionManager.
+[*]Add HavocConditionManager on its own line after SoloPlay in mods/mod_load_order.txt. Place the optional HavocEnemyDirector after it.
+[*]Restart the game and open HCM in Mod Options.
+[/list]
+
+[size=4][b]Credits[/b][/size]
+
+SoloPlay and the original UI foundation: deluxghost. Native game systems and assets: Fatshark. Game-source reference: Aussiemon/Darktide-Source-Code.
+
+[size=5][b]简体中文[/b][/size]
+
+[size=5][b]浩劫词条管理器[/b][/size]
+
+配置 SoloPlay 任务词条，并整体调整敌人调度。HCM 提供整体调节，可选的 Havoc Enemy Director 对同一套游戏模板逐项精调。Realms 房间使用本地主机的设置。
+
+[size=4][b]词条与任务设置[/b][/size]
+
+[list]
+[*]导入当前 SoloPlay 词条列表，将可用条目分为浩劫、金标／漩涡、活动和通用。
+[*]添加或删除词条，没有固定槽位上限。多个词条包含同一原版机制时只加载一次。
+[*]在任务页选择地图、阵营、难度和环境。不支持的地图／环境组合回退为默认环境。
+[*]应用所选词条的原版拾取物、医疗站和危险物设置。冲突效果仍遵循游戏自身的覆盖规则。
+[/list]
+
+可选内容取决于已安装的游戏和 SoloPlay。HCM 不另行定义浩劫或金标词条。
+
+[size=4][b]整体调节[/b][/size]
+
+从模组选项打开 HCM，进入“整体调节”。主界面保留强度滑条和联动数值，19 项单独控件默认收在“高级设置”中，详细说明放在标题悬停提示中。
+
+1～10 档逐步提高精英、特感和地图怪物的投入，同时减少普通兵规模。1 档使用基准值；档位是组合预设，不代表实测敌人数或难度倍数。
+
+[list]
+[*]5 档：精英编成倾向 1.75×、巡逻数量 3×、地图怪物数量 4×；特感容量与补充频率各 2×。
+[*]10 档：精英编成倾向 3×、巡逻数量 6×、地图怪物数量 8×、特感容量 3×、补充频率 3.25×、爆发额度 6×。
+[/list]
+
+精英编成倾向让混合巡逻、沿途敌群和尸潮更偏向其中已有的精英兵种，保留每组总人数，尸潮则保留调整后的单波人数。例如，原有 8 名精英的 16 人巡逻队，在 3× 倾向下变为 12 名精英和 4 名普通兵。沿途精英编成的抽取权重和相关上限也会提高；自动战斗事件在点数预算内更倾向精英池。纯普通敌群保留原兵种，特感、Boss 和任务必需角色使用独立设置。
+
+巡逻和怪物先使用相互间隔、尚未占用的地图预设遭遇点。点位无法容纳的额度会保留，之后在有效且被遮挡的导航位置补入。额外遭遇至少间隔 20 秒，并遵循原版战斗暂停和出生检查。已有 3 只普通地图怪物存活时暂缓额外 Boss，同时最多保留 2 支额外巡逻队。这些条件只限制补入，不限制全部巡逻或任务脚本 Boss。任务太短、持续暂停或始终没有合适位置时，额度仍可能未用完。生成方式、巡逻阵型和任务目标继续使用原版流程。
+
+特感容量同时调整同类上限、协同攻击规模，以及按有效玩家人数计算的有限控制型额度。补充频率缩短槽位间隔、协同攻击和爆发期间的补充间隔。原版兵种抽选、保护持续时间、触发概率、冲刺／落单检查和出生位置检查继续生效。
+
+10 档尸潮和小股潮单波人数为 0.65×、普通尸潮波数 2×、尸潮频率 1.35×、协同战术额度 3×。小股潮频率、营地数量与事件预算保持 1×，沿途敌群为 0.85×。战斗容量为 2×：存活敌人加待生成请求的总容量门槛变为 290，难度 5 的尸潮门槛变为 190。恢复时长为 0.7×。任务暂停、紧张和热度阶段、词条遭遇数、持续加压及独立脚本事件限制保留各自规则。
+
+选档会替换全部 19 项 HCM 数值，单项修改后显示“自定义”；HED 精确覆盖保留。升级保留已有数值，需重新选择一次档位才能应用新预设。修改自动保存并在下一局生效。
+
+到期出生器分帧执行，保留各自队列、生成顺序和完成通知。普通与协同尸潮在中央队列积压时暂缓下一波，待发波次和受临时容量限制的地图敌人计划继续保留。重复增益容量警告按次数汇总，Buff 事件池维持 300。
+
+[size=4][b]精调与设置保存[/b][/size]
+
+安装 Havoc Enemy Director 后增加“详细调节”页。先应用 HCM 整体倍率，再由 HED 对单个字段写入精确值；原版难度和词条修正仍可能继续改变最终结果。任务战斗节点预算有一项例外：节点基础值与原版修正计算后，HCM 事件预算倍率继续调整最终预算及原版预算封顶。
+
+修改自动保存，在下一局开始时生效；正在运行的任务保持开局配置。DMF 开关在大厅立即生效，任务中切换则延后应用。关闭 HCM 会恢复 SoloPlay 菜单，并在后续任务中暂停 HED。
+
+首次使用会从旧 HCM 选择中导入仍有效的原版词条 ID，省略已移除的别名，保留原始保存值。旧版按敌种分类的倍率和自定义生成器设置不转换为原版模板修改，请从新默认值重新配置。
+
+英文、简体中文和繁体中文随游戏语言切换；为区分具体模板，必要处保留原版标识符。
+
+[size=4][b]使用前提[/b][/size]
+
+需要 Darktide Mod Loader、Darktide Mod Framework 和 SoloPlay。Realms 为可选联机依赖，Havoc Enemy Director 为可选精调扩展。其他替换同一原版模板或调度方法的模组可能冲突。
+
+[size=4][b]Vortex 安装[/b][/size]
+
+[list]
+[*]关闭游戏并安装前置。使用 Install From File 导入本 ZIP，启用后选择 Deploy Mods。
+[*]在 Load Order 中将 HavocConditionManager 放在 SoloPlay 后；如安装 HavocEnemyDirector，将其放在 HavocConditionManager 后。
+[*]重新启动游戏，从模组选项打开浩劫词条管理器。
+[/list]
+
+[size=4][b]手动安装[/b][/size]
+
+[list]
+[*]关闭游戏。升级时先移除旧 HavocConditionManager 安装文件夹，再解压新包；已保存设置存放在其他位置。
+[*]将 ZIP 解压到 Darktide/mods，得到 mods/HavocConditionManager。
+[*]在 mods/mod_load_order.txt 中单独一行填写 HavocConditionManager，排在 SoloPlay 后；可选的 HavocEnemyDirector 排在其后。
+[*]重新启动游戏，从模组选项打开 HCM。
+[/list]
+
+[size=4][b]致谢[/b][/size]
+
+SoloPlay 与原始界面基础：deluxghost。原版游戏系统和资源：Fatshark。游戏源码参考：Aussiemon/Darktide-Source-Code。

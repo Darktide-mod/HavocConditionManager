@@ -1,0 +1,32 @@
+{
+  "game": "Warhammer 40,000: Darktide",
+  "titles": {
+    "en": "Havoc Condition Manager - Solo Play Expansion",
+    "zh-CN": "浩劫词条管理器",
+    "zh-TW": "浩劫詞條管理器"
+  },
+  "version": "4.4.9",
+  "suggested_category": "Gameplay",
+  "required": [
+    "Darktide Mod Loader",
+    "Darktide Mod Framework",
+    "Solo Play"
+  ],
+  "optional": [
+    "Realms — for player-hosted sessions",
+    "Havoc Enemy Director",
+    "SimpleAssets — v2 interface for external resources in authored DIY entries"
+  ],
+  "languages": [
+    "English",
+    "Chinese (Simplified)",
+    "Chinese (Traditional)"
+  ],
+  "suggested_tags": [
+    "Gameplay",
+    "English",
+    "Chinese",
+    "Solo Play",
+    "Realms"
+  ]
+}

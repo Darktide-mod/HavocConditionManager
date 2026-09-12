@@ -1,0 +1,1 @@
+Requires SoloPlay; supports Realms. Select Havoc, Auric/Maelstrom and event conditions, environments and 1–5× spawn multipliers. Fixes duplicate shared-page closing during DMF toggles while preserving native effects and saved configuration.

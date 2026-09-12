@@ -1,0 +1,1 @@
+Requires SoloPlay; supports Realms. Combine Havoc, Auric/Maelstrom, event and faction conditions, select environments, and set separate 1–5x enemy multipliers. Uses native spawning rules and Buff identifiers; Havoc Enemy Director is optional.

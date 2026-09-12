@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "While not sprinting, take half toughness damage and gain 20% power.",
+    "zh-cn": "只要没有疾跑，受到的韧性伤害降低 50%，能量提高 20%。步行、站立时均可生效；开始疾跑后这两项增益失效。",
+    "zh-tw": "只要沒有疾跑，受到的韌性傷害降低 50%，能量提高 20%。步行、站立時均可生效；開始疾跑後這兩項增益失效。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-stillness_blessing",
+  "kind": "conditions",
+  "name": {
+    "en": "Stillness blessing",
+    "zh-cn": "圣亚瑞克的赐福",
+    "zh-tw": "聖亞瑞克的賜福"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

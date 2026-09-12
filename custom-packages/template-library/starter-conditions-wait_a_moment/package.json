@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Pause native and HED spawning for 30 seconds on the first player spawn. Existing enemies remain.",
+    "zh-cn": "首名玩家生成后，暂停正常敌人刷新与敌人导演刷新 30 秒，每局一次。暂停期间已经存在的敌人继续行动；时间结束后恢复刷新。",
+    "zh-tw": "首名玩家生成後，暫停正常敵人重新整理與敵人導演重新整理 30 秒，每局一次。暫停期間已經存在的敵人繼續行動；時間結束後恢復重新整理。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-wait_a_moment",
+  "kind": "conditions",
+  "name": {
+    "en": "Wait a moment",
+    "zh-cn": "等等",
+    "zh-tw": "等等"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

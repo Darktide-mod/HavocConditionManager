@@ -1,0 +1,29 @@
+{
+  "api": {
+    "major": 1,
+    "min_minor": 0
+  },
+  "definitions": "definitions.json",
+  "description": {
+    "en": "Elite enemies spawn with 40% more health.",
+    "zh-cn": "精英敌人生成时，其初始生命乘以 1.4，即增加 40%。适用于正常生成和敌人导演生成的精英；不直接提高护甲、伤害或数量。",
+    "zh-tw": "精英敵人生成時，其初始生命乘以 1.4，即增加 40%。適用於正常生成和敵人導演生成的精英；不直接提高護甲、傷害或數量。"
+  },
+  "entry_namespace": "starter-conditions",
+  "files": [
+    "definitions.json"
+  ],
+  "format": "Darktide.DIY.Package",
+  "id": "starter-conditions-elite_endurance",
+  "kind": "conditions",
+  "name": {
+    "en": "Elite endurance",
+    "zh-cn": "精英坚韧",
+    "zh-tw": "精英堅韌"
+  },
+  "package_version": "1.2.0",
+  "shared_signals": [
+    "diy_pressure"
+  ],
+  "version": 2
+}

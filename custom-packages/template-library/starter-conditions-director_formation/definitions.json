@@ -1,0 +1,65 @@
+{
+  "description": {
+    "en": "While diy_pressure is active, request the HED formation f1 once. Create or import that formation first.",
+    "zh-cn": "diy_pressure 生效时，请求 HED 编队 f1，仅一次。需事先创建或导入该编队。",
+    "zh-tw": "diy_pressure 生效時，請求 HED 編隊 f1，僅一次。需事先創建或導入該編隊。"
+  },
+  "entries": [
+    {
+      "conditions": [],
+      "description": {
+        "en": "While diy_pressure is active, request the HED formation f1 once. Create or import that formation first.",
+        "zh-cn": "收到增援信号后，向敌人导演请求部署一号编队，每局最多请求一次。需要启用敌人导演，并事先创建对应编队；可与“导演信号示例”配合使用。",
+        "zh-tw": "收到增援訊號後，向敵人導演請求部署一號編隊，每局最多請求一次。需要啟用敵人導演，並事先建立對應編隊；可與“導演訊號示例”配合使用。"
+      },
+      "enabled": true,
+      "id": "director_formation",
+      "match": "all",
+      "name": {
+        "en": "Formation request example",
+        "zh-cn": "编队请求示例",
+        "zh-tw": "編隊請求示例"
+      },
+      "rules": [
+        {
+          "actions": [
+            {
+              "name": "f1",
+              "type": "spawn_formation"
+            }
+          ],
+          "chance": 1,
+          "conditions": [
+            {
+              "field": "signal",
+              "op": "contains",
+              "value": "diy_pressure"
+            }
+          ],
+          "cooldown": 0,
+          "delay": 0,
+          "event": "interval",
+          "id": "request",
+          "interval": 1,
+          "match": "all",
+          "max_triggers": 1,
+          "scope": "global"
+        }
+      ],
+      "targets": {
+        "kind": "players"
+      },
+      "tier": 2,
+      "weight": 1
+    }
+  ],
+  "format": "Darktide.DIY",
+  "id": "starter_conditions",
+  "kind": "conditions",
+  "name": {
+    "en": "Formation request example",
+    "zh-cn": "编队请求示例",
+    "zh-tw": "編隊請求示例"
+  },
+  "version": 1
+}

@@ -1,0 +1,69 @@
+{
+  "description": {
+    "en": "While in coherency with at least two units, heal 0.3 health and remove 0.3 corruption each second.",
+    "zh-cn": "连携单位至少 2 个时，每秒恢复 0.3 生命并清除 0.3 腐化；遵守原生治疗限制。",
+    "zh-tw": "連攜單位至少 2 個時，每秒恢復 0.3 生命並清除 0.3 腐化；遵守原生治療限制。"
+  },
+  "entries": [
+    {
+      "conditions": [],
+      "description": {
+        "en": "While in coherency with at least two units, heal 0.3 health and remove 0.3 corruption each second.",
+        "zh-cn": "每秒检查一次连携状态。连携计数达到 2 或更多时，每次恢复 0.3 点生命并清除 0.3 点腐化；离开连携范围后暂停。恢复仍遵守当前任务的治疗限制。",
+        "zh-tw": "每秒檢查一次連攜狀態。連攜計數達到 2 或更多時，每次恢復 0.3 點生命並清除 0.3 點腐化；離開連攜範圍後暫停。恢復仍遵守當前任務的治療限制。"
+      },
+      "enabled": true,
+      "id": "coherent_medic",
+      "match": "all",
+      "name": {
+        "en": "Coherent medic",
+        "zh-cn": "连携医师",
+        "zh-tw": "連攜醫師"
+      },
+      "rules": [
+        {
+          "actions": [
+            {
+              "amount": 0.3,
+              "type": "heal"
+            },
+            {
+              "amount": 0.3,
+              "type": "corruption"
+            }
+          ],
+          "chance": 1,
+          "conditions": [
+            {
+              "field": "coherency",
+              "op": "ge",
+              "value": 2
+            }
+          ],
+          "cooldown": 0,
+          "delay": 0,
+          "event": "interval",
+          "id": "mend",
+          "interval": 1,
+          "match": "all",
+          "max_triggers": 0
+        }
+      ],
+      "source_row": 8,
+      "targets": {
+        "kind": "players"
+      },
+      "tier": 1,
+      "weight": 1
+    }
+  ],
+  "format": "Darktide.DIY",
+  "id": "starter_conditions",
+  "kind": "conditions",
+  "name": {
+    "en": "Coherent medic",
+    "zh-cn": "连携医师",
+    "zh-tw": "連攜醫師"
+  },
+  "version": 1
+}

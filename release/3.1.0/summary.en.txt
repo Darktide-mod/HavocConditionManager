@@ -1,0 +1,1 @@
+Configure SoloPlay and Realms with mission conditions and 18 enemy-pacing controls. Coordinated intensity levels favor elite patrols, specialist reinforcements and monster encounters through sustained waves. Individual sliders and optional Havoc Enemy Director provide further control.

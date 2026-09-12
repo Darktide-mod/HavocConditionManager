@@ -1,0 +1,55 @@
+{
+  "game": "Warhammer 40,000: Darktide",
+  "titles": {
+    "en": "Havoc Condition Manager - Solo Play Expansion",
+    "zh-CN": "浩劫词条管理器",
+    "zh-TW": "浩劫詞條管理器"
+  },
+  "version": "2.4.12",
+  "suggested_category": "Gameplay",
+  "required": [
+    "Darktide Mod Loader",
+    "Darktide Mod Framework",
+    "Solo Play"
+  ],
+  "optional": [
+    "Realms — for player-hosted sessions",
+    "Havoc Enemy Director"
+  ],
+  "languages": [
+    "English",
+    "Chinese (Simplified)",
+    "Chinese (Traditional)"
+  ],
+  "suggested_tags": [
+    "Gameplay",
+    "English",
+    "Chinese",
+    "Solo Play",
+    "Realms"
+  ],
+  "image_type": "UI layout renders with sample configurations; not gameplay screenshots",
+  "images": [
+    "images/01-conditions.en.png",
+    "images/02-multipliers.en.png",
+    "images/03-environment.en.png"
+  ],
+  "alternate_images": [
+    "images/01-conditions.zh-cn.png",
+    "images/01-conditions.zh-tw.png",
+    "images/02-multipliers.zh-cn.png",
+    "images/02-multipliers.zh-tw.png",
+    "images/03-environment.zh-cn.png",
+    "images/03-environment.zh-tw.png"
+  ],
+  "summaries": {
+    "en": "Requires SoloPlay; supports Realms. Select Havoc, Auric/Maelstrom and event conditions, environments and 1–5x spawn multipliers. Reduces unnecessary native-mode Lua work while preserving original spawning rules and Buff IDs.",
+    "zh-CN": "以 SoloPlay 为前提，支持 Realms。选择浩劫、金级／大漩涡、活动词条、环境及1–5倍刷怪。减少原版模式中不需要的 Lua 工作，保留原版刷怪规则和 Buff 编号。",
+    "zh-TW": "以 SoloPlay 為前提，支援 Realms。選擇浩劫、金級／大漩渦、活動詞條、環境及1–5倍刷怪。減少原版模式中不需要的 Lua 工作，保留原版刷怪規則和 Buff 編號。"
+  },
+  "main_file": "../files/HavocConditionManager-2.4.12.zip",
+  "main_file_description": "Requires SoloPlay; supports Realms. Select Havoc, Auric/Maelstrom and event conditions, environments and 1–5x spawn multipliers. Reduces unnecessary native-mode Lua work while preserving original spawning rules and Buff IDs.",
+  "file_category": "Main Files",
+  "archive_root": "HavocConditionManager/",
+  "manual_extract_to": "Darktide/mods/"
+}
