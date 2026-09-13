@@ -1,3 +1,9 @@
+4.4.10
+- Fix file discovery failing with a FindFirstFileW structure conversion error when another mod loads first.
+- Isolate Windows FFI bindings, including the shared HCM/Mortis DIY reader and HED preset reader. No load-order workaround is required for the updated managers.
+- Verify real Unicode file and package I/O under every manager load order, pre-existing foreign declarations and repeated module loads.
+- Restart the game after updating to reload any mod that failed during startup. Gameplay and resource payloads are unchanged.
+
 4.4.9
 - Fix Frenzied assault animation speeds changing between attacks on the same enemy. Preserve the engine's reserved animation-duration variable at the end of every modified controller. Previously, 35 states across 21 controllers could read clip duration as playback speed, including five Crusher attacks.
 - Release Frenzied assault 2.2.1 with unchanged +20% ordinary melee speed and matching timings. Restore correct vanilla playback when the condition is disabled. Preserve native Havoc and stimm effects; add no runtime animation scans, per-frame writes or routine logging.

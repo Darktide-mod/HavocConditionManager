@@ -1,7 +1,7 @@
 {
   "mod": "HavocConditionManager",
-  "release_id": "4.4.9",
+  "release_id": "4.4.10",
   "file_category": "Main Files",
-  "stable_release": "4.4.9",
-  "notes": "Fix the native animation variable layout: retain the engine duration slot last, regenerate all 21 controllers and 54 resource patches. Frenzied assault 2.2.1 retains +20% normal melee animation and timing. Include regression coverage for the engine temporary speed table, disabled/default playback, alternating actions, native Havoc attack timing and managed upgrade rollback. No additional runtime animation work or routine diagnostics. Game playback remains to be verified after deployment."
+  "stable_release": "4.4.10",
+  "notes": "Fix Windows FFI symbol collisions in file discovery and I/O. Use private aliases to the same kernel32 exports, independent of mod load order and old declarations. Verified real Unicode file and package operations across all three managers, foreign declarations and module refresh. No gameplay, animation resource, directory layout or installer changes."
 }
