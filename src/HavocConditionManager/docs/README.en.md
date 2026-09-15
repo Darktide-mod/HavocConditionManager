@@ -4,6 +4,18 @@ Choose SoloPlay mission conditions and adjust enemy pacing. HCM provides broad c
 
 Use HCM Overall tuning → Random seeds for condition-event probability streams. Use HED Director → Seeds for its scheduling streams and native roamer layout, with separate switches. Off follows the mission seed; HCM draws a fallback once per mission if that seed is unavailable. On enables integer input from 1 to 2147483646. Turning off retains the saved number. Changes apply next mission. These seeds do not choose the mission map or control all native horde, specialist, monster and scripted-event randomness. Lua authors using native math.random directly keep that separate random source.
 
+## Source code and optional condition collection
+
+[HCM source repository](https://github.com/Darktide-mod/HavocConditionManager) · [HCM downloads](https://github.com/Darktide-mod/HavocConditionManager/releases)
+
+[HavocConditionPacks](https://github.com/Darktide-mod/HavocConditionPacks) is an optional collection for HCM. It contains Frenzied assault and the additional animation resources that effect requires. Frenzied assault increases ordinary enemy melee attack and animation speed by 20%, with matching hit, combo and sweep timings. It currently supports local solo/bot sessions; two unmatched boss combos retain native behavior.
+
+HCM provides condition management, overall tuning, built-in No healing and external DIY loading without this collection. No healing loads directly from the HCM folder. HavocConditionPacks also keeps its condition files inside its own mod folder; HCM reads them directly when the collection is installed. Package discovery does not extract files or select effects for you.
+
+To use the collection, download its named installation ZIP from [HavocConditionPacks releases](https://github.com/Darktide-mod/HavocConditionPacks/releases), place HavocConditionPacks under mods and load it after HavocConditionManager. With Darktide closed, follow the collection's animation-resource installation instructions. Start the game and select Frenzied assault in HCM. Refreshing JSON/Lua in the hub applies to the next mission; changing animation resources requires restarting the game.
+
+The collection ships its own CMD/PowerShell installers and animation patches. These files are excluded from the HCM installation ZIP. Existing AppData DIY packages remain supported, and same-ID older copies stay on disk without loading twice. Download the named installation ZIP for each mod; GitHub's Source code ZIP contains the repository and historical releases. This separation does not establish Nexus scanning approval.
+
 ## DIY conditions
 
 DIY conditions share the main Conditions list with native conditions. Filters appear in this order: Havoc, Maelstrom, Events, DIY, All, Enabled. Loaded DIY entries also appear in All and Enabled when selected. Hover to read targets, values and trigger details; scroll through long descriptions. HCM applies every enabled checked condition without a quantity quota.
@@ -78,8 +90,6 @@ English, Simplified Chinese and Traditional Chinese follow the game language. Na
 Package IDs, versions, dependencies, conflicts and capabilities are validated. Selected local Lua runs on the authority with separate module environments, resource snapshots and cleanup callbacks. Package updates apply next mission. JSON, Lua, resources and dependency fingerprints participate in Mortis room compatibility; network messages never carry executable Lua. Three-language API guides and complete examples are included.
 
 DIY manager reads No healing directly from the mod folder, with no template extraction or copied built-in files. Built-in packages remain loaded in the manager; gameplay effects still require selection on the Conditions page. External packages remain under %APPDATA%/Fatshark/Darktide/HavocConditionManager/diy/packages. Refresh after adding or editing packages; active missions keep their starting snapshot. Older external copies with the same package ID remain on disk but the built-in or companion source takes precedence.
-
-Frenzied assault and its compiled animation resources are distributed separately in HavocConditionPacks: https://github.com/Darktide-mod/HavocConditionPacks . HCM does not ship PowerShell/CMD installers or animation patches. Its package loading API still supports authored Lua and optional resource integrations. This packaging change is not a guarantee of Nexus approval.
 
 ## Requirements
 

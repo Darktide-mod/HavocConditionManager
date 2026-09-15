@@ -33,6 +33,7 @@ def read_json(path):
 def bbcode(markdown):
     lines, in_list = [], False
     for line in markdown.splitlines():
+        line = re.sub(r'\[([^\]\n]+)\]\((https?://[^\s)]+)\)', r'[url=\2]\1[/url]', line)
         if line.startswith('- '):
             if not in_list:
                 lines.append('[list]')

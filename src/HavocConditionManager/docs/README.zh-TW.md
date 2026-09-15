@@ -4,6 +4,18 @@
 
 詞條事件的機率隨機流在 HCM「整體調節 → 隨機種子」設定；HED「導演 → 隨機種子」分別設定自身編隊排程與原生駐軍佈局。關閉固定種子時沿用任務種子；HCM 無法取得任務種子時，每局只隨機生成一次後備用值。開啟後可輸入 1–2147483646 的整數，關閉會保留輸入值，修改用於下一局。這些種子不選擇任務地圖，也不統一原生屍潮、特感、怪物和指令碼事件的全部隨機性；Lua 作者直接使用 math.random 時仍屬於獨立的原生隨機來源。
 
+## 原始碼與可選詞條集合
+
+[HCM 公開原始碼倉庫](https://github.com/Darktide-mod/HavocConditionManager) · [HCM 下載](https://github.com/Darktide-mod/HavocConditionManager/releases)
+
+[HavocConditionPacks 浩劫擴充詞條集](https://github.com/Darktide-mod/HavocConditionPacks) 是 HCM 的可選擴充，單獨提供「狂暴攻勢」及其所需的額外動畫資源。狂暴攻勢將敵人的常規近戰攻擊與動畫速度提高 20%，同步命中、連擊與掃擊時機。目前僅支援本地單人／機器人房間，兩處未匹配的首領連招保留原版行為。
+
+HCM 自身提供詞條管理、整體強度調節、內建「禁止醫療」和外部 DIY 載入，使用這些功能不需要安裝集合包。禁止醫療直接從 HCM 目錄讀取；集合包的詞條也保存在自己的模組目錄，由 HCM 直接載入。讀取時不會解壓檔案，也不會替玩家勾選效果。
+
+如需使用集合包，從 [HavocConditionPacks 下載頁](https://github.com/Darktide-mod/HavocConditionPacks/releases) 取得專用安裝 ZIP，把 HavocConditionPacks 放入 mods，載入順序排在 HavocConditionManager 後。關閉遊戲，按集合包說明安裝動畫資源；啟動後在 HCM 中勾選狂暴攻勢。僅修改 JSON／Lua 時，在大廳重新整理後用於下一局；修改動畫資源則需要重新啟動遊戲。
+
+集合包獨立攜帶 CMD／PowerShell 安裝器和動畫補丁，HCM 安裝 ZIP 不包含這些檔案。已有 AppData 外部 DIY 繼續可用，同 ID 的舊副本保留在磁碟上，不重複載入。安裝和上傳 Nexus 時請使用各模組的專用安裝 ZIP；GitHub 的 Source code ZIP 包含整個倉庫及歷史發佈。拆分不代表已通過 Nexus 掃描。
+
 ## DIY 詞條
 
 「禁止醫療」保留開局已通電的醫療站但將次數設為 0，移除需要附近電池的醫療站與配套電池，禁止生成醫療針劑與醫療包；其他治療仍可使用。
@@ -80,8 +92,6 @@ HED 也沒有額外覆蓋時，1 檔保留所選地圖、難度和詞條下的�
 包 ID、版本、依賴、衝突與能力均經過校驗。已選擇條目的本地 Lua 在權威端執行，具備獨立模組環境、資源快照和清理回撥；包更新用於下一局。死靈聯機一致性覆蓋 JSON、Lua、資源及依賴指紋，網路不傳遞可執行 Lua。附帶中英繁三語包規範、介面說明與完整示例。
 
 「DIY 管理」直接讀取模組目錄中的「禁止醫療」，無需解壓範本，也不會寫出內建詞條副本。內建套件保持載入，效果仍由主介面勾選決定。外部目錄維持 %APPDATA%/Fatshark/Darktide/HavocConditionManager/diy/packages，修改後重新整理；當前任務保持開局快照。同 ID 的舊外部副本保留在磁碟上，優先使用內建或集合包版本。
-
-「狂暴攻勢」與編譯動畫資源另外發佈於 HavocConditionPacks：https://github.com/Darktide-mod/HavocConditionPacks 。HCM 不再附帶 PowerShell/CMD 安裝器或動畫補丁，保留 Lua 與可選資源介面。拆分不代表已通過 Nexus 審核。
 
 ## 使用前提
 

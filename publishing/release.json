@@ -1,7 +1,7 @@
 {
   "mod": "HavocConditionManager",
-  "release_id": "4.5.0",
+  "release_id": "4.5.0-r2",
   "file_category": "Main Files",
-  "stable_release": "4.5.0",
-  "notes": "Load read-only built-ins in place; register companion package directories; preserve external packages. Move Frenzied assault, animation patches and installers to HavocConditionPacks. HCM contains no native animation payload or installation scripts."
+  "stable_release": "4.5.0-r2",
+  "notes": "Documentation revision: bilingual HCM and HavocConditionPacks links, purpose, installation and source information. Gameplay files unchanged."
 }

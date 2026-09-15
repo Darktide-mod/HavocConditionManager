@@ -4,6 +4,18 @@
 
 词条事件的概率随机流在 HCM「整体调节 → 随机种子」设置；HED「导演 → 随机种子」分别设置自身编队调度与原生驻军布局。关闭固定种子时沿用任务种子；HCM 无法取得任务种子时，每局只随机生成一次后备用值。开启后可输入 1–2147483646 的整数，关闭会保留输入值，修改用于下一局。这些种子不选择任务地图，也不统一原生尸潮、特感、怪物和脚本事件的全部随机性；Lua 作者直接使用 math.random 时仍属于独立的原生随机来源。
 
+## 源码与可选词条集合
+
+[HCM 公开源码仓库](https://github.com/Darktide-mod/HavocConditionManager) · [HCM 下载](https://github.com/Darktide-mod/HavocConditionManager/releases)
+
+[HavocConditionPacks 浩劫扩展词条集](https://github.com/Darktide-mod/HavocConditionPacks) 是 HCM 的可选扩展，单独提供「狂暴攻势」及其所需的额外动画资源。狂暴攻势将敌人的常规近战攻击与动画速度提高 20%，同步命中、连击与扫击时机。目前仅支持本地单人／机器人房间，两处未匹配的首领连招保留原版行为。
+
+HCM 自身提供词条管理、总体强度调节、内置「禁止医疗」和外部 DIY 加载，使用这些功能不需要安装集合包。禁止医疗直接从 HCM 目录读取；集合包的词条也保存在自己的模组目录，由 HCM 直接加载。读取时不会解压文件，也不会替玩家勾选效果。
+
+如需使用集合包，从 [HavocConditionPacks 下载页](https://github.com/Darktide-mod/HavocConditionPacks/releases) 获取专用安装 ZIP，把 HavocConditionPacks 放入 mods，加载顺序排在 HavocConditionManager 后。关闭游戏，按集合包说明安装动画资源；启动后在 HCM 中勾选狂暴攻势。仅修改 JSON／Lua 时，在大厅刷新后用于下一局；修改动画资源则需要重新启动游戏。
+
+集合包独立携带 CMD／PowerShell 安装器和动画补丁，HCM 安装 ZIP 不包含这些文件。已有 AppData 外部 DIY 继续可用，同 ID 的旧副本保留在磁盘上，不重复加载。安装和上传 Nexus 时请使用各模组的专用安装 ZIP；GitHub 的 Source code ZIP 包含整个仓库及历史发布。拆分不代表已通过 Nexus 扫描。
+
 ## DIY 词条
 
 DIY 词条与原生词条共用主界面的「词条配置」列表。分类顺序为浩劫、金级、活动、DIY、全部、已启用；已加载的 DIY 条目也会进入全部和已启用筛选。悬停可阅读适用对象、效果数值和触发说明，长说明支持滚轮翻页。HCM 应用所有已启用且勾选的词条，不设数量配额。
@@ -78,8 +90,6 @@ HED 也没有额外覆盖时，1 档保留所选地图、难度和词条下的�
 包 ID、版本、依赖、冲突与能力均经过校验。已选择条目的本地 Lua 在权威端执行，具备独立模块环境、资源快照和清理回调；包更新用于下一局。死灵联机一致性覆盖 JSON、Lua、资源及依赖指纹，网络不传递可执行 Lua。附带中英繁三语包规范、接口说明与完整示例。
 
 「DIY 管理」会直接读取模组目录中的「禁止医疗」，无需解压模板，也不会写出内置词条副本。内置包在管理器中保持加载；是否生效仍由主界面勾选决定。外部 DIY 目录保持为 %APPDATA%/Fatshark/Darktide/HavocConditionManager/diy/packages，添加或修改包后刷新即可；当前任务继续使用开局快照。同 ID 的旧外部副本保留在磁盘上，但优先使用内置或集合包中的版本。
-
-「狂暴攻势」及其编译动画资源单独发布在 HavocConditionPacks：https://github.com/Darktide-mod/HavocConditionPacks 。HCM 不再附带 PowerShell/CMD 安装器或动画补丁，仍保留 Lua 词条及可选资源接口。拆分不代表已经获得 Nexus 审核通过。
 
 ## 使用前提
 
