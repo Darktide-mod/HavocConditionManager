@@ -54,6 +54,7 @@ local function set_catalog_enabled(enabled)
     end
 end
 set_catalog_enabled(true)
+mod.studio_condition_available=function(id) return extended_lookup[id]~=nil and extended_lookup[id]~=false end
 local VIEW_NAME = "havoc_condition_manager_view"
 mod.validate_environment_selection = function()
     local mission=base_mod:get("havoc_mission")

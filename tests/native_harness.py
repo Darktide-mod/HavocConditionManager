@@ -53,6 +53,7 @@ function new_test_mod(name)
     -- DMF always formats translated text, including calls without arguments.
     function m:localize(k,...) local v=self.localization[k]; local s=v and (v[test_language or "zh-cn"] or v.en) or k; return string.format(s,...) end
     function m:io_dofile(p) return load_mod_file(p) end
+    function m:io_read_content(p,extension) return read_mod_file(p,extension) end
     function m:add_global_localize_strings(t) self.global_localization=self.global_localization or {}; for k,v in pairs(t) do self.global_localization[k]=v end end
     local function register(target,name,fn,safe)
         for _,h in ipairs(hooks) do
@@ -78,6 +79,7 @@ def load_mod(p):
     source=stage if p.startswith("HavocConditionManager/") else PROJECT.parent/"HavocEnemyDirector/src"
     return lua_file(source/(p+".lua"))
 L.globals().load_mod_file=load_mod
+L.globals().read_mod_file=lambda p,ext: (stage/(p+'.'+ext)).read_text(encoding='utf-8-sig')
 cache={'bit':L.eval("require('bit')"),'ffi':L.eval("require('ffi')")}
 def tbl(x):
     if isinstance(x,dict): return L.table_from({k:tbl(v) for k,v in x.items()})
@@ -151,6 +153,7 @@ def require(path):
         'scripts/managers/circumstance/circumstance_manager','scripts/extension_systems/health_station/health_station_system',
         'scripts/extension_systems/minion_spawner/minion_spawner_extension',
         'scripts/extension_systems/minion_spawner/minion_spawner_system',
+        'scripts/extension_systems/trigger/trigger_actions/trigger_action_base',
         'scripts/extension_systems/health/health_extension',
         'scripts/extension_systems/perception/minion_perception_extension',
         'scripts/extension_systems/hazard_prop/hazard_prop_system']:

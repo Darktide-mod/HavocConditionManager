@@ -1,7 +1,7 @@
 {
   "mod": "HavocConditionManager",
-  "release_id": "4.4.10",
+  "release_id": "4.5.0",
   "file_category": "Main Files",
-  "stable_release": "4.4.10",
-  "notes": "Fix Windows FFI symbol collisions in file discovery and I/O. Use private aliases to the same kernel32 exports, independent of mod load order and old declarations. Verified real Unicode file and package operations across all three managers, foreign declarations and module refresh. No gameplay, animation resource, directory layout or installer changes."
+  "stable_release": "4.5.0",
+  "notes": "Load read-only built-ins in place; register companion package directories; preserve external packages. Move Frenzied assault, animation patches and installers to HavocConditionPacks. HCM contains no native animation payload or installation scripts."
 }

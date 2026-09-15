@@ -134,35 +134,14 @@ function L.new(mod,kind,catalog,Schema,Codec,Files,Base,Packages,Hash,options)
     function self.directory()
         local fs,why=filesystem();return fs and fs.package_directory,why
     end
-    function self.copy_directory()
-        local path,why=self.directory();if not path then return report(why) end
+    function self.copy_directory(builtin)
+        local path,why
+        if builtin then local fs;fs,why=filesystem();if fs then path,why=fs.builtin_directory(options.name) end else path,why=self.directory() end
+        if not path then return report(why) end
         if Clipboard and Clipboard.put then Clipboard.put(path)
         elseif Clipboard and Clipboard.set then Clipboard.set(path)
         else return report(path) end
         return true
-    end
-    function self.extract_templates()
-        if not options.templates then return report("diy_package_missing") end
-        local cleared,why=self.clear_cache();if not cleared then return nil,why end
-        local fs,why=filesystem();if not fs then return report(why) end
-        local batch=options.templates();local plans={}
-        -- Validate the complete bundled set before replacing any folder.
-        for id,files in pairs(batch)do
-            local pack;pack,why=package_api.validate(files,catalog,kind,id)
-            if not pack then return report(why) end
-            plans[#plans+1]=pack
-        end
-        table.sort(plans,function(a,b)return a.manifest.id<b.manifest.id end)
-        for _,pack in ipairs(plans)do
-            local id=pack.manifest.id;local ok
-            ok,why=fs.write_package(id,pack.files,Packages.id,Packages.path,true)
-            if not ok then self.scan();return report(why) end
-            settings.disabled[id]=nil
-        end
-        persist()
-        local ok;ok,why=self.scan();if not ok then return nil,why end
-        self.last_error=nil;self.last_message="diy_packages_refreshed"
-        return true,#plans
     end
     function self.signature()
         return self.package_signature or raw_signature()
@@ -184,13 +163,36 @@ function L.new(mod,kind,catalog,Schema,Codec,Files,Base,Packages,Hash,options)
         local selected=self.files[self.selected_file]
         local names,errors;names,why,errors=fs.list_packages(Packages.id)
         if not names then return report(why) end
-        local packages={};errors=errors or {};local total_bytes=0
+        local packages,origins,shadowed={},{},{};errors=errors or {};local total_bytes=0
+        -- Built-ins and companion sources are read in place. They take
+        -- precedence over old extracted copies with the same package ID.
+        if options.bundled then
+            local sources=options.bundled()
+            for _,source in ipairs(sources)do
+                if source.error then return report(source.error) end
+                local ids={};for id in pairs(source.files or {})do ids[#ids+1]=id end;table.sort(ids)
+                for _,id in ipairs(ids)do
+                    if packages[id] then return report("diy_package_conflict: "..id) end
+                    local pack,err=package_api.validate(source.files[id],catalog,kind,id)
+                    if not pack then return report(err) end
+                    total_bytes=total_bytes+pack.bytes
+                    if total_bytes>Packages.max_library_bytes then return report("diy_package_limit") end
+                    packages[id]=pack;origins[id]={builtin=source.builtin==true,directory=source.directory,provider=source.name}
+                    if source.builtin then settings.disabled[id]=nil end
+                end
+            end
+        end
         for _,id in ipairs(names)do
+            if packages[id] then shadowed[id]=fs.package_directory.."/"..id
+            else
             local files;files,why=fs.read_package(id,Packages.id,Packages.path)
             local pack;if files then pack,why=package_api.validate(files,catalog,kind,id) end
             if pack and total_bytes+pack.bytes>Packages.max_library_bytes then errors[id]="diy_package_limit"
-            elseif pack then packages[id]=pack;total_bytes=total_bytes+pack.bytes else errors[id]=why end
+            elseif pack then packages[id]=pack;total_bytes=total_bytes+pack.bytes;origins[id]={directory=fs.package_directory} else errors[id]=why end
+            end
         end
+        local present={};for _,id in ipairs(names)do present[id]=true end
+        for id in pairs(origins)do if not present[id] then names[#names+1]=id end end;table.sort(names)
         local composed=package_api.compose(packages,catalog,kind,settings.disabled,lookup)
         for id,error in pairs(composed.errors)do errors[id]=error end
         -- Preparation is local and optional: a failed visual resource must not
@@ -205,6 +207,7 @@ function L.new(mod,kind,catalog,Schema,Codec,Files,Base,Packages,Hash,options)
         table.sort(identities);local signature=Hash.hex(table.concat(identities,"\n"))..":"..#composed.document.entries
         local changed=signature~=self.package_signature
         self.packages,self.active_packages,self.package_errors=packages,composed.packages,errors
+        self.package_origins,self.shadowed_packages=origins,shadowed
         -- Also replace same-hash objects: refresh must discard stale parsed
         -- values or third-party mutations without changing saved selections.
         self.document=composed.document;self.entry_sources=composed.sources;self.entry_hashes=composed.hashes
@@ -249,6 +252,7 @@ function L.new(mod,kind,catalog,Schema,Codec,Files,Base,Packages,Hash,options)
     end
     function self.package_enabled(id) return self.active_packages[id]~=nil end
     function self.package_disabled(id) return settings.disabled[id]==true end
+    function self.package_builtin(id) return self.package_origins and self.package_origins[id] and self.package_origins[id].builtin==true end
     function self.format_message(value)
         local key,extra=tostring(value):match("^(diy_[%w_]+)(.*)$")
         return key and (mod:localize(key)..extra) or tostring(value)
@@ -273,6 +277,7 @@ function L.new(mod,kind,catalog,Schema,Codec,Files,Base,Packages,Hash,options)
     end
     function self.toggle_package(id)
         if not Packages.id(id) then return report("diy_package_path") end
+        if self.package_builtin(id) then return report("diy_package_builtin_locked") end
         settings.disabled[id]=not settings.disabled[id] or nil;persist();return self.scan()
     end
     function self.import_file(name)

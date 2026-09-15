@@ -240,6 +240,12 @@ local function builder(view)
 end
 Paging.new_builder=builder
 local function go(view,page)
+    local director=get_mod("HavocEnemyDirector")
+    if director and director.set_studio_mode and (page==3 or page==4) then
+        local ok,why=director.set_studio_mode(page==3 and "hcm" or "hed")
+        if not ok then mod:notify(tostring(why));return end
+        if director.studio_refresh_view then director.studio_refresh_view(view) end
+    end
     Numeric.cancel(view); Slider.cancel(view); Help.hide(view)
     view:_set_exclusive_focus_on_setting(nil)
     view._hcm_choice=nil
@@ -363,7 +369,13 @@ Paging.build=function(view,settings)
     ui.page_count=total
     local tab_step=total>4 and 258 or 306
     local selected_count=#view._current.havoc_circumstances+active_custom_count()
-    for i=1,total do ui:button("tab_"..i,105+(i-1)*tab_step,141,tab_step-14,52,i==diy_page and Details.word("manager",mod) or labels[i],function() go(view,i) end,view._hcm_page==i) end
+    for i=1,total do
+        local label=i==diy_page and Details.word("manager",mod) or labels[i]
+        if director and director.studio_mode then
+            if i==3 then label="HCM · 总体调整" elseif i==4 then label="HED · 模板管理" end
+        end
+        ui:button("tab_"..i,105+(i-1)*tab_step,141,tab_step-14,52,label,function() go(view,i) end,view._hcm_page==i)
+    end
     ui:text("page_indicator",1430,145,375,44,mod:localize("ui_066",view._hcm_page,total,selected_count),20,"muted")
     if view._hcm_page==1 then
         ui:panel("normal_panel",105,212,550,688); ui:panel("havoc_panel",690,212,550,688); ui:panel("environment_panel",1275,212,540,688)
@@ -371,6 +383,12 @@ Paging.build=function(view,settings)
         ui:button("conditions_shortcut",1295,608,510,52,mod:localize("ui_068")..selected_count..mod:localize("ui_069"),function() go(view,2) end)
         ui:button("spawn_shortcut",1295,674,510,52,mod:localize("ui_070"),function() go(view,director and director.build_dashboard and 4 or 3) end)
         ui:text("configuration_help",1295,750,495,100,mod:localize("ui_071"),21,"muted")
+    elseif director and director.studio_mode and director.studio_mode()=="hed" and view._hcm_page~=4 then
+        ui:text("studio_locked",200,300,1500,120,"当前由 HED 模板控制词条与强度。编辑请使用独立软件；切换 HCM 标签后可使用游戏内调整。",28,"gold")
+        ui:button("studio_switch_hcm",600,470,720,55,"切换到 HCM 调整",function() go(view,3) end)
+    elseif director and director.studio_mode and director.studio_mode()=="hcm" and view._hcm_page==4 then
+        ui:text("studio_inactive",200,300,1500,120,"当前由 HCM 控制强度与词条。切换到 HED 后可管理和加载独立软件导出的模板。",28,"gold")
+        ui:button("studio_switch_hed",600,470,720,55,"切换到 HED 模板",function() go(view,4) end)
     elseif view._hcm_page==2 then conditions(view,settings,ui)
     elseif view._hcm_page==3 then CoarseEditor(view,ui)
     elseif view._hcm_page==diy_page then DIYManager.build(ui,view,mod,mod.diy_library,DIYSchema,Details)
@@ -490,7 +508,7 @@ Paging.enter=function(view,settings)
     w.hcm_previous.content.hotspot.pressed_callback=function() go(view,math.max(1,view._hcm_page-1)) end
     w.hcm_next.content.hotspot.pressed_callback=function() go(view,math.min(view._hcm_ui.page_count,view._hcm_page+1)) end
     local director=get_mod("HavocEnemyDirector")
-    if director and director._open_settings_requested then director._open_settings_requested=nil; view._hcm_page=4 end
+    if director and director._open_settings_requested then director._open_settings_requested=nil;go(view,4) end
     Paging.refresh(view,settings)
 end
 mod._condition_paging_cache = { language = language, module = Paging }

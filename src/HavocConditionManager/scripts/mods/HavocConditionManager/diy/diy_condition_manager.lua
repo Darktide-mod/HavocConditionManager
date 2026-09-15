@@ -6,10 +6,10 @@ function M.build(ui,view,mod,library,Schema,D)
         if not mod:is_enabled() then return end
         fn();view._hcm_refresh=true
     end end
-    local extract=ui:button("diy_extract_templates",105,219,390,50,D.word("extract",mod),library.extract_templates and change(library.extract_templates))
-    extract.tooltip=D.word("extract_help",mod)
+    local builtin=ui:button("diy_builtin_directory",105,219,390,50,D.word("builtin_directory",mod),change(function()library.copy_directory(true)end))
+    builtin.tooltip=D.word("builtin_help",mod)
     ui:button("diy_scan",511,219,300,50,loc("scan"),change(library.scan))
-    ui:button("diy_directory",827,219,300,50,loc("copy_dir"),change(library.copy_directory))
+    ui:button("diy_directory",827,219,300,50,D.word("external_directory",mod),change(library.copy_directory))
     ui:button("diy_export",1143,219,300,50,loc("export"),change(function()library.export()end))
     ui:button("diy_paste",1459,219,336,50,loc("paste"),change(function()
         local raw=Clipboard and Clipboard.get and Clipboard.get()
@@ -31,7 +31,8 @@ function M.build(ui,view,mod,library,Schema,D)
     end
     local shown=file and entry_for(file)
     ui:text("diy_packages_count",105,355,714,40,D.word("manager",mod).."  ·  "..#files,27,"gold")
-    ui:button("diy_import",1405,353,390,46,loc(file and library.package_disabled(file) and "package_enable" or "package_disable"),file and change(function()library.toggle_package(file)end))
+    local builtin_file=file and library.package_builtin(file)
+    ui:button("diy_import",1405,353,390,46,builtin_file and D.word("builtin_locked",mod) or loc(file and library.package_disabled(file) and "package_enable" or "package_disable"),file and not builtin_file and change(function()library.toggle_package(file)end))
     local offset=ui:window("diy_packages",#files,8,1,105,403,714)
     for i=1,math.min(8,#files-offset)do
         local id=files[offset+i];local entry=entry_for(id)
@@ -41,12 +42,14 @@ function M.build(ui,view,mod,library,Schema,D)
         end),id==file)
         row.center=false;row.scroll="diy_packages";row.text_right_padding=116
         row.tooltip_title=name;row.tooltip=entry and D.describe(entry,library,Schema,mod) or loc("package_missing")
-        ui:text("diy_package_state_"..i,703,row.y,110,47,D.word(library.package_disabled(id) and "unloaded" or "loaded",mod),17,"muted")
+        ui:text("diy_package_state_"..i,703,row.y,110,47,D.word(library.package_builtin(id) and "builtin" or library.package_disabled(id) and "unloaded" or "external",mod),17,"muted")
     end
     if #files==0 then ui:text("diy_empty",105,445,700,185,D.word("empty",mod),22,"muted") end
     ui:panel("diy_detail_panel",851,413,944,457)
     ui:text("diy_detail_title",870,424,900,58,shown and D.name(shown,Schema,mod) or D.word("inspect",mod),28,"gold")
     local text=shown and D.describe(shown,library,Schema,mod) or D.word("empty",mod)
+    if builtin_file then text=text.."\n\n"..D.word("builtin_help",mod) end
+    if file and library.shadowed_packages and library.shadowed_packages[file] then text=text.."\n\n"..D.word("shadowed",mod) end
     if file and library.package_disabled(file) then text=text.."\n\n"..loc("package_disabled") end
     local pages=D.pages(text,78,12)
     local page=math.max(1,math.min(view._diy_detail_page or 1,#pages));view._diy_detail_page=page

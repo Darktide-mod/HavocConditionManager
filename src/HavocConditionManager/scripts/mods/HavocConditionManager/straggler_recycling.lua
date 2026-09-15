@@ -7,11 +7,15 @@ local Horde=require("scripts/managers/horde/horde_manager")
 local Perception=require("scripts/extension_systems/perception/minion_perception_extension")
 local Health=require("scripts/extension_systems/health/health_extension")
 local Placement=mod.spawn_placement
-local CHECK_INTERVAL,QUIET_TIME,DISTANCE_SQ=5,30,35*35
-local READY_LIMIT,REMOVE_INTERVAL=64,0.25
-local PASSIVE_REAR_DISTANCE,PASSIVE_ANCHOR_SQ=60,12*12
-local MAX_CREDITS,MAX_CREDIT_UNITS,SPAWN_INTERVAL=32,256,0.25
+local READY_LIMIT=64
+local PASSIVE_ANCHOR_SQ=12*12
+local MAX_CREDITS,MAX_CREDIT_UNITS=32,256
 local state,patrol_context
+local settings_cache
+local function settings()
+    if not settings_cache then settings_cache=mod.template_runtime.config().recycling end
+    return settings_cache
+end
 local function current()
     if not state then state={credits={},next_remove=0,next_spawn=0,credit_units=0,credit_cursor=1,
         ready={},ready_index=1,ready_size=0} end
@@ -23,6 +27,7 @@ local function native_group(unit)
     return ext and ext.group and ext:group()
 end
 local function attach(unit,owner,record,side_id,origin)
+    if not settings().enabled then return end
     local ext=unit and extension(unit,"perception_system")
     local breed=ext and ext._breed
     local tags=breed and breed.tags or {}
@@ -122,7 +127,7 @@ local function sample(ext,unit,meta)
         end
     end
     if count==0 then return end
-    if nearest<DISTANCE_SQ then return end
+    if nearest<settings().distance^2 then return end
     local spawn=board.spawn
     if not spawn or spawn.is_exiting_spawner then return end
     local group=board.group_data
@@ -158,7 +163,7 @@ local function sample(ext,unit,meta)
             math.abs(record.travel_distance)==math.huge then
             return
         end
-        if progress-record.travel_distance<PASSIVE_REAR_DISTANCE then return end
+        if progress-record.travel_distance<settings().rear_distance then return end
     end
     return players
 end
@@ -183,8 +188,8 @@ local function rejoin_orphan(ext,unit,meta,t)
 end
 mod:hook_safe(Perception,"update",function(self,unit,dt,t)
     local meta=self._hcm_straggler
-    if not meta or not mod.has_local_gameplay_authority() or t<meta.next_check then return end
-    meta.next_check=t+CHECK_INTERVAL
+    if not meta or not mod.has_local_gameplay_authority() or t<meta.next_check or not settings().enabled then return end
+    meta.next_check=t+settings().check_interval
     rejoin_orphan(self,unit,meta,t)
     local s=current()
     local players=sample(self,unit,meta)
@@ -192,7 +197,7 @@ mod:hook_safe(Perception,"update",function(self,unit,dt,t)
         meta.since=nil;return
     end
     if not meta.since then meta.since=t end
-    if t-math.max(meta.since,meta.last_damage or 0)<QUIET_TIME then return end
+    if t-math.max(meta.since,meta.last_damage or 0)<settings().quiet_time then return end
     if meta.enqueued then return end
     if s.ready_size<READY_LIMIT then
         s.ready[(s.ready_index+s.ready_size-1)%READY_LIMIT+1]=unit
@@ -206,6 +211,7 @@ mod:hook_safe(Health,"add_damage",function(self,amount)
     if meta then meta.engaged=true;meta.last_damage=Managers.time:time("gameplay");if meta.since then meta.since=meta.last_damage end end
 end)
 local function add_credit(s,meta,breed,t)
+    if not settings().replenish then return end
     if meta.replacement then return end
     if s.credit_units>=MAX_CREDIT_UNITS then return end
     local last
@@ -216,7 +222,7 @@ local function add_credit(s,meta,breed,t)
     if last then
         last.breeds[#last.breeds+1]=breed
     elseif #s.credits<MAX_CREDITS then
-        if #s.credits==0 then s.next_spawn=math.max(s.next_spawn,t+SPAWN_INTERVAL) end
+        if #s.credits==0 then s.next_spawn=math.max(s.next_spawn,t+settings().spawn_interval) end
         s.credits[#s.credits+1]={breeds={breed},side_id=meta.side_id,kind=meta.kind,health=meta.health}
     else return end
     s.credit_units=s.credit_units+1
@@ -226,11 +232,11 @@ local function recycle(s,t)
     local unit=s.ready[s.ready_index]
     s.ready[s.ready_index]=nil;s.ready_index=s.ready_index%READY_LIMIT+1;s.ready_size=s.ready_size-1
     -- One per update, spaced in time; no catch-up burst after a slow frame.
-    s.next_remove=t+REMOVE_INTERVAL
+    s.next_remove=t+settings().remove_interval
     local ext=extension(unit,"perception_system");local meta=ext and ext._hcm_straggler
     if not meta then return end
     meta.enqueued=nil
-    if not meta.since or t-math.max(meta.since,meta.last_damage or 0)<QUIET_TIME then return end
+    if not meta.since or t-math.max(meta.since,meta.last_damage or 0)<settings().quiet_time then return end
     local players=sample(ext,unit,meta)
     if not players or not ext.immediate_line_of_sight_check then
         meta.since=nil;return
@@ -251,7 +257,7 @@ local function recycle(s,t)
 end
 local function replenish(s,pacing,t)
     if t<s.next_spawn or #s.credits==0 then return end
-    s.next_spawn=t+SPAWN_INTERVAL
+    s.next_spawn=t+settings().spawn_interval
     if s.inflight then return end
     local manager=Managers.state.minion_spawn
     -- Native admission checks use '>'; leave headroom for other spawners.
@@ -329,7 +335,7 @@ mod.finish_redeployment=function(ticket,unit)
     if s~=state then return end
     s.inflight=nil
     local t=Managers.time:time("gameplay")
-    s.next_spawn=math.max(s.next_spawn,t+SPAWN_INTERVAL)
+    s.next_spawn=math.max(s.next_spawn,t+settings().spawn_interval)
     if not unit then credit.positions=nil;credit.next_try=t+0.25;return end
     credit.index=(credit.index or 1)+1;credit.position_index=credit.position_index+1;s.credit_units=s.credit_units-1
     if credit.position_index>#credit.positions then credit.positions=nil end
@@ -343,12 +349,12 @@ mod.finish_redeployment=function(ticket,unit)
         end
         s.credit_cursor=(s.credit_cursor-1)%math.max(#s.credits,1)+1
         if credit.group_id then Managers.state.extension:system("group_system"):unlock_group_id(credit.group_id) end
-        s.next_spawn=t+SPAWN_INTERVAL
+        s.next_spawn=t+settings().spawn_interval
     end
 end
 
 mod.update_straggler_recycling=function(pacing,t)
-    if not state or not mod.has_local_gameplay_authority() then return end
+    if not state or not mod.has_local_gameplay_authority() or not settings().enabled then return end
     recycle(state,t);replenish(state,pacing,t)
 end
 mod.finish_straggler_recycling=function()
@@ -357,6 +363,6 @@ mod.finish_straggler_recycling=function()
         local system=Managers.state.extension and Managers.state.extension:system("group_system")
         for _,credit in ipairs(s.credits) do if system and credit.group_id then system:unlock_group_id(credit.group_id) end end
     end
-    state=nil;patrol_context=nil
+    state=nil;patrol_context=nil;settings_cache=nil
 end
 return true

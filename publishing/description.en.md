@@ -77,17 +77,13 @@ English, Simplified Chinese and Traditional Chinese follow the game language. Na
 
 Package IDs, versions, dependencies, conflicts and capabilities are validated. Selected local Lua runs on the authority with separate module environments, resource snapshots and cleanup callbacks. Package updates apply next mission. JSON, Lua, resources and dependency fingerprints participate in Mortis room compatibility; network messages never carry executable Lua. Three-language API guides and complete examples are included.
 
-DIY manager provides refresh, description viewing, package toggles, import and export. The built-in collection contains only Frenzied assault and No healing, hidden until extraction. Extract DIY templates writes them to the DIY folder, replaces matching packages and immediately reloads them; previous folders are retained as backups. Templates include Frenzied assault and the revised medical-station restrictions. Extraction does not select gameplay conditions, and the current mission keeps its starting configuration.
+DIY manager reads No healing directly from the mod folder, with no template extraction or copied built-in files. Built-in packages remain loaded in the manager; gameplay effects still require selection on the Conditions page. External packages remain under %APPDATA%/Fatshark/Darktide/HavocConditionManager/diy/packages. Refresh after adding or editing packages; active missions keep their starting snapshot. Older external copies with the same package ID remain on disk but the built-in or companion source takes precedence.
 
-Frenzied assault increases ordinary enemy melee attack and animation speed by 20%, with matching hit, combo and sweep timings. It supports local solo/bot sessions and requires the included animation resources. Two unmatched captain combos retain native behavior. No healing preserves pre-powered medical stations with zero charges, removes stations needing a nearby battery together with that battery, and prevents medical stims and medical crates from spawning; other healing remains available.
-
-Bundled templates and extracted AppData DIY packages are separate files. Install-native-melee.cmd updates Frenzied assault in both the installed resources and the extracted package; Extract DIY templates also updates the extracted template copies. Later Lua-only changes can be refreshed in the hub and take effect next mission. Compiled animation resource changes require the game to be closed. Active missions retain their starting package snapshot.
+Frenzied assault and its compiled animation resources are distributed separately in HavocConditionPacks: https://github.com/Darktide-mod/HavocConditionPacks . HCM does not ship PowerShell/CMD installers or animation patches. Its package loading API still supports authored Lua and optional resource integrations. This packaging change is not a guarantee of Nexus approval.
 
 ## Requirements
 
 Darktide Mod Loader, Darktide Mod Framework and SoloPlay are required. Realms is optional for co-op. Havoc Enemy Director is optional. Other mods replacing the same native templates or scheduling methods may conflict.
-
-After deploying HCM through Vortex or manual extraction, close the game and double-click Install-native-melee.cmd in mods/HavocConditionManager to install Frenzied assault's animation resources and update its extracted package. The installer verifies the matching game files, preserves other resource registrations and keeps rollback backups. Vortex deployment alone does not perform this step. To remove the resources, run Uninstall-native-melee.cmd before removing HCM. See docs/Native-melee-installation.md. Other HCM features do not require this step.
 
 ## Vortex installation
 

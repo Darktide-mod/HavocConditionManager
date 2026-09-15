@@ -1,3 +1,11 @@
+Version 4.5.0
+- Read No healing directly from the built-in directory; remove template extraction.
+- Keep built-in packages loaded while preserving normal gameplay selection.
+- Add companion package-source registration and retain external AppData packages.
+- Prefer declared sources over old same-ID copies without deleting user files.
+- Move Frenzied assault, 54 animation patches and installers into HavocConditionPacks.
+- Restrict the HCM release to documented text and example image formats; reject executable and nested archive payloads.
+
 4.4.10
 - Fix file discovery failing with a FindFirstFileW structure conversion error when another mod loads first.
 - Isolate Windows FFI bindings, including the shared HCM/Mortis DIY reader and HED preset reader. No load-order workaround is required for the updated managers.

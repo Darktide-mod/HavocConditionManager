@@ -12,7 +12,10 @@ function E.config()
         E.reset(); owner=current
         local director=get_mod("HavocEnemyDirector")
         local fine=director and director.is_gameplay_enabled and director.is_gameplay_enabled() and director.get_config and director.get_config()
-        session={coarse=S.coarse_config(mod:get("native_configuration_v3")),fine=A.validate_config(fine)}
+        local coarse=director and director.active_coarse and director.active_coarse() or mod:get("native_configuration_v3")
+        local Recycling=mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/recycling_config")
+        local recycling=director and director.active_recycling and director.active_recycling() or mod:get("recycling_v1")
+        session={coarse=S.coarse_config(coarse),fine=A.validate_config(fine),recycling=Recycling.validate(recycling) or Recycling.validate()}
         session.changed=S.has_coarse_changes(session.coarse) or next(session.fine.patches)~=nil or next(session.fine.rules)~=nil
     end
     return session

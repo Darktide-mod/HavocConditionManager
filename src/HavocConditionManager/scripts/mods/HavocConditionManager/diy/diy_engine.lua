@@ -68,6 +68,12 @@ function E.new(document,catalog,api,seed)
     end
     local selection_revision=0;local minion_revision=-1;local minion_needed=false
     local function bump() self.revision=self.revision+1 end
+    local passive_scopes=weak()
+    function self.set_passive_scope(unit,values)
+        if self.finished then return false end
+        passive_scopes[unit]=values
+        selection_revision=selection_revision+1;bump();return true
+    end
     local function state_for(binding,unit)
         local key=unit or self.global_token
         local state=binding.states[key]
@@ -156,8 +162,9 @@ function E.new(document,catalog,api,seed)
     function self.active_ids()
         local out={};for _,e in ipairs(ordered) do if self.globals[e.id] then out[#out+1]=e.id end end;return out
     end
-    function self.needs_minion_updates()
+    function self.needs_minion_updates(unit)
         if self.finished then return false end
+        if unit and passive_scopes[unit] then return true end
         if minion_revision==selection_revision then return minion_needed end
         minion_revision=selection_revision;minion_needed=false
         local function requires(e,global)
@@ -328,6 +335,7 @@ function E.new(document,catalog,api,seed)
         return true
     end
     function self.effects(unit)
+        local scope=passive_scopes[unit] or {}
         local out={stats={},keywords={},modifiers={}};local keywords={};local info=api.info(unit)
         local function add(effects,count)
             if not effects then return end
@@ -345,7 +353,7 @@ function E.new(document,catalog,api,seed)
                 else out.modifiers[key]=clamp((out.modifiers[key] or 1)*value^count,0,1000) end
             end
         end
-        for _,e in ipairs(ordered) do if (self.globals[e.id] or self.owners[unit] and self.owners[unit][e.id]) and E.matches(e.targets,info) then
+        for _,e in ipairs(ordered) do if scope[e.id]~=false and (scope[e.id]==true or self.globals[e.id] or self.owners[unit] and self.owners[unit][e.id]) and E.matches(e.targets,info) then
             if (not api.available or api.available(e,unit)) and E.test(e.conditions,e.match,function(subject) return self.context(subject=="self" and unit or nil) end) then
                 add(e.passive)
                 if self.globals[e.id] then add(self.script_globals[e.id]) end
@@ -363,6 +371,7 @@ function E.new(document,catalog,api,seed)
         return clamp(factor,.05,100)
     end
     function self.finish()
+        passive_scopes=weak()
         self.finished=true;self.queue={};self.globals={};self.owners=weak();self.layers=weak();self.global_layers={};self.signals={};self.pauses={}
         self.script_globals={};self.script_owners=weak();self.script_minions={}
         global_bindings={};owner_bindings=weak();if api.finish then api.finish() end;bump()

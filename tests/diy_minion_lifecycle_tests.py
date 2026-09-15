@@ -168,4 +168,19 @@ ext._buff_context.breed.breed_type='player';engines.HCM.now=1
 mods.HCM.stat_callback(ext);assert(reads==2 and mods.HCM.effect_applies==2)
 ''')
 
-print(f'PASS: {cases} native deletion cases; HCM/MBM ownership, native Buff cleanup, mission reuse; native-only scripts skip 1000 empty stat overlays while dynamic/player effects remain active.')
+# Unit-local Studio passives register only their chosen extension. They do not
+# activate a provider-wide scan, and two managers retain separate ownership.
+lua = fixture(['HCM', 'MBM'], [])
+lua.execute(r'''
+local scans=0
+Managers.state.minion_spawn.spawned_minions=function()scans=scans+1;return {u}end
+apis[1].unit_scope_changed(u);apis[2].unit_scope_changed(u)
+assert(scans==0 and update_list[u]==ext)
+assert(not shared._diy_minion_updates.providers.HCM and not shared._diy_minion_updates.providers.MBM)
+add_native_buff(1);ext:_remove_buff(1)
+assert(update_list[u]==ext)
+apis[1].finish();assert(update_list[u]==ext)
+apis[2].finish();assert(update_list[u]==nil)
+remove_unit();finish_all()
+''')
+print(f'PASS: {cases} native deletion cases; HCM/MBM ownership, native Buff cleanup, mission reuse; native-only scripts skip 1000 empty overlays; scoped passives enable only their unit with zero global scans.')

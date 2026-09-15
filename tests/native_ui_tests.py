@@ -11,6 +11,12 @@ new_test_mod("HavocEnemyDirector")
 D=L.globals().mods.HavocEnemyDirector
 D.localization=load_mod("HavocEnemyDirector/scripts/mods/HavocEnemyDirector/HavocEnemyDirector_localization")
 load_mod("HavocEnemyDirector/scripts/mods/HavocEnemyDirector/HavocEnemyDirector")
+# These retained widget tests exercise the legacy native field controls, also
+# used to describe Studio's contract. The actual Studio-only game surface and
+# exclusive mode switching have their own studio_bridge_tests.
+load_mod("HavocEnemyDirector/scripts/mods/HavocEnemyDirector/native_editor")
+load_mod("HavocEnemyDirector/scripts/mods/HavocEnemyDirector/director_dashboard")
+L.execute("mods.HavocEnemyDirector.studio_mode=nil;mods.HavocEnemyDirector.set_studio_mode=nil;mods.HavocEnemyDirector.active_coarse=nil")
 B.condition_catalog=load_mod("HavocConditionManager/scripts/mods/HavocConditionManager/native_condition_catalog")
 templates=cache["scripts/settings/circumstance/circumstance_templates"]
 ids=sorted(templates.keys())

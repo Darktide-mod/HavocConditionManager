@@ -35,6 +35,7 @@ function F.new(ffi,mod_name)
         int __stdcall DT_DIY_IO_DeleteFileW(const unsigned short*) __asm__("DeleteFileW");
         unsigned long __stdcall DT_DIY_IO_GetLastError(void) __asm__("GetLastError");
         int __stdcall DT_DIY_IO_RemoveDirectoryW(const unsigned short*) __asm__("RemoveDirectoryW");
+        unsigned long __stdcall DT_DIY_IO_GetFullPathNameW(const unsigned short*,unsigned long,unsigned short*,unsigned short**) __asm__("GetFullPathNameW");
     ]]
     local win=ffi.load("kernel32")
     local invalid=ffi.cast("void*",-1)
@@ -54,6 +55,13 @@ function F.new(ffi,mod_name)
     local root=parent.."/"..mod_name
     local directory=root.."/diy"
     local store={directory=directory}
+    function store.builtin_directory(name)
+        if type(name)~="string" or not name:match("^[%w_]+$") then return nil,"diy_package_path" end
+        local output=ffi.new("unsigned short[32768]")
+        local length=win.DT_DIY_IO_GetFullPathNameW(wide("./../mods/"..name.."/diy/packages"),32768,output,nil)
+        if length==0 or length>=32768 then return nil,"diy_package_io" end
+        return utf8(output)
+    end
     local function exists(path) return tonumber(win.DT_DIY_IO_GetFileAttributesW(wide(path)))~=4294967295 end
     function store.ensure()
         for _,p in ipairs({root,directory}) do

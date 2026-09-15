@@ -6,6 +6,8 @@ local Library,Files,Game=load("diy_library"),load("diy_files"),load("diy_game")
 local Network=load("diy_network")
 local PackageLibrary,Packages,Hash,Scripts=load("diy_package_library"),load("diy_packages"),load("diy_sha256"),load("diy_scripts")
 local PackageAPI=Packages.new(Schema,Codec,Hash)
+local Bundled=load("diy_bundled")
+local package_providers={}
 local Assets=load("diy_assets")
 local assets
 local Seed=load("diy_seed")
@@ -17,7 +19,16 @@ local function busy()
     return name and name~="hub" and name~="prologue_hub" or false
 end
 local library=PackageLibrary.new(mod,"conditions",Catalog,Schema,Codec,Files,Library,Packages,Hash,
-    {name="HavocConditionManager",busy=busy,templates=function()return load("diy_template_packages") end,
+    {name="HavocConditionManager",busy=busy,bundled=function()
+        local sources={{name="HavocConditionManager",builtin=true}}
+        local names={};for name in pairs(package_providers)do names[#names+1]=name end;table.sort(names)
+        for _,name in ipairs(names)do sources[#sources+1]={name=name} end
+        for _,source in ipairs(sources)do
+            source.directory="mods/"..source.name.."/diy/packages"
+            source.files,source.error=Bundled.read(mod,source.name,Codec,Packages)
+        end
+        return sources
+     end,
      before_reload=function()
         if not busy() then
             if finish then finish()end
@@ -95,7 +106,39 @@ mod:hook(Difficulty,"get_minion_max_health",function(fn,self,breed_name,...)
     if current and info then return math.min(1000000,value*current.health_multiplier(info)) end
     return value
 end)
-mod.diy_api={version=1,minor=1}
+mod.diy_api={version=1,minor=2}
+-- Companion mods register only their own fixed, declared package directory.
+function mod.diy_api.register_package_source(name)
+    if type(name)~="string" or not name:match("^[%w_]+$") or name=="HavocConditionManager" or not get_mod(name) then return nil,"diy_package_path" end
+    if package_providers[name] then return true end
+    package_providers[name]=true
+    return library.scan()
+end
+function mod.diy_api.unregister_package_source(name)
+    if not package_providers[name] then return true end
+    package_providers[name]=nil
+    return library.scan()
+end
+local function scope_supported(entry)
+    return entry and entry.enabled and entry.passive~=nil and not entry.script and not entry.spawn
+        and #(entry.rules or {})==0 and entry.targets and entry.targets.kind~="players"
+end
+function mod.studio_scope_available(id)
+    for _,entry in ipairs(library.document.entries) do if entry.id==id then return scope_supported(entry) end end
+    return false
+end
+function mod.diy_api.passive_scope(unit,values)
+    local current=ensure();if not current then return nil,"DIY engine inactive" end
+    if type(values)~="table" then return nil,"unit scope" end
+    local count=0
+    for id,value in pairs(values) do
+        count=count+1
+        if count>64 or type(value)~="boolean" or not scope_supported(current.entry_by_id[id]) then return nil,"unsupported unit effect" end
+    end
+    current.set_passive_scope(unit,values)
+    api.unit_scope_changed(unit)
+    return true
+end
 -- Local views/HUDs may acquire resources on clients without creating an
 -- authority engine. Close the scope when the consuming view exits.
 function mod.diy_api.open_assets(package_id,active)

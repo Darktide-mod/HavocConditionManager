@@ -22,15 +22,6 @@ STAGING = ROOT / 'src'
 RELEASE = ROOT / 'release'
 CHECKS = ROOT / 'build/checks'
 PACKAGE_EXTENSIONS = {'.lua', '.mod', '.json', '.md', '.txt'}
-NATIVE_PAYLOADS = {}
-NATIVE_MANIFEST = STAGING / 'HavocConditionManager/native-melee/manifest.json'
-if NATIVE_MANIFEST.exists():
-    controller_manifest = json.loads(NATIVE_MANIFEST.read_text(encoding='utf-8'))
-    for row in controller_manifest['patches']:
-        assert re.fullmatch(r'[0-9a-f]{16}\.patch_996', row['file'])
-        NATIVE_PAYLOADS['HavocConditionManager/native-melee/resources/' + row['file']] = row['sha256']
-INSTALL_SCRIPTS = {'HavocConditionManager/native-melee/Install.ps1',
-    'HavocConditionManager/Install-native-melee.cmd', 'HavocConditionManager/Uninstall-native-melee.cmd'}
 VERSION = r'[0-9]+\.[0-9]+\.[0-9]+(?:-(?:test|experimental)\.[0-9]+)?'
 FORBIDDEN_COPY = re.compile(r'\bbundle\b|整合包|整合安装|整合安裝|SoloPlayMoreHavoc|Will of the Emperor', re.I)
 
@@ -110,10 +101,10 @@ def collect_sources(strip_debug=False):
         if not source.is_file():
             continue
         relative = source.relative_to(STAGING).as_posix()
-        assert relative in NATIVE_PAYLOADS or relative in INSTALL_SCRIPTS or source.suffix.lower() in PACKAGE_EXTENSIONS or (source.suffix.lower()=='.png' and 'docs/diy/package-examples/' in source.as_posix() and '/resources/' in source.as_posix()), source
+        assert source.suffix.lower() in PACKAGE_EXTENSIONS or (source.suffix.lower()=='.png' and 'docs/diy/package-examples/' in source.as_posix() and '/resources/' in source.as_posix()), source
         data = source.read_bytes()
-        if relative in NATIVE_PAYLOADS:
-            assert hashlib.sha256(data).hexdigest() == NATIVE_PAYLOADS[relative], 'Unexpected controller resource: ' + relative
+        assert not data.startswith((b'MZ',b'\x7fELF')), 'Executable payload: ' + relative
+        assert '/native-melee/' not in relative and 'frenzied_assault' not in relative, 'Optional condition belongs in HavocConditionPacks: ' + relative
         payloads[source.relative_to(STAGING).as_posix()] = data
     for required in (name + '/' + name + '.mod', f'{name}/scripts/mods/{name}/{name}.lua', name + '/info.json'):
         assert required in payloads, required

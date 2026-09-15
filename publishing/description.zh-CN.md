@@ -77,17 +77,13 @@ HED 也没有额外覆盖时，1 档保留所选地图、难度和词条下的�
 
 包 ID、版本、依赖、冲突与能力均经过校验。已选择条目的本地 Lua 在权威端执行，具备独立模块环境、资源快照和清理回调；包更新用于下一局。死灵联机一致性覆盖 JSON、Lua、资源及依赖指纹，网络不传递可执行 Lua。附带中英繁三语包规范、接口说明与完整示例。
 
-「DIY 管理」提供刷新加载、说明查看、包启停、导入和导出。模组仅内置「狂暴攻势」与「禁止医疗」两个模板，未解包时不出现在词条列表中。点击「解压模板DIY词条」会将模板写入 DIY 目录，覆盖同名包并立即加载；旧包保留在备份目录。模板包含「狂暴攻势」和修改后的医疗站限制。解包不会替你勾选词条，当前任务保持开局配置。
+「DIY 管理」会直接读取模组目录中的「禁止医疗」，无需解压模板，也不会写出内置词条副本。内置包在管理器中保持加载；是否生效仍由主界面勾选决定。外部 DIY 目录保持为 %APPDATA%/Fatshark/Darktide/HavocConditionManager/diy/packages，添加或修改包后刷新即可；当前任务继续使用开局快照。同 ID 的旧外部副本保留在磁盘上，但优先使用内置或集合包中的版本。
 
-「狂暴攻势」将敌人的常规近战攻速与动画速度提高 20%，同步命中、连击与扫击时机。仅支持本地单人/机器人房间，需要安装随附动画资源；两处尚未匹配的首领连招保留原版行为。「禁止医疗」保留开局已通电的医疗站但将次数设为 0，移除需要附近电池的医疗站及配套电池，禁止刷新医疗针剂与医疗包；其他治疗仍可使用。
-
-模组内置模板和 AppData 中已解压的 DIY 包是两份独立文件。Install-native-melee.cmd 会安装动画资源并更新狂暴攻势的外部包；「解压模板DIY词条」也可更新外部模板。以后仅修改 Lua 时，可在大厅刷新并于下一局生效；修改已编译动画资源则必须关闭游戏后安装。已经进行中的任务保留开局时的包快照。
+「狂暴攻势」及其编译动画资源单独发布在 HavocConditionPacks：https://github.com/Darktide-mod/HavocConditionPacks 。HCM 不再附带 PowerShell/CMD 安装器或动画补丁，仍保留 Lua 词条及可选资源接口。拆分不代表已经获得 Nexus 审核通过。
 
 ## 使用前提
 
 需要 Darktide Mod Loader、Darktide Mod Framework 和 SoloPlay。Realms 为可选联机依赖，Havoc Enemy Director 为可选精调扩展。其他替换同一原版模板或调度方法的模组可能冲突。
-
-通过 Vortex 或手动方式部署 HCM 后，关闭游戏，双击 mods/HavocConditionManager 内的 Install-native-melee.cmd，安装狂暴攻势的动画资源并更新外部词条包。安装器核对游戏文件、保留其他资源登记并备份；仅在 Vortex 中部署不会执行这一步。卸载时先运行 Uninstall-native-melee.cmd，再移除 HCM。详见 docs/Native-melee-installation.md。HCM 的其他功能不依赖这一步。
 
 ## Vortex 安装
 

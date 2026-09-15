@@ -33,9 +33,11 @@ function G.new(mod,catalog,Engine,options)
     local owner_mod=get_mod("DMF") or mod
     local updates=owner_mod._diy_minion_updates
     if not updates then updates={providers={},owned=weak()};owner_mod._diy_minion_updates=updates end
+    updates.scoped=updates.scoped or weak()
     updates.providers[options.name]=false
-    local function needs_updates()
+    local function needs_updates(ext)
         for _,needed in pairs(updates.providers) do if needed then return true end end
+        if ext and updates.scoped[ext] and next(updates.scoped[ext]) then return true end
         return false
     end
     local function retired(ext)
@@ -52,13 +54,13 @@ function G.new(mod,catalog,Engine,options)
         if needs_updates() then return end
         updates.restoring=true
         for ext in pairs(updates.owned) do
-            if not retired(ext) and ALIVE[ext._unit] and ext._owner_system and #ext._buffs==0 then
+            if not needs_updates(ext) and not retired(ext) and ALIVE[ext._unit] and ext._owner_system and #ext._buffs==0 then
                 FixedFrame=FixedFrame or require("scripts/utilities/fixed_frame")
                 ext:_update_stat_buffs_and_keywords(FixedFrame.get_latest_fixed_time())
                 ext._update_enabled=false
                 ext._owner_system:disable_update_function(ext.__class_name,"update",ext._unit,ext)
             end
-            updates.owned[ext]=nil
+            if not needs_updates(ext) then updates.owned[ext]=nil end
         end
         updates.restoring=false
     end
@@ -395,12 +397,19 @@ function G.new(mod,catalog,Engine,options)
     function api.finish()
         finishing=true
         updates.providers[options.name]=false
+        for ext,owners in pairs(updates.scoped) do owners[options.name]=nil;if not next(owners) then updates.scoped[ext]=nil end end
         restore_minions()
         for _,record in ipairs(owned_buffs) do release(record) end
         owned_buffs={};keys=weak();serial=0;cache=weak();spawned=weak();pickups_created=0;reported={};combat_times=weak()
         finishing=false
     end
     function api.invalidate() cache=weak() end
+    function api.unit_scope_changed(unit)
+        local ext=extension(unit,"buff_system")
+        if not ext then return end
+        local owners=updates.scoped[ext] or {};updates.scoped[ext]=owners;owners[options.name]=true
+        cache[unit]=nil;enable_minion(ext)
+    end
     local function active_engine()
         if not finishing and options.authority() and (owner_mod._diy_action_depth or 0)==0 then return options.engine() end
     end
@@ -439,7 +448,7 @@ function G.new(mod,catalog,Engine,options)
                 -- Native-only entries need no DIY stat overlay or empty
                 -- effect-table rebuild on every native minion buff update.
                 local breed=self._buff_context and self._buff_context.breed
-                if breed and breed.breed_type=="minion" and not engine.needs_minion_updates() then return end
+                if breed and breed.breed_type=="minion" and not engine.needs_minion_updates(unit) then return end
                 local record=cache[unit]
                 if not record or record.engine~=engine or record.revision~=engine.revision or record.now~=engine.now then
                     record={engine=engine,revision=engine.revision,now=engine.now,effects=engine.effects(unit)};cache[unit]=record
@@ -464,10 +473,11 @@ function G.new(mod,catalog,Engine,options)
             -- the unit is still alive; both DIY managers observe this marker.
             self._diy_minion_destroying=true
             updates.owned[self]=nil
+            updates.scoped[self]=nil
             return fn(self,...)
         end)
-        mod:hook_safe(MinionBuff,"init",function(self) if needs_updates() then enable_minion(self) end end)
-        mod:hook_safe(MinionBuff,"_on_remove_buff",function(self) if needs_updates() then enable_minion(self) end end)
+        mod:hook_safe(MinionBuff,"init",function(self) if needs_updates(self) then enable_minion(self) end end)
+        mod:hook_safe(MinionBuff,"_on_remove_buff",function(self) if needs_updates(self) then enable_minion(self) end end)
     end)
     if not options.skip_attack_report then
         on_require("scripts/managers/attack_report/attack_report_manager",function(AttackReport)

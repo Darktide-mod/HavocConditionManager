@@ -73,7 +73,7 @@ def run(directory):
         fs=assert(F.new(require('ffi'),'HavocConditionManager'))
         assert(fs.write_package('reload-consumer',consumer,P.id,P.path))
         assert(fs.write_package('reload-dependency',dependency,P.id,P.path))
-        settings={};busy=false;changes={};template_loads=0;cleanup_log={};errors={};cache_clears=0
+        settings={};busy=false;changes={};template_loads=0;cleanup_log={};errors={};cache_clears=0;bundled_enabled=false
         mod={get=function(_,key)return settings[key]end,
             set=function(_,key,value)settings[key]=S.copy(value)end,
             localize=function(_,key)return key end}
@@ -82,10 +82,11 @@ def run(directory):
             name='HavocConditionManager',busy=function()return busy end,
             changed=function(reason)changes[#changes+1]=reason end,
             before_reload=function()cache_clears=cache_clears+1 end,
-            templates=function()
+            bundled=function()
+                if not bundled_enabled then return {} end
                 assert(cache_clears>0,'Clear caches before reading the template provider')
                 template_loads=template_loads+1
-                return dofile(template_path)
+                return {{name='fixture',directory='fixture/packages',files=dofile(template_path)}}
             end})
         assert(not library.last_error and #library.files==2 and template_loads==0)
         id=A.identity('reload-consumer','effect')
@@ -149,7 +150,7 @@ def run(directory):
         next_engine.finish()
         dependency_engine=start(library.snapshot());expect(dependency_engine,1.4)
 
-        -- Each explicit extraction reads the current bundled-template provider.
+        -- Refresh reads the current in-place provider without overwriting external copies.
         function write_template_provider()
             local file=assert(io.open(template_path,'wb'))
             file:write('return {\n')
@@ -161,11 +162,12 @@ def run(directory):
             file:write('}\n');file:close()
         end
         write_template_provider()
-        assert(library.extract_templates() and template_loads==1)
+        bundled_enabled=true
+        assert(library.scan() and template_loads==1)
         consumer['lua/helper.lua']='return 0.6'
         write_template_provider()
-        assert(library.extract_templates() and template_loads==2)
-        assert(fs.read_package('reload-consumer',P.id,P.path)['lua/helper.lua']=='return 0.6')
+        assert(library.scan() and template_loads==2)
+        assert(fs.read_package('reload-consumer',P.id,P.path)['lua/helper.lua']=='return 0.4','Direct loading must never overwrite the external copy')
         assert(library.snapshot().packages['reload-consumer'].files['lua/helper.lua']=='return 0.6')
         assert(library.options.selected[1]==id and library.options.enabled)
         expect(dependency_engine,1.4);assert(#cleanup_log==2)
@@ -194,4 +196,4 @@ finally:
 
 print('HCM package refresh: real file and dependency reload without version bumps; '
       'active-mission snapshots preserved; fresh next-mission Lua and cleanup; '
-      'repeated template-provider extraction: PASS')
+      'in-place provider refresh without extraction: PASS')
