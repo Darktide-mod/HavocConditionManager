@@ -1,0 +1,28 @@
+syntax_tests.py
+HavocConditionManager: 122 Lua/mod files; syntax and local imports: PASS
+
+game_1_13_compat_tests.py
+Current/legacy difficulty labels and colors: PASS
+Roamer forced sub-faction, trailing nil arguments and return values: PASS
+Native charged/continuous/shared resources, disabled/inventory abilities, grenades and legacy cooldown boundary: PASS
+
+diy_minion_lifecycle_tests.py
+PASS: 24 native deletion cases; ownership, cleanup, mission reuse, external pause, construction/first proc and replaced extension; native-only scripts skip 1000 empty overlays; scoped passives perform zero global scans.
+
+native_replacement_loading_tests.py
+Native pacing replacement, prepared identity, heat transitions, deferred monsters, mission snapshot, reload and legacy boundaries: PASS
+Native mutator readiness/activation, deduplication, deferred spawning, scope cleanup, mission/reload and foreign ownership: PASS
+
+condition_cleanup_tests.py
+Native aggro listener leak reproduced; own server cleanup, authority loss, repeat missions, deferred disable, prior removal and unrelated listeners: PASS
+
+native_integration_tests.py
+Standalone entry point, all condition categories, environment fallback and optional callbacks: PASS
+Standalone native migration: old spawn copies and per-category timer functions removed: PASS
+Standalone UI: four pages including DIY; no HED page or HED module imports: PASS
+Standalone editor: 40 warm opens reuse one class/catalog/template; widget colors remain isolated, language changes rebuild, disabled/re-enabled entry retained, 100 unchanged reads avoid setting writes: PASS
+Catalog provenance, invalid-row filtering, old selection migration, mutator deduplication, pickup/health/hazard overrides: PASS
+Registered native hook methods resolve in current game source: 57 PASS
+
+minion_stat_gate_tests.py
+PASS: 10 class/authority/overlay cases (1000 callbacks each), scope/settings/time/engine changes, respawn, character/mission/timeout, repeated require, omitted client callback and mocked reload boundaries.

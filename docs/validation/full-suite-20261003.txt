@@ -1,0 +1,34 @@
+syntax_tests.py
+HavocConditionManager: 122 Lua/mod files; syntax and local imports: PASS
+
+game_1_13_compat_tests.py
+Current/legacy difficulty labels and colors: PASS
+Roamer forced sub-faction, trailing nil arguments and return values: PASS
+Native charged/continuous/shared resources, disabled/inventory abilities, grenades and legacy cooldown boundary: PASS
+
+native_replacement_loading_tests.py
+Native pacing replacement, prepared identity, heat transitions, deferred monsters, mission snapshot, reload and legacy boundaries: PASS
+Native mutator readiness/activation, deduplication, deferred spawning, scope cleanup, mission/reload and foreign ownership: PASS
+
+filesystem_ffi_tests.py
+PASS: 3 load-order/declaration combinations, twice per VM; real Unicode scans, reads, writes, replacement, package backup/export and foreign binding preservation.
+
+diy_minion_lifecycle_tests.py
+PASS: 24 native deletion cases; ownership, cleanup, mission reuse, external pause, construction/first proc and replaced extension; native-only scripts skip 1000 empty overlays; scoped passives perform zero global scans.
+
+minion_stat_gate_tests.py
+PASS: 10 class/authority/overlay cases (1000 callbacks each), scope/settings/time/engine changes, respawn, character/mission/timeout, repeated require, omitted client callback and mocked reload boundaries.
+
+native_template_tests.py
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\native_template_tests.py", line 4, in <module>
+    L.execute("""
+  File "lupa/luajit21.pyx", line 441, in lupa.luajit21.LuaRuntime.execute
+  File "lupa/luajit21.pyx", line 1872, in lupa.luajit21.run_lua
+  File "lupa/luajit21.pyx", line 1886, in lupa.luajit21.call_lua
+  File "lupa/luajit21.pyx", line 1913, in lupa.luajit21.execute_lua_call
+  File "lupa/luajit21.pyx", line 1794, in lupa.luajit21.raise_lua_error
+lupa.luajit21.LuaError: [string "<python>"]:27: Coarse control has no consumers: elite_density
+stack traceback:
+	[string "<python>"]:27: in main chunk
+	[C]: in function 'assert'

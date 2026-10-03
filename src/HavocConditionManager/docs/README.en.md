@@ -1,5 +1,7 @@
 # Havoc Condition Manager
 
+**Local release candidate 4.5.1-test.1.** Live gameplay validation is pending; see [candidate changelog](../CHANGELOG.md) for the test scope and broader-suite failure.
+
 Choose SoloPlay mission conditions and adjust enemy pacing. HCM provides broad controls; the optional Havoc Enemy Director edits individual fields in the same game templates. Realms sessions use the local host's settings.
 
 Use HCM Overall tuning → Random seeds for condition-event probability streams. Use HED Director → Seeds for its scheduling streams and native roamer layout, with separate switches. Off follows the mission seed; HCM draws a fallback once per mission if that seed is unavailable. On enables integer input from 1 to 2147483646. Turning off retains the saved number. Changes apply next mission. These seeds do not choose the mission map or control all native horde, specialist, monster and scripted-event randomness. Lua authors using native math.random directly keep that separate random source.

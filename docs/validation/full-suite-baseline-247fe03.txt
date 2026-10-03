@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\build\checks\baseline-247fe03\HavocConditionManager\tests\native_template_tests.py", line 4, in <module>
+    L.execute("""
+  File "lupa/luajit21.pyx", line 441, in lupa.luajit21.LuaRuntime.execute
+  File "lupa/luajit21.pyx", line 1872, in lupa.luajit21.run_lua
+  File "lupa/luajit21.pyx", line 1886, in lupa.luajit21.call_lua
+  File "lupa/luajit21.pyx", line 1913, in lupa.luajit21.execute_lua_call
+  File "lupa/luajit21.pyx", line 1794, in lupa.luajit21.raise_lua_error
+lupa.luajit21.LuaError: [string "<python>"]:27: Coarse control has no consumers: elite_density
+stack traceback:
+	[string "<python>"]:27: in main chunk
+	[C]: in function 'assert'
