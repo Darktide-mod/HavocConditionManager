@@ -1,5 +1,7 @@
 local mod = get_mod("HavocConditionManager")
 local localization = {
+    hcm_efl_3 = {en="Emperor's Fading Light III (custom)",["zh-cn"]="帝皇黯光 III（自定义）",["zh-tw"]="帝皇黯光 III（自訂）"},
+    hcm_efl_4 = {en="Emperor's Fading Light IV (custom)",["zh-cn"]="帝皇黯光 IV（自定义）",["zh-tw"]="帝皇黯光 IV（自訂）"},
     custom_havoc_rank_value = {
         en = "%d (custom)",
         ["zh-cn"] = "%d（自定义）",

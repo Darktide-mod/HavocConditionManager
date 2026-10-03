@@ -3,6 +3,12 @@ return function(api,mod,base)
     local R=api.rules
     local mode_key="hcm_custom_havoc_modes_v1"
     local bindings,installation={}
+    local function efl() return mod.custom_efl end
+    local function native_writes(fn,...)
+        local extension=efl()
+        if extension then return api.native_writes(extension.native_writes,fn,...) end
+        return api.native_writes(fn,...)
+    end
     local function clone(value) return type(value)=="table" and R.copy(value) or value end
     local function packed(...) return {n=select("#",...),...} end
     local function active_preset()
@@ -24,7 +30,7 @@ return function(api,mod,base)
             view=view,ui=ui,
             director=save_keys(director,{"studio_coarse_v1","studio_context_hcm","studio_context_hed","studio_seed_hcm","studio_seed_hed","studio_mission_hcm","studio_mission_hed","studio_mode_v1","native_director_v3"}),
             config=director.get_saved_config and clone(director.get_saved_config()),
-            base=save_keys(mod,{"native_configuration_v3","diy_seed_v1","diy_options_v1",R.storage_key,mode_key}),
+            base=save_keys(mod,{"native_configuration_v3","diy_seed_v1","diy_options_v1",R.storage_key,mode_key,"hcm_custom_efl_v1","hcm_custom_efl_modes_v1"}),
             solo=save_keys(base,{"havoc_mission","havoc_difficulty","hcm_condition_selection_v3","havoc_theme_circumstance","havoc_difficulty_circumstance"}),
             selection=R.selection_state(function(key) return base:get(key) end),
             diy_options=mod.diy_library and clone(mod.diy_library.options),
@@ -41,7 +47,7 @@ return function(api,mod,base)
         local function rows(saved)
             for _,entry in ipairs(saved) do attempt(entry.target.set,entry.target,entry.key,entry.value) end
         end
-        api.native_writes(function()
+        native_writes(function()
             rows(previous.director);rows(previous.base)
             if previous.config and director.save_config then
                 attempt(function() local ok,why=director.save_config(previous.config);assert(ok,why) end)
@@ -62,6 +68,7 @@ return function(api,mod,base)
             for _,entry in ipairs(previous.ui) do view[entry.key]=entry.value end
             if view._setup_havoc_badge then attempt(view._setup_havoc_badge,view) end
             if view._modifier_grid and view._update_modifiers_lock then attempt(view._update_modifiers_lock,view) end
+            if view._recreate_dropdown then attempt(view._recreate_dropdown,view,"havoc_difficulty_circumstance") end
         end
         assert(#problems==0,"Custom Havoc rollback failed: "..table.concat(problems,"; "))
     end
@@ -75,12 +82,16 @@ return function(api,mod,base)
         end
         return unpack(result,2,result.n)
     end
-    local function apply_owned(owned)
+    local function apply_owned(owned,owned_efl)
         if owned then
             assert(api.set(owned.requested_rank))
             for name,level in pairs(owned.modifiers) do base:set("havoc_modifier_"..name,level) end
             base:set("havoc_modifiers_customizable",owned.customizable)
         else mod:set(R.storage_key,nil) end
+        local extension=efl()
+        if extension then
+            if owned_efl then assert(extension.set_tier(owned_efl.tier)) else mod:set(extension.rules.storage_key,nil) end
+        end
     end
     local function refresh(view)
         if not view then return end
@@ -90,6 +101,10 @@ return function(api,mod,base)
             for name in pairs(view._current_modifier) do view._current_modifier[name]=base:get("havoc_modifier_"..name) or 0 end
         end
         view._modifier_customizable=base:get("havoc_modifiers_customizable")==true
+        if efl() and view._current then
+            view._current.havoc_difficulty_circumstance=efl().get() or "default"
+            if view._recreate_dropdown then view:_recreate_dropdown("havoc_difficulty_circumstance") end
+        end
         if view._modifier_grid and view._update_modifiers_lock then view:_update_modifiers_lock() end
         view._hcm_refresh=true
     end
@@ -132,24 +147,32 @@ return function(api,mod,base)
         installation={active=true,director=director,presets=presets,codec=presets.codec}
         mod._custom_havoc_preset_bridge={api=api,director=director,presets=presets,codec=presets.codec}
         wrap(presets.codec,"validate",function(original) return function(doc,...)
-            if type(doc)~="table" or getmetatable(doc)~=nil or doc.hcm_custom_havoc_v1==nil then return original(doc,...) end
-            local owned=R.validate_preset(doc.hcm_custom_havoc_v1)
-            if not owned then return nil,"custom_havoc_rank_invalid" end
-            local stripped={};for key,value in pairs(doc) do if key~="hcm_custom_havoc_v1" then stripped[key]=value end end
+            if type(doc)~="table" or getmetatable(doc)~=nil or doc.hcm_custom_havoc_v1==nil and doc.hcm_custom_efl_v1==nil then return original(doc,...) end
+            local owned,owned_efl
+            if doc.hcm_custom_havoc_v1~=nil then owned=R.validate_preset(doc.hcm_custom_havoc_v1);if not owned then return nil,"custom_havoc_rank_invalid" end end
+            if doc.hcm_custom_efl_v1~=nil then
+                owned_efl=efl() and efl().rules.validate_record(doc.hcm_custom_efl_v1)
+                if not owned_efl then return nil,"custom_efl_invalid" end
+            end
+            local stripped={};for key,value in pairs(doc) do if key~="hcm_custom_havoc_v1" and key~="hcm_custom_efl_v1" then stripped[key]=value end end
             local checked,why=original(stripped,...)
             if not checked then return nil,why end
             local mission=checked.config and checked.config.studio and checked.config.studio.mission
-            if mission and mission.rank~=owned.native_rank then return nil,"custom_havoc_rank_invalid" end
+            if owned and mission and mission.rank~=owned.native_rank then return nil,"custom_havoc_rank_invalid" end
+            if owned_efl and (not checked.hcm or checked.hcm.difficulty~=owned_efl.native_id) then return nil,"custom_efl_invalid" end
             checked.hcm_custom_havoc_v1=owned
+            checked.hcm_custom_efl_v1=owned_efl
             return checked,why
         end end)
         local function own_document(doc)
             local owned=active_preset()
-            if not owned then return doc end
+            local owned_efl=efl() and efl().record()
+            if not owned and not owned_efl then return doc end
             doc=R.copy(doc)
             local mission=doc.config and doc.config.studio and doc.config.studio.mission
-            if mission then mission.rank=owned.native_rank end
+            if mission and owned then mission.rank=owned.native_rank end
             doc.hcm_custom_havoc_v1=owned
+            doc.hcm_custom_efl_v1=owned_efl
             return presets.codec.validate(doc)
         end
         wrap(presets,"capture",function(original) return function(...)
@@ -164,7 +187,7 @@ return function(api,mod,base)
             return transaction(director,view,function(...)
                 local applied,err=original(checked,view,...)
                 if not applied then return applied,err end
-                apply_owned(checked.hcm_custom_havoc_v1);refresh(view)
+                apply_owned(checked.hcm_custom_havoc_v1,checked.hcm_custom_efl_v1);refresh(view)
                 if director.studio_dirty then director.studio_dirty() end
                 return applied,err
             end,...)
@@ -186,14 +209,22 @@ return function(api,mod,base)
             if current==mode or mode~="hcm" and mode~="hed" or director.studio_busy and director.studio_busy() then return original(mode,...) end
             local modes=R.validate_modes(mod:get(mode_key))
             if not modes then return nil,"custom_havoc_modes_invalid" end
+            local extension=efl()
+            local efl_modes=extension and extension.rules.validate_modes(mod:get(extension.rules.mode_key))
+            if extension and not efl_modes then return nil,"custom_efl_modes_invalid" end
             local leaving=active_preset()
+            local leaving_efl=extension and extension.record()
             return transaction(director,nil,function(...)
-                local changed,why=api.native_writes(original,mode,...)
+                local changed,why=native_writes(original,mode,...)
                 if not changed then return changed,why end
                 if current=="hcm" or current=="hed" then modes[current]=leaving end
+                if extension and (current=="hcm" or current=="hed") then efl_modes[current]=leaving_efl end
                 local target=modes[mode]
                 if target and base:get("havoc_difficulty")~=target.native_rank then target=nil end
-                apply_owned(target);mod:set(mode_key,modes)
+                local target_efl=extension and efl_modes[mode]
+                if target_efl and base:get("havoc_difficulty_circumstance")~=target_efl.native_id then target_efl=nil end
+                apply_owned(target,target_efl);mod:set(mode_key,modes)
+                if extension then mod:set(extension.rules.mode_key,efl_modes) end
                 if director.studio_dirty then director.studio_dirty() end
                 return changed,why
             end,...)

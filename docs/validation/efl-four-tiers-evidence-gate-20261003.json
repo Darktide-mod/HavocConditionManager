@@ -1,0 +1,17 @@
+{
+  "current_source_gate": "passed",
+  "cases": 40,
+  "source_files": 328,
+  "test_tool_files": 66,
+  "source_pre_post_current_equal": true,
+  "test_tool_pre_post_current_equal": true,
+  "full_result_sha256": "865f4f6505fdd63d7928f871c9d32dd06df24a8757749342bb83adb54ed11a1f",
+  "workload_sha256": "b78589343ba3383723db197ce9f09ba1c2c8bef0f1a9048c3feb1f0fa7ddd078",
+  "preserved_archives": {
+    "4.5.1-test.1": "94508d924a1de7ed3dec3e5e007503faaa06d6eae1f46d9e01748864fc84513f",
+    "4.5.1-test.2": "72371695e2c77bf093dcc0db90c3101b4ae60457cd605b18fac0e885496770c6"
+  },
+  "archive_created": false,
+  "gameplay_performed": false,
+  "fps_claim": false
+}

@@ -5,6 +5,9 @@ local E={}
 local owner,session,cache,prepared,gates,node_rules,contexts
 local function weak() return setmetatable({},{__mode="k"}) end
 function E.reset() owner=nil; session=nil; cache=weak(); prepared=weak(); gates=weak(); node_rules=weak(); contexts={} end
+-- Retiring only EFL copies during a mission must preserve fine condition gates
+-- and the prepared identity of templates already retained by native managers.
+function E.invalidate() cache=weak() end
 E.reset()
 function E.config()
     local state=Managers.state or {}; local current=state.game_session or state.difficulty
@@ -33,12 +36,15 @@ local function mark_changed(original,result,seen)
 end
 function E.prepare(root,family)
     if type(root)~="table" or not mod.has_local_gameplay_authority() then return root end
+    local efl=mod.custom_efl
+    local custom=efl and efl.session()
     local cfg=E.config()
-    if not cfg.changed or prepared[root] then return root end
-    if cache[root] then return cache[root] end
     local entry=A.by_table[root]
+    local source=not entry and A.children[root]
+    local source_entry=entry or source and source.entry
+    if not cfg.changed and (not custom or not source_entry or not efl.rules.targets[source_entry.id]) or prepared[root] then return root end
+    if cache[root] then return cache[root] end
     if not entry then
-        local source=A.children[root]
         if source and #source.path>0 then
             local parent=E.prepare(source.entry.root,source.entry.family)
             local child=S.get(parent,source.path)
@@ -48,7 +54,7 @@ function E.prepare(root,family)
     family=entry and entry.family or family
     if not family then return root end
     local patch=entry and cfg.fine.patches[entry.id]
-    local result=S.apply(root,family,cfg.coarse,patch,A.breeds,A.by_table)
+    local result=cfg.changed and S.apply(root,family,cfg.coarse,patch,A.breeds,A.by_table) or root
     local rules=entry and cfg.fine.rules[entry.id]
     if rules then
         for _,target in ipairs(entry.targets) do
@@ -62,6 +68,11 @@ function E.prepare(root,family)
                 else gates[result]=rule end
             end
         end
+    end
+    if custom then
+        local before=result
+        result=efl.prepare(root,result,entry)
+        if gates[before] then gates[result]=gates[before] end
     end
     mark_changed(root,result,{})
     cache[root]=result

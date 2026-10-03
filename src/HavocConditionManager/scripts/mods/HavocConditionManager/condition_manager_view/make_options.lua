@@ -244,6 +244,12 @@ make_options.havoc_difficulty_circumstance = function (current)
 		}
 		options[#options+1] = option
 	end
+	if mod.custom_efl then
+		for tier=3,4 do
+			local id=mod.custom_efl.rules.choices[tier]
+			options[#options+1]={ignore_localization=true,display_name=mod:localize("hcm_efl_"..tier),id=id,value=id}
+		end
+	end
 	return options
 end
 

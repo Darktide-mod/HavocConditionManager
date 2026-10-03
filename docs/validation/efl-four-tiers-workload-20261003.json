@@ -1,0 +1,64 @@
+{
+  "kind": "offline_native_callback_workload",
+  "game_source": "7e662fcda16219d775b84af50322be2e9cd9d62e",
+  "python": "3.12.14",
+  "lua": "Lua 5.1",
+  "workload": "One 3600m route with 180 evenly spaced captain points; 3600 one-second special-slot checks; 3600s horde horizon. Midpoint range draws, first-index choices, probability draw .15, no terror events, no occupied monster slots except final cap assertion with draw .01.",
+  "rows": [
+    {
+      "horde_midpoint_seconds": 190,
+      "tier": 1,
+      "route_meters": 3600,
+      "captain_plan_points": 12,
+      "slot_checks": 3600,
+      "monster_replacements": 0,
+      "horde_schedules_within_horizon": 19,
+      "horde_timer_draws": 20
+    },
+    {
+      "horde_midpoint_seconds": 150,
+      "tier": 2,
+      "route_meters": 3600,
+      "captain_plan_points": 20,
+      "slot_checks": 3600,
+      "monster_replacements": 0,
+      "horde_schedules_within_horizon": 24,
+      "horde_timer_draws": 25
+    },
+    {
+      "horde_midpoint_seconds": 119.04761904761907,
+      "tier": 3,
+      "route_meters": 3600,
+      "captain_plan_points": 30,
+      "slot_checks": 3600,
+      "monster_replacements": 10,
+      "horde_schedules_within_horizon": 30,
+      "horde_timer_draws": 31
+    },
+    {
+      "horde_midpoint_seconds": 94.95464852607711,
+      "tier": 4,
+      "route_meters": 3600,
+      "captain_plan_points": 45,
+      "slot_checks": 3600,
+      "monster_replacements": 12,
+      "horde_schedules_within_horizon": 38,
+      "horde_timer_draws": 39
+    }
+  ],
+  "compiler_calls": {
+    "repeated_root_calls": 30000,
+    "custom_clone_builds": 3,
+    "coarse_compiler_calls": 0,
+    "fresh_roots": 3
+  },
+  "native_consumer_sha256": {
+    "pacing": "7dec2b8bc9ca99620343ebd0fb4aad6a963c8c826690113ecfd42535efa04711",
+    "special": "13c1afabfba061378f6e6b9d05f6820e25f40ba3dbc0e0efa70aeed5fc6a2e09",
+    "monster": "d72603edbfd50694da16d806ad385ebc6910fa0d3f784e6f5c4502329243b667",
+    "horde": "5be17c134b96f0a84493ff9a411986c555abbf61507a8d8c731e0629d89aa290",
+    "modify": "d0d371beee74890ab9fdaac32a797744a89c0163e153b5e5350457582c92f131",
+    "override": "baca481af48af7cc1fde68cc2e4657f7d3d114181fae17f0eead127d7944cd4d"
+  },
+  "limitation": "Synthetic Lua callbacks, no navigation/physics/actors/frame timings. Counts are scheduling candidates, not guaranteed spawns or FPS. Unchanged native slot cap and cooldown checks execute. Already scheduled deadlines/captain plans remain native-owned on cleanup."
+}

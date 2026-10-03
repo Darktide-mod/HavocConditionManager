@@ -23,6 +23,7 @@ mod.has_local_gameplay_authority=function() return toggle.active() and authority
 mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/presence_compat")
 local SoloPlaySettings = base_mod:io_dofile("SoloPlay/scripts/mods/SoloPlay/SoloPlaySettings")
 mod.custom_havoc_rank = mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/custom_havoc_rank_runtime")
+mod.custom_efl = mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/custom_efl_runtime")
 mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/custom_havoc_rank_presets")(mod.custom_havoc_rank,mod,base_mod)
 local HavocConditions = mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/havoc_conditions")
 mod.condition_catalog = Catalog
@@ -182,7 +183,7 @@ if not base_mod._havoc_condition_manager_context_wrapper then
 		-- validation applies once a real rank or custom record is present.
 		if base_mod:get("havoc_difficulty")~=nil or mod:get("hcm_custom_havoc_v1")~=nil then mod.custom_havoc_rank.validate_launch() end
 		mod.validate_environment_selection()
-		return mod.custom_havoc_rank.decorate(mod.apply_havoc_conditions(base_mod._havoc_condition_manager_context_wrapper(...)))
+		return mod.custom_havoc_rank.decorate(mod.custom_efl.decorate(mod.apply_havoc_conditions(base_mod._havoc_condition_manager_context_wrapper(...))))
 	end
 end
 
@@ -216,6 +217,7 @@ mod.close_condition_manager_view=function()
 end
 local function state_changed(initial_call)
     toggle.changed(initial_call)
+    if not mod:is_enabled() then mod.custom_efl.finish() end
     if mod:is_enabled() then mod.custom_havoc_rank.install_presets() else mod.custom_havoc_rank.uninstall_presets() end
     set_catalog_enabled(mod:is_enabled())
     if not initial_call then mod.close_condition_manager_view() end
@@ -232,15 +234,16 @@ mod.on_all_mods_loaded=function()
     mod.custom_havoc_rank.install_presets()
     if mod.diy_library and mod.diy_library.resolve_startup_dependencies then mod.diy_library.resolve_startup_dependencies() end
 end
-mod.on_unload=function() mod.custom_havoc_rank.unload() end
+mod.on_unload=function() mod.custom_efl.unload();mod.custom_havoc_rank.unload() end
 mod.on_game_state_changed=function(status,state)
     if state~="GameplayStateRun" then return end
     if status=="exit" then
 		mod.custom_havoc_rank.finish()
+		mod.custom_efl.finish()
 		mod.reset_native_spawn_scaling()
 		if mod.finish_diy_conditions then mod.finish_diy_conditions() end
         -- End mission-owned listeners before a pending DMF disable removes hooks.
         mod.cleanup_condition_listeners()
         toggle.finish()
-    elseif status=="enter" then toggle.start();mod.custom_havoc_rank.start() end
+    elseif status=="enter" then toggle.start();mod.custom_havoc_rank.start();mod.custom_efl.start() end
 end

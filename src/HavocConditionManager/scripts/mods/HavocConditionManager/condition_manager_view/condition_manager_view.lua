@@ -31,6 +31,7 @@ local addon_setting_keys = {
 
 local function get_setting(key)
 	if key=="havoc_difficulty" then return mod.custom_havoc_rank.get() end
+	if key=="havoc_difficulty_circumstance" and mod.custom_efl then return mod.custom_efl.get() end
 	local owner = addon_setting_keys[key] and mod or base_mod
 
 	return owner:get(key)
@@ -38,6 +39,7 @@ end
 
 local function set_setting(key, value)
 	if key=="havoc_difficulty" then return mod.custom_havoc_rank.set(value) end
+	if key=="havoc_difficulty_circumstance" and mod.custom_efl then return mod.custom_efl.set(value) end
 	local owner = addon_setting_keys[key] and mod or base_mod
 
 	owner:set(key, value)
