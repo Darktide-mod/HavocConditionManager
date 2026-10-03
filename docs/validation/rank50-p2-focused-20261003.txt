@@ -1,0 +1,19 @@
+custom_havoc_rank_tests.py
+Standalone entry point, all condition categories, environment fallback and optional callbacks: PASS
+Standalone native migration: old spawn copies and per-category timer functions removed: PASS
+Standalone UI: four pages including DIY; no HED page or HED module imports: PASS
+Standalone editor: 40 warm opens reuse one class/catalog/template; widget colors remain isolated, language changes rebuild, disabled/re-enabled entry retained, 100 unchanged reads avoid setting writes: PASS
+Catalog provenance, invalid-row filtering, old selection migration, mutator deduplication, pickup/health/hazard overrides: PASS
+Registered native hook methods resolve in current game source: 60 PASS
+Custom rank50: native1-40 generation equivalence, all41-50 exact selected curves, real modifier/buff initialization and stat consumers, source immutability, DIY separation, mission snapshots and singleplay boundaries: PASS
+Actual HCM rank callbacks: first-open16,50 cap,40/41/45/50 refresh,bounds,custom label,locked/manual selections and native Randomize behavior: PASS
+Actual HED codec/presets/modes: rank50 JSON roundtrip, selected tiers/zeros/lock, old native presets, malformed data, mission no-op refusal, complete state/UI rollback and disable/re-enable: PASS
+Actual DMF callback body: reload(false), exit(true), disabled unload, setter/preset wrappers behind third-party ownership, no stale depth guards, replaced optional API and absent HED: PASS
+Optional HED APIs: same-owner/same-table nil/false-to-function appearance on all five optional methods, actual HCM capture native40/requested50, six function replacements, repeated installation idempotency, mandatory codec readiness and third-party uninstall ownership: PASS
+
+suite_evidence_tests.py
+Packaging evidence: independent full manifest, all exit codes, source pre/post identity and test/package input freshness; 8 invalid-report cases rejected: PASS
+
+syntax_tests.py
+HavocConditionManager: 125 Lua/mod files; syntax and local imports: PASS
+

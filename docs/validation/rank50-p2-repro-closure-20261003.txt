@@ -1,0 +1,5 @@
+Frozen4760440 replay:
+Current fix using the same saved reproduction setup:
+REPRO: reinstall=true; newly appeared actual HED HCM capture unwrapped; native rank40; custom metadata absent
+CONTROL: explicit uninstall/fresh install wraps actual capture; requested rank50 preserved
+FIX: same-owner late HCM capture wrapped; native40/requested50; repeat idempotent; uninstall restores owner

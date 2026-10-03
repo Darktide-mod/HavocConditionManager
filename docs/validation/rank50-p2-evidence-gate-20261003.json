@@ -1,0 +1,18 @@
+{
+  "baseline_commit": "47604405b42b8a7c195a205460eca1d24db0e4dc",
+  "gate": "PASS; no archive built",
+  "required_count": 39,
+  "results_count": 39,
+  "all_exit_zero": true,
+  "source_count": 326,
+  "test_tool_count": 65,
+  "source_pre_post_stable": true,
+  "test_tool_pre_post_stable": true,
+  "full_result_sha256": "45fdf75680846e0f2cbf66977a932991e593fc7aa5bacdbaa3d247c0e623d434",
+  "archives_preserved": {
+    "4.5.1-test.1": "94508d924a1de7ed3dec3e5e007503faaa06d6eae1f46d9e01748864fc84513f",
+    "4.5.1-test.2": "72371695e2c77bf093dcc0db90c3101b4ae60457cd605b18fac0e885496770c6"
+  },
+  "scope": "offline current source/tests; external fixture provenance separate; no live game or FPS claim",
+  "recorded_utc": "2026-10-03T20:39:27.053127+00:00"
+}
