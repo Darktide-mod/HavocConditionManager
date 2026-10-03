@@ -1,6 +1,44 @@
 """Native template compiler contracts, using checked-out game data."""
 from native_harness import *
 import json
+# Compare fixture tags with Lua evaluation of the actual native enum/tag blocks.
+# This fails independently if the game changes enum values or assignment syntax.
+from breed_fixture_tags import parse_tags
+enum_source = (GAME/'scripts/foundation/utilities/table.lua').read_text(encoding='utf-8-sig')
+enum_start = enum_source.index('table.enum_from_array = function')
+L.execute(enum_source[enum_start:enum_source.index('\nend', enum_start)+4])
+breed_settings = lua_file(GAME/'scripts/settings/breed/breed_settings.lua')
+L.globals().breed_tags = breed_settings.tags
+assert breed_settings.tags.elite == 'elite'
+tag_blocks = 0
+for path in (GAME/'scripts/settings/breed/breeds').rglob('*_breed.lua'):
+    match = re.search(r'\btags\s*=\s*\{(.*?)\}', path.read_text(encoding='utf-8-sig'), re.S)
+    if match:
+        actual = dict(L.execute('return {'+match.group(1)+'}').items())
+        assert breeds[path.stem.removesuffix('_breed')]['tags'] == actual, path
+        tag_blocks += 1
+assert parse_tags('elite = true, monster = false') == {'elite': True}
+assert parse_tags('[breed_tags.elite] = true, [breed_tags.monster] = false') == {'elite': True}
+assert breeds['renegade_executor']['tags']['elite']
+assert breeds['chaos_ogryn_executor']['tags']['elite']
+assert breeds['chaos_poxwalker']['tags']['horde']
+L.globals().Elite = load_mod('HavocConditionManager/scripts/mods/HavocConditionManager/elite_composition')
+L.execute('''
+assert(Elite.role(A.breeds,"renegade_executor")=="elite")
+assert(Elite.role(A.breeds,"chaos_poxwalker")=="common")
+for _,name in ipairs({"renegade_flamer","chaos_plague_ogryn","renegade_captain"}) do
+ assert(Elite.role(A.breeds,name)==nil,"protected native breed: "..name)
+end
+local native=require("scripts/managers/pacing/horde_pacing/horde_compositions").renegade_elite_poxwalkers_small[3].breeds
+local scaled=Elite.amounts(native,2,A.breeds,S.copy)
+assert(native[1].name=="chaos_poxwalker" and scaled[1].amount[1]==14 and scaled[1].amount[2]==16)
+assert(native[2].name=="renegade_berzerker" and native[2].amount[1]==1 and scaled[2].amount[1]==2 and scaled[2].amount[2]==2)
+local patrol=require("scripts/managers/pacing/monster_pacing/boss_patrols").renegade_boss_patrols.challenge_templates[1][3]
+local scaled_patrol=Elite.list(patrol,2,A.breeds)
+local counts={};for _,name in ipairs(scaled_patrol) do counts[name]=(counts[name] or 0)+1 end
+assert(#patrol==8 and counts.renegade_executor==4 and counts.renegade_melee==6)
+''')
+print(f'Native enum/tag evaluation: {tag_blocks} breed blocks; legacy literals, protected roles and exact composition/patrol amounts: PASS')
 L.execute("""
 assert(#A.entries>100 and #S.coarse==20)
 local defaults=S.coarse_config()

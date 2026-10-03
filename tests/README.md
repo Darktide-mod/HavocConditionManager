@@ -1,6 +1,10 @@
 # Project checks
 
-Run Test.ps1 or tests/run.py. The 25 active groups cover native templates, intensity/composition, capacity/pressure, spawn queues, encounter ownership, common/elite recovery, required event targets, buff cleanup, UI, optional integration and release structure.
+Run Test.ps1 or tests/run.py. The 37 active scripts cover native templates, current/legacy APIs, intensity/composition, capacity/pressure, spawn queues, encounter ownership, common/elite recovery, required event targets, buff cleanup, UI, optional integration and release structure. `--keep-going` runs every script and reports all failures; the default still stops at the first failure. `--only` explicitly identifies a selected subset. `build/checks/tests-result.json` records the executed cases, exit codes, environment and tested payload hashes.
+
+The optional HED UI tests load real HavocEnemyDirector Lua sources. Configure `DARKTIDE_HED_SOURCE` to a source root containing `HavocEnemyDirector/scripts/mods/HavocEnemyDirector/` when its checkout is not adjacent. A read-only workspace copy of an existing installation is supported. Missing HED is an integration failure; standalone HCM behavior is independently checked by `native_integration_tests.py`.
+
+The 3.4.0 and 4.4.9 release archives and publishing configuration are tracked fixtures excluded by some sparse checkouts. Restore those exact Git objects before the full suite; do not replace migration/archive fixtures with current source. The medical package case uses the actual bundled package and the shared configurable game/source paths.
 
 native_recycling_harness.py provides the native perception, minion spawn/despawn, roamer, patrol and group lifecycle fixtures. native_straggler_tests.py checks the simple 35-metre/30-second rule, one timer after real damage, individual patrol retirement, 240-unit completion, zero recovery route queries and bounded replacement allowance. Native queue consumption rechecks current visibility, player position, safe zones, retained allowance and session ownership.
 

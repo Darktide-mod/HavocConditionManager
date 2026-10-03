@@ -1,7 +1,7 @@
 """Run this project's checks; --only reports an explicit selected subset."""
 from pathlib import Path
 import argparse
-import os, subprocess, sys
+import hashlib, json, os, subprocess, sys, time
 TESTS=Path(__file__).resolve().parent
 PROJECT=TESTS.parent
 CHECKS=PROJECT/'build/checks'
@@ -22,13 +22,31 @@ CASES = [
 ]
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--only', nargs='+', choices=CASES)
-selected = parser.parse_args().only
+parser.add_argument('--keep-going', action='store_true', help='Run every requested check and report all failures.')
+args = parser.parse_args()
+selected = args.only
+failures = []
+results = []
 with (CHECKS/'tests.log').open('w',encoding='utf-8') as log:
     for case in selected or CASES:
         print(PROJECT.name + ': ' + case, flush=True)
+        started = time.perf_counter()
         result=subprocess.run([sys.executable,str(TESTS/case)],cwd=PROJECT,
             text=True,encoding='utf-8',errors='replace',stdout=subprocess.PIPE,stderr=subprocess.STDOUT,env=environment)
         log.write(case+'\n'+result.stdout+'\n'); log.flush()
         print(result.stdout, end='', flush=True)
-        if result.returncode: sys.exit(result.returncode)
+        results.append(dict(case=case, exit_code=result.returncode, seconds=time.perf_counter()-started))
+        if result.returncode:
+            failures.append((case, result.returncode))
+            if not args.keep_going: break
+report = dict(selected=selected is not None, requested=selected or CASES, results=results,
+              passed=len(results)==len(selected or CASES) and not failures,
+              python=sys.version, executable=sys.executable,
+              environment={key:os.environ.get(key) for key in ('DARKTIDE_SOURCE','DARKTIDE_TEST_RUNTIME','DARKTIDE_HED_SOURCE')},
+              source_payload_sha256={path.relative_to(PROJECT/'src').as_posix():hashlib.sha256(path.read_bytes()).hexdigest()
+                                     for path in sorted((PROJECT/'src').rglob('*')) if path.is_file()})
+(CHECKS/'tests-result.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
+if failures:
+    print(PROJECT.name + ': failed checks: ' + ', '.join(case for case, _ in failures), flush=True)
+    sys.exit(1)
 print(PROJECT.name + (': selected checks passed.' if selected else ': all project checks passed.'))

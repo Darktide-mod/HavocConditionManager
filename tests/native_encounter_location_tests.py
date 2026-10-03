@@ -183,10 +183,13 @@ local heat_template=S.apply(heat_base,"monsters",S.coarse_config({monster_encoun
 assert(heat_base.max_allowed_by_heat[3].monsters==1 and heat_base.max_allowed_by_heat[3].boss_patrols==1)
 assert(heat_template.max_allowed_by_heat[3].monsters==5 and heat_template.max_allowed_by_heat[3].boss_patrols==6)
 assert(heat_template.max_allowed_by_heat[1].boss_patrols==0)
-local heat={_template=heat_template,_check_alive=function() end}
+local checked_alive=0
+local heat={_template=heat_template,_check_alive=function() checked_alive=checked_alive+1 end}
 NativeMonster._setup_timer_based_monster_pacing(heat,0,0,2,1)
 assert(math.abs(heat._next_monster_at_t-heat_base.monster_timer_range[1]/6)<.00001)
-Managers.state.pacing={get_table_entry_by_heat_stage=function(_,t) return t[3] end}
+Managers.state.pacing={heat_active=function() return false end,get_table_entry_by_heat_stage=function(_,t) return t[3] end}
+assert(not NativeMonster._update_allowance(heat,0,0,2,1) and checked_alive==0,"inactive heat must refuse before allowance work")
+Managers.state.pacing.heat_active=function() return true end
 assert(NativeMonster._update_allowance(heat,0,0,2,1) and heat._amount_allowed_by_type.total==11)
 for i=1,5 do heat._currently_spawned_by_timer.monsters[i]={} end
 for i=1,6 do heat._currently_spawned_by_timer.boss_patrols[i]={} end

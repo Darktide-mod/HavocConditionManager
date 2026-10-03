@@ -10,14 +10,11 @@ import re
 import subprocess
 import sys
 
-PROJECT = Path(__file__).resolve().parents[1]
-ROOT = PROJECT.parents[1]
-GAME = ROOT / 'dev-support/game-source'
-sys.path.insert(0, os.environ.get('DARKTIDE_TEST_RUNTIME', str(ROOT / 'dev-support/test-runtime-py312')))
+from project_env import PROJECT, GAME, SOURCES
 from lupa.luajit21 import LuaRuntime
 
-PACKAGE = PROJECT / 'custom-packages/starter-conditions-no_healing'
-RUNTIME = Path(os.environ.get('HCM_DIY_RUNTIME', str(ROOT.parents[1] / 'mods/HavocConditionManager/scripts/mods/HavocConditionManager/diy')))
+PACKAGE = SOURCES / 'HavocConditionManager/diy/packages/starter-conditions-no_healing'
+RUNTIME = Path(os.environ.get('HCM_DIY_RUNTIME', str(SOURCES / 'HavocConditionManager/scripts/mods/HavocConditionManager/diy')))
 
 
 def native(path):
@@ -130,7 +127,7 @@ function make_station(mode, pool, plug, initialized, plugged)
     unit.extensions.point_of_interest_system = { set_tag = function(_, tag) unit.tag = tag end }
     unit.extensions.pickup_system = {
         spawn_item = function() return pickups:spawn_pickup('battery_01_luggable', 0, 0) end,
-        despawn_item = function(_, battery) pickups:despawn_pickup(battery) end,
+        despawn_item_unit = function(_, battery) pickups:despawn_pickup(battery) end,
     }
     ext:setup_from_component(3, 0, pool, 'socket', mode)
     ext._plug_from_distribution = plug

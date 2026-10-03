@@ -15,7 +15,7 @@ local USED_BREEDS={};local DEFAULT_MIN_TIMER_DIFF_RANGE={3,5}
 local MIN_COORDINATED_TIMER=20;local COORDINATED_STRIKE_TIMER_OFFSET_RANGE={3,6}
 local PlayerUnitStatus={requires_help=function() return false end}
 '''
-names=('_setup_specials_slot','_setup','_get_breed_name','_get_special_slot_breed_name','_check_monster_override','_check_disabler_override','_check_and_activate_coordinated_strike')
+names=('_setup_specials_slot','_setup','_update_effective_max_alive_specials','_get_breed_name','_get_special_slot_breed_name','_check_monster_override','_check_disabler_override','_check_and_activate_coordinated_strike')
 L.execute(prefix+'\n'.join(extract(n) for n in names))
 load_mod('HavocConditionManager/scripts/mods/HavocConditionManager/native_runtime_hooks')
 L.globals().Profile=load_mod('HavocConditionManager/scripts/mods/HavocConditionManager/intensity_profile')
@@ -49,7 +49,7 @@ local function configure(frequency)
  B.values.native_configuration_v3={special_frequency=frequency};Managers.state.game_session={};E.reset();host=true
 end
 local function create(template,hooked)
- local self=setmetatable({_max_alive_specials_multiplier=1,_max_alive_specials_bonus=0,_timer_modifier=1}, {__index=NativeSpecial})
+ local self=setmetatable({_max_alive_specials_multiplier=1,_max_alive_specials_bonus=0,_max_alive_specials_bonus_multiplier=1,_timer_modifier=1}, {__index=NativeSpecial})
  if hooked then
   self._setup_specials_slot=function(s,...) return slot_hook(NativeSpecial._setup_specials_slot,s,...) end
   self._check_and_activate_coordinated_strike=function(s,...) return strike_hook(NativeSpecial._check_and_activate_coordinated_strike,s,...) end

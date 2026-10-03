@@ -1,0 +1,625 @@
+{
+  "public_commit": "7e662fcda16219d775b84af50322be2e9cd9d62e",
+  "installed_steam_build": "25606770",
+  "installed_executable_version": "1.3.802.934",
+  "input_before": {
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\bundle\\bundle_database.data": "36DA6AC68790E64F02A1653EBE6D47C1BCE309F71FF2D86EA8C1ED63C422EB31",
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\Darktide.exe": "28B843BC2905FAAA0F27329D68E5DE989DF908F2552D80BF2B3C79B86E259775",
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\oo2core_9_win64.dll": "8595A4795F1E0C7F548598F3E2AA528B6BE5456C6D934C665182EAECB04156C0"
+  },
+  "input_after": {
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\bundle\\bundle_database.data": "36DA6AC68790E64F02A1653EBE6D47C1BCE309F71FF2D86EA8C1ED63C422EB31",
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\Darktide.exe": "28B843BC2905FAAA0F27329D68E5DE989DF908F2552D80BF2B3C79B86E259775",
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\oo2core_9_win64.dll": "8595A4795F1E0C7F548598F3E2AA528B6BE5456C6D934C665182EAECB04156C0"
+  },
+  "tools": {
+    "decompiler": {
+      "source_commit": "166658ffe9eaf64e94887cd8df9d9340f695d9a9",
+      "path": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mod-work\\HavocDirectorStudio\\tools\\luajit-decompiler-v2\\build-166658ffe9eaf64e94887cd8df9d9340f695d9a9\\luajit-decompiler-v2.exe",
+      "sha256": "FF56EE49320A609CCB5357B8C4EC0578EBC67A14546FADAE1A3D9BFE2E014D88"
+    },
+    "limn": {
+      "path": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mod-work\\HavocDirectorStudio\\tools\\limn\\0.7.2\\limn-0.7.2-x86_64-pc-windows-msvc\\limn.exe",
+      "folder_label": "0.7.2",
+      "reported_help_version": "0.7.1",
+      "sha256": "03EA9AD220E3D217414362B365ACC64B0E47A37ADAF7CF5F478B0C68C6A5EC67"
+    }
+  },
+  "commands": [
+    {
+      "arguments": [
+        "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mod-work\\HavocDirectorStudio\\tools\\limn\\0.7.2\\limn-0.7.2-x86_64-pc-windows-msvc\\limn.exe",
+        "-i",
+        "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\bundle",
+        "-o",
+        "D:\\Projects\\game-data\\hcm-suite-source-20261003-verified\\bytecode",
+        "--dict",
+        "D:\\Projects\\game-data\\hcm-suite-source-20261003-verified\\dictionary.txt",
+        "-j",
+        "1",
+        "lua"
+      ],
+      "exit_code": 0,
+      "seconds": 0.6124672000296414
+    },
+    {
+      "arguments": [
+        "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mod-work\\HavocDirectorStudio\\tools\\luajit-decompiler-v2\\build-166658ffe9eaf64e94887cd8df9d9340f695d9a9\\luajit-decompiler-v2.exe",
+        "D:\\Projects\\game-data\\hcm-suite-source-20261003-verified\\bytecode",
+        "-e",
+        "lua",
+        "-o",
+        "D:\\Projects\\game-data\\hcm-suite-source-20261003-verified\\decoded",
+        "-s"
+      ],
+      "exit_code": 0,
+      "seconds": 0.1592658999725245
+    }
+  ],
+  "lexer": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mod-work\\HavocDirectorStudio\\scripts\\game_bundle_audit.py",
+  "lexer_sha256": "2BBBF7D0F6FD9A531941DCBE09053FE60E40462305D1CDD98EA57044897F2D2D",
+  "modules": [
+    {
+      "path": "scripts/foundation/utilities/table.lua",
+      "bytecode_sha256": "E01DC4007DC6AAB562ED94360E07854D973CDF7BE609E4964406899305254B20",
+      "decoded_sha256": "99B222EFA493239A5697CE12B39F2B60FC14F8316E8ED9C37F1C52CB3C290F5F",
+      "public_sha256": "118D34B8484BFDFF6BE1C9AAF36F3F1B10255EDBAF5FE174DD136B32217DA8FA",
+      "token_match": true,
+      "token_count": 7176
+    },
+    {
+      "path": "scripts/settings/breed/breed_settings.lua",
+      "bytecode_sha256": "D45ED8EDBC47DBC883439D622AC9564FA027E71FDC75B8E6C93CABF6EB1EDC48",
+      "decoded_sha256": "D20DF47C9FFFA7978297FF9988751CDFCBEF29D01899C85D9BCE8225A1B945D5",
+      "public_sha256": "8A7B55C70E2E41373E53C24C59D2864A29102AC1DD17EFC7A7EB2B18AD9F30BC",
+      "token_match": true,
+      "token_count": 115
+    },
+    {
+      "path": "scripts/utilities/breed.lua",
+      "bytecode_sha256": "C3768065BF89A424154010447D177964D4C77E0F58633C3A88C3B24F9D6E4ACE",
+      "decoded_sha256": "9EE4D59AED514B8B30963086CD19B705F5AD5893549F852BDC9B2F83579FE19F",
+      "public_sha256": "9EE4D59AED514B8B30963086CD19B705F5AD5893549F852BDC9B2F83579FE19F",
+      "token_match": true,
+      "token_count": 483
+    },
+    {
+      "path": "scripts/managers/pacing/specials_pacing/specials_pacing.lua",
+      "bytecode_sha256": "BEEAA4216C9E5D68C314AA94A4FF2E7C2F0E68821510FB957525021777BE7714",
+      "decoded_sha256": "B59C6CA4E6E037BA70D52ACC9060823D20480116AD8F4B25C4B5EDD3A8704ED1",
+      "public_sha256": "13C1AFABFBA061378F6E6B9D05F6820E25F40BA3DBC0E0EFA70AEED5FC6A2E09",
+      "token_match": true,
+      "token_count": 8122
+    },
+    {
+      "path": "scripts/managers/pacing/monster_pacing/monster_pacing.lua",
+      "bytecode_sha256": "734B28C213ED6124486FDF9C3D4BCC675185DD9CACB96F53E09665CA88D5787B",
+      "decoded_sha256": "AC2EFA4E60BEADFEE5C1952FB6EBE41DF607DF7755CFBC5EFE3F50D55C8A33C0",
+      "public_sha256": "D72603EDBFD50694DA16D806AD385EBC6910FA0D3F784E6F5C4502329243B667",
+      "token_match": true,
+      "token_count": 5262
+    },
+    {
+      "path": "scripts/managers/pacing/horde_pacing/horde_pacing.lua",
+      "bytecode_sha256": "975FDFC18F47FD5C2F7193699E8A783B6320FBEA068BBC396E544D2FD2E986FE",
+      "decoded_sha256": "135A82B47CEAA77773B908025DC033801B77F90C99FDCF45513BAE546D5CFC47",
+      "public_sha256": "5BE17C134B96F0A84493FF9A411986C555ABBF61507A8D8C731E0629D89AA290",
+      "token_match": true,
+      "token_count": 4824
+    },
+    {
+      "path": "scripts/managers/horde/horde_manager.lua",
+      "bytecode_sha256": "8AFBE7D42D060A50D56186A7E0632A91CDF8781B265ECEFBE0FC0E716E9BCF1F",
+      "decoded_sha256": "43BCC69BCB1F0DE4A3F90C8B9FF7DAF06192F4C51E9A5EBBACF8E3AC0E3E87B9",
+      "public_sha256": "43BCC69BCB1F0DE4A3F90C8B9FF7DAF06192F4C51E9A5EBBACF8E3AC0E3E87B9",
+      "token_match": true,
+      "token_count": 685
+    },
+    {
+      "path": "scripts/managers/horde/templates/trickle_horde_template.lua",
+      "bytecode_sha256": "C7A3CFC8684498A8947BED63F9429EBBA405BE092CC93BF450710989FA410A8A",
+      "decoded_sha256": "E562EFB8499043426EA8633E039EAC27E26EF1BF9038634338C7BBD277F02ABE",
+      "public_sha256": "B58F788188B3A3057D42803A24843B2A927C0CBABD10A71122DC26ECD18D61D0",
+      "token_match": true,
+      "token_count": 1418
+    },
+    {
+      "path": "scripts/managers/pacing/horde_pacing/compositions/renegade_horde_compositions.lua",
+      "bytecode_sha256": "A54833951C750781E48992320E8B54476203B310E02F82A3089036EE47EE1962",
+      "decoded_sha256": "77996845F4D17DBD9523038444720671A716B097EBE430E288132F14F371BD41",
+      "public_sha256": "CE260B29320057197214E22606D501AC58CFE20EE2A00C53FB781F0F5F16EE4D",
+      "token_match": true,
+      "token_count": 6924
+    },
+    {
+      "path": "scripts/managers/pacing/monster_pacing/templates/renegade_boss_patrols.lua",
+      "bytecode_sha256": "1F9DDD8F7515AFCD7618175F8ECB573DBF2D3A732704FF8B93C848D6F2E5D26E",
+      "decoded_sha256": "6785C2E0C2B1FCE3E62073673DBBFEA93F78FA477753D2EC0FF673B6FCB14BF0",
+      "public_sha256": "8F3551230DFF3B47FC40DAAA7837D2EE81DC74322636D5BCAB8E711BB1783BE0",
+      "token_match": true,
+      "token_count": 832
+    },
+    {
+      "path": "scripts/extension_systems/health_station/health_station_extension.lua",
+      "bytecode_sha256": "C2AA1B5F880757E051556373D7A18656730E10ED0ADC82D96B3202E533425E9B",
+      "decoded_sha256": "09CDD927D9FCDCC0DC46E12A7882BCEED9669FC1A203AA040427555B764EAFEA",
+      "public_sha256": "E53730A4A9F1A1F1DA5889B0655C8CAFDB81E67120EF3C0572C5580F92AED30B",
+      "token_match": true,
+      "token_count": 1787
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_armored_hound_breed.lua",
+      "bytecode_sha256": "33509181E8747D484E037F3A14C99C5F6529B5DC42C58A179A3C5F172EAAB239",
+      "decoded_sha256": "005EA1045290A51FF0DDA2EC40D19ABB9812BA8B46F6C66BE5F22C8FE3874FC5",
+      "public_sha256": "9765F55AC96B4884AF4882124B913FC1C24C9C1F9F5496D8FD7696F242778BC5",
+      "token_match": true,
+      "token_count": 1830
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_armored_infected_breed.lua",
+      "bytecode_sha256": "4792BF0E1AC079EE819B9EC7BC1791C50E833138253034C27FCB38783FB6FE30",
+      "decoded_sha256": "7772F0226513731B88C3522310316B8EE9BFE3097E56BF1AE2E3E699ACD2FFC9",
+      "public_sha256": "2B96DBD4BC49C9504B7F6FA4B363F08C0F460EFF9E79A23E933090D3785427AD",
+      "token_match": true,
+      "token_count": 1749
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_beast_of_nurgle_breed.lua",
+      "bytecode_sha256": "DABBBF13DDD1D6111E8FC6C95334BC55D2B2B3191216EEFD9131D2AE0F1A0660",
+      "decoded_sha256": "B546F20F8E226BCC26791590D63474F440F0CAE2F9F4ECE7ED6E0AB5F60D9329",
+      "public_sha256": "6F56511F0C261E2DF2187518FA0CA33E99D2F012950515B47E41D38B0770C09F",
+      "token_match": true,
+      "token_count": 2180
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_daemonhost_breed.lua",
+      "bytecode_sha256": "C69FBF5505C33F5DD5DAF3E0F8BCCFEB099FA30F85D9018A70D6EDE28AD4DC3C",
+      "decoded_sha256": "D241EEA93C55D7A5181DAA56EEA80CC72A73A6B914129929673430D8F06FE993",
+      "public_sha256": "2B9127690F9E2D0B47DD5841844FC9270E9C68A54604BF7E388112614989FC37",
+      "token_match": true,
+      "token_count": 1889
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_daemonhost_torment_breed.lua",
+      "bytecode_sha256": "A41012C615265600D92B06EDF8FBB8464F2A0E729AD957533C7F7DEDD609E061",
+      "decoded_sha256": "1F010990C902A9A45D2093E2CB94ACFAA943309666648B64807B79B0AE598EF9",
+      "public_sha256": "AB187FBC85F993FF5F60354615FDE88696F96928456BF04A3CA5CF9350A046F7",
+      "token_match": true,
+      "token_count": 1897
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_hound_breed.lua",
+      "bytecode_sha256": "9E8BBA2FB08E03DE9F8A36B6FB8432AE02501C4ED5DBEE2AF4CBEAB11C3E05FF",
+      "decoded_sha256": "CF779A9EAA7EABD45F49C4542B9142909B2461AF607D34A8C6CF99B7C038FCC1",
+      "public_sha256": "935108A94DC72AD96409FE5D154F25348DF62B162599E1E2FC6EFF490EE8DE29",
+      "token_match": true,
+      "token_count": 1726
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_hound_mutator_breed.lua",
+      "bytecode_sha256": "93548F6861309BAABC8415B90963FBADE97C94A1437A51B7BA5442DB3AA312B4",
+      "decoded_sha256": "A70943366E66DBC3B943EE6E4CE4B177C350F6CF1D181D43EA34E38FD106141C",
+      "public_sha256": "7D11E46DA4EB48247801B734E80122C0E5C76E9B1AE65EECABF25CBCA0CC2DEC",
+      "token_match": true,
+      "token_count": 1717
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_lesser_mutated_poxwalker_breed.lua",
+      "bytecode_sha256": "3C638620C6EB252402794934AA998A289AAD5D05296509E822DAE66F54517242",
+      "decoded_sha256": "645DCC5E1E61AA48F315945B356755C108810954399113A3116500D5065A69CE",
+      "public_sha256": "500F09D96257D02DF4057566395FF38A311D6FA762EF711A6FF879B4B7DBECC2",
+      "token_match": true,
+      "token_count": 1786
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_mutated_poxwalker_breed.lua",
+      "bytecode_sha256": "85761FE736E49F45203E5A3E21569185110FFE92FEF3D299CE8DFCFF002A436E",
+      "decoded_sha256": "43BF4635EE0B03E76DB8E7E089375643F25DB4A77FC73C681EB1934A30AB09E8",
+      "public_sha256": "E684BE0030E72C0A97291239882B6559A5B50549A8EC8CE2B770E261B136B8D1",
+      "token_match": true,
+      "token_count": 1650
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_mutator_daemonhost_breed.lua",
+      "bytecode_sha256": "7D5E0AC52A3B4ED3318E5DCA2EDF2D7798FE8A833DBD41C0A5C14FD614960E6B",
+      "decoded_sha256": "0C99D13B3AC09403DFD46ECB6C14EF8B2D0325AF18A3221AFD90DDBBCF7DABE5",
+      "public_sha256": "E7B529E9D39DE3416CEA2D150880BAF5FC91712D399778EA147EA54BBC0EC412",
+      "token_match": true,
+      "token_count": 1915
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_mutator_ritualist_breed.lua",
+      "bytecode_sha256": "AEF9DF2B19CA23144FAAB9429D7A6DB4BDF3D3CA1C796569D244D5E8263146F7",
+      "decoded_sha256": "059861020C6460D496FE6739CB6AE18D2A5614BB563B554F531552F0E5F8C32A",
+      "public_sha256": "E16EE626CC8A91212232C377AC5A1697C3DCF71844C0663822931B98C50974E2",
+      "token_match": true,
+      "token_count": 1508
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_newly_infected_breed.lua",
+      "bytecode_sha256": "756634DC6738F6FABEE84767B557A82A1766F8AA2F62567C8CF1429347FBB13C",
+      "decoded_sha256": "8EBDFDE194A2BB64F0F3717608B725E277330CC02414FDA585ACF9AC6E08478A",
+      "public_sha256": "B23939C1E47D72357BB5D2825EB6D49DE38E27488A19648710C9CE0FDA83818E",
+      "token_match": true,
+      "token_count": 1675
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_ogryn_bulwark_breed.lua",
+      "bytecode_sha256": "B43AB65870054C1F98A8C3EB1C3E9C3E78086921AD43502035BCEE2E4D3217FD",
+      "decoded_sha256": "AE5F4CEB0520D47993D76090716B8E919547A9CF8D7AF3122A05DB616382E48F",
+      "public_sha256": "ACE6797B173E219227AA84E079234F838C389D9568E438AAF991919E47951932",
+      "token_match": true,
+      "token_count": 2044
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_ogryn_executor_breed.lua",
+      "bytecode_sha256": "471E8B0BFE649BCC6AC5B6EBE8FBFEAC6149B38241FB8CF3EC8043C8D92C170E",
+      "decoded_sha256": "A3654E01C0551B7819BAB7B944904BCB517FD84563E50B700CEE22F6549282D6",
+      "public_sha256": "9B30C10C17E620BFBCFF9B187642E700A6BCA0F164F6B72C6C65AAAD4337E281",
+      "token_match": true,
+      "token_count": 1894
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_ogryn_gunner_breed.lua",
+      "bytecode_sha256": "0AD2F8052628EE1F6857251E95386E73CC1AA7CA4CF1903A5FA0B49CAAD7A8A4",
+      "decoded_sha256": "7CC295F6A477ED5920715C4CACC78E8ECAC31BB4D0E12F7990CECF09E9622EDF",
+      "public_sha256": "21DDCA636D1820FD5593365081ACD9920DC851004E4C5B2F9E96AFF41655B271",
+      "token_match": true,
+      "token_count": 1925
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_ogryn_houndmaster_breed.lua",
+      "bytecode_sha256": "FCCC4E3F1B81D9E2649B1E1AD1E999ABFD901921D0BCF0E04B79F10823A39075",
+      "decoded_sha256": "11629F490B90E40763F89C602502539AD54BA3F3F5E3539B79B42DEEBB56DFC5",
+      "public_sha256": "EA91C5C1FB2C64F8A0993085BC7E99941514011C09970422E87382EBF7E19C8D",
+      "token_match": true,
+      "token_count": 2178
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_plague_ogryn_breed.lua",
+      "bytecode_sha256": "5A6FF1BF97C2C5E7E42DC62C419E000C1805A7E728457E80A5E4C5D7B5D90A2E",
+      "decoded_sha256": "4D6CD215BDA3771C86A52DFC83AA52DE32D45C5B15301E494032082AD0AAE051",
+      "public_sha256": "53D7E6662C6DBBAD69CCF14FFEF0D2668192C31C0EAF52136D6FDE699959490D",
+      "token_match": true,
+      "token_count": 1881
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_poxwalker_bomber_breed.lua",
+      "bytecode_sha256": "ADFF43736913451553B552FA1AB96773FEB59F403707F51AEF585C3DD2E223C6",
+      "decoded_sha256": "A52AC71127B0C245DE7A4EF26CEC643229D0D4A99E98E00DF15AA1AA439C8597",
+      "public_sha256": "7639AD750A79A1C5271A94A39BDF1A50256257B23A50A7D6942721B20FB2E788",
+      "token_match": true,
+      "token_count": 1733
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_poxwalker_breed.lua",
+      "bytecode_sha256": "D57E7C4325EDCD89691FCC7766BCC45B99F5B6EA2304763690F8734431AB566F",
+      "decoded_sha256": "AFD9E053CE7197788D5701727C57E074C67A4AB50DE32EC864852B3B4D889215",
+      "public_sha256": "AA7EB95A7AF8C900AD74636FFB71B0405AB8546FCE1B6758135F21F03D6E975C",
+      "token_match": true,
+      "token_count": 1786
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_spawn_breed.lua",
+      "bytecode_sha256": "E2415911F7EC9735330B38DFA20826E2356275179ACB3361304BE8542CCD5162",
+      "decoded_sha256": "DDF0856B57F0EFDDF0A88D914EC4F778211C6EA6D9E879B9B7719BBA339CA415",
+      "public_sha256": "AD6CBCF9F3C5A52979D9FC463A64665B29E551B28770C52F075D9B2A530F2287",
+      "token_match": true,
+      "token_count": 1920
+    },
+    {
+      "path": "scripts/settings/breed/breeds/companion/companion_dog_breed.lua",
+      "bytecode_sha256": "50635DB909BEB7C1924E0F50223E0BA02521D390587315D02B51530CA8E029DA",
+      "decoded_sha256": "5D84735A19C266A2C82EA70FE1E044A4593CC632E44103A74DFBD183183CD446",
+      "public_sha256": "1C33E7864F65FDB3B9548C71F59381B3E26F2BFEE0626DD594D6C1BFA79EAB4D",
+      "token_match": true,
+      "token_count": 1115
+    },
+    {
+      "path": "scripts/settings/breed/breeds/companion/companion_servo_skull_breed.lua",
+      "bytecode_sha256": "1870773C2327E692DD764A087692438AE6810F7015F893F727E0AB070E6ACB0F",
+      "decoded_sha256": "4E844E1CF804EE6BDB68B4115B1C68DB7E6868482111EA06075A14D23FEC2D58",
+      "public_sha256": "1D52BEB3F691252F3DDF5FE5F8C36DB331B0778A3CCD623038C6287A758A2228",
+      "token_match": true,
+      "token_count": 365
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cryptic_breed.lua",
+      "bytecode_sha256": "2E79A8BC9B0793A4B7255EC2D58ABF17692EFF45F2B8FFA155E4868F4E476DD5",
+      "decoded_sha256": "2FAEBDF6E370BBA33BB3671171DCB1CC5EF517BC6D4601F18FACB35443812409",
+      "public_sha256": "61D36D7709DDEEE6CD459D3AA3215B40B5ABB18AAD0404875454C857F36CB1E3",
+      "token_match": true,
+      "token_count": 900
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_assault_breed.lua",
+      "bytecode_sha256": "8B21D6AFF710CDD8B251DD687CF15AC04BB74FA64986867DA2BBCD96A6C06C92",
+      "decoded_sha256": "57E7C6E0B587FD6F5E9D5F59548193F9F58FF41DB1115BB321462A180D36587A",
+      "public_sha256": "033CF1AC1479289A8D9C441F06CAE59F820222A675922735CFA32F94E2F03295",
+      "token_match": true,
+      "token_count": 1912
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_berzerker_breed.lua",
+      "bytecode_sha256": "CEA91FAF266D20DBE8E92285C09A059C0597F8AEC37989946430C611FE0506DB",
+      "decoded_sha256": "8AB035EEDFD12B98F37770021A166BF72CE031D598C65D72D5EFFA24F92EAF6A",
+      "public_sha256": "CD9E7C327547439788E9E46B9E806445706DD30096D9AAFD3842B844A1CCD5AF",
+      "token_match": true,
+      "token_count": 1703
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_captain_breed.lua",
+      "bytecode_sha256": "1415B32AA4CF65EA7227B6444C1386EE02D11711A9C6BB075B7065BDECE9946A",
+      "decoded_sha256": "164C73EC6F5FD888A3B39E283D63C8EF8E9FCB604FE8D8DA090156C2C8704C27",
+      "public_sha256": "3FB8A24A7A756D524DCCA8C4B3733CE1F6CF108F2F826370D2C4C47DB3976E89",
+      "token_match": true,
+      "token_count": 2065
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_flamer_breed.lua",
+      "bytecode_sha256": "4A9CE180B8A482103CE26789A5F16BA0D1C7A60C644589BD15AB858137CD7649",
+      "decoded_sha256": "7EB9E4AEB86507D67E453F76E24FC6B1849815A75C498972D333BE57C39768AA",
+      "public_sha256": "C1BC6478AD189E4A66A074AD72CCD220F571C8B80F43EB48A367F08578E803E5",
+      "token_match": true,
+      "token_count": 1941
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_grenadier_breed.lua",
+      "bytecode_sha256": "46AFBD723B954FE24DCDF70A9F7004C070C4047B252E1B00038CA7B735A7E0F0",
+      "decoded_sha256": "875985DCC3BB793F4F49C9E01B586AD81ED8EAF5D23DA3B4AA3D48EE423B324C",
+      "public_sha256": "296DC033BDC3B821E81879B485E66571735A240CACF0E41BDAB4CAF856FE547D",
+      "token_match": true,
+      "token_count": 1715
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_gunner_breed.lua",
+      "bytecode_sha256": "033DB9FC7A02B1AE56905755DA5F44E24E55FC04A1A31B031A5FF4E3FA506457",
+      "decoded_sha256": "4B962F9564EF2A3DA433033A8107D95ABAF90DFD5D8C99896528B2225792134D",
+      "public_sha256": "7C4294951B10DEDC70E5990E0FCA79FA5417BE0462FA6733600B3C5FA6C51826",
+      "token_match": true,
+      "token_count": 2107
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_melee_breed.lua",
+      "bytecode_sha256": "911DA2863D743BB22F8BFEC06E242F88EB747CF0DE2F686AE95626CC50BDA9E9",
+      "decoded_sha256": "604E0CDF7B6E71DF29A219808325985DF05DA818FF50A5179ADAEC040D7D2ADA",
+      "public_sha256": "7D7EC234BE8DA7BC956E1493D7C43DE963A1595E04E76AEFE461C66E8B9D025E",
+      "token_match": true,
+      "token_count": 1625
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_mutant_breed.lua",
+      "bytecode_sha256": "352A1E570159BF57D27DC3B08498961A9E5D7971C1C32A6F833A6B6DBF2C0DAD",
+      "decoded_sha256": "D8EB5D22056B6573B8F9F8A0C782232E007DE6D01834375F86170EAA521CDBFC",
+      "public_sha256": "D3E8584EFFB6AF0FD1138CBC98B1002D772B8A95B79A75D567B355F02C2125B8",
+      "token_match": true,
+      "token_count": 1835
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_mutant_mutator_breed.lua",
+      "bytecode_sha256": "FF8EFD9539DA1339FCAFBDCA4C03C135D40C2DB06F9C379700988370EBECE5E5",
+      "decoded_sha256": "3CE44357D5D889345DB8F9536AD83D74F48697051F670B465D0850E63E4E9901",
+      "public_sha256": "F4C1BBF7BE4153542A002EC4EDB11B4DBC347995E07A242558420B403CDD3D81",
+      "token_match": true,
+      "token_count": 1839
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_ritualist_breed.lua",
+      "bytecode_sha256": "E96D705A028BFAF331DA38E1FF05220877015F87A076AFFD971CB546E01669F9",
+      "decoded_sha256": "E1044C8C69B5D14CAB4FF3AE2D6AFD7DD70FF51A2EA2EFC3C48D860871182741",
+      "public_sha256": "6C1A6B1077B150ADBCB6B75E4C8283D7B6F14C784FDCBF2C2DE518B747F6FB0A",
+      "token_match": true,
+      "token_count": 1500
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_shocktrooper_breed.lua",
+      "bytecode_sha256": "FA54E6C01E6C1DD1EFA277902DEF4CA6B2E25A31063E305D75C6F673E1CABE47",
+      "decoded_sha256": "8928903325A381B1E3932C3765ED51088DFB4C48AEAE1929D1AE3D5F3BB1CE57",
+      "public_sha256": "D1FFFDAA427565E6269FCC3C1850F49C2E6894733A208B62BCBDEAA24A575385",
+      "token_match": true,
+      "token_count": 1888
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_vanguard_breed.lua",
+      "bytecode_sha256": "49749C31ADC7D3E2234318BEC17CFAE46762445714C6DF3AAC7004B1DCF40D14",
+      "decoded_sha256": "4B29110B53816400C43DBB5E434AC4E4A608F87BAA972C05E943D53B56F3656B",
+      "public_sha256": "E88A8D1F9FD98D18E0DCE9A8E7231C183A800ACB3E8D2A35369F8594ECB51A6A",
+      "token_match": true,
+      "token_count": 1842
+    },
+    {
+      "path": "scripts/settings/breed/breeds/human_breed.lua",
+      "bytecode_sha256": "F52989A67D1A7B0ACC805E9596A7584184466ED3505FC2F7267E3DE000C28EF1",
+      "decoded_sha256": "54E5A95B01E82F9957A4763AF9753A16D6DAD40066A56867B30D61FDBA06B58F",
+      "public_sha256": "14B12C6C3D2530C98D7752A6A151533DE187147D158D8096627FAB4C8F3443AD",
+      "token_match": true,
+      "token_count": 898
+    },
+    {
+      "path": "scripts/settings/breed/breeds/nurgle_flies_breed.lua",
+      "bytecode_sha256": "F9548F8A079D606BC7BCD3E490685BF6D7680F3CC698A280D50E5F3D3E4E17EC",
+      "decoded_sha256": "550BCCD6B3E5D4A0492D8A894C627D5935092BB79F189F9BAD3F0F69DDBBCEE3",
+      "public_sha256": "47F2CCBC5C299A72710F9079FA5952401E5ADEE13B59631E21FADAE6ABAD2A81",
+      "token_match": true,
+      "token_count": 393
+    },
+    {
+      "path": "scripts/settings/breed/breeds/ogryn_breed.lua",
+      "bytecode_sha256": "A563888ADDBA58B919DB92C3845CDF5AE025273A06EB72FC5A71631DB57FB8BF",
+      "decoded_sha256": "F14F9D101251A96054C5F0E7281AB7391CB1284229396468DB3F19636F933468",
+      "public_sha256": "192F8D47DE82CB08ADF8860E847D9EB79B53AD4A72B29BF1BD6BC972089E1507",
+      "token_match": true,
+      "token_count": 789
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_assault_breed.lua",
+      "bytecode_sha256": "357E47226D9104715ABD3B3734275D9D1938150BED720999BE4E76716533173D",
+      "decoded_sha256": "B1BE3178222BDD29A27A479F2BDD73FB0C7A082C55F6033068C8B8F48A774B8C",
+      "public_sha256": "A2AB1F41A2EF5135E9D9B92A889DA0A74E0FB9CFAF9EFD0594C00E0E2413157D",
+      "token_match": true,
+      "token_count": 1868
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_berzerker_breed.lua",
+      "bytecode_sha256": "5A541C2AC6B2E0CA67EB460A9B500D9AEA8E1CCA339E264E92A0210440CAD6E9",
+      "decoded_sha256": "43CFDC35691A607F6F9403EC87F4B5335BE162CE9378418A89FBC33CFA4F7860",
+      "public_sha256": "CBD250A12569D399F532C77DCB811E9CBF7490A187C91F3C832BA2D3231BEB7C",
+      "token_match": true,
+      "token_count": 1715
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_captain_breed.lua",
+      "bytecode_sha256": "15E2349C180BEEB754BFF7205EAF2BD8EA1A6FA5F3C8AD0449B0C6A8074DF028",
+      "decoded_sha256": "99D95E9AB92E566C3A103CFC2BA180DAFB54C06F0EB0B1AA77DFE3E147FF54B6",
+      "public_sha256": "23D62E4297D9BE98F098926F2287204CEB8AD964138E3B8BBFA9FCCBBD3125F5",
+      "token_match": true,
+      "token_count": 2065
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_executor_breed.lua",
+      "bytecode_sha256": "451FB64A36600F26D847B81DD555FBD9D9A7214F37A4B1CA323A1A832C13C22D",
+      "decoded_sha256": "9CA3679B691EBF8591CEEB0040B19D4D7C0F221BD9031FB53A8A50D04262AD6F",
+      "public_sha256": "C99A047BCD0F3F4AA5FD3A59F61AE5D60E60E3D3B25F9CF0ED80167778E98224",
+      "token_match": true,
+      "token_count": 1679
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_flamer_breed.lua",
+      "bytecode_sha256": "0B052067B5A7FC75B015EA092EA8C7F736B4B529583D5CAC8B59574DB3EBC48D",
+      "decoded_sha256": "6AE775EC2130560B0FD12975AFD231E0CDABA1BBBD8F567343608263E0F4FF2F",
+      "public_sha256": "3284F9453DEEDA75447305194FB94DF4142E36FCC6EA3AF81ED7E39DE0B13155",
+      "token_match": true,
+      "token_count": 1941
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_flamer_mutator_breed.lua",
+      "bytecode_sha256": "9D3D78C2607158A8C08B4B0F98AC47694086CAE493EFF2CA1834E24BA88E8634",
+      "decoded_sha256": "9100C5A05406924A61CC230E0E5897160E090400F32478B019206ECCEB2C6AEA",
+      "public_sha256": "8ABB3C0874DCF2108414423AD9D0F723A4D4F406807282F910503E79EB293CB8",
+      "token_match": true,
+      "token_count": 1833
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_grenadier_breed.lua",
+      "bytecode_sha256": "584A95061F852333D227DB9EB4EA440714B058832E33D789879CB11B51A8990E",
+      "decoded_sha256": "8129BBCB6E3A303371E3FDFE598F6EBE3F9D9F5421913C9E6AF60530B5D7D281",
+      "public_sha256": "459D4679EF90E3BA1A945BB5CB27707B679BBF42073BEDA5EE1AE0256455B099",
+      "token_match": true,
+      "token_count": 1759
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_gunner_breed.lua",
+      "bytecode_sha256": "4357C9B5D816C7AFE784109F0C8E0A8613C0E92C8D28C0585991BD380308FC25",
+      "decoded_sha256": "7A2500774ED3D51C0CC8CA8F976F64A61DF409324AE7E2C849B2E5161D2B814A",
+      "public_sha256": "54FF8FA6C1019FAAD62708D2C14E52E77A9E962048766504CDBE7A8BB1E49204",
+      "token_match": true,
+      "token_count": 1884
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_melee_breed.lua",
+      "bytecode_sha256": "C75D646360520DD03C8CE56E91333951A38907847BC31EB1D93767C232C594C1",
+      "decoded_sha256": "71C629D451B3D6E50291E5B42E789728324DC201E5DCEDA8CCAEA199033D407C",
+      "public_sha256": "481B890D1193F68483D38D6946F9B727B176E4AB13A3899C5348F1C11F8D6C7D",
+      "token_match": true,
+      "token_count": 1637
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_netgunner_breed.lua",
+      "bytecode_sha256": "7D01A1A1C80DEF2CACE59ECDF32BDF6F113D91C7F3D9F968DA81E53E8CBAA4F2",
+      "decoded_sha256": "391F0DB6D26A7F68805BBA943EE31315A50D2BD6E5196FD8DF42C626E7520FBD",
+      "public_sha256": "A3A63CCB23AD25900D30FF36B9E9EA9C150F7AA2F494FEA5927CD4FCA75095BC",
+      "token_match": true,
+      "token_count": 1710
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_plasma_gunner_breed.lua",
+      "bytecode_sha256": "8CE3EA6CD0D4BAB767105A6F91DACE42B6C15D2DEADACCDA2CE1E4238ECB3AD2",
+      "decoded_sha256": "8464B3A8AA998B3FA61AA3F76E3BF948CC07D108375DEACE2C5931FFB15AB0DC",
+      "public_sha256": "C82C1C41060E35619314DE606AA6C4632A8508117E8103180EC2BFBA28C18561",
+      "token_match": true,
+      "token_count": 1890
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_radio_operator_breed.lua",
+      "bytecode_sha256": "50977FD3757D1C0E0768BB4227C3606DD9AA8CF393F3501F3B68417DA8D7F472",
+      "decoded_sha256": "8866E1BB044CA28A5771CE8B4234FD330DB31A1E89366FD5BFAAFB6EB11FA5B8",
+      "public_sha256": "C882CE49E8921542B5B0FEA6C98412EE0F76A5922A2F33647C2689D47968D5B3",
+      "token_match": true,
+      "token_count": 1897
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_rifleman_breed.lua",
+      "bytecode_sha256": "D44093BB21133D326DFB58BB81E23B14643AD5CCF3EAC1BC053060974FA5AAD0",
+      "decoded_sha256": "B17F65856A5C3203B8A1B291F9FE8A1E4E3AA3879D58163A4AB7A2EEEE48A3C8",
+      "public_sha256": "440169914C0658E05F50C6EC970965AB5D2210B7779030834F03119DBDEF7FA2",
+      "token_match": true,
+      "token_count": 1932
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_shocktrooper_breed.lua",
+      "bytecode_sha256": "832BD7ABFDC7DA68DD2FD1F21AED1E1D15EB5D0FEA2643A41A44820804B19F70",
+      "decoded_sha256": "5B11D84EF3D9D7FCBF71E6D7C0A6878AF61B8138FA92229A8FD784F430F4375F",
+      "public_sha256": "B9CA02C0CD3AC5FFF739E8D1751379BB1184E1AA45A2D834542D39DA91F5B8AD",
+      "token_match": true,
+      "token_count": 1888
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_sniper_breed.lua",
+      "bytecode_sha256": "B5E9F294C10780B6E7AD11202A16207C3D6CA999CA651FE0FD9EE9287ECBFF04",
+      "decoded_sha256": "C4B16F0BE0B62EC9B01B7C60E543FFA772D2B5CFED5BBD53CED8E3B037D7C9AA",
+      "public_sha256": "5B8BDBD26E8E5C2807D4E12F78D38E2FAE304C2307E98A9338F487FCB3BB7A16",
+      "token_match": true,
+      "token_count": 1715
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_twin_captain_breed.lua",
+      "bytecode_sha256": "C52CD9B75317FCB25DCD915E2981246F281B3EEBDFD99557EA09A48F698038FA",
+      "decoded_sha256": "EE37F0F739BEBD8C09AC85BEB8E23AB639D732FC6431B2FDF97F4C8BB1DB9D22",
+      "public_sha256": "C7DF7AB295EB531F015279A349FCB15A879F27601805AFBB1E0F2D3D1230A1B1",
+      "token_match": true,
+      "token_count": 1989
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_twin_captain_two_breed.lua",
+      "bytecode_sha256": "3AA1D7955C7C246B63475244014DF1509DC9ADDAB5B0297E5906FBBEC20EB730",
+      "decoded_sha256": "D977F0B181845C79A6A2D29681CC99B959015AF29A6D0B3F055431BB7F5D9F55",
+      "public_sha256": "53EEE2E9E1857DD607E8BF1606C53FC38A2919463F8002E833FC5FAC3CA94418",
+      "token_match": true,
+      "token_count": 1983
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_vanguard_breed.lua",
+      "bytecode_sha256": "EB69CAE9BEFEBBD370BFF5F85A6DA3D187E7C7B656BD47F06AC53699F1060E81",
+      "decoded_sha256": "81052B2DB8CA89A966766A4D5BD2585B57B8B9D65F14FED460DB682D8CF2DC38",
+      "public_sha256": "3F2356BD27B1335580F18CD2117463A2C789690B14D79DBB14D223DC78286F9B",
+      "token_match": true,
+      "token_count": 1852
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_wizard_breed.lua",
+      "bytecode_sha256": "2590DB35070EB24F31C64F53C971EAF8C784F0332BD8326AA1AAC4DBFE231540",
+      "decoded_sha256": "0D6239776EB2DFC1A09EAF03A20C41A2173576911557432B7C29D556B3D2E418",
+      "public_sha256": "334ED86C713695B485A9DB51899B0590228791C04BE9799B58E78474207F998A",
+      "token_match": true,
+      "token_count": 2215
+    },
+    {
+      "path": "scripts/settings/breed/breeds/sand_vortex_breed.lua",
+      "bytecode_sha256": "7C2B2EBC43BA83A6A21CD13C6C80121D53AB2EAD2AA96FE298885AA216D65706",
+      "decoded_sha256": "A815C1BBFE6C373C657D8E31598B640C703313620D081A87CCEA0A9F036AD009",
+      "public_sha256": "4EBBA1C07D38384D1E08841B65BD46D28D031181BBE3CC26B2A2D69D0679D78B",
+      "token_match": true,
+      "token_count": 587
+    },
+    {
+      "path": "scripts/settings/breed/breeds/valkyrie/attack_valkyrie_breed.lua",
+      "bytecode_sha256": "931E877DA10B901D56FBB21D997D57AECE9A82A3BF8FAE98D37FDF9241EAC9BD",
+      "decoded_sha256": "AC812BAED0C22FA5A8E6C8F6CE25927DD1EAEBB04BBCEB742326D4709B0F04B0",
+      "public_sha256": "A6080B5A3F4504981A75C36BB810B29ADB9B7CBF5AB7E304A606111EF50C2B60",
+      "token_match": true,
+      "token_count": 583
+    }
+  ],
+  "matched": 70,
+  "limits": "Offline module tokens only; no game launch, in-game timing or full-game compatibility claim."
+}

@@ -1,0 +1,511 @@
+{
+  "source": "D:\\ModProject\\.references\\darktide-source-1.12.5",
+  "commit": "0f0cb45991e9305ef4a7b925370792d7d6035f95",
+  "blocks": [
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_armored_hound_breed.lua",
+      "tags": {
+        "minion": true,
+        "special": true,
+        "disabler": true
+      },
+      "sha256": "e1b33ced50bbe226fd4d422d94263bd5e05d1662a103a53d54e7fd0f3be71ca8"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_armored_infected_breed.lua",
+      "tags": {
+        "minion": true,
+        "horde": true,
+        "melee": true
+      },
+      "sha256": "8d6cef00756a6543050a8154ce51e4092ee56ae46cb5415900f87aad0035fc99"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_beast_of_nurgle_breed.lua",
+      "tags": {
+        "minion": true,
+        "monster": true
+      },
+      "sha256": "078da2cdb790ad10e214411b5b50771fda2ff900e81790eba5666f4e0d94c5d3"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_daemonhost_breed.lua",
+      "tags": {
+        "minion": true,
+        "witch": true,
+        "monster": true
+      },
+      "sha256": "6be8a1699f99d21fb953c2f59929b22e6c05a652bf2626807086751b7fe0374e"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_hound_breed.lua",
+      "tags": {
+        "minion": true,
+        "special": true,
+        "disabler": true
+      },
+      "sha256": "cb98b9bbcb5bd4b5e441a7cfbc3f19937e5e35a9bc546509b5022fd13c197e7d"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_hound_mutator_breed.lua",
+      "tags": {
+        "minion": true,
+        "special": true,
+        "mutator": true,
+        "disabler": true
+      },
+      "sha256": "e622dce475a35b153c4cb21ebb32b7879e28568e7ccc8953a2437f600fd6d8e4"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_lesser_mutated_poxwalker_breed.lua",
+      "tags": {
+        "minion": true,
+        "poxwalker": true,
+        "horde": true,
+        "melee": true
+      },
+      "sha256": "d2ed66bdc9357291ab5dbb260b29b67d92a0b73fa5d4742683a23598b54a743e"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_mutated_poxwalker_breed.lua",
+      "tags": {
+        "minion": true,
+        "poxwalker": true,
+        "horde": true,
+        "melee": true
+      },
+      "sha256": "92783ad6827ceffc1b683c636750cd510493a94ab40a9cda3c91416f0d66973f"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_mutator_daemonhost_breed.lua",
+      "tags": {
+        "minion": true,
+        "witch": true,
+        "monster": true
+      },
+      "sha256": "74148823c66c48108f0b41c6baf8717419e5c98868e4695c5c7bd44fbfcd7f19"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_mutator_ritualist_breed.lua",
+      "tags": {
+        "minion": true,
+        "ritualist": true
+      },
+      "sha256": "77f7f0d3b7b51d7b12cd12e2faa93b325644b7257385883e140a6cb3904bbbe5"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_newly_infected_breed.lua",
+      "tags": {
+        "minion": true,
+        "horde": true,
+        "melee": true
+      },
+      "sha256": "f5f41899cd9fd5cac395e84ebad2a48fd98e30503554420931555fc21f6b30e3"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_ogryn_bulwark_breed.lua",
+      "tags": {
+        "minion": true,
+        "bulwark": true,
+        "elite": true,
+        "melee": true,
+        "ogryn": true
+      },
+      "sha256": "720fe5aada4e43a08856c11026ad401611ea75a6a1833814b4061d3a1b92c7a2"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_ogryn_executor_breed.lua",
+      "tags": {
+        "minion": true,
+        "ogryn": true,
+        "elite": true,
+        "melee": true
+      },
+      "sha256": "fee47e5bd99093a08f8793f4a7d7fc284262ee91e3b4a6825eb2c299516c5990"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_ogryn_gunner_breed.lua",
+      "tags": {
+        "far": true,
+        "minion": true,
+        "elite": true,
+        "ogryn": true
+      },
+      "sha256": "187c5e1c28ebdac2a1329288d0b210301b8b53108dfb9ea994f34ac6ff05ef6e"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_ogryn_houndmaster_breed.lua",
+      "tags": {
+        "minion": true,
+        "ogryn": true,
+        "monster": true,
+        "melee": true
+      },
+      "sha256": "316e0ec9ecd1d3abead1162fd8ac98186f9cd6c73663e1bb4aa556c619793f09"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_plague_ogryn_breed.lua",
+      "tags": {
+        "minion": true,
+        "monster": true
+      },
+      "sha256": "c54efcd0d4be921070507f29f0ac6cb72aaf124b50add32cdd9adbceb2d257a2"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_poxwalker_bomber_breed.lua",
+      "tags": {
+        "minion": true,
+        "bomber": true,
+        "scrambler": true,
+        "special": true
+      },
+      "sha256": "a63ebe1e8e2f83dae295e47855a6bdffda086bfd5f94408b8a1659ac17289a4e"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_poxwalker_breed.lua",
+      "tags": {
+        "minion": true,
+        "poxwalker": true,
+        "horde": true,
+        "melee": true
+      },
+      "sha256": "f7d163f6ecaaf1ccef9db0f82cc731267427c3217ba29d610bea26acac507c02"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/chaos/chaos_spawn_breed.lua",
+      "tags": {
+        "minion": true,
+        "monster": true
+      },
+      "sha256": "a9ed5188e498305eb6a8eec92c25706e444d643158fccaff7b7c642454c6a686"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/companion/companion_dog_breed.lua",
+      "tags": {
+        "minion": true,
+        "companion": true
+      },
+      "sha256": "c0ae60172f90f84d0626fa314119567775e1a397d38ea4a9b6dda0fae1cd8edc"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/companion/companion_servo_skull_breed.lua",
+      "tags": {
+        "minion": true,
+        "companion": true
+      },
+      "sha256": "33342acbd64710baee26981ce0eb81527045cffbf58899b940e0ad634e0dd5c4"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cryptic_breed.lua",
+      "tags": {
+        "cryptic": true
+      },
+      "sha256": "f607306a5debe432897004642242699716a2dc4c6c2c4971d8b406a240038ae6"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_assault_breed.lua",
+      "tags": {
+        "minion": true,
+        "far": true,
+        "close": true,
+        "roamer": true
+      },
+      "sha256": "93b2100328f176b327a61928d19c11ac77e8ff09925b9f8b94bb7a9584c605e6"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_berzerker_breed.lua",
+      "tags": {
+        "melee": true,
+        "minion": true,
+        "elite": true
+      },
+      "sha256": "be05de7ccbd1391c9802e16b0383cc233bf036a7073c6b0a79a86886991ffa3f"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_captain_breed.lua",
+      "tags": {
+        "minion": true,
+        "cultist_captain": true
+      },
+      "sha256": "6e2b0a6166b8a2b2e9f17198f62bfc4db63d4015c1060ce7c3185a9e16746cf5"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_flamer_breed.lua",
+      "tags": {
+        "minion": true,
+        "scrambler": true,
+        "special": true
+      },
+      "sha256": "30e79db28f39e6c3cf8197665b915ed96e452252b9e16ad4c255be7ce3b7de60"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_grenadier_breed.lua",
+      "tags": {
+        "minion": true,
+        "special": true
+      },
+      "sha256": "8b555df4bcad79e4bf9ef5e5d684a7a056c3792101632e4603e7a4979ead2848"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_gunner_breed.lua",
+      "tags": {
+        "minion": true,
+        "far": true,
+        "elite": true
+      },
+      "sha256": "fe76e8f89f36faf2c3aa41f34d7b96e63bcde90610f2578f2eb79c5792df206e"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_melee_breed.lua",
+      "tags": {
+        "melee": true,
+        "roamer": true,
+        "minion": true
+      },
+      "sha256": "319a6dcf0440aa8b9c030c8e80c6a368837e899c03ab7d19a34f1f485d2b365c"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_mutant_breed.lua",
+      "tags": {
+        "disabler": true,
+        "minion": true,
+        "special": true
+      },
+      "sha256": "9e863ede2cd30f06fd9bc437a5796962a4292ccc7c0541b26a72c6a34396b04d"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_mutant_mutator_breed.lua",
+      "tags": {
+        "disabler": true,
+        "minion": true,
+        "special": true
+      },
+      "sha256": "bc258703837ee890bdb2f9a7acc4d3bf08b3ffeec235b981e26072bb9ba7a5e6"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_ritualist_breed.lua",
+      "tags": {
+        "minion": true,
+        "ritualist": true
+      },
+      "sha256": "0d17d11e69a723d8a090f167ee132a2522071a08e14c8022c1955b9a538c1faa"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_shocktrooper_breed.lua",
+      "tags": {
+        "minion": true,
+        "close": true,
+        "elite": true
+      },
+      "sha256": "beac53c285c8f7a1762824e78a20c2b133a559582fa6efaeba800a36680b6d0f"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/cultist/cultist_vanguard_breed.lua",
+      "tags": {
+        "melee": true,
+        "roamer": true,
+        "minion": true
+      },
+      "sha256": "b35396fb05333d7976b3f8f17480e11bb968e2a81c9721ed946ccd2ea92d5a63"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/human_breed.lua",
+      "tags": {
+        "human": true
+      },
+      "sha256": "f8797ec57f8ea3bbedb3929a054720d2632542e4f00848f29c8375dca403b167"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/nurgle_flies_breed.lua",
+      "tags": {
+        "minion": true
+      },
+      "sha256": "66854cc724c9dec921de56b9ec2633e44ba10fb549e164cdfb1c4f77cf432111"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/ogryn_breed.lua",
+      "tags": {
+        "ogryn": true
+      },
+      "sha256": "6062f24407c203b7e0abadc8c39c2b4d106d4d31fb94363f5d7fe4c5ff6047ba"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_assault_breed.lua",
+      "tags": {
+        "minion": true,
+        "close": true,
+        "roamer": true
+      },
+      "sha256": "7eb019b6499c3159489a2589bd7e063114dd93cc0130726cc5264af019244074"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_berzerker_breed.lua",
+      "tags": {
+        "melee": true,
+        "minion": true,
+        "elite": true
+      },
+      "sha256": "e41db52a057b8336749ce060227d98e08a73a2d937c687b972e50db4e60f4b2e"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_captain_breed.lua",
+      "tags": {
+        "captain": true,
+        "minion": true
+      },
+      "sha256": "9f016ca16edec68b36fbf2dc37e5f377c0517dedd96ce853b8dc263aff5b1188"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_executor_breed.lua",
+      "tags": {
+        "melee": true,
+        "minion": true,
+        "elite": true
+      },
+      "sha256": "ad6c2819023274c0876b4f1b64aa539b8ab19a42113d393be1ba65a8d0fa17be"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_flamer_breed.lua",
+      "tags": {
+        "minion": true,
+        "scrambler": true,
+        "special": true
+      },
+      "sha256": "02b586c846ad9badef0108ce66cacd23109e0468375f52d5948c5e65419c51fd"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_flamer_mutator_breed.lua",
+      "tags": {
+        "minion": true,
+        "mutator": true,
+        "scrambler": true,
+        "special": true
+      },
+      "sha256": "bcf133443730def81386abf58251379a3b262a62902f089155f94b2084ab2489"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_grenadier_breed.lua",
+      "tags": {
+        "minion": true,
+        "scrambler": true,
+        "special": true
+      },
+      "sha256": "e440cfa318f1640fd9d393f0c47342c4d3df4b7eb87394529be8874ecf81c0e9"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_gunner_breed.lua",
+      "tags": {
+        "minion": true,
+        "far": true,
+        "elite": true
+      },
+      "sha256": "359e7b53858c3e02905ce555fdad64285818525bb18312df95c35e5f16b4986c"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_melee_breed.lua",
+      "tags": {
+        "melee": true,
+        "roamer": true,
+        "minion": true
+      },
+      "sha256": "7b2d8eb8dfb4e5542ca82aa14786c102e1a2874ea154208ecde82c3633477409"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_netgunner_breed.lua",
+      "tags": {
+        "disabler": true,
+        "minion": true,
+        "special": true
+      },
+      "sha256": "94f16f05785214847682f1ef6c4715c56d564d95891a807bbb26985b4e27bc62"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_plasma_gunner_breed.lua",
+      "tags": {
+        "minion": true,
+        "far": true,
+        "exclude_for_havoc_speed_buff": true,
+        "elite": true
+      },
+      "sha256": "89adc591900caec747a12c0d33ba8d3f45bfd902e37c0abff49cada3dd1697f0"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_radio_operator_breed.lua",
+      "tags": {
+        "minion": true,
+        "far": true,
+        "elite": true
+      },
+      "sha256": "49a4aba5ac323f4100f32424631c483e425c92d39a156ce83e72c1e48f1db11c"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_rifleman_breed.lua",
+      "tags": {
+        "minion": true,
+        "far": true,
+        "roamer": true
+      },
+      "sha256": "3b219bc695965ce3c43bc314b12ab18c6deeadde29bcd7e23e8890ed53fab939"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_shocktrooper_breed.lua",
+      "tags": {
+        "minion": true,
+        "close": true,
+        "elite": true
+      },
+      "sha256": "1854cc465c70d124925c0a4fa25d7c09dbbb6084b3a6be7e28e540e0121db894"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_sniper_breed.lua",
+      "tags": {
+        "minion": true,
+        "special": true,
+        "sniper": true
+      },
+      "sha256": "af84281e62d5efd428660c38eec7f810d5ab02856b2f3a7baf88f3720192f10f"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_twin_captain_breed.lua",
+      "tags": {
+        "captain": true,
+        "minion": true
+      },
+      "sha256": "284f42f50b6b7e2441e454186880c42ccbb7c493e3c555fe55d2a071c5ed6754"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_twin_captain_two_breed.lua",
+      "tags": {
+        "captain": true,
+        "minion": true
+      },
+      "sha256": "e9e759d16c21db19e50d75170c51b0315b8a431ce245c1c6a067513ce51f6926"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/renegade/renegade_vanguard_breed.lua",
+      "tags": {
+        "melee": true,
+        "roamer": true,
+        "minion": true
+      },
+      "sha256": "a8323ea09d331cc1b510bc85ae3ba8e6c82ef97e72252c7d87c42f5c6526e7b0"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/sand_vortex_breed.lua",
+      "tags": {
+        "minion": true
+      },
+      "sha256": "9f48881f180bee8f2b7d42c21d448e442bcb3440dd08c6a509cbd0ed62a35154"
+    },
+    {
+      "path": "scripts/settings/breed/breeds/valkyrie/attack_valkyrie_breed.lua",
+      "tags": {
+        "minion": true
+      },
+      "sha256": "64503ea6f3c29302f01dcf1191288fb287a1685eac0f6b59d018b1c8a6bd36d2"
+    }
+  ],
+  "matched": 57,
+  "elite_breeds": 12,
+  "scope": "Actual old tag blocks versus Lua evaluation; not an old-source full-suite claim."
+}

@@ -35,7 +35,16 @@ def payload():
     return files
 
 
+def suite_evidence(files):
+    evidence_path = ROOT / 'build/checks/tests-result.json'
+    evidence = json.loads(evidence_path.read_text(encoding='utf-8'))
+    assert evidence['passed'] and not evidence['selected'], 'Run the complete tests/run.py aggregate before packaging.'
+    assert evidence['source_payload_sha256'] == {name:hashlib.sha256(data).hexdigest() for name,data in files.items()}, 'Suite evidence must match the packaged source bytes.'
+    return evidence_path, evidence
+
+
 def validate(archive, files, version):
+    evidence_path, evidence = suite_evidence(files)
     runtime = os.environ.get('DARKTIDE_TEST_RUNTIME')
     assert runtime, 'Set DARKTIDE_TEST_RUNTIME to the already approved isolated runtime.'
     sys.path.insert(0, runtime)
@@ -67,7 +76,9 @@ def validate(archive, files, version):
             'archive': str(archive), 'sha256': hashlib.sha256(archive.read_bytes()).hexdigest(),
             'archive_bytes': archive.stat().st_size, 'entries': len(files), 'compiled_lua_mod_files': count,
             'crc_layout_payload_import_checks': 'passed', 'nested_archives': 0,
-            'full_suite': 'failed: pre-existing elite_density assertion; see candidate validation notes',
+            'full_suite': f"passed: {len(evidence['results'])} complete offline regression scripts",
+            'suite_evidence': str(evidence_path),
+            'suite_evidence_sha256': hashlib.sha256(evidence_path.read_bytes()).hexdigest(),
             'live_gameplay': 'not performed', 'fps_claim': False,
             'payload_sha256': {name: hashlib.sha256(data).hexdigest() for name, data in files.items()}}
 
@@ -84,6 +95,7 @@ assert directory.resolve().is_relative_to((ROOT / 'build').resolve())
 archive = directory / f'{MOD}-{version}.zip'
 if not args.check:
     assert not archive.exists(), 'Existing candidates are immutable; use --check or a new test version.'
+    suite_evidence(files)
     with zipfile.ZipFile(archive, 'x', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         for name, data in files.items():
             entry = zipfile.ZipInfo(name, date_time=(2026, 10, 3, 0, 0, 0))

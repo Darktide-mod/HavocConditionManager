@@ -1,9 +1,10 @@
 from pathlib import Path
-import sys,re,json
+import sys,re,json,os
 work=Path(__file__).resolve().parent
 
 from project_env import PROJECT, GAME, FIXTURES, CHECKS, SOURCES
 from isolated_diy_io import isolate
+from breed_fixture_tags import parse_tags
 isolate()
 from lupa.luajit21 import LuaRuntime
 L=LuaRuntime(unpack_returned_tuples=True)
@@ -76,7 +77,7 @@ end
 ''')
 def lua_file(path): return L.execute(path.read_text(encoding='utf-8-sig'),name='@'+str(path))
 def load_mod(p):
-    source=stage if p.startswith("HavocConditionManager/") else PROJECT.parent/"HavocEnemyDirector/src"
+    source=stage if p.startswith("HavocConditionManager/") else Path(os.environ.get('DARKTIDE_HED_SOURCE', str(PROJECT.parent/"HavocEnemyDirector/src")))
     return lua_file(source/(p+".lua"))
 L.globals().load_mod_file=load_mod
 L.globals().read_mod_file=lambda p,ext: (stage/(p+'.'+ext)).read_text(encoding='utf-8-sig')
@@ -96,7 +97,7 @@ for p in (game/'scripts/settings/breed/breeds').rglob('*_breed.lua'):
         'can_patrol':bool(re.search(r'can_patrol\s*=\s*true',s)),
         'sub_faction_name':(re.search(r'sub_faction_name\s*=\s*"(\w+)"',s).group(1) if re.search(r'sub_faction_name\s*=\s*"(\w+)"',s) else None),
         'can_be_used_for_all_factions':bool(re.search(r'can_be_used_for_all_factions\s*=\s*true',s)),
-        'tags':{k:True for k in re.findall(r'(\w+)\s*=\s*true',tags.group(1))},'display_name':name}
+        'tags':parse_tags(tags.group(1)),'display_name':name}
 cache['scripts/settings/breed/breeds']=tbl(breeds)
 cache['scripts/settings/roamer/roamer_slot_placement_functions']=tbl({})
 cache['scripts/managers/main_path/utilities/spawn_point_queries']=tbl({})

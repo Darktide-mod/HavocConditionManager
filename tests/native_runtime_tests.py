@@ -10,6 +10,7 @@ L.execute("function table.clear(t) for k in pairs(t) do t[k]=nil end end; functi
 cache["scripts/utilities/loaded_dice"]=lua_file(GAME/"scripts/utilities/loaded_dice.lua")
 load_mod("HavocConditionManager/scripts/mods/HavocConditionManager/native_runtime_hooks")
 L.globals().native_special_setup=method("scripts/managers/pacing/specials_pacing/specials_pacing.lua","SpecialsPacing","_setup","local SpecialsPacing=NativeSpecial")
+L.globals().native_special_effective=method("scripts/managers/pacing/specials_pacing/specials_pacing.lua","SpecialsPacing","_update_effective_max_alive_specials","local SpecialsPacing=NativeSpecial")
 L.globals().native_horde_init=method("scripts/managers/pacing/horde_pacing/horde_pacing.lua","HordePacing","_init_coordinated_horde_strikes","local HordePacing=NativeHorde")
 L.globals().native_horde_evaluate=method("scripts/managers/pacing/horde_pacing/horde_pacing.lua","HordePacing","_evaluate_coordinated_horde_strike","local HordePacing=NativeHorde; local TEMP_SETTINGS={}")
 L.globals().native_horde_allowance=method("scripts/managers/pacing/horde_pacing/horde_pacing.lua","HordePacing","_update_horde_allowance","local HordePacing=NativeHorde; local TRAVEL_DISTANCE_CHANGE_ALLOWANCE_MIN,TRAVEL_DISTANCE_CHANGE_ALLOWANCE_MAX=5,8")
@@ -46,11 +47,16 @@ local entry
 for _,e in ipairs(A.entries) do if e.family=="specials" and e.fields.max_alive_specials then entry=e; break end end
 local base_slots=entry.root.max_alive_specials
 configure({special_slots=2})
-local sp={_max_alive_specials_multiplier=1.5,_max_alive_specials_bonus=2,_timer_modifier=1,
+local sp={_max_alive_specials_multiplier=1.5,_max_alive_specials_bonus=2,_max_alive_specials_bonus_multiplier=1,_timer_modifier=1,
+    _update_effective_max_alive_specials=native_special_effective,
     _setup_specials_slot=function(self,slots,slot,template,timer) slot.timer=timer; slot.breed=template.breeds.all[1] end}
 setup(native_special_setup,sp,entry.root)
 assert(sp._max_alive_specials==math.ceil(base_slots*2*1.5+2))
 assert(#sp._specials_slots==sp._max_alive_specials and entry.root.max_alive_specials==base_slots)
+assert(sp._effective_max_alive_specials==sp._max_alive_specials)
+sp._max_alive_specials_bonus_multiplier=.5;sp:_update_effective_max_alive_specials()
+assert(sp._effective_max_alive_specials==math.ceil(base_slots*2*1.5+1))
+sp._max_alive_specials_bonus_multiplier=1
 setup(native_special_setup,sp,sp._template)
 assert(sp._max_alive_specials==math.ceil(base_slots*2*1.5+2),"Native template re-setup must not rescale")
 configure({special_slots=3},{patches={[entry.id]={max_alive_specials=7}},rules={}})

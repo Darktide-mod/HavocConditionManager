@@ -1,0 +1,266 @@
+HavocConditionManager: syntax_tests.py
+HavocConditionManager: 122 Lua/mod files; syntax and local imports: PASS
+HavocConditionManager: game_1_13_compat_tests.py
+Current/legacy difficulty labels and colors: PASS
+Roamer forced sub-faction, trailing nil arguments and return values: PASS
+Native charged/continuous/shared resources, disabled/inventory abilities, grenades and legacy cooldown boundary: PASS
+HavocConditionManager: native_replacement_loading_tests.py
+Native pacing replacement, prepared identity, heat transitions, deferred monsters, mission snapshot, reload and legacy boundaries: PASS
+Native mutator readiness/activation, deduplication, deferred spawning, scope cleanup, mission/reload and foreign ownership: PASS
+HavocConditionManager: filesystem_ffi_tests.py
+PASS: 3 load-order/declaration combinations, twice per VM; real Unicode scans, reads, writes, replacement, package backup/export and foreign binding preservation.
+HavocConditionManager: diy_minion_lifecycle_tests.py
+PASS: 24 native deletion cases; ownership, cleanup, mission reuse, external pause, construction/first proc and replaced extension; native-only scripts skip 1000 empty overlays; scoped passives perform zero global scans.
+HavocConditionManager: minion_stat_gate_tests.py
+PASS: 10 class/authority/overlay cases (1000 callbacks each), scope/settings/time/engine changes, respawn, character/mission/timeout, repeated require, omitted client callback and mocked reload boundaries.
+HavocConditionManager: native_template_tests.py
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\native_template_tests.py", line 4, in <module>
+    L.execute("""
+  File "lupa/luajit21.pyx", line 441, in lupa.luajit21.LuaRuntime.execute
+  File "lupa/luajit21.pyx", line 1872, in lupa.luajit21.run_lua
+  File "lupa/luajit21.pyx", line 1886, in lupa.luajit21.call_lua
+  File "lupa/luajit21.pyx", line 1913, in lupa.luajit21.execute_lua_call
+  File "lupa/luajit21.pyx", line 1794, in lupa.luajit21.raise_lua_error
+lupa.luajit21.LuaError: [string "<python>"]:27: Coarse control has no consumers: elite_density
+stack traceback:
+	[string "<python>"]:27: in main chunk
+	[C]: in function 'assert'
+HavocConditionManager: native_intensity_profile_tests.py
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\native_intensity_profile_tests.py", line 81, in <module>
+    with zipfile.ZipFile(PROJECT/'release/3.4.0/HavocConditionManager-3.4.0.zip') as archive:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\GDS-DESKTOP\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\zipfile\__init__.py", line 1353, in __init__
+    self.fp = io.open(file, filemode)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\HavocConditionManager\\release\\3.4.0\\HavocConditionManager-3.4.0.zip'
+HavocConditionManager: native_elite_balance_tests.py
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\native_elite_balance_tests.py", line 11, in <module>
+    L.execute('''
+  File "lupa/luajit21.pyx", line 441, in lupa.luajit21.LuaRuntime.execute
+  File "lupa/luajit21.pyx", line 1872, in lupa.luajit21.run_lua
+  File "lupa/luajit21.pyx", line 1886, in lupa.luajit21.call_lua
+  File "lupa/luajit21.pyx", line 1913, in lupa.luajit21.execute_lua_call
+  File "lupa/luajit21.pyx", line 1794, in lupa.luajit21.raise_lua_error
+lupa.luajit21.LuaError: [string "<python>"]:44: assertion failed!
+stack traceback:
+	[string "<python>"]:44: in main chunk
+	[C]: in function 'assert'
+HavocConditionManager: native_coordinated_load_tests.py
+All ten levels: 56 native tactics; 4480 load-boundary checks; real native selector, capable-player/stage retention, unchanged global load and HED append/replace precedence: PASS
+Actual native EventManager: successful local spawns attach recovery ownership once; failed/client events ignored; reset unregisters; no diagnostic output or category scans: PASS
+HavocConditionManager: native_runtime_tests.py
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\native_runtime_tests.py", line 23, in <module>
+    L.execute("""
+  File "lupa/luajit21.pyx", line 441, in lupa.luajit21.LuaRuntime.execute
+  File "lupa/luajit21.pyx", line 1872, in lupa.luajit21.run_lua
+  File "lupa/luajit21.pyx", line 1886, in lupa.luajit21.call_lua
+  File "lupa/luajit21.pyx", line 1913, in lupa.luajit21.execute_lua_call
+  File "lupa/luajit21.pyx", line 1794, in lupa.luajit21.raise_lua_error
+lupa.luajit21.LuaError: [string "<python>"]:11: attempt to call method '_update_effective_max_alive_specials' (a nil value)
+stack traceback:
+	[string "<python>"]:29: in main chunk
+	[string "<python>"]:11: in function 'setup'
+HavocConditionManager: native_pressure_tests.py
+Native capacity decisions, challenge/mission/heat pauses, default and remote behavior, and HED gates: 27200 PASS
+Difficulty-5 follow-up threshold 95 -> 190; 100-enemy baseline stall corrected; reduced 190 cap still pauses: PASS
+One 45-second native horde episode at low load: baseline/3.3.0/updated waves = 3 11 3 (not a gameplay spawn-rate measurement): PASS
+Same-breed and finite player-dependent disabler quotas scale; native breed choices and precise HED overrides preserved: PASS
+HavocConditionManager: native_encounter_location_tests.py
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\native_encounter_location_tests.py", line 56, in <module>
+    L.execute('''
+  File "lupa/luajit21.pyx", line 441, in lupa.luajit21.LuaRuntime.execute
+  File "lupa/luajit21.pyx", line 1872, in lupa.luajit21.run_lua
+  File "lupa/luajit21.pyx", line 1886, in lupa.luajit21.call_lua
+  File "lupa/luajit21.pyx", line 1913, in lupa.luajit21.execute_lua_call
+  File "lupa/luajit21.pyx", line 1794, in lupa.luajit21.raise_lua_error
+lupa.luajit21.LuaError: [string "<python>"]:621: attempt to call method 'heat_active' (a nil value)
+stack traceback:
+	[string "<python>"]:135: in main chunk
+	[string "<python>"]:621: in function '_update_allowance'
+HavocConditionManager: native_reachable_placement_tests.py
+Actual 21-crusher formation: disconnected far point and incomplete route rejected before creation; nearer walking route accepted, all 21 arrive through native creation with one shared query object: PASS
+Delayed route completion: zero speculative spawns, one shared in-flight query, bounded polling, no blocking game-thread wait: PASS
+Near fallback can use a reachable side/rear point; live LOS and 20m minimum from every teammate still apply: PASS
+Stacked-floor fixture: AStar and passive patrol destination use the real player's projected floor: PASS
+Live path invalidation, disconnected formation positions, target floor change and player movement reject stale permissions: PASS
+Actual native queue consumption: route closes after enqueue, creation is cancelled and one replacement credit is retained: PASS
+Incomplete/missing navigation fails closed; concurrent callers share <=1 search start/second and all navigation handles are released: PASS
+Actual native Roamer.destroy: pending placement query and live path are released before their borrowed traversal rules; repeated cleanup is safe: PASS
+HavocConditionManager: native_door_placement_tests.py
+Actual native door behavior: inactive player panel does not itself prevent AI opening; closed non-openable door leaves the AI waiting: PASS
+Complete native paths pass without extra door/graph/state/metadata inspection; no door interaction or diagnostic output: PASS
+All terrain links remain native; mixed route including a closed door creates 21 crushers via native groups using one shared path, without touching the door: PASS
+Async completion and cached route reuse follow native path validity; failed or invalidated native paths still refuse spawning: PASS
+Actual native dequeue: door-state-only changes no longer cancel creation; native path invalidation still cancels and preserves one credit; all handles released: PASS
+HavocConditionManager: native_special_pressure_tests.py
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\native_special_pressure_tests.py", line 22, in <module>
+    L.execute('''
+  File "lupa/luajit21.pyx", line 441, in lupa.luajit21.LuaRuntime.execute
+  File "lupa/luajit21.pyx", line 1872, in lupa.luajit21.run_lua
+  File "lupa/luajit21.pyx", line 1886, in lupa.luajit21.call_lua
+  File "lupa/luajit21.pyx", line 1913, in lupa.luajit21.execute_lua_call
+  File "lupa/luajit21.pyx", line 1794, in lupa.luajit21.raise_lua_error
+lupa.luajit21.LuaError: [string "<python>"]:135: attempt to call method '_update_effective_max_alive_specials' (a nil value)
+stack traceback:
+	[string "<python>"]:40: in main chunk
+	[string "<python>"]:36: in function 'create'
+	[string "<python>"]:135: in function '_setup'
+HavocConditionManager: native_roamer_memory_tests.py
+Actual flood-fill slot boxing and subzone placement: identical counts/RNG, valid boxed results, caller temporaries preserved, bounded scratch at high density: {'unscoped_peak': 1729920, 'count': 36000, 'scoped_peak': 14416, 'slots': 300} PASS
+HavocConditionManager: native_spawn_integrity_tests.py
+Reproduced native queue overwrite and nil-position crash: [string "<python>"]:12: attempt to index field 'position' (a nil value)
+Growing native ring: 3,000-request burst, 42,000 wrapped requests, FIFO/params/boxed positions, one-per-update, reentrant growth and default/remote equivalence: PASS
+Actual native roamer update: capacity refusal erased pending elites; fix preserves plans on both path types, resumes after capacity returns and retains dead-unit cleanup: PASS
+HavocConditionManager: native_spawn_smoothing_tests.py
+Native spawner updates: 40 concurrent spawns -> at most 2; 240/240 retained with FIFO results, source metadata and completion callbacks: PASS
+Sustained demand fairness, destroyed/paused spawners, original delays, final-unit exit, native defaults and remote behavior: PASS
+Native horde retry retains pending wave; trickle attempts untouched; native Buff 300 boundary preserved with 2700 warnings summarized in 2 writes: PASS
+HavocConditionManager: native_straggler_tests.py
+Native default-level perception -> release of entity/aggro/roamer record -> deferred queue -> actual creation -> no repeat credit: PASS
+Actual native objective component init and registrar: unassigned default objective permits rear recycling: PASS
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\native_straggler_tests.py", line 4, in <module>
+    L.execute('''
+  File "lupa/luajit21.pyx", line 441, in lupa.luajit21.LuaRuntime.execute
+  File "lupa/luajit21.pyx", line 1872, in lupa.luajit21.run_lua
+  File "lupa/luajit21.pyx", line 1886, in lupa.luajit21.call_lua
+  File "lupa/luajit21.pyx", line 1913, in lupa.luajit21.execute_lua_call
+  File "lupa/luajit21.pyx", line 1794, in lupa.luajit21.raise_lua_error
+lupa.luajit21.LuaError: [string "<python>"]:42: assertion failed!
+stack traceback:
+	[string "<python>"]:42: in main chunk
+	[C]: in function 'assert'
+HavocConditionManager: native_rear_ambient_tests.py
+Untouched native rear roamer: one 30-second timer, actual unregister, one credit and deferred passive-record cleanup without respawn/double despawn: PASS
+Ahead/between-team/unknown/moved/open-map passive enemies stay; bots, visibility, damage state and ownership guards apply; returning team cancels at removal: PASS
+240 eligible enemies: all retired by 95 seconds, four/sec maximum, one/update, <=four teammate LOS calls/update, bounded 64-slot ring and zero route queries: PASS
+Long frame never triggers a catch-up removal burst: PASS
+HavocConditionManager: native_refill_optimization_tests.py
+103 native earned credits wait beyond 180 seconds, then all 103 recreate within 26 seconds once placement/capacity permit; no batch gaps or rate bursts: PASS
+Paused head class cannot block two ready classes; non-head completions preserve the paused credit and all three native breeds recreate exactly once: PASS
+Global one-inflight bound, non-head cancellation, retry and native group completion retain every allowance exactly once: PASS
+Native capacity pressure preserves accepted allowance and performs no placement search while full: PASS
+No authored hidden points: bounded local mesh candidates produce a hidden same-floor anchor with a complete enemy-to-player route before spawning: PASS
+Local candidates still reject failed native routes and visible positions; delayed route work stays one shared query without repeated local scans: PASS
+HavocConditionManager: native_recycling_recovery_tests.py
+Actual ascender node: native door pool and timing; six actual entities and queue IDs; active non-objective event leftovers retired without waiting for completion: PASS
+Native required-objective event: six additional entities remain excluded after event completion: PASS
+Native full/expanded spawn rings: 256/300 original requests and positions consumed exactly once, zero placement/path/LOS admission work: PASS
+Ordinary horde with retained group target: native creation -> retirement -> one actual replacement -> second retirement without another credit: PASS
+HavocConditionManager: native_recovery_safety_tests.py
+Blocked recovery keeps teammate, objective and fresh-visibility guards with no diagnostics or route/navigation queries: PASS
+240 continuously blocked enemies over 900 seconds: zero diagnostic output including mission cleanup, no box allocation or added ray/path queries: PASS
+Ready-queue consumption rechecks a returning bot, renewed damage and actual visibility: PASS
+Generic native creation is tracked without a source whitelist or global event poll: PASS
+Six separate retirements coalesce into one finite native batch; all six recreate with original breed/health, group closes, replacements earn no second credit: PASS
+HavocConditionManager: native_retirement_regression_tests.py
+Native melee-elite target selection at 100/200m; constant modifiers, old/healed injuries, 12-member modifier patrols and unrelated population 240: eligible entities actually retired: PASS
+Actual Buff.destroy + native rotten stop/death payload: deferred non-death removal has no liquid/VFX/SFX; native cleanup, genuine death and failed retirement retain callbacks: PASS
+HavocConditionManager: native_integration_tests.py
+Standalone entry point, all condition categories, environment fallback and optional callbacks: PASS
+Standalone native migration: old spawn copies and per-category timer functions removed: PASS
+Standalone UI: four pages including DIY; no HED page or HED module imports: PASS
+Standalone editor: 40 warm opens reuse one class/catalog/template; widget colors remain isolated, language changes rebuild, disabled/re-enabled entry retained, 100 unchanged reads avoid setting writes: PASS
+Catalog provenance, invalid-row filtering, old selection migration, mutator deduplication, pickup/health/hazard overrides: PASS
+Registered native hook methods resolve in current game source: 57 PASS
+HavocConditionManager: startup_failure_tests.py
+Failed HCM DIY initialization: 1,000 updates, mission exit and enable/disable without repeated errors: PASS
+HavocConditionManager: native_ui_tests.py
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\native_ui_tests.py", line 12, in <module>
+    D.localization=load_mod("HavocEnemyDirector/scripts/mods/HavocEnemyDirector/HavocEnemyDirector_localization")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\HavocConditionManager\tests\native_harness.py", line 80, in load_mod
+    return lua_file(source/(p+".lua"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\HavocConditionManager\tests\native_harness.py", line 77, in lua_file
+    def lua_file(path): return L.execute(path.read_text(encoding='utf-8-sig'),name='@'+str(path))
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\GDS-DESKTOP\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\GDS-DESKTOP\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\HavocEnemyDirector\\src\\HavocEnemyDirector\\scripts\\mods\\HavocEnemyDirector\\HavocEnemyDirector_localization.lua'
+HavocConditionManager: diy_package_page_tests.py
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\diy_package_page_tests.py", line 2, in <module>
+    from native_ui_tests import *
+  File "D:\Projects\HavocConditionManager\tests\native_ui_tests.py", line 12, in <module>
+    D.localization=load_mod("HavocEnemyDirector/scripts/mods/HavocEnemyDirector/HavocEnemyDirector_localization")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\HavocConditionManager\tests\native_harness.py", line 80, in load_mod
+    return lua_file(source/(p+".lua"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\HavocConditionManager\tests\native_harness.py", line 77, in lua_file
+    def lua_file(path): return L.execute(path.read_text(encoding='utf-8-sig'),name='@'+str(path))
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\GDS-DESKTOP\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\GDS-DESKTOP\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\HavocEnemyDirector\\src\\HavocEnemyDirector\\scripts\\mods\\HavocEnemyDirector\\HavocEnemyDirector_localization.lua'
+HavocConditionManager: diy_bundled_tests.py
+PASS: direct disk reads, built-in lock, preserved selections, external shadowing, companion add/remove, zero extraction or per-frame I/O
+HavocConditionManager: diy_package_reload_tests.py
+HCM package refresh: real file and dependency reload without version bumps; active-mission snapshots preserved; fresh next-mission Lua and cleanup; in-place provider refresh without extraction: PASS
+HavocConditionManager: diy_reload_cache_tests.py
+PASS: refresh clears parsed snapshots and idle runtime/resource caches before reload; active mission remains frozen; cleanup order, fresh next mission and old resource callback isolation verified.
+HavocConditionManager: diy_medical_map_tests.py
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\diy_medical_map_tests.py", line 20, in <module>
+    RUNTIME = Path(os.environ.get('HCM_DIY_RUNTIME', str(ROOT.parents[1] / 'mods/HavocConditionManager/scripts/mods/HavocConditionManager/diy')))
+                                                         ~~~~~~~~~~~~^^^
+  File "C:\Users\GDS-DESKTOP\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 282, in __getitem__
+    raise IndexError(idx)
+IndexError: 1
+HavocConditionManager: presence_compat_tests.py
+Presence: 320 duplicate transitions/sends reduced to one; real transitions, member updates, menu behavior, remote/disabled and optional-mod pass-through: PASS
+HavocConditionManager: condition_cleanup_tests.py
+Native aggro listener leak reproduced; own server cleanup, authority loss, repeat missions, deferred disable, prior removal and unrelated listeners: PASS
+HavocConditionManager: release_debug_tests.py
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\release_debug_tests.py", line 24, in <module>
+    config,version,documents,built=collect_sources()
+                                   ^^^^^^^^^^^^^^^^^
+  File "D:\Projects\HavocConditionManager\tools\release.py", line 57, in collect_sources
+    config = read_json(SOURCE / 'release.json')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\HavocConditionManager\tools\release.py", line 30, in read_json
+    return json.loads(path.read_text(encoding='utf-8-sig'))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\GDS-DESKTOP\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\GDS-DESKTOP\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\HavocConditionManager\\publishing\\release.json'
+HavocConditionManager: archive_guard_tests.py
+Traceback (most recent call last):
+  File "D:\Projects\HavocConditionManager\tests\archive_guard_tests.py", line 35, in <module>
+    _,_,_,payloads=collect_sources()
+                   ^^^^^^^^^^^^^^^^^
+  File "D:\Projects\HavocConditionManager\tools\release.py", line 57, in collect_sources
+    config = read_json(SOURCE / 'release.json')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\HavocConditionManager\tools\release.py", line 30, in read_json
+    return json.loads(path.read_text(encoding='utf-8-sig'))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\GDS-DESKTOP\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\GDS-DESKTOP\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\HavocConditionManager\\publishing\\release.json'
+HavocConditionManager: failed checks: native_template_tests.py, native_intensity_profile_tests.py, native_elite_balance_tests.py, native_runtime_tests.py, native_encounter_location_tests.py, native_special_pressure_tests.py, native_straggler_tests.py, native_ui_tests.py, diy_package_page_tests.py, diy_medical_map_tests.py, release_debug_tests.py, archive_guard_tests.py

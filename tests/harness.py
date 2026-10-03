@@ -3,6 +3,7 @@ import sys,re,json
 work=Path(__file__).resolve().parent
 sys.excepthook=lambda typ,value,tb: print(typ.__name__+': '+str(value))
 from project_env import PROJECT, GAME, FIXTURES, CHECKS, SOURCES
+from breed_fixture_tags import parse_tags
 from isolated_diy_io import isolate
 isolate()
 from lupa.luajit21 import LuaRuntime
@@ -83,7 +84,7 @@ for p in (game/'scripts/settings/breed/breeds').rglob('*_breed.lua'):
         'can_patrol':bool(re.search(r'can_patrol\s*=\s*true',s)),
         'sub_faction_name':(re.search(r'sub_faction_name\s*=\s*"(\w+)"',s).group(1) if re.search(r'sub_faction_name\s*=\s*"(\w+)"',s) else None),
         'can_be_used_for_all_factions':bool(re.search(r'can_be_used_for_all_factions\s*=\s*true',s)),
-        'tags':{k:True for k in re.findall(r'(\w+)\s*=\s*true',tags.group(1))},'display_name':name}
+        'tags':parse_tags(tags.group(1)),'display_name':name}
 cache['scripts/settings/breed/breeds']=tbl(breeds)
 cache['scripts/settings/roamer/roamer_slot_placement_functions']=tbl({})
 cache['scripts/managers/horde/horde_templates']=tbl({n:{'name':n} for n in ('trickle_horde','ambush_horde','far_vector_horde','flood_horde','far_distance_horde')})

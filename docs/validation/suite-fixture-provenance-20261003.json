@@ -1,0 +1,63 @@
+{
+  "installed_source": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mods\\HavocEnemyDirector",
+  "workspace_copy": "D:\\Projects\\dev-support\\installed-mod-fixtures\\HavocEnemyDirector",
+  "info": {
+    "name": "Havoc Enemy Director",
+    "version": "3.2.0",
+    "author": "IRONCROWY",
+    "description": "Configure independent enemy formations and deployment rules, adaptive pressure, isolated director seeds and native template overrides linked to HCM. Includes named JSON presets for SoloPlay and Realms.",
+    "dependencies": {
+      "required": [
+        "SoloPlay",
+        "HavocConditionManager"
+      ]
+    },
+    "localization": {
+      "zh-cn": {
+        "name": "\u5a34\u2541\u59ed\u93c1\u5c7c\u6c49\u7035\u517c\u7d28"
+      },
+      "zh-tw": {
+        "name": "\u5a34\u2541\u59ed\u93c1\u5178\u6c49\u704f\u5ea2\u7d28"
+      }
+    }
+  },
+  "files": {
+    "info.json": "55856fd8b2518bf5fdb0e716916ddf714f1938b681f48367e430eec1681211da",
+    "scripts/mods/HavocEnemyDirector/director_config.lua": "af62bddc0684a4e6402afee1b6cddc0d8c401b86095463e9464752e3ee7eb8c4",
+    "scripts/mods/HavocEnemyDirector/director_dashboard.lua": "83c602a55ba94047f358cd70da7f62acf8ca6eaee985df02232c13121d3e5a05",
+    "scripts/mods/HavocEnemyDirector/director_deployments_ui.lua": "11cd7611685c713a206fd50e630254cc4a157ac3fc683e6123459cb0aa623805",
+    "scripts/mods/HavocEnemyDirector/director_engine.lua": "5fab489ee451cab921dfc5f38f6d4ff59b9ca6cd8c0e91c3b140566ae4051053",
+    "scripts/mods/HavocEnemyDirector/director_formations_ui.lua": "57059949292c781d369916bdccba879ed4ab3b3fdae5f5f4abc4383b9477c041",
+    "scripts/mods/HavocEnemyDirector/director_localization.lua": "6c48e1a6e6f0469005eb6e2248275e26e1ed89ef75462b513b33c74044cfafbd",
+    "scripts/mods/HavocEnemyDirector/director_overview_ui.lua": "99524d80c634806ad8e58b8b166483c8a76617f805b37b1998a88d9529099f2d",
+    "scripts/mods/HavocEnemyDirector/director_random.lua": "5e558eae7d51afe74bdd3cee1ac5246480eacbe4a85de684317d88dd1eea1a7e",
+    "scripts/mods/HavocEnemyDirector/director_runtime.lua": "80e0700dcb2f2e803a235ba22bc2cbb0cc82486270a7ebbb63d1bad5edf79efa",
+    "scripts/mods/HavocEnemyDirector/director_spawning.lua": "1f8a473386ccfce06e97490e601b68948c9aa6f95fb480f0e7cc825dabeb7006",
+    "scripts/mods/HavocEnemyDirector/director_text_input.lua": "16b29d59f34483dbbf711f787611d69aa774ff147f4f8deaf2e29d9bb9809437",
+    "scripts/mods/HavocEnemyDirector/director_ui_helpers.lua": "26c9712b47fd68cfbd24e236235124767fb293b735adbce573758215cff15209",
+    "scripts/mods/HavocEnemyDirector/HavocEnemyDirector.lua": "428d20f017df8696c57379a6fcd8d58b00646ef372583a9397e0ce6e788d21b3",
+    "scripts/mods/HavocEnemyDirector/HavocEnemyDirector_data.lua": "21626f704405daf8f7b2d50c4fc95bd498110425114ffbbeabbf302e0ca617ad",
+    "scripts/mods/HavocEnemyDirector/HavocEnemyDirector_localization.lua": "60266b2fe083522b683f735d6769eb30c27801e4da3b0b7d37f1022e6b059c3e",
+    "scripts/mods/HavocEnemyDirector/native_director.lua": "e50551cbaf38b6cdf2a28ef9f0977c3c63e605d7f6d15d48bc87975106b2d80a",
+    "scripts/mods/HavocEnemyDirector/native_editor.lua": "a02c659c1fd57d5b10218e24c887e8ae459f15a2777437c5960e18739f7165dd",
+    "scripts/mods/HavocEnemyDirector/native_preset_codec.lua": "08475236eed341b067c99a9ffb599081ad7fbbcbdf40705a935cd9b3b972023e",
+    "scripts/mods/HavocEnemyDirector/native_presets.lua": "0ccdc836181e6a6bba0f556032b5f6e3719c30c51a8f39916351b96bc76bfa4c",
+    "scripts/mods/HavocEnemyDirector/native_relative.lua": "7e59e66c3750f4c7216a79fbe38455a5393f001e9d3be212493723c66e5edda5",
+    "scripts/mods/HavocEnemyDirector/native_semantics.lua": "7f8b3bb4562a50d4b9cb05635e40ca56a0608bae1a9047a6d5cab4be2ae33dde",
+    "scripts/mods/HavocEnemyDirector/preset_files.lua": "e37b2c53b4883a046dc0b78a22e66f7c28763a4dfa4ea33e26f7439f97bb331e",
+    "scripts/mods/HavocEnemyDirector/preset_localization.lua": "015295742ccf52fae3d265dc73cf6e975da5bd7260e9d035c7dfd520dcf02dd3",
+    "scripts/mods/HavocEnemyDirector/preset_ui.lua": "7e6b62c6200bb4d357be29ecf7514dc1c1e733b40550cccb77c4d55dbaec01b8",
+    "scripts/mods/HavocEnemyDirector/studio_bridge.lua": "fc18c85ed8a93f6882ff67f0f121fbb6df306b99128f3ecb2e5b8acd782d975f",
+    "scripts/mods/HavocEnemyDirector/studio_catalog.lua": "441af511f1045e1bc03b398b43e581b72e0a6342c597f245f1bcf721b00fe25b",
+    "scripts/mods/HavocEnemyDirector/studio_context.lua": "9b9e2d566b11102bb627c4bff2d1b1cde1b5dbb8d0e374972921b4f5d48084b1",
+    "scripts/mods/HavocEnemyDirector/studio_map.lua": "a04db34ee286f135ab9f20463e6973a1750b831304eaa2034d38e0bf1c07ffb2",
+    "scripts/mods/HavocEnemyDirector/studio_mode.lua": "3c5b860c381efaa664f3f7109aebb9036dfe3cc2ff7dabc636c53c1813d5fb8d",
+    "scripts/mods/HavocEnemyDirector/studio_schema.lua": "52f0a027041818db2d2147ae5b21d15f8e56e135c0762f4e804684d4edb58f0c",
+    "scripts/mods/HavocEnemyDirector/studio_spatial.lua": "74529661ac23477aeb875aa4fb20f5a2e9546809bbbfd1f48899e7124e1e348f",
+    "scripts/mods/HavocEnemyDirector/studio_unit_policies.lua": "1b998cc42e8b2ee43631c2acf14091e15e4c916c32200b91ec9758d2c6fdaf19"
+  },
+  "archives": {
+    "release/3.4.0/HavocConditionManager-3.4.0.zip": "5e9dc4cf7e2ff7aa0160992ad3645896fcaee3f755f188c62e9a29ad5693a44e",
+    "release/4.4.9/HavocConditionManager-4.4.9.zip": "4957498ea6edc2e13828356c308cc6235f94301a39f1395b277fadaaa2f9d89b"
+  }
+}
