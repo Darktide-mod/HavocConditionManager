@@ -14,19 +14,20 @@ adapter_source = source.read_text(encoding='utf-8-sig')
 
 @lru_cache(None)
 def native(path):
-    return subprocess.check_output(['git', '-c', 'gc.auto=0', 'show', 'HEAD:' + path + '.lua'], cwd=GAME).decode('utf-8-sig')
+    return subprocess.check_output(['git', '-c', 'safe.directory=' + GAME.as_posix(), '-c', 'gc.auto=0',
+                                    'show', 'HEAD:' + path + '.lua'], cwd=GAME).decode('utf-8-sig')
 
 
-def fixture(owners, active):
+def fixture(owners, active, pause_during_add=False):
     lua = LuaRuntime(unpack_returned_tuples=True)
     lua.execute(r'''
 modules={}; require=function(path) modules[path]=modules[path] or {};return modules[path] end
 Unit={};WwiseWorld={};Network={type_info=function()return {max_size=32}end}
-Script={new_array=function()return {}end};Profiler={start=function()end,stop=function()end}
+Script={new_array=function()return {}end,new_map=function()return {}end};Profiler={start=function()end,stop=function()end}
 table.clear=function(t)for k in pairs(t)do t[k]=nil end end
 Log={exception=function()error('unexpected native buff error')end}
 modules['scripts/utilities/fixed_frame']={get_latest_fixed_time=function()return 1 end}
-modules['scripts/settings/buff/buff_settings']={stat_buff_type_base_values={}}
+modules['scripts/settings/buff/buff_settings']={stat_buff_type_base_values={},max_proc_events=300}
 ALIVE={};HEALTH_ALIVE=ALIVE;Managers={state={}};mods={};shared={};apis={};engines={}
 get_mod=function(name)return name=='DMF' and shared or mods[name]end
 ScriptUnit={has_extension=function(u,name)return name=='buff_system' and u.ext or nil end,
@@ -54,6 +55,16 @@ end
                  'scripts/extension_systems/buff/minion_buff_extension',
                  'scripts/foundation/managers/extension/extension_system_base']:
         lua.globals().modules[path] = lua.execute(native(path))
+    if pause_during_add:
+        lua.execute(r'''
+local System=modules['scripts/foundation/managers/extension/extension_system_base']
+local original=System.on_add_extension
+System.on_add_extension=function(self,...)
+    local created=original(self,...)
+    self:disable_update_function(created._unit,'update','add_pause')
+    return created
+end
+''')
     for name in owners:
         lua.globals().adapter = lua.execute(adapter_source)
         lua.globals().owner = name
@@ -77,6 +88,7 @@ ext=setmetatable({_unit=u,_update_enabled=false,_is_server=true,_is_hub=true,
 update_list={}
 system=setmetatable({_name='buff_system',_extensions={MinionBuffExtension=1},_total_num_extensions=1,
     _update_list={MinionBuffExtension={update=update_list}},_hot_join_sync_list={},_fixed_update_extensions={},
+    _disable_reasons={MinionBuffExtension={update={[u]={__default_disable_reason__=true}}}},
     _unit_to_extension_map={[u]=ext},_extension_to_unit_map={[ext]=u},_uninitiated_units={},
     _profiler_names={MinionBuffExtension='MinionBuffExtension [ALL]'},_staggered_update_iterators={}},System)
 ext._owner_system=system;u.ext=ext
@@ -183,4 +195,93 @@ apis[1].finish();assert(update_list[u]==ext)
 apis[2].finish();assert(update_list[u]==nil)
 remove_unit();finish_all()
 ''')
-print(f'PASS: {cases} native deletion cases; HCM/MBM ownership, native Buff cleanup, mission reuse; native-only scripts skip 1000 empty overlays; scoped passives enable only their unit with zero global scans.')
+
+# New native update reasons belong to their own owners. DIY must release and
+# restore only the native no-buffs reason, even while another owner pauses it.
+lua = fixture(['HCM'], [])
+lua.execute(r'''
+system:disable_update_function(u,'update','external_pause')
+apis[1].unit_scope_changed(u)
+local reasons=system._disable_reasons.MinionBuffExtension.update[u]
+assert(reasons.external_pause and not reasons.__default_disable_reason__)
+assert(update_list[u]==nil,'DIY must not override another owner\'s pause')
+apis[1].finish()
+reasons=system._disable_reasons.MinionBuffExtension.update[u]
+assert(reasons.external_pause and reasons.__default_disable_reason__)
+system:enable_update_function(u,'update','external_pause')
+assert(update_list[u]==nil,'Empty minions remain disabled after external resume')
+add_native_buff(1);assert(update_list[u]==ext)
+ext:_remove_buff(1);assert(update_list[u]==nil)
+remove_unit();finish_all()
+''')
+
+# Exercise native construction, not only a preconstructed extension. The base
+# constructor's engine dependencies are stubbed; native MinionBuff.init,
+# on_add_extension, registration and proc-table allocation remain real.
+for owners, pause_in_add in [(owners, pause) for owners in (['HCM'], ['HCM', 'MBM'], ['MBM', 'HCM']) for pause in (False, True)]:
+    lua = fixture(owners, owners, pause_during_add=pause_in_add)
+    lua.globals().pause_in_add = pause_in_add
+    lua.execute(r'''
+remove_unit()
+local Native=modules['scripts/extension_systems/buff/minion_buff_extension']
+local Base=modules['scripts/extension_systems/buff/buff_extension_base']
+local original_init=Base.init
+Base.init=function(self,context,unit)
+    self._unit=unit;self._is_server=true;self._is_hub=true
+    self._update_enabled=false;self._buffs={};self._buffs_by_index={}
+    self._num_params_table_in_use=0;self._param_tables_start_index_reference=1
+    self._proc_event_param_tables={}
+    self._update_stat_buffs_and_keywords=function()stats_calls=stats_calls+1 end
+end
+system._extension_init_context={owner_system=system,is_server=true}
+ScriptUnit.add_extension=function(context,unit,name,alias,init_data)
+    assert(name=='MinionBuffExtension' and alias=='buff_system')
+    local created=Native:new(context,unit,init_data)
+    assert(system._unit_to_extension_map[unit]==nil)
+    assert(not created._update_enabled,'Init must wait for native registration')
+    assert(created:request_proc_event_param_table()==nil)
+    unit.ext=created;return created
+end
+local fresh={};ALIVE[fresh]=true
+local created=system:on_add_extension({},fresh,'MinionBuffExtension',{})
+Base.init=original_init
+assert(system._unit_to_extension_map[fresh]==created)
+assert(created._update_enabled and (pause_in_add and update_list[fresh]==nil or not pause_in_add and update_list[fresh]==created))
+-- A spawn callback can request a proc before the next DIY update tick.
+assert(type(created:request_proc_event_param_table())=='table')
+system:disable_update_function(fresh,'update','spawn_pause')
+system:register_extension_update(fresh,'MinionBuffExtension',created)
+local reasons=system._disable_reasons.MinionBuffExtension.update[fresh]
+assert(reasons.spawn_pause and not reasons.__default_disable_reason__)
+assert(update_list[fresh]==nil and created._update_enabled)
+system:register_extension_update(fresh,'MinionBuffExtension',created)
+reasons=system._disable_reasons.MinionBuffExtension.update[fresh]
+assert(reasons.spawn_pause and not reasons.__default_disable_reason__)
+system:enable_update_function(fresh,'update','spawn_pause')
+if pause_in_add then
+    assert(update_list[fresh]==nil,'The pause present before HCM construction callback must survive')
+    system:enable_update_function(fresh,'update','add_pause')
+end
+assert(update_list[fresh]==created,'Releasing the construction pause must resume DIY updates')
+system:register_extension_update(fresh,'MinionBuffExtension',created)
+local count=0;for _ in pairs(update_list)do count=count+1 end
+assert(count==1 and update_list[fresh]==created)
+system:on_remove_extension(fresh,'MinionBuffExtension')
+assert(rawget(created,'__deleted') and update_list[fresh]==nil)
+ALIVE[fresh]=nil;finish_all()
+''')
+
+# A live stale reference must not disable or rebuild a replacement extension
+# mapped to the same unit during cleanup.
+lua = fixture(['HCM'], ['HCM'])
+lua.execute(r'''
+local replacement={_unit=u,_update_enabled=true}
+system._unit_to_extension_map[u]=replacement;update_list[u]=replacement
+local before=stats_calls
+finish_all()
+assert(stats_calls==before and update_list[u]==replacement and replacement._update_enabled)
+assert(shared._diy_minion_updates.owned[ext]==nil)
+system._unit_to_extension_map[u]=ext;update_list[u]=ext
+remove_unit()
+''')
+print(f'PASS: {cases} native deletion cases; ownership, cleanup, mission reuse, external pause, construction/first proc and replaced extension; native-only scripts skip 1000 empty overlays; scoped passives perform zero global scans.')

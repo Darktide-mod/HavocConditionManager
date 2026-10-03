@@ -38,6 +38,22 @@ end)
 
 -- The native Havoc loader concatenates lists without removing duplicate mutators.
 -- Keep its generators and templates; use its existing single-mutator loader once per ID.
+mod:hook(MutatorManager,"activate_mutator",function(func,self,name,...)
+    local mutator=self._mutators[name]
+    -- The single loader still activates immediately in 1.13, while its bulk
+    -- loader waits for packages. Limit that wait to HCM's own load call;
+    -- MutatorBase.is_loading performs native activation when loading finishes.
+    if self._hcm_loading_mutator==name and mutator and mutator.is_loading_done and not mutator:is_loading_done() then return end
+    return func(self,name,...)
+end)
+local function load_condition_mutator(self,name)
+    local previous=self._hcm_loading_mutator
+    self._hcm_loading_mutator=name
+    local ok,mutator=pcall(self.load_mutator_from_name,self,name)
+    self._hcm_loading_mutator=previous
+    if not ok then error(mutator,0) end
+    return mutator
+end
 mod:hook(MutatorManager, "_load_mutators", function(func, self, circumstance_name)
     local data = active_data()
     if not data then return func(self, circumstance_name) end
@@ -47,11 +63,14 @@ mod:hook(MutatorManager, "_load_mutators", function(func, self, circumstance_nam
         for _, name in ipairs(template and template.mutators or {}) do
             if not seen[name] then
                 seen[name] = true
-                local mutator = self:load_mutator_from_name(name)
+                local existing = self._mutators[name]
+                local mutator = existing or load_condition_mutator(self,name)
                 local config = mutator and mutator._template
-                if self._is_server and config and config.class == "scripts/managers/mutator/mutators/mutator_stimmed_minions" then
+                local listeners = self._hcm_aggro_listeners
+                if self._is_server and config and config.class == "scripts/managers/mutator/mutators/mutator_stimmed_minions" and
+                    (not existing or listeners and listeners[mutator]) then
                     self._hcm_aggro_listeners = self._hcm_aggro_listeners or {}
-                    self._hcm_aggro_listeners[mutator] = Managers.event
+                    self._hcm_aggro_listeners[mutator] = self._hcm_aggro_listeners[mutator] or Managers.event
                 end
             end
         end

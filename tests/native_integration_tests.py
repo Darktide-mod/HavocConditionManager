@@ -269,9 +269,13 @@ Managers.state.difficulty={get_parsed_havoc_data=function() return mission end}
 native_conditions.native_general_test.mission_overrides={health_station={charges=3},pickup_settings={ammo={small=2}},hazard_prop_settings={barrel="native_a"}}
 native_conditions.native_event_test.mission_overrides={health_station={charges=2},pickup_settings={ammo={small=4}},hazard_prop_settings={barrel="native_b"}}
 local calls=0
-local manager={_is_server=false,load_mutator_from_name=function(self,name) calls=calls+1; return {_template={}} end}
+local manager={_is_server=false,_mutators={},load_mutator_from_name=function(self,name)
+ calls=calls+1;local instance={_template={}};self._mutators[name]=instance;return instance
+end}
 hook("scripts/managers/mutator/mutator_manager","_load_mutators")(function() error("native duplicates") end,manager,"default")
 assert(calls==1)
+hook("scripts/managers/mutator/mutator_manager","_load_mutators")(function() error("native duplicates") end,manager,"default")
+assert(calls==1,'Repeated condition loads reuse the native manager map')
 Managers.state.circumstance={circumstance_name=function() return "native_general_test" end}
 local original={ammo={small=1}}
 local pickups=hook("scripts/managers/game_mode/game_mode_extensions/game_mode_extension_havoc","get_havoc_pickup_overrides")(function() return original end,{})

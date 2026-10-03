@@ -13,6 +13,8 @@ mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/spawn_tr
 mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/retirement_effects")
 mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/straggler_recycling")
 local Pacing=require("scripts/managers/pacing/pacing_manager")
+local PacingTemplates=require("scripts/managers/pacing/pacing_templates")
+local Heat=require("scripts/managers/pacing/heat_pacing/heat_pacing")
 local Roamer=require("scripts/managers/pacing/roamer_pacing/roamer_pacing")
 local Horde=require("scripts/managers/pacing/horde_pacing/horde_pacing")
 local Special=require("scripts/managers/pacing/specials_pacing/specials_pacing")
@@ -46,9 +48,37 @@ mod:hook_safe(Pacing,"init",function(self)
         mod.start_spawn_tracking()
     end
 end)
-mod:hook(Roamer,"init",function(fn,self,nav,template,seed,factions)
+-- 1.13 replaces templates during a mission. Prepare before native derived
+-- state is rebuilt, and keep heat/deferred monster consumers on the same root.
+if Pacing._apply_template then
+    mod:hook(Pacing,"_apply_template",function(fn,self,template,...)
+        return fn(self,E.prepare(template,"pacing"),...)
+    end)
+end
+if Heat.resume then
+    mod:hook(Heat,"resume",function(fn,self,template,...)
+        return fn(self,E.prepare(template,"pacing"),...)
+    end)
+end
+if Pacing.set_pacing_template then
+    local function finish_replacement(self,...)
+        if active() and self._pending_monster_template then
+            self._pending_monster_template=E.prepare(self._pending_monster_template,"pacing")
+        end
+        return ...
+    end
+    mod:hook(Pacing,"set_pacing_template",function(fn,self,name,...)
+        if active() and E.prepare(PacingTemplates[name] or PacingTemplates.default,"pacing")==self._template then
+            -- Native identity checks use raw roots; prepared roots need the
+            -- same no-op so repeat selections do not delete/rebuild roamers.
+            return
+        end
+        return finish_replacement(self,fn(self,name,...))
+    end)
+end
+mod:hook(Roamer,"init",function(fn,self,nav,template,seed,factions,...)
     if active() then template=E.prepare(template,"roamers"); seed=E.config().fine.seed or seed end
-    return fn(self,nav,template,seed,factions)
+    return fn(self,nav,template,seed,factions,...)
 end)
 -- This method returns boxed positions/rotations only. Large maps can otherwise
 -- retain every temporary vector from every candidate location until frame end.

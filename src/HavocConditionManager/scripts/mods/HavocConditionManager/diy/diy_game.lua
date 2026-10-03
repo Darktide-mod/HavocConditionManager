@@ -43,22 +43,34 @@ function G.new(mod,catalog,Engine,options)
     local function retired(ext)
         return rawget(ext,"__deleted") or rawget(ext,"_diy_minion_destroying")
     end
-    local function enable_minion(ext)
-        if retired(ext) then return end
-        if not ext._update_enabled and ext._owner_system then
-            ext._update_enabled=true;updates.owned[ext]=true
-            ext._owner_system:enable_update_function(ext.__class_name,"update",ext._unit,ext)
+    local function registered(ext)
+        local system=ext._owner_system
+        return system and (not system._disable_reasons or system._unit_to_extension_map[ext._unit]==ext)
+    end
+    local function enable_minion(ext,reconcile_registration)
+        if retired(ext) or not registered(ext) then return end
+        local system=ext._owner_system
+        if not ext._update_enabled or reconcile_registration and system._disable_reasons then
+            if not ext._update_enabled then ext._update_enabled=true;updates.owned[ext]=true end
+            -- 1.13 resolves the extension from its unit. Release only the
+            -- native no-buffs reason; other owners' disable reasons remain.
+            if system._disable_reasons then system:enable_update_function(ext._unit,"update")
+            else system:enable_update_function(ext.__class_name,"update",ext._unit,ext) end
         end
     end
     local function restore_minions()
         if needs_updates() then return end
         updates.restoring=true
         for ext in pairs(updates.owned) do
-            if not needs_updates(ext) and not retired(ext) and ALIVE[ext._unit] and ext._owner_system and #ext._buffs==0 then
+            if not needs_updates(ext) and not retired(ext) and ALIVE[ext._unit] and registered(ext) and #ext._buffs==0 then
                 FixedFrame=FixedFrame or require("scripts/utilities/fixed_frame")
                 ext:_update_stat_buffs_and_keywords(FixedFrame.get_latest_fixed_time())
                 ext._update_enabled=false
-                ext._owner_system:disable_update_function(ext.__class_name,"update",ext._unit,ext)
+                local system=ext._owner_system
+                -- A live native buff keeps its own subscription. Empty
+                -- extensions return to the native no-buffs disable reason.
+                if system._disable_reasons then system:disable_update_function(ext._unit,"update")
+                else system:disable_update_function(ext.__class_name,"update",ext._unit) end
             end
             if not needs_updates(ext) then updates.owned[ext]=nil end
         end
@@ -236,6 +248,34 @@ function G.new(mod,catalog,Engine,options)
         if a.amount_kind=="fraction" then return (maximum or 1)*a.amount end
         return a.amount
     end
+    local function recover_ability_cooldown(ext,kind,a,unit,event)
+        if ext.reduce_ability_cooldown_time then
+            ext:reduce_ability_cooldown_time(kind,amount(a,unit,event,ext:max_ability_cooldown(kind)))
+            return true
+        end
+        if not ext:ability_enabled(kind) then return false end
+        local pool=ext:get_target_ability_resource_pool(kind)
+        local ability=ext._equipped_abilities[pool]
+        -- An inventory-only charge has no timed cooldown to recover.
+        if not ability or ability.only_uses_charges then return false end
+        local maximum=ext:max_ability_resource(pool)
+        local per_charge=ext:uses_ability_charges(pool) and ext:get_ability_resource_cost_per_charge(pool) or maximum
+        local delta
+        if a.amount_kind=="fraction" then delta=per_charge*a.amount
+        else
+            -- Absolute cooldown amounts remain seconds. Native abilities
+            -- define their flat/percentage regeneration rate in resource units.
+            local rate=(ability.resource_regen_per_second or 0)+maximum*(ability.resource_regen_percent_per_second or 0)
+            if rate<=0 then return false end
+            delta=amount(a,unit,event)*rate
+        end
+        -- The legacy cooldown consumer leaves fully ready abilities alone,
+        -- including negative adjustments. Retain that behavior for resources.
+        if ext:remaining_ability_resource(pool)>=maximum then return true end
+        if delta>0 then ext:restore_ability_resource(kind,delta)
+        elseif delta<0 then ext:consume_ability_resource(pool,-delta) end
+        return true
+    end
     local function perform(a,unit,event,meta)
         load_native_utilities()
         local health=extension(unit,"health_system")
@@ -279,7 +319,7 @@ function G.new(mod,catalog,Engine,options)
             if a.type=="grenades" then
                 local delta=amount(a,unit,event,ext:max_ability_charges(kind))
                 ext:set_ability_charges(kind,clamp(ext:remaining_ability_charges(kind)+(delta<0 and math.ceil(delta) or math.floor(delta)),0,ext:max_ability_charges(kind)))
-            else ext:reduce_ability_cooldown_time(kind,amount(a,unit,event,ext:max_ability_cooldown(kind))) end
+            else return recover_ability_cooldown(ext,kind,a,unit,event) end
             return true
         elseif a.type=="stamina" then
             local info=api.info(unit);if not info or info.kind~="players" then return false end
@@ -465,6 +505,25 @@ function G.new(mod,catalog,Engine,options)
         mod:hook_safe(class,"_update_stat_buffs_and_keywords",on_stats)
     end
     on_require("scripts/extension_systems/buff/player_unit_buff_extension",hook_buff)
+    on_require("scripts/foundation/managers/extension/extension_system_base",function(System)
+        mod:hook_safe(System,"on_add_extension",function(self,world,unit,extension_name)
+            -- The modern API needs the map filled by on_add_extension after
+            -- MinionBuff.init returns. Enable before unit-registration events
+            -- can request the first proc, rather than waiting for a DIY tick.
+            if self._disable_reasons and self._name=="buff_system" and extension_name=="MinionBuffExtension" then
+                local ext=self._unit_to_extension_map[unit]
+                if ext and needs_updates(ext) then enable_minion(ext) end
+            end
+        end)
+        mod:hook_safe(System,"register_extension_update",function(self,unit,extension_name,ext)
+            -- Registration adds the native default reason if another owner
+            -- paused the unit after construction. Release that reason again
+            -- without removing the pause, even when our enabled flag is set.
+            if self._disable_reasons and self._name=="buff_system" and extension_name=="MinionBuffExtension" and needs_updates(ext) then
+                enable_minion(ext,true)
+            end
+        end)
+    end)
     on_require("scripts/extension_systems/buff/minion_buff_extension",function(MinionBuff)
         hook_buff(MinionBuff)
         mod:hook(MinionBuff,"destroy",function(fn,self,...)
