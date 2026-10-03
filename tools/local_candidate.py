@@ -36,10 +36,22 @@ def payload():
 
 
 def suite_evidence(files):
+    import ast
     evidence_path = ROOT / 'build/checks/tests-result.json'
     evidence = json.loads(evidence_path.read_text(encoding='utf-8'))
-    assert evidence['passed'] and not evidence['selected'], 'Run the complete tests/run.py aggregate before packaging.'
-    assert evidence['source_payload_sha256'] == {name:hashlib.sha256(data).hexdigest() for name,data in files.items()}, 'Suite evidence must match the packaged source bytes.'
+    runner=ast.parse((ROOT/'tests/run.py').read_text(encoding='utf-8-sig'))
+    required=next(ast.literal_eval(node.value) for node in runner.body if isinstance(node,ast.Assign)
+                  and any(isinstance(target,ast.Name) and target.id=='CASES' for target in node.targets))
+    assert len(required)==len(set(required))
+    assert evidence['passed'] is True and evidence['selected'] is False, 'Run the complete tests/run.py aggregate before packaging.'
+    assert evidence['required']==required and evidence['requested']==required, 'The required full test manifest must match the current runner.'
+    assert [result['case'] for result in evidence['results']]==required, 'Every required check must have exactly one exit status in order.'
+    assert all(type(result['exit_code']) is int and result['exit_code']==0 for result in evidence['results']), 'Every required check must exit zero.'
+    expected={name:hashlib.sha256(data).hexdigest() for name,data in files.items()}
+    assert evidence['source_before_sha256']==evidence['source_after_sha256']==evidence['source_payload_sha256']==expected, 'Test source must stay unchanged and match every packaged byte.'
+    inputs=list((ROOT/'tests').rglob('*.py'))+[ROOT/'tools/local_candidate.py',ROOT/'tools/release.py',ROOT/'tools/archive_guard.py']
+    current={path.relative_to(ROOT).as_posix():hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(inputs)}
+    assert evidence['test_inputs_before_sha256']==evidence['test_inputs_after_sha256']==current, 'Test and package code must match both sides of the recorded run.'
     return evidence_path, evidence
 
 
