@@ -1,6 +1,6 @@
 """Reject incomplete, stale and failed packaging evidence without building an archive."""
 from project_env import PROJECT, CHECKS
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import ast, copy, hashlib, json, tempfile
 
 builder=PROJECT/'tools/local_candidate.py'
@@ -44,3 +44,22 @@ with tempfile.TemporaryDirectory(prefix='suite-evidence-',dir=CHECKS) as tempora
         elif mutation=='test_changed': report['test_inputs_before_sha256']['tests/run.py']='changed'
         check(report,False)
 print('Packaging evidence: independent full manifest, all exit codes, source pre/post identity and test/package input freshness; 8 invalid-report cases rejected: PASS')
+
+runtime_function=next(node for node in tree.body if isinstance(node,ast.FunctionDef) and node.name=='runtime_payload')
+scope=dict(MOD='HavocConditionManager',PurePosixPath=PurePosixPath,assert_no_nested_archives=lambda files:None)
+exec(compile(ast.Module(body=[runtime_function],type_ignores=[]),str(builder),'exec'),scope)
+required=['HavocConditionManager/HavocConditionManager.mod','HavocConditionManager/info.json',
+          'HavocConditionManager/scripts/mods/HavocConditionManager/HavocConditionManager.lua','HavocConditionManager/diy/index.json']
+extras=['HavocConditionManager/diy/packages/example/package.json','HavocConditionManager/diy/packages/example/effect.lua',
+        'HavocConditionManager/THIRD_PARTY.md']
+excluded=['HavocConditionManager/docs/diy/package-examples/effect.lua','HavocConditionManager/CHANGELOG.md',
+          'HavocConditionManager/docs/review.json','OtherMod/scripts/example.lua','HavocConditionManager/authoring/example.json']
+fixture={name:name.encode() for name in required+extras+excluded}
+kept=scope['runtime_payload'](fixture)
+assert set(kept)==set(required+extras) and all(kept[name]==fixture[name] for name in kept)
+for name in required:
+    missing=dict(fixture);missing.pop(name)
+    try: scope['runtime_payload'](missing)
+    except AssertionError: pass
+    else: raise AssertionError('A runtime dependency was omitted: '+name)
+print('Local candidate runtime policy: complete scripts/DIY plus loader/metadata/attribution; authoring docs/examples excluded, byte identity and required roots preserved: PASS')

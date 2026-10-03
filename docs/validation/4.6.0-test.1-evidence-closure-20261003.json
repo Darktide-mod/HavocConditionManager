@@ -1,0 +1,21 @@
+{
+  "scope": "Fresh complete offline 40-case run and runtime-only local candidate; no live game validation",
+  "required_cases": 40,
+  "source_files_stable_before_after": 328,
+  "test_and_tool_inputs_stable_before_after": 66,
+  "evidence_sha256": {
+    "4.6.0-test.1-full-suite-result-20261003.json": "24e66a62362af185795e53139dd782972f2e056868aa09f3ee2e805b504eb31d",
+    "4.6.0-test.1-workload-20261003.json": "3f1ad6d768d9e2e7e5bba44adc5ecc6d3e1d6bbf103224660e2d71a3e306842e",
+    "4.6.0-test.1-package-validation-20261003.json": "3b2aa7a9e5728ff1d285f6088cf065ae8d97c51a76c63ea5338cb888b707373c",
+    "4.6.0-test.1-full-suite-20261003.txt": "e4fe234ab9425dbd003941a29b09a91db1c42c6b0dcde0aac4a4bfa41df6f879"
+  },
+  "old_candidates_unchanged_sha256": {
+    "4.5.1-test.1": "94508d924a1de7ed3dec3e5e007503faaa06d6eae1f46d9e01748864fc84513f",
+    "4.5.1-test.2": "72371695e2c77bf093dcc0db90c3101b4ae60457cd605b18fac0e885496770c6"
+  },
+  "accepted_efl_commit": "0dc39a50d61a67be3af1247a44a9b1092786fa75",
+  "accepted_rank50_commit": "17851628cc9ae8de03ccf4a13c06222fe61f38f2",
+  "installed_source_backfill_report": "efl-source5-20261003.json",
+  "live_gameplay": "not performed; parent UI investigation confirmed locked desktop at 21:43 UTC",
+  "fps_claim": false
+}

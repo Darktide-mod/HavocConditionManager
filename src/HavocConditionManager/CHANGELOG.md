@@ -1,3 +1,9 @@
+# Local candidate 4.6.0-test.1 — 2026-10-03
+
+Unpublished local feature candidate. Custom Havoc ranks1–50 and Emperor's Fading Light III/IV have bounded offline acceptance; SoloPlay mission data retains native rank40/II identity with separate HCM metadata. III/IV extend only captain travel, monster-slot chance/cooldown and horde timer pacing from native I/II anchors. Native I/II, eligibility, concurrency and remaining mechanics are preserved.
+
+The40-case offline suite covers native initialization/consumers, mission/settings/reload ownership, actual HED preset/mode/capture/rollback and UI callbacks. Shorter timers raise potential workload; no FPS claim is made. Live UI, persistence, DMF reload, gameplay and frame-time checks remain unperformed. This candidate includes runtime scripts, built-in DIY, loader/metadata and attribution; authoring docs/examples and validation fixtures stay outside the ZIP.
+
 # Local candidate 4.5.1-test.2 — 2026-10-03
 
 This ZIP is an unpublished local test candidate. It has not been deployed or validated in a running game.

@@ -1,0 +1,120 @@
+{
+  "public_commit": "7e662fcda16219d775b84af50322be2e9cd9d62e",
+  "installed_steam_build": "25606770",
+  "installed_executable_version": "1.3.802.934",
+  "input_before": {
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\bundle\\bundle_database.data": "36DA6AC68790E64F02A1653EBE6D47C1BCE309F71FF2D86EA8C1ED63C422EB31",
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\Darktide.exe": "28B843BC2905FAAA0F27329D68E5DE989DF908F2552D80BF2B3C79B86E259775",
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\oo2core_9_win64.dll": "8595A4795F1E0C7F548598F3E2AA528B6BE5456C6D934C665182EAECB04156C0"
+  },
+  "input_after": {
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\bundle\\bundle_database.data": "36DA6AC68790E64F02A1653EBE6D47C1BCE309F71FF2D86EA8C1ED63C422EB31",
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\Darktide.exe": "28B843BC2905FAAA0F27329D68E5DE989DF908F2552D80BF2B3C79B86E259775",
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\oo2core_9_win64.dll": "8595A4795F1E0C7F548598F3E2AA528B6BE5456C6D934C665182EAECB04156C0"
+  },
+  "public_before": {
+    "scripts/settings/circumstance/templates/havoc_circumstance_template.lua": "8E012E01503311A3F79F867E516A94BD2DEEEC4D7D5503AAD5FF4D1F192E5411",
+    "scripts/settings/mutator/templates/mutator_modify_pacing_templates.lua": "62CD5BCCC42983BCE20B4F3D672EFFDC516A6B6086F1DE9955229A57F6618482",
+    "scripts/managers/pacing/horde_pacing/templates/mutator_horde_pacing_template.lua": "66209179855317FD216C45425292F0B088CB9EAB854C9B860D25690BAFCE214E",
+    "scripts/managers/mutator/mutators/mutator_modify_pacing.lua": "D0D371BEEE74890AB9FDAAC32A797744A89C0163E153B5E5350457582C92F131",
+    "scripts/managers/mutator/mutators/mutator_horde_pacing_overrides.lua": "BACA481AF48AF7CC1FDE68CC2E4657F7D3D114181FAE17F0EEAD127D7944CD4D"
+  },
+  "public_after": {
+    "scripts/settings/circumstance/templates/havoc_circumstance_template.lua": "8E012E01503311A3F79F867E516A94BD2DEEEC4D7D5503AAD5FF4D1F192E5411",
+    "scripts/settings/mutator/templates/mutator_modify_pacing_templates.lua": "62CD5BCCC42983BCE20B4F3D672EFFDC516A6B6086F1DE9955229A57F6618482",
+    "scripts/managers/pacing/horde_pacing/templates/mutator_horde_pacing_template.lua": "66209179855317FD216C45425292F0B088CB9EAB854C9B860D25690BAFCE214E",
+    "scripts/managers/mutator/mutators/mutator_modify_pacing.lua": "D0D371BEEE74890AB9FDAAC32A797744A89C0163E153B5E5350457582C92F131",
+    "scripts/managers/mutator/mutators/mutator_horde_pacing_overrides.lua": "BACA481AF48AF7CC1FDE68CC2E4657F7D3D114181FAE17F0EEAD127D7944CD4D"
+  },
+  "tools": {
+    "decompiler": {
+      "source_commit": "166658ffe9eaf64e94887cd8df9d9340f695d9a9",
+      "path": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mod-work\\HavocDirectorStudio\\tools\\luajit-decompiler-v2\\build-166658ffe9eaf64e94887cd8df9d9340f695d9a9\\luajit-decompiler-v2.exe",
+      "sha256": "FF56EE49320A609CCB5357B8C4EC0578EBC67A14546FADAE1A3D9BFE2E014D88"
+    },
+    "limn": {
+      "path": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mod-work\\HavocDirectorStudio\\tools\\limn\\0.7.2\\limn-0.7.2-x86_64-pc-windows-msvc\\limn.exe",
+      "folder_label": "0.7.2",
+      "reported_help_version": "0.7.1",
+      "sha256": "03EA9AD220E3D217414362B365ACC64B0E47A37ADAF7CF5F478B0C68C6A5EC67"
+    }
+  },
+  "lexer": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mod-work\\HavocDirectorStudio\\scripts\\game_bundle_audit.py",
+  "lexer_sha256": "2BBBF7D0F6FD9A531941DCBE09053FE60E40462305D1CDD98EA57044897F2D2D",
+  "dictionary_sha256": "8DA9A26A26DFE3B1380B45038A9F6E2F4955FB863E7AA8A9E717221D3DB7E901",
+  "commands": [
+    {
+      "arguments": [
+        "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mod-work\\HavocDirectorStudio\\tools\\limn\\0.7.2\\limn-0.7.2-x86_64-pc-windows-msvc\\limn.exe",
+        "-i",
+        "F:/SteamLibrary/steamapps/common/Warhammer 40,000 DARKTIDE/bundle",
+        "-o",
+        "D:\\Projects\\game-data\\hcm-efl-source5-20261003\\bytecode",
+        "--dict",
+        "D:\\Projects\\game-data\\hcm-efl-source5-20261003\\dictionary.txt",
+        "-j",
+        "1",
+        "lua"
+      ],
+      "exit_code": 0,
+      "seconds": 0.6134390999795869
+    },
+    {
+      "arguments": [
+        "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mod-work\\HavocDirectorStudio\\tools\\luajit-decompiler-v2\\build-166658ffe9eaf64e94887cd8df9d9340f695d9a9\\luajit-decompiler-v2.exe",
+        "D:\\Projects\\game-data\\hcm-efl-source5-20261003\\bytecode",
+        "-e",
+        "lua",
+        "-o",
+        "D:\\Projects\\game-data\\hcm-efl-source5-20261003\\decoded",
+        "-s"
+      ],
+      "exit_code": 0,
+      "seconds": 0.025058700004592538
+    }
+  ],
+  "modules": [
+    {
+      "path": "scripts/settings/circumstance/templates/havoc_circumstance_template.lua",
+      "bytecode_sha256": "B0A738B8E228B230E6D9FAEF4980E4F5D50D1FEF599616C5630F984B8B620733",
+      "decoded_sha256": "5E2DF03A3055DA68249B7A9A8B3B91704C4406A050A9D74703E07860CEF988F8",
+      "public_sha256": "8E012E01503311A3F79F867E516A94BD2DEEEC4D7D5503AAD5FF4D1F192E5411",
+      "token_match": true,
+      "token_count": 672
+    },
+    {
+      "path": "scripts/settings/mutator/templates/mutator_modify_pacing_templates.lua",
+      "bytecode_sha256": "A0D9301B287A19E26C78C3CCCCDA51E740B69F8DEAAE0F5C479B825B56D34D75",
+      "decoded_sha256": "5DD4BD61C19114FAA8CD32B421043E13D4EA87E8D58E95CACDA6B6D0730ED855",
+      "public_sha256": "62CD5BCCC42983BCE20B4F3D672EFFDC516A6B6086F1DE9955229A57F6618482",
+      "token_match": true,
+      "token_count": 2094
+    },
+    {
+      "path": "scripts/managers/pacing/horde_pacing/templates/mutator_horde_pacing_template.lua",
+      "bytecode_sha256": "6FD11B6A64EBEC9CE9D34A8271C3BE90B76CC22665CB541B252691396F8A1F9E",
+      "decoded_sha256": "1D877BD4BC1B3B7587A10A78635893C47A01DE7BA1150C63AB401E07AC891569",
+      "public_sha256": "66209179855317FD216C45425292F0B088CB9EAB854C9B860D25690BAFCE214E",
+      "token_match": true,
+      "token_count": 3451
+    },
+    {
+      "path": "scripts/managers/mutator/mutators/mutator_modify_pacing.lua",
+      "bytecode_sha256": "56C857DDB4F58170D42E1AC908D944E36A8BD893A2B85655409BD1D1B9B461FE",
+      "decoded_sha256": "D0D371BEEE74890AB9FDAAC32A797744A89C0163E153B5E5350457582C92F131",
+      "public_sha256": "D0D371BEEE74890AB9FDAAC32A797744A89C0163E153B5E5350457582C92F131",
+      "token_match": true,
+      "token_count": 162
+    },
+    {
+      "path": "scripts/managers/mutator/mutators/mutator_horde_pacing_overrides.lua",
+      "bytecode_sha256": "A7FB8B70B4C69D6EC0F2BD0C989A522644A58E287D1BFB93C5355A5F026FAAC7",
+      "decoded_sha256": "BACA481AF48AF7CC1FDE68CC2E4657F7D3D114181FAE17F0EEAD127D7944CD4D",
+      "public_sha256": "BACA481AF48AF7CC1FDE68CC2E4657F7D3D114181FAE17F0EEAD127D7944CD4D",
+      "token_match": true,
+      "token_count": 133
+    }
+  ],
+  "matched": 5,
+  "limits": "Exactly five offline module token comparisons; no game launch, live behavior or full-game compatibility claim. Executable version is tied to identical prior executable bytes."
+}

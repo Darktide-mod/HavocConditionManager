@@ -1,6 +1,6 @@
 [English guide](src/HavocConditionManager/docs/README.en.md) · [简体中文](src/HavocConditionManager/docs/README.zh-CN.md) · [繁體中文](src/HavocConditionManager/docs/README.zh-TW.md)
 
-**Local unpublished test candidate: 4.5.1-test.2.** All 37 offline scripts pass; live validation remains pending. See [suite closure](docs/full-suite-closure-20261003.md) and [candidate notes](docs/local-candidate-20261003.md).
+**Local unpublished feature candidate: 4.6.0-test.1.** Custom Havoc ranks1–50 and EFL III/IV have bounded offline acceptance; all40 offline checks pass, while live validation remains pending. See [EFL implementation and provenance](docs/custom-efl-four-tiers.md) and [candidate notes](docs/local-candidate-4.6.0-test.1-20261003.md).
 
 当前功能版本：4.5.0；说明修订：4.5.0-r2。内置「禁止医疗」直接从模组目录加载，无需解压模板；保留外部 DIY 与作者接口。「狂暴攻势」、动画资源和安装器已独立分发至 [HavocConditionPacks](https://github.com/Darktide-mod/HavocConditionPacks)。
 

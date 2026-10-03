@@ -1,3 +1,10 @@
+4.6.0-test.1 (unpublished local feature candidate)
+- Add custom Havoc ranks 41-50 with native rank40 identity, selected modifier curves and HCM-owned metadata.
+- Add exclusive custom Emperor's Fading Light III/IV choices using native II identity and four source-derived pacing extensions.
+- Preserve native I/II and rank1-40 semantics, native eligibility/slot caps, mission-owned copies and optional HED presets/modes/rollback.
+- Package runtime scripts, built-in DIY, loader/metadata and attribution only; exclude authoring documents, examples and validation fixtures.
+- Offline validation only. Live UI/persistence/DMF reload/gameplay/frame-time checks are pending; no FPS claim.
+
 4.5.1-test.2 (unpublished local test candidate)
 - Preserve the game 1.13 compatibility repairs and accepted minion callback gate.
 - Complete all 37 offline regression scripts with corrected current-source fixtures.

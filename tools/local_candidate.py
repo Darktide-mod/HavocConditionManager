@@ -55,8 +55,24 @@ def suite_evidence(files):
     return evidence_path, evidence
 
 
-def validate(archive, files, version):
-    evidence_path, evidence = suite_evidence(files)
+def runtime_payload(source_files):
+    files = {}
+    for name, data in source_files.items():
+        parts = PurePosixPath(name).parts
+        if (len(parts) >= 3 and parts[0] == MOD and parts[1] in ('scripts', 'diy')) or (
+                len(parts) == 2 and parts[0] == MOD and parts[1] in (MOD+'.mod', 'info.json', 'THIRD_PARTY.md')):
+            files[name] = data
+    for required in (f'{MOD}/{MOD}.mod', f'{MOD}/info.json',
+                     f'{MOD}/scripts/mods/{MOD}/{MOD}.lua', f'{MOD}/diy/index.json'):
+        assert required in files, required
+    assert all(source_files[name] == data for name, data in files.items())
+    assert_no_nested_archives(files)
+    return files
+
+
+def validate(archive, files, version, source_files):
+    evidence_path, evidence = suite_evidence(source_files)
+    assert files == runtime_payload(source_files), 'The runtime payload must match the current source policy exactly.'
     runtime = os.environ.get('DARKTIDE_TEST_RUNTIME')
     assert runtime, 'Set DARKTIDE_TEST_RUNTIME to the already approved isolated runtime.'
     sys.path.insert(0, runtime)
@@ -92,13 +108,17 @@ def validate(archive, files, version):
             'suite_evidence': str(evidence_path),
             'suite_evidence_sha256': hashlib.sha256(evidence_path.read_bytes()).hexdigest(),
             'live_gameplay': 'not performed', 'fps_claim': False,
+            'payload_policy': 'scripts, built-in DIY, loader/metadata and third-party attribution only',
+            'source_files': len(source_files), 'excluded_source_files': len(source_files)-len(files),
+            'source_payload_sha256': {name: hashlib.sha256(data).hexdigest() for name, data in source_files.items()},
             'payload_sha256': {name: hashlib.sha256(data).hexdigest() for name, data in files.items()}}
 
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--check', action='store_true')
 args = parser.parse_args()
-files = payload()
+source_files = payload()
+files = runtime_payload(source_files)
 version = json.loads(files[f'{MOD}/info.json'])['version']
 assert re.fullmatch(r'\d+\.\d+\.\d+-test\.\d+', version), 'Local candidates use the existing test-version convention.'
 directory = ROOT / 'build/local-candidates' / version
@@ -107,12 +127,12 @@ assert directory.resolve().is_relative_to((ROOT / 'build').resolve())
 archive = directory / f'{MOD}-{version}.zip'
 if not args.check:
     assert not archive.exists(), 'Existing candidates are immutable; use --check or a new test version.'
-    suite_evidence(files)
+    suite_evidence(source_files)
     with zipfile.ZipFile(archive, 'x', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         for name, data in files.items():
             entry = zipfile.ZipInfo(name, date_time=(2026, 10, 3, 0, 0, 0))
             entry.compress_type = zipfile.ZIP_DEFLATED
             z.writestr(entry, data)
-report = validate(archive, files, version)
+report = validate(archive, files, version, source_files)
 (directory / 'validation.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8', newline='\n')
-print(json.dumps({key: value for key, value in report.items() if key != 'payload_sha256'}, indent=2))
+print(json.dumps({key: value for key, value in report.items() if key not in ('payload_sha256','source_payload_sha256')}, indent=2))
