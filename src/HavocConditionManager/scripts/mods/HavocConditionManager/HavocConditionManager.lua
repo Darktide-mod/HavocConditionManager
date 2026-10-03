@@ -23,6 +23,7 @@ mod.has_local_gameplay_authority=function() return toggle.active() and authority
 mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/presence_compat")
 local SoloPlaySettings = base_mod:io_dofile("SoloPlay/scripts/mods/SoloPlay/SoloPlaySettings")
 mod.custom_havoc_rank = mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/custom_havoc_rank_runtime")
+mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/custom_havoc_rank_presets")(mod.custom_havoc_rank,mod,base_mod)
 local HavocConditions = mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/havoc_conditions")
 mod.condition_catalog = Catalog
 local catalog_state
@@ -203,6 +204,7 @@ mod.get_selected_conditions = function()
     })
 end
 mod.refresh_condition_generators = function()
+    mod.custom_havoc_rank.install_presets()
     local director=get_mod("HavocEnemyDirector")
     if director and director.synchronize_conditions then director.synchronize_conditions() end
 end
@@ -214,6 +216,7 @@ mod.close_condition_manager_view=function()
 end
 local function state_changed(initial_call)
     toggle.changed(initial_call)
+    if mod:is_enabled() then mod.custom_havoc_rank.install_presets() else mod.custom_havoc_rank.uninstall_presets() end
     set_catalog_enabled(mod:is_enabled())
     if not initial_call then mod.close_condition_manager_view() end
     local director=get_mod("HavocEnemyDirector")
@@ -226,8 +229,10 @@ end
 mod.on_enabled=state_changed
 mod.on_disabled=state_changed
 mod.on_all_mods_loaded=function()
+    mod.custom_havoc_rank.install_presets()
     if mod.diy_library and mod.diy_library.resolve_startup_dependencies then mod.diy_library.resolve_startup_dependencies() end
 end
+mod.on_unload=function() mod.custom_havoc_rank.unload() end
 mod.on_game_state_changed=function(status,state)
     if state~="GameplayStateRun" then return end
     if status=="exit" then

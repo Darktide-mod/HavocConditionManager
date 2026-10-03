@@ -42,6 +42,53 @@ function R.record(rank)
     assert(R.validate(rank),"Custom Havoc rank must be a finite integer from 1 to 50")
     return {version=1,requested_rank=rank,native_rank=math.min(rank,R.native_max)}
 end
+local function modifier_names()
+    local names={}
+    for name in pairs(Settings.modifier_templates) do names[name]=true end
+    for name in pairs(Settings.positive_modifier_templates) do names[name]=true end
+    return names
+end
+function R.preset(rank,get)
+    local result=R.record(rank)
+    result.modifiers={}
+    for name in pairs(modifier_names()) do result.modifiers[name]=get("havoc_modifier_"..name) or 0 end
+    result.customizable=get("havoc_modifiers_customizable")==true
+    return R.validate_preset(result)
+end
+function R.validate_preset(value)
+    if type(value)~="table" or getmetatable(value)~=nil then return end
+    local allowed={version=true,requested_rank=true,native_rank=true,modifiers=true,customizable=true}
+    for key in pairs(value) do if not allowed[key] then return end end
+    local result=R.validate_record({version=value.version,requested_rank=value.requested_rank,native_rank=value.native_rank})
+    if not result or type(value.customizable)~="boolean" or type(value.modifiers)~="table" or getmetatable(value.modifiers)~=nil then return end
+    local names=modifier_names();local selected={}
+    for name,level in pairs(value.modifiers) do
+        local templates=Settings.modifier_templates[name] or Settings.positive_modifier_templates[name]
+        if not names[name] or type(level)~="number" or level~=level or level%1~=0 or level<0 or (level>0 and not templates[level]) then return end
+        selected[name]=level;names[name]=nil
+    end
+    if next(names)~=nil then return end
+    result.modifiers=selected;result.customizable=value.customizable
+    return result
+end
+function R.selection_state(get)
+    local result={}
+    for name in pairs(modifier_names()) do result[#result+1]={key="havoc_modifier_"..name,value=get("havoc_modifier_"..name)} end
+    result[#result+1]={key="havoc_modifiers_customizable",value=get("havoc_modifiers_customizable")}
+    return result
+end
+function R.validate_modes(value)
+    if value==nil then return {} end
+    if type(value)~="table" or getmetatable(value)~=nil then return end
+    local result={}
+    for mode,preset in pairs(value) do
+        if mode~="hcm" and mode~="hed" then return end
+        local checked=R.validate_preset(preset)
+        if not checked then return end
+        result[mode]=checked
+    end
+    return result
+end
 function R.generate(fn,rank,...)
     assert(R.validate(rank),"Custom Havoc rank must be a finite integer from 1 to 50")
     return fn(math.min(rank,R.native_max),...)

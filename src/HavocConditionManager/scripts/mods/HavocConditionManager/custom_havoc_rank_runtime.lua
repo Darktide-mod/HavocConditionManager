@@ -2,6 +2,34 @@ local mod=get_mod("HavocConditionManager")
 local base=get_mod("SoloPlay")
 local R=mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/custom_havoc_rank")
 local api={rules=R}
+local native_write_depth=0
+local function packed(...) return {n=select("#",...),...} end
+function api.native_writes(fn,...)
+    native_write_depth=native_write_depth+1
+    local result=packed(pcall(fn,...))
+    native_write_depth=native_write_depth-1
+    if not result[1] then error(result[2],0) end
+    return unpack(result,2,result.n)
+end
+local old_observer=mod._custom_havoc_rank_observer
+if old_observer then old_observer.active=false end
+if old_observer and base.set==old_observer.wrapper then base.set=old_observer.original end
+local original_set=base.set
+local observer={original=original_set,active=true}
+local function finish_native_write(key,...)
+    if observer.active and key=="havoc_difficulty" and native_write_depth==0 and mod:get(R.storage_key)~=nil then
+        mod:set(R.storage_key,nil)
+        local director=get_mod("HavocEnemyDirector")
+        if director and director.studio_dirty then director.studio_dirty() end
+    end
+    return ...
+end
+local function rank_observer(self,key,...)
+    return finish_native_write(key,original_set(self,key,...))
+end
+base.set=rank_observer
+observer.wrapper=rank_observer
+mod._custom_havoc_rank_observer=observer
 function api.get()
     local native=base:get("havoc_difficulty")
     local saved=mod:get(R.storage_key)
@@ -16,8 +44,10 @@ function api.get()
 end
 function api.set(rank)
     if not R.validate(rank) then return false end
-    base:set("havoc_difficulty",math.min(rank,40))
+    api.native_writes(base.set,base,"havoc_difficulty",math.min(rank,40))
     mod:set(R.storage_key,rank>40 and R.record(rank) or nil)
+    local director=get_mod("HavocEnemyDirector")
+    if director and director.studio_dirty then director.studio_dirty() end
     return true
 end
 function api.validate_launch()
@@ -78,7 +108,6 @@ mod:hook(HavocExtension,"_initialize_modifiers",function(fn,self,selected,...)
     return finish_modifiers(self,selected,fn(self,selected,...))
 end)
 local applying_unit
-local function packed(...) return {n=select("#",...),...} end
 local function native_buff_application(fn,self,unit,...)
     if not self._is_server or not api.session() then return fn(self,...) end
     local previous=applying_unit
@@ -104,4 +133,11 @@ mod:hook_require("scripts/extension_systems/buff/buffs/buff",function(Buff)
 end)
 -- Keep raw native rank40 for skin (.5), the exact-rank40 boss gate and all
 -- unextended rank consumers. Requested rank is HCM metadata, never a backend rank.
+function api.unload()
+    api.finish()
+    observer.active=false
+    if api.uninstall_presets then api.uninstall_presets() end
+    if base.set==rank_observer then base.set=original_set end
+    if mod._custom_havoc_rank_observer and mod._custom_havoc_rank_observer.wrapper==rank_observer then mod._custom_havoc_rank_observer=nil end
+end
 return api

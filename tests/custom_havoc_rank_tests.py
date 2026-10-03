@@ -152,22 +152,69 @@ tough=(GAME/'scripts/extension_systems/toughness/player_unit_toughness_extension
 L.execute('NativeHealth={};NativeToughness={};local PlayerUnitHealthExtension=NativeHealth;local PlayerUnitToughnessExtension=NativeToughness;'+method(health,'PlayerUnitHealthExtension','max_health')+'\n'+method(tough,'PlayerUnitToughnessExtension','max_toughness'))
 skin=re.search(r'local function _get_damage_reduction_value\(\)(.*?)\nend',buff_source,re.S).group(1)
 L.globals().skin_value=L.execute('return function()'+skin+'\nend')
+spillway=(GAME/'scripts/managers/pacing/bosses/spillway_wizard.lua').read_text(encoding='utf-8-sig')
+helper=spillway[spillway.index('function _is_havoc()'):spillway.index('\nfunction _try_spawn_havoc_twin()')]
+phase=spillway.index('abilities_component.current_ability = "force_push"')
+start=spillway.rfind('init = function',0,phase)
+init=spillway[start:spillway.index('\n\t\tend,',phase)+len('\n\t\tend')].replace('init = function','local init = function',1)
+chance=re.search(r'local HAVOC_TWIN_CHANCE = ([^\n]+)',spillway).group(1)
+L.execute('''
+local BLACKBOARDS={}
+local GameSession={set_game_object_field=function() end}
+local ShockwaveStageHazard={init=function() end}
+local function _set_toughness_shield_state() end
+local function _index_against_challenge(v) return v end
+local function _try_start_retreat_burst() end
+local twins=0
+local function _try_spawn_havoc_twin() twins=twins+1 end
+local HAVOC_TWIN_CHANCE='''+chance+'\n'+helper+'\n'+init+'''
+function check_twin_eligibility(expected)
+ local unit={};BLACKBOARDS[unit]={spawn={}}
+ local scratch={boss_unit=unit,positions={center={unbox=function() return {} end}},abilities_component={ability_position={store=function() end}}}
+ local old=math.random;local before=twins
+ math.random=function() return .5 end
+ init(scratch,{inital_state="force_push",exhaust_escape_step={},burst_events={}}, {},1)
+ assert(twins-before==(expected and 1 or 0))
+ before=twins;math.random=function() return 1 end
+ init(scratch,{inital_state="force_push",exhaust_escape_step={},burst_events={}}, {},1)
+ assert(twins==before,"Native twin chance must still gate the custom rank path")
+ math.random=old
+end
+''')
 L.execute('''
 results={}
 for rank=40,50 do
  local extension,context=begin(rank)
  assert(extension:get_current_rank()==40 and Havoc.parse_data(context.havoc_data).havoc_rank==40)
  near(skin_value(),.5)
+ check_twin_eligibility(true)
  local player=new_unit({});NativeHavocExtension._on_player_unit_spawned(extension,{player_unit=player})
  local health=NativeHealth.max_health({_health=200,_buff_extension={stat_buffs=function() return player.stats end}})
  local toughness=NativeToughness.max_toughness({_max_toughness=75,_buff_extension={stat_buffs=function() return player.stats end}})
  local d=rank-40
  near(player.stats.max_health_modifier,.65-d/60)
+ near(player.stats.toughness,-45-5*d/9)
  near(player.stats.toughness_regen_rate_modifier,.5-d/90)
+ near(player.stats.vent_warp_charge_speed,1.85+d/60)
  near(output.ammo,.4-d/120)
  near(extension._modifiers.modify_elite_health,.5+d/40)
+ near(extension._modifiers.modify_special_health,.5+d/48)
+ near(extension._modifiers.modify_monster_health,.7+.03*d)
+ near(extension._modifiers.modify_horde_health,.3+.005*d)
+ near(extension._modifiers.modify_horde_hit_mass,1.7+.02*d)
+ near(extension._modifiers.add_more_elites,1+.125*d)
+ near(extension._modifiers.add_more_ogryns,.8+.05*d)
+ near(extension:get_power_level_modifier(),1.5+d/40)
+ near(output.horde,2.4+.04*d);near(output.terror,.85+d/32)
  near(extension._modifiers.add_max_alive_specials,6+d/10)
  assert(extension._modifiers.add_num_monsters==3)
+ local minion=new_unit({tags={horde=true,melee=true,far=true}})
+ extension:_on_minion_unit_spawned(minion)
+ near(minion.hit_mass,2.7+.02*d)
+ near(minion.stats.melee_attack_speed,2+.05*d)
+ near(minion.stats.ranged_attack_speed,1.3+.01*d)
+ near(minion.stats.minion_num_shots_modifier,2.25+.05*d)
+ near(minion.stats.permanent_damage_ratio,.3+d/160)
  assert(health>0 and toughness>0)
  local independent=new_unit({});independent.buff_system:add_internally_controlled_buff("havoc_health_modifier_5",1)
  near(independent.stats.max_health_modifier,.65)
@@ -176,7 +223,7 @@ for rank=40,50 do
   assert(snapshot.record.requested_rank==rank)
   local old_ammo=output.ammo;Rank.set(41);assert(Rank.session()==snapshot and output.ammo==old_ammo)
  end
- results[#results+1]={rank=rank,health_factor=player.stats.max_health_modifier,max_health_base200=health,toughness_base75=toughness,regen=player.stats.toughness_regen_rate_modifier,ammo=output.ammo,special_bonus=extension._modifiers.add_max_alive_specials,slots_on_base5=math.ceil(5+extension._modifiers.add_max_alive_specials),native_rank=extension:get_current_rank(),skin=skin_value()}
+ results[#results+1]={rank=rank,health_factor=player.stats.max_health_modifier,max_health_base200=health,toughness_base75=toughness,regen=player.stats.toughness_regen_rate_modifier,ammo=output.ammo,special_bonus=extension._modifiers.add_max_alive_specials,slots_on_base5=math.ceil(5+extension._modifiers.add_max_alive_specials),native_rank=extension:get_current_rank(),skin=skin_value(),twin_eligibility=true,modifier_fields=Rules.copy(extension._modifiers),vent=player.stats.vent_warp_charge_speed,minion_hit_mass=minion.hit_mass,minion_stats={melee_attack_speed=minion.stats.melee_attack_speed,ranged_attack_speed=minion.stats.ranged_attack_speed,minion_num_shots_modifier=minion.stats.minion_num_shots_modifier,permanent_damage_ratio=minion.stats.permanent_damage_ratio}}
 end
 local selected={{name="buff_elites",level=2},{name="reduce_health_and_wounds",level=1}}
 local extension=begin(50,selected)
@@ -249,4 +296,191 @@ entry.on_activated(45,entry);assert(solo:get("havoc_modifier_buff_elites")==2 an
 view:_regen_havoc();assert(view._current_modifier.buff_elites==5)
 test_language="en";assert(entry.format_value_function(50)=="50 (custom)")
 print("Actual HCM rank callbacks: first-open16,50 cap,40/41/45/50 refresh,bounds,custom label,locked/manual selections and native Randomize behavior: PASS")
+''')
+
+
+# Use the installed HED config, context, codec, preset and mode bodies. File I/O
+# and Studio export transport are boundaries; no installed mod files are edited.
+assert L.eval('not Rank.install_presets()')
+load_mod=original_load_mod
+L.globals().load_mod_file=load_mod
+hed_root=Path(os.environ.get('DARKTIDE_HED_SOURCE',PROJECT.parent/'dev-support/installed-mod-fixtures'))/'HavocEnemyDirector/scripts/mods/HavocEnemyDirector'
+director_text=(hed_root/'native_director.lua').read_text(encoding='utf-8-sig')
+L.execute('new_test_mod("HavocEnemyDirector");Managers.state.game_mode={game_mode_name=function() return "hub" end};Rank.finish();Rank.start()')
+L.execute(director_text[:director_text.index('mod:io_dofile("HavocEnemyDirector/scripts/mods/HavocEnemyDirector/native_relative")')])
+load_mod('HavocEnemyDirector/scripts/mods/HavocEnemyDirector/studio_mode')
+load_mod('HavocEnemyDirector/scripts/mods/HavocEnemyDirector/native_presets')
+bridge=(hed_root/'studio_bridge.lua').read_text(encoding='utf-8-sig')
+# Run capture with its real dependencies; transport/export callbacks aren't invoked.
+L.execute(bridge[:bridge.index('function mod.studio_export_context')])
+cache['scripts/settings/mission/mission_templates']['cm_archives'].level='cm_archives'
+def json_value(t):
+    if not hasattr(t,'items'): return t
+    items=dict(t.items())
+    if items and set(items)==set(range(1,len(items)+1)):
+        return [json_value(items[i]) for i in range(1,len(items)+1)]
+    return {str(k):json_value(v) for k,v in items.items()}
+L.globals().cjson=tbl({})
+L.globals().cjson.encode=lambda doc:json.dumps(json_value(doc),ensure_ascii=False)
+L.globals().cjson.decode=lambda text:tbl(json.loads(text))
+L.execute('''
+local base,solo,director=mods.HavocConditionManager,mods.SoloPlay,mods.HavocEnemyDirector
+director.finish_director=function() finishes=(finishes or 0)+1 end
+local dirty=director.studio_dirty
+director.studio_dirty=function(...) dirties=(dirties or 0)+1;return dirty(...) end
+assert(base.diy_library,"Actual DIY library must be present")
+assert(base.diy_library.set_options({enabled=false,selected={}}))
+solo:set("hcm_condition_selection_v3","")
+solo:set("havoc_theme_circumstance","default");solo:set("havoc_difficulty_circumstance","default")
+base:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/diy/diy_seed").new(base).set(123)
+assert(Rank.install_presets())
+assert(Rank.set(50))
+solo:set("havoc_modifier_buff_elites",2);solo:set("havoc_modifier_buff_specials",0);solo:set("havoc_modifiers_customizable",true)
+local cfg=director.get_saved_config()
+cfg.studio={version=1,recycling=base:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/recycling_config").validate(base:get("recycling_v1")),spatial={},policies={}}
+cfg.studio.mission={id="cm_archives",level="cm_archives",rank=30}
+assert(director.save_config(cfg))
+custom_doc=assert(director.presets.capture("Rank50 roundtrip"))
+assert(custom_doc.config.studio.mission.rank==40 and director.peek_config().studio.mission.rank==30)
+assert(custom_doc.hcm_custom_havoc_v1.requested_rank==50 and custom_doc.hcm_custom_havoc_v1.modifiers.buff_elites==2 and custom_doc.hcm_custom_havoc_v1.modifiers.buff_specials==0)
+assert(custom_doc.hcm_custom_havoc_v1.customizable)
+local decoded=assert(director.presets.decode(cjson.encode(custom_doc)))
+assert(same(decoded,custom_doc))
+assert(Rank.set(16))
+preset_view={_current={},_current_modifier={buff_elites=5,buff_specials=5},_modifier_customizable=false,_current_havoc_difficulty=16}
+preset_view._setup_havoc_badge=function(self) shown_badge=self._current_havoc_difficulty end
+assert(director.presets.apply(decoded,preset_view))
+assert(Rank.get()==50 and solo:get("havoc_difficulty")==40 and shown_badge==50)
+assert(solo:get("havoc_modifier_buff_elites")==2 and solo:get("havoc_modifier_buff_specials")==0)
+assert(preset_view._current_modifier.buff_elites==2 and preset_view._modifier_customizable)
+assert(director.studio_capture_context().document.hcm_custom_havoc_v1.requested_rank==50)
+function complete_state()
+ return {base=Rules.copy(base.values),solo=Rules.copy(solo.values),director=Rules.copy(director.values),config=director.get_saved_config(),diy=Rules.copy(base.diy_library.options)}
+end
+local before=complete_state()
+for _,mutate in ipairs({
+ function(v) v.hcm_custom_havoc_v1.requested_rank=51 end,
+ function(v) v.hcm_custom_havoc_v1.requested_rank=0/0 end,
+ function(v) v.hcm_custom_havoc_v1.modifiers.buff_elites=nil end,
+ function(v) v.hcm_custom_havoc_v1.modifiers.buff_elites=6 end,
+ function(v) v.hcm_custom_havoc_v1.extra=true end,
+ function(v) setmetatable(v.hcm_custom_havoc_v1,{}) end,
+ function(v) v.config.studio.mission.rank=30 end,
+ function(v) v.unknown=true end,
+}) do
+ local bad=Rules.copy(custom_doc);mutate(bad)
+ assert(not director.presets.codec.validate(bad));assert(not director.presets.apply(bad,preset_view))
+ assert(same(before,complete_state()))
+end
+-- Older documents remain readable without changing current state; explicit old
+-- native-rank40 apply and same-value native writes invalidate custom metadata.
+legacy_doc=Rules.copy(custom_doc);legacy_doc.hcm_custom_havoc_v1=nil
+assert(director.presets.codec.validate(legacy_doc) and Rank.get()==50)
+assert(director.presets.apply(legacy_doc,preset_view) and Rank.get()==40)
+assert(Rank.set(50));local old_dirty=dirties
+solo:set("havoc_difficulty",40);assert(Rank.get()==40 and dirties>old_dirty)
+assert(Rank.set(50))
+assert(director.set_studio_mode("hcm") and Rank.get()==40)
+assert(Rank.set(45));solo:set("havoc_modifier_buff_elites",1)
+assert(director.set_studio_mode("hed") and Rank.get()==50 and solo:get("havoc_modifier_buff_elites")==2)
+assert(director.set_studio_mode("hcm") and Rank.get()==45 and solo:get("havoc_modifier_buff_elites")==1)
+-- Invalid persisted mode records reject before any native writes.
+for _,bad in ipairs({true,"bad",{other=custom_doc.hcm_custom_havoc_v1},{hed={version=1}},setmetatable({},{})}) do
+ base.values.hcm_custom_havoc_modes_v1=bad;local saved=complete_state()
+ assert(not director.set_studio_mode("hed"));assert(same(saved,complete_state()))
+end
+base:set("hcm_custom_havoc_modes_v1",nil)
+-- Ordinary mission-time refusal must not clean up active owners or settings.
+Managers.state.game_mode.game_mode_name=function() return "coop" end
+before=complete_state();local old_finishes=finishes;local old_reset=base.template_runtime.reset
+local resets=0;base.template_runtime.reset=function() resets=resets+1 end
+assert(not director.presets.apply(custom_doc,preset_view))
+assert(not director.set_studio_mode("hed"));assert(director.set_studio_mode("hcm"))
+assert(not director.set_studio_mode("invalid"))
+assert(same(before,complete_state()) and finishes==old_finishes and resets==0)
+base.template_runtime.reset=old_reset;Managers.state.game_mode.game_mode_name=function() return "hub" end
+-- A failure after native apply succeeds must restore all storage, cached native
+-- config, DIY options, mode, selections and the already refreshed UI.
+assert(Rank.set(45))
+preset_view._current_havoc_difficulty=45;preset_view._current_modifier.buff_elites=1
+local ui_before={rank=preset_view._current_havoc_difficulty,modifiers=Rules.copy(preset_view._current_modifier),lock=preset_view._modifier_customizable}
+before=complete_state()
+local setter=base.set;local fail=true
+base.set=function(self,key,value)
+ if fail and key==Rules.storage_key and value and value.requested_rank==50 then fail=false;error("owned write fault") end
+ return setter(self,key,value)
+end
+assert(not pcall(director.presets.apply,custom_doc,preset_view));base.set=setter
+assert(same(before,complete_state()) and Rank.get()==45)
+assert(preset_view._current_havoc_difficulty==ui_before.rank and shown_badge==45)
+assert(same(preset_view._current_modifier,ui_before.modifiers) and preset_view._modifier_customizable==ui_before.lock)
+-- Native apply failure and a late original exception also restore full state.
+local save_config=director.save_config;fail=true
+director.save_config=function(raw) if fail then fail=false;return false,"native config fault" end;return save_config(raw) end
+before=complete_state();assert(not director.presets.apply(custom_doc,preset_view));director.save_config=save_config
+assert(same(before,complete_state()))
+Rank.uninstall_presets()
+local apply=director.presets.apply
+director.presets.apply=function(...)
+ assert(apply(...));error("late native apply fault")
+end
+assert(Rank.install_presets());before=complete_state()
+assert(not pcall(director.presets.apply,custom_doc,preset_view));assert(same(before,complete_state()))
+Rank.uninstall_presets();director.presets.apply=apply;assert(Rank.install_presets())
+-- Failure persisting mode-specific metadata is in the same transaction.
+base:set("hcm_custom_havoc_modes_v1",nil);before=complete_state();fail=true
+base.set=function(self,key,value)
+ if fail and key=="hcm_custom_havoc_modes_v1" then fail=false;error("mode persistence fault") end
+ return setter(self,key,value)
+end
+assert(not pcall(director.set_studio_mode,"hed"));base.set=setter
+assert(same(before,complete_state()))
+-- Disable detaches preset bridges, retaining only the native setter observer
+-- needed for legacy rank resets. Re-enable restores the optional integration.
+base._enabled=false;base.on_disabled(false)
+assert(base._custom_havoc_preset_bridge==nil)
+solo:set("havoc_difficulty",40);assert(base:get(Rules.storage_key)==nil)
+base._enabled=true;base.on_enabled(false);assert(base._custom_havoc_preset_bridge)
+print("Actual HED codec/presets/modes: rank50 JSON roundtrip, selected tiers/zeros/lock, old native presets, malformed data, mission no-op refusal, complete state/UI rollback and disable/re-enable: PASS")
+''')
+# Real reload callback body, with explicit DMF hook removal boundary.
+L.execute('''
+local base,solo,director=mods.HavocConditionManager,mods.SoloPlay,mods.HavocEnemyDirector
+local first=Rank;local inner=solo.set;local third_calls=0
+local third=function(...) third_calls=third_calls+1;return inner(...) end
+solo.set=third
+-- An externally captured preset wrapper must become a pass-through after unload.
+local captured=director.presets.capture
+local third_capture=function(...) return captured(...) end
+director.presets.capture=third_capture
+base.on_unload(false)
+assert(solo.set==third and director.presets.capture==third_capture and base._custom_havoc_preset_bridge==nil)
+local filtered={}
+for _,h in ipairs(hooks) do
+ if h.owner~=base or h.target~=NativeHavocExtension and not (h.require_hook and h.path=="scripts/extension_systems/buff/buffs/buff") then filtered[#filtered+1]=h end
+end
+hooks=filtered
+Rank=base:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/custom_havoc_rank_runtime")
+base.custom_havoc_rank=Rank
+base:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/custom_havoc_rank_presets")(Rank,base,solo)
+assert(Rank.install_presets());assert(Rank.set(50) and Rank.get()==50)
+local expected_calls=third_calls
+assert(Rank.set(45) and Rank.get()==45 and third_calls==expected_calls+1)
+solo:set("havoc_difficulty",40);assert(Rank.get()==40)
+-- Same director object with replaced exported tables must be wrapped anew.
+Rank.uninstall_presets()
+local replacement=director:io_dofile("HavocEnemyDirector/scripts/mods/HavocEnemyDirector/native_presets")
+assert(Rank.install_presets());assert(Rank.set(50))
+assert(replacement.capture("replacement").hcm_custom_havoc_v1.requested_rank==50)
+local old_capture=replacement.capture
+director.presets=nil
+assert(not Rank.install_presets() and base._custom_havoc_preset_bridge==nil)
+assert(old_capture("inactive").hcm_custom_havoc_v1==nil)
+director.presets=replacement;assert(Rank.install_presets())
+-- Both DMF reload and exit callbacks restore plain wrappers while preserving
+-- third-party ownership. Disabled mods still receive on_unload.
+base._enabled=false;base.on_unload(true)
+assert(solo.set==third and base._custom_havoc_preset_bridge==nil)
+assert(third_capture("unloaded").hcm_custom_havoc_v1==nil)
+print("Actual DMF callback body: reload(false), exit(true), disabled unload, setter/preset wrappers behind third-party ownership, no stale depth guards, replaced optional API and absent HED: PASS")
 ''')
