@@ -22,6 +22,7 @@ mod.is_gameplay_enabled=toggle.active
 mod.has_local_gameplay_authority=function() return toggle.active() and authority() end
 mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/presence_compat")
 local SoloPlaySettings = base_mod:io_dofile("SoloPlay/scripts/mods/SoloPlay/SoloPlaySettings")
+mod.custom_havoc_rank = mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/custom_havoc_rank_runtime")
 local HavocConditions = mod:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/havoc_conditions")
 mod.condition_catalog = Catalog
 local catalog_state
@@ -176,8 +177,11 @@ if not base_mod._havoc_condition_manager_context_wrapper then
 	base_mod._havoc_condition_manager_context_wrapper = base_mod.gen_havoc_mission_context
 	base_mod.gen_havoc_mission_context = function (...)
 		if not mod:is_enabled() then return base_mod._havoc_condition_manager_context_wrapper(...) end
+		-- Existing native-only fixtures/settings keep the previous path; strict
+		-- validation applies once a real rank or custom record is present.
+		if base_mod:get("havoc_difficulty")~=nil or mod:get("hcm_custom_havoc_v1")~=nil then mod.custom_havoc_rank.validate_launch() end
 		mod.validate_environment_selection()
-		return mod.apply_havoc_conditions(base_mod._havoc_condition_manager_context_wrapper(...))
+		return mod.custom_havoc_rank.decorate(mod.apply_havoc_conditions(base_mod._havoc_condition_manager_context_wrapper(...)))
 	end
 end
 
@@ -227,10 +231,11 @@ end
 mod.on_game_state_changed=function(status,state)
     if state~="GameplayStateRun" then return end
     if status=="exit" then
+		mod.custom_havoc_rank.finish()
 		mod.reset_native_spawn_scaling()
 		if mod.finish_diy_conditions then mod.finish_diy_conditions() end
         -- End mission-owned listeners before a pending DMF disable removes hooks.
         mod.cleanup_condition_listeners()
         toggle.finish()
-    elseif status=="enter" then toggle.start() end
+    elseif status=="enter" then toggle.start();mod.custom_havoc_rank.start() end
 end

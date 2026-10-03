@@ -30,12 +30,14 @@ local addon_setting_keys = {
 }
 
 local function get_setting(key)
+	if key=="havoc_difficulty" then return mod.custom_havoc_rank.get() end
 	local owner = addon_setting_keys[key] and mod or base_mod
 
 	return owner:get(key)
 end
 
 local function set_setting(key, value)
+	if key=="havoc_difficulty" then return mod.custom_havoc_rank.set(value) end
 	local owner = addon_setting_keys[key] and mod or base_mod
 
 	owner:set(key, value)
@@ -307,7 +309,7 @@ HavocConditionManagerView._setup_havoc_difficulty = function (self)
 	self._current_havoc_difficulty = previous_havoc_diffculty or 16
 	set_setting("havoc_difficulty", self._current_havoc_difficulty)
 	if not previous_havoc_diffculty then
-		self:_apply_modifiers(Havoc.parse_data(Havoc.generate_havoc_data(self._current_havoc_difficulty)).modifiers)
+		self:_apply_modifiers(Havoc.parse_data(mod.custom_havoc_rank.generate(Havoc.generate_havoc_data,self._current_havoc_difficulty)).modifiers)
 	end
 
 	local widget_definition = UIWidget.create_definition(blueprints.havoc_difficulty_slider.pass_template, "havoc_difficulty", nil, view_settings.difficulty_slider_size)
@@ -327,12 +329,13 @@ HavocConditionManagerView._setup_havoc_difficulty = function (self)
 			return exploded_value
 		end,
 		format_value_function = function (value)
-			return value
+			return value>40 and mod:localize("custom_havoc_rank_value",value) or value
 		end,
 		on_drag_value = function (value, entry)
 			self:_setup_havoc_badge(value)
 		end,
 		on_activated = function (value, entry)
+			if not mod.custom_havoc_rank.rules.validate(value) then return end
 			self._current_havoc_difficulty = value
 			set_setting("havoc_difficulty", value)
 			self:_setup_havoc_badge(value)
@@ -348,6 +351,7 @@ HavocConditionManagerView._setup_havoc_difficulty = function (self)
 end
 
 HavocConditionManagerView._setup_havoc_badge = function (self, rank)
+	rank=rank or self._current_havoc_difficulty
 	local widget_definition = UIWidget.create_definition(blueprints.havoc_badge.pass_template_function(rank), "havoc_difficulty_badge", nil, view_settings.havoc_badge_size)
 	local widget = self:_create_widget("havoc_difficulty_badge", widget_definition)
 	self._havoc_difficulty_badge_widget = widget
@@ -555,7 +559,7 @@ end
 
 HavocConditionManagerView._refresh_modifiers = function (self)
 	if not self._modifier_customizable then
-		self:_apply_modifiers(Havoc.parse_data(Havoc.generate_havoc_data(self._current_havoc_difficulty)).modifiers)
+		self:_apply_modifiers(Havoc.parse_data(mod.custom_havoc_rank.generate(Havoc.generate_havoc_data,self._current_havoc_difficulty)).modifiers)
 	end
 end
 
@@ -573,7 +577,7 @@ HavocConditionManagerView._apply_modifiers = function (self, modifier_data)
 end
 
 HavocConditionManagerView._regen_havoc = function (self)
-	local havoc = base_mod.gen_havoc_data(self._current_havoc_difficulty)
+	local havoc = mod.custom_havoc_rank.generate(base_mod.gen_havoc_data,self._current_havoc_difficulty)
 	self._current.havoc_circumstances = HavocConditions.sanitize({
 		havoc.circumstance1,
 		havoc.circumstance2,

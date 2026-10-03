@@ -1,5 +1,10 @@
 local mod = get_mod("HavocConditionManager")
 local localization = {
+    custom_havoc_rank_value = {
+        en = "%d (custom)",
+        ["zh-cn"] = "%d（自定义）",
+        ["zh-tw"] = "%d（自訂）",
+    },
     frenzied_restart_required = {
         en = "Frenzied assault changed from %s to %s. Restart the game before starting another mission.",
         ["zh-cn"] = "狂暴攻势从 %s 更新到 %s，请重启游戏后开始新任务。",
