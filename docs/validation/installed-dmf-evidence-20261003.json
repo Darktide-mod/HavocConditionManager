@@ -1,0 +1,32 @@
+{
+  "version_claim": "Runtime framework version not conclusively declared; staging package date 24-07-12 is not a verified runtime version.",
+  "live_loaded_version": "not performed",
+  "installed_root": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mods\\dmf",
+  "files": [
+    {
+      "link_type": "SymbolicLink",
+      "target": "C:\\Users\\GDS-DESKTOP\\AppData\\Roaming\\Vortex\\warhammer40kdarktide\\mods\\Darktide Mod Framework-8-24-07-12-1720764449\\mods\\dmf\\dmf.mod",
+      "relative_path": "dmf.mod",
+      "sha256": "DA4392EADE1CCD5771BF97F69CD1F4721C588ED25CF70240AC66A89C1BCE8A97"
+    },
+    {
+      "link_type": "SymbolicLink",
+      "target": "C:\\Users\\GDS-DESKTOP\\AppData\\Roaming\\Vortex\\warhammer40kdarktide\\mods\\Darktide Mod Framework-8-24-07-12-1720764449\\mods\\dmf\\scripts\\mods\\dmf\\dmf_loader.lua",
+      "relative_path": "scripts/mods/dmf/dmf_loader.lua",
+      "sha256": "A3AAFA3A64097B79CDE63098149317C162B425FFB647C73F122C424528CB0CB5"
+    },
+    {
+      "link_type": "SymbolicLink",
+      "target": "C:\\Users\\GDS-DESKTOP\\AppData\\Roaming\\Vortex\\warhammer40kdarktide\\mods\\Darktide Mod Framework-8-24-07-12-1720764449\\mods\\dmf\\scripts\\mods\\dmf\\modules\\dmf_mod_data.lua",
+      "relative_path": "scripts/mods/dmf/modules/dmf_mod_data.lua",
+      "sha256": "C7055543B874652DD725DCB509F2D43ED6CB74AC4BA84941AA196F8E91F16783"
+    },
+    {
+      "link_type": "SymbolicLink",
+      "target": "C:\\Users\\GDS-DESKTOP\\AppData\\Roaming\\Vortex\\warhammer40kdarktide\\mods\\Darktide Mod Framework-8-24-07-12-1720764449\\mods\\dmf\\scripts\\mods\\dmf\\modules\\dmf_mod_manager.lua",
+      "relative_path": "scripts/mods/dmf/modules/dmf_mod_manager.lua",
+      "sha256": "E46FB4B357C0E8950B17A320DF944467805C34149939F0C1445C0B3B88FD0D78"
+    }
+  ],
+  "captured_utc": "2026-10-03T18:16:15.2364688Z"
+}

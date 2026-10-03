@@ -1,6 +1,6 @@
 # Havoc Condition Manager
 
-**Local release candidate 4.5.1-test.1.** Live gameplay validation is pending; see [candidate changelog](../CHANGELOG.md) for the test scope and broader-suite failure.
+**Local test candidate 4.5.1-test.2.** All 37 offline regression scripts pass. Live gameplay validation is pending; see the [candidate changelog](../CHANGELOG.md) for coverage and limits.
 
 Choose SoloPlay mission conditions and adjust enemy pacing. HCM provides broad controls; the optional Havoc Enemy Director edits individual fields in the same game templates. Realms sessions use the local host's settings.
 

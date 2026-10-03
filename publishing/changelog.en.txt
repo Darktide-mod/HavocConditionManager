@@ -1,3 +1,9 @@
+4.5.1-test.2 (unpublished local test candidate)
+- Preserve the game 1.13 compatibility repairs and accepted minion callback gate.
+- Complete all 37 offline regression scripts with corrected current-source fixtures.
+- Verify 70 additional installed native modules; retain historical candidate unchanged.
+- Live gameplay and matched frame-time validation remain pending; no FPS claim.
+
 4.5.0-r2 (documentation revision; mod version remains 4.5.0)
 - Add HCM and HavocConditionPacks source/download links in English and Chinese.
 - Explain the optional collection, direct loading and separate animation installation.

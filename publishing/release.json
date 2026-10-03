@@ -1,6 +1,6 @@
 {
   "mod": "HavocConditionManager",
-  "release_id": "4.5.1-test.1",
+  "release_id": "4.5.1-test.2",
   "file_category": "Optional Files",
   "stable_release": "4.5.0-r2",
   "notes": "Unpublished local compatibility/performance test candidate. Offline validation only; live SoloPlay/Realms checks remain pending."

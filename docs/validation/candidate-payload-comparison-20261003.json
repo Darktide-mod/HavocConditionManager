@@ -1,0 +1,13 @@
+{
+  "old_zip_sha256": "94508d924a1de7ed3dec3e5e007503faaa06d6eae1f46d9e01748864fc84513f",
+  "new_zip_sha256": "72371695e2c77bf093dcc0db90c3101b4ae60457cd605b18fac0e885496770c6",
+  "unchanged_lua_mod_files": 122,
+  "changed_payload_files": [
+    "HavocConditionManager/CHANGELOG.md",
+    "HavocConditionManager/docs/README.en.md",
+    "HavocConditionManager/docs/README.zh-CN.md",
+    "HavocConditionManager/docs/README.zh-TW.md",
+    "HavocConditionManager/info.json"
+  ],
+  "limits": "Only metadata/docs differ; this does not add live gameplay validation."
+}

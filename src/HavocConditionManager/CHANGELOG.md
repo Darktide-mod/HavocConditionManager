@@ -1,3 +1,13 @@
+# Local candidate 4.5.1-test.2 — 2026-10-03
+
+This ZIP is an unpublished local test candidate. It has not been deployed or validated in a running game.
+
+The full default offline suite passes: all 37 scripts, with no omitted assertions or skipped failures. Current game-source fixture parsing, native special-slot/heat contracts, relocated medical package tests, actual optional HED UI sources and tracked sparse release fixtures are corrected. Fresh extraction confirms 70/70 relevant installed native modules match the pinned 1.13.1 source, including all 59 breed tag definitions, in addition to the previously accepted 14 API/lifecycle modules. The older literal-tag parser is checked against 57 actual 1.12.5 definitions.
+
+Compatibility fixes and the independently accepted minion stat gate are unchanged from candidate 4.5.1-test.1. Its ZIP/hash remains a historical checkpoint. This candidate updates only version and validation documentation in the runtime payload.
+
+Live DMF reload/unload, UI/settings/mission transitions, SoloPlay/Realms combinations and matched gameplay frame-time measurements remain pending. Mocked callback timing does not establish an FPS improvement. Rank 80 and Fading Light III/IV are separate, unimplemented work.
+
 # Local candidate 4.5.1-test.1 — 2026-10-03
 
 This ZIP is a local test candidate. It has not been published or validated in a running game.
