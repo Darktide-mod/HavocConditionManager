@@ -1,6 +1,8 @@
-# Game 1.13 compatibility draft — 2026-10-03
+# Game 1.13 compatibility and first performance slice — 2026-10-03
 
-Repair branch: `fix/game-1.13-compat-performance`, based on HCM 4.5.0 commit `247fe0352ed86f5b10fc8fc4ba0589ace0b024cf`. Native source reference: `D:/Projects/game-data/source`, commit `7e662fcda16219d775b84af50322be2e9cd9d62e` (1.13.1). This public decompilation has not been matched to the installed bundles. Installed Steam build is `25606770`; executable file version is `1.3.802.934`.
+Repair branch: `fix/game-1.13-compat-performance`, based on HCM 4.5.0 commit `247fe0352ed86f5b10fc8fc4ba0589ace0b024cf`. Native source reference: `D:/Projects/game-data/source`, commit `7e662fcda16219d775b84af50322be2e9cd9d62e` (1.13.1). Fresh extraction now matches the 14 selected API/lifecycle modules to the installed bundles by Lua tokens; this does not certify unexamined modules or live behavior. Installed Steam build is `25606770`; executable file version is `1.3.802.934`. Correspondence evidence is retained in `docs/validation/installed-source-20261003/`.
+
+The independently reviewed compatibility repair is committed locally as `9a3d0de6e0513e3a039e12a740e6d8298bb08a20`. Its six selected regression scripts passed before committing. The separate minion stat gate has now received independent acceptance: the reviewer reran seven selected checks, confirmed the exact source hash and verified 14/14 selected installed modules. No push, public release or game deployment occurred.
 
 ## Prepared changes and source evidence
 
@@ -15,6 +17,24 @@ The resource adapter intentionally uses native resource operations rather than e
 The public DIY schema supports cooldown amounts of kind `flat`/`fraction` and rejects negative and event-damage cooldown actions. The ability helper also directly tests private adapter boundaries (using `absolute` for the generic non-fraction branch); its negative/event-damage cases do not establish that those inputs can pass schema validation or persisted-package loading. The schema was not broadened. After runtime approval, the helper gained actual native RGB/alpha assertions, a supported `flat` cooldown case, native consumption-modifier assertions and regeneration-speed non-interference checks; these pass.
 
 ## Validation status
+
+### First minion stat gate: executed evidence
+
+`diy_network.lua`'s client effect consumer only returns an effect for the local player unit. Previously, both concrete buff-class stat hooks called that consumer first, including minions and nil-engine/native-only cases. The focused test reproduced 1,000 client-effect/context calls, 2,000 local-player lookups and 1,000 character reads per 1,000 minion stat callbacks. The candidate passes a fixed flag when registering each concrete class: player hooks retain client effects; minion hooks skip this player-only probe even when breed context is absent. No authority/session/network cache or per-callback closure is added. Existing engine demand, revision/time/identity invalidation, per-unit scope and native update ownership remain in their original paths.
+
+`tests/minion_stat_gate_tests.py` now passes ten 1,000-callback cases: nil engine, native-only selection, global/scoped minion effects, missing breed context, host player, client local/remote player, client minion and absent Realms. Real HCM game/engine/network modules run inside mocked native/engine boundaries. Additional assertions cover stat reset/reapplication, omitted client callbacks, repeated require, selection/scope/time/engine changes, respawn, character/mission identity, three-second expiry, finish and fresh-adapter mocked reload. The prior compatibility slice and this gate pass **seven selected scripts, zero failed**, including the native deletion/registration and loading/replacement tests. The default full suite and live DMF reload are not claimed.
+
+The comparison reads baseline `diy_game.lua` from compatibility commit `9a3d0de`, and the candidate from the working tree. Both use one fixed minion and 1,000 native stat resets/HCM callbacks at a fixed engine clock. Actual HCM Network context/effect lookup and Engine functions execute; native stat reset is stubbed. Counters are disabled for timing, 500 warm-up callbacks precede 30 paired batches, and batch order alternates. Python-to-Lua call overhead is included. Windows 11 build 26200, Python 3.12.14, Lupa 2.6 and LuaJIT 2.1.1760617492 were used, with source pinned to `7e662fc`.
+
+| Mocked workload | Median before/after, ms per 1,000 | p95 before/after, ms | Median change |
+|---|---:|---:|---:|
+| Nil engine | 0.1241 / 0.1050 | 0.1321 / 0.1116 | -15.4% |
+| Native-only engine | 0.1930 / 0.1755 | 0.2310 / 0.2005 | -9.1% |
+| Active minion passive | 0.26765 / 0.2499 | 0.3104 / 0.2894 | -6.6% |
+
+For all minion cases, the four player-probe counts become zero. Native callbacks, applied stats/keywords, engine lookups and effect builds match the baseline. Steady-state Lua heap growth with GC stopped for one warmed batch was zero KiB before and after in all three workloads; no allocation/GC improvement is established. Short mocked batches and LuaJIT optimization limit timing interpretation. These are test-run costs, **not gameplay frame times or FPS gains**, and do not establish the cause of the reported sustained gameplay slowdown.
+
+Evidence: `build/checks/compatibility-20261003.log` (six-script pre-optimization milestone), `build/checks/compatibility-and-gate-20261003.log` (seven-script aggregate), and `build/checks/minion-stat-gate-comparison.json` (environment, source hashes, deterministic call counts and all 30 timing samples). Durable copies are in `docs/validation/`. Reproduce the comparison with the approved runtime/environment above and `tests/minion_stat_gate_tests.py --baseline-ref 9a3d0de6e0513e3a039e12a740e6d8298bb08a20`. This is the only performance source change in this pass. Independent review is complete; live same-scene validation remains outstanding.
 
 The user explicitly approved retaining and using the existing isolated Lupa 2.6 under `D:/Projects/dev-support/test-runtime`. The tests loaded that package with the existing bundled Python 3.12.14 and LuaJIT 2.1 (Lua 5.1); no additional install/system Python/game change occurred. `DARKTIDE_SOURCE` was pinned to the clean public 1.13.1 checkout above.
 

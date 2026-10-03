@@ -478,10 +478,13 @@ function G.new(mod,catalog,Engine,options)
             engine.dispatch(event,self._unit,params)
         end
     end
-    local function on_stats(self)
+    local function on_stats(self,allow_client_effects)
         if finishing or updates.restoring then return end
         local unit=self._unit
-        local effect=options.client_effects and options.client_effects(unit)
+        -- Received client effects belong only to the local player. The
+        -- concrete minion hook can skip player/session lookup even before
+        -- native construction has filled in its breed context.
+        local effect=allow_client_effects and options.client_effects and options.client_effects(unit)
         if not effect and options.authority() then
             local engine=options.engine()
             if engine then
@@ -500,11 +503,11 @@ function G.new(mod,catalog,Engine,options)
     end
     -- Native classes copy inherited methods when declared. Hook each concrete
     -- class after the game's loader has finished defining its overrides.
-    local function hook_buff(class)
+    local function hook_buff(class,allow_client_effects)
         mod:hook_safe(class,"add_proc_event",on_proc)
-        mod:hook_safe(class,"_update_stat_buffs_and_keywords",on_stats)
+        mod:hook_safe(class,"_update_stat_buffs_and_keywords",function(self) on_stats(self,allow_client_effects) end)
     end
-    on_require("scripts/extension_systems/buff/player_unit_buff_extension",hook_buff)
+    on_require("scripts/extension_systems/buff/player_unit_buff_extension",function(PlayerBuff) hook_buff(PlayerBuff,true) end)
     on_require("scripts/foundation/managers/extension/extension_system_base",function(System)
         mod:hook_safe(System,"on_add_extension",function(self,world,unit,extension_name)
             -- The modern API needs the map filled by on_add_extension after
@@ -525,7 +528,7 @@ function G.new(mod,catalog,Engine,options)
         end)
     end)
     on_require("scripts/extension_systems/buff/minion_buff_extension",function(MinionBuff)
-        hook_buff(MinionBuff)
+        hook_buff(MinionBuff,false)
         mod:hook(MinionBuff,"destroy",function(fn,self,...)
             -- Native removal unregisters this extension before destroy removes
             -- its buffs. Keep those callbacks from registering it again while

@@ -1,0 +1,420 @@
+{
+  "kind": "mocked Lua stat-callback microbenchmark; no gameplay/frame-time/FPS measurement",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "lupa": "2.6",
+    "lua": "Lua 5.1",
+    "luajit": "LuaJIT 2.1.1760617492",
+    "source_head": "7e662fcda16219d775b84af50322be2e9cd9d62e"
+  },
+  "baseline_ref": "9a3d0de6e0513e3a039e12a740e6d8298bb08a20",
+  "baseline_sha256": "c3dbc6ec58069be9efa59fd98caf1c9c6dcd90fad31d7435ba0432883d89e160",
+  "candidate_sha256": "9a43e5cda727810deef69997d86a8020430457913b678155bc2c3675d4133b6d",
+  "workload": "One fixed minion, 1000 native stat resets + HCM callbacks, fixed engine clock; same fixture for both versions",
+  "semantic_call_counts": {
+    "before": {
+      "nil engine": {
+        "native": 1000,
+        "engine": 1000,
+        "authority": 1000,
+        "client_effects": 1000,
+        "character": 1000,
+        "local_player": 2000,
+        "context": 1000
+      },
+      "native only": {
+        "client_effects": 1000,
+        "local_player": 2000,
+        "authority": 1000,
+        "native": 1000,
+        "character": 1000,
+        "context": 1000,
+        "engine": 1000
+      },
+      "global minion overlay/cache": {
+        "client_effects": 1000,
+        "apply": 1000,
+        "native": 1000,
+        "authority": 1000,
+        "engine": 1000,
+        "local_player": 2000,
+        "effects": 1,
+        "context": 1000,
+        "character": 1000
+      },
+      "missing breed context": {
+        "local_player": 2000,
+        "effects": 1,
+        "context": 1000,
+        "character": 1000,
+        "native": 1000,
+        "apply": 1000,
+        "client_effects": 1000,
+        "engine": 1000,
+        "authority": 1000
+      },
+      "scoped minion first callback": {
+        "apply": 1000,
+        "engine": 1000,
+        "character": 1000,
+        "native": 1000,
+        "client_effects": 1000,
+        "authority": 1000,
+        "effects": 1,
+        "context": 1000,
+        "local_player": 2000
+      },
+      "host player": {
+        "engine": 1000,
+        "apply": 1000,
+        "local_player": 2000,
+        "context": 1000,
+        "native": 1000,
+        "effects": 1,
+        "authority": 1000,
+        "character": 1000,
+        "client_effects": 1000
+      },
+      "client local player": {
+        "local_player": 2000,
+        "client_effects": 1000,
+        "apply": 1000,
+        "native": 1000,
+        "context": 1000,
+        "character": 1000
+      },
+      "client minion": {
+        "client_effects": 1000,
+        "local_player": 2000,
+        "authority": 1000,
+        "context": 1000,
+        "native": 1000,
+        "character": 1000
+      },
+      "client remote player": {
+        "context": 1000,
+        "client_effects": 1000,
+        "character": 1000,
+        "authority": 1000,
+        "local_player": 2000,
+        "native": 1000
+      },
+      "optional Realms absent": {
+        "character": 1000,
+        "local_player": 2000,
+        "authority": 1000,
+        "native": 1000,
+        "client_effects": 1000,
+        "context": 1000
+      }
+    },
+    "after": {
+      "nil engine": {
+        "native": 1000,
+        "authority": 1000,
+        "engine": 1000
+      },
+      "native only": {
+        "native": 1000,
+        "engine": 1000,
+        "authority": 1000
+      },
+      "global minion overlay/cache": {
+        "effects": 1,
+        "native": 1000,
+        "engine": 1000,
+        "apply": 1000,
+        "authority": 1000
+      },
+      "missing breed context": {
+        "engine": 1000,
+        "authority": 1000,
+        "native": 1000,
+        "apply": 1000,
+        "effects": 1
+      },
+      "scoped minion first callback": {
+        "effects": 1,
+        "authority": 1000,
+        "engine": 1000,
+        "native": 1000,
+        "apply": 1000
+      },
+      "host player": {
+        "client_effects": 1000,
+        "authority": 1000,
+        "apply": 1000,
+        "local_player": 2000,
+        "context": 1000,
+        "engine": 1000,
+        "effects": 1,
+        "character": 1000,
+        "native": 1000
+      },
+      "client local player": {
+        "apply": 1000,
+        "character": 1000,
+        "local_player": 2000,
+        "native": 1000,
+        "client_effects": 1000,
+        "context": 1000
+      },
+      "client minion": {
+        "native": 1000,
+        "authority": 1000
+      },
+      "client remote player": {
+        "authority": 1000,
+        "local_player": 2000,
+        "native": 1000,
+        "character": 1000,
+        "context": 1000,
+        "client_effects": 1000
+      },
+      "optional Realms absent": {
+        "native": 1000,
+        "authority": 1000
+      }
+    }
+  },
+  "timings": {
+    "nil_engine": {
+      "before": {
+        "median_ms": 0.12409999999999999,
+        "p95_ms": 0.1321,
+        "samples_ms": [
+          0.1456,
+          0.1321,
+          0.1262,
+          0.1266,
+          0.1281,
+          0.1196,
+          0.1298,
+          0.1282,
+          0.1216,
+          0.1284,
+          0.1208,
+          0.1251,
+          0.121,
+          0.1271,
+          0.1189,
+          0.1252,
+          0.1189,
+          0.1239,
+          0.1199,
+          0.1284,
+          0.1224,
+          0.1191,
+          0.1205,
+          0.1243,
+          0.1195,
+          0.1198,
+          0.1269,
+          0.1204,
+          0.1184,
+          0.1245
+        ]
+      },
+      "after": {
+        "median_ms": 0.105,
+        "p95_ms": 0.1116,
+        "samples_ms": [
+          0.1147,
+          0.1084,
+          0.1116,
+          0.1113,
+          0.1066,
+          0.1048,
+          0.1103,
+          0.1052,
+          0.1045,
+          0.1102,
+          0.1005,
+          0.1034,
+          0.1027,
+          0.1077,
+          0.1067,
+          0.1051,
+          0.1046,
+          0.1042,
+          0.1026,
+          0.1025,
+          0.1053,
+          0.1023,
+          0.1041,
+          0.1032,
+          0.1045,
+          0.1049,
+          0.1024,
+          0.1051,
+          0.1055,
+          0.1095
+        ]
+      },
+      "lua_gc_heap_growth_kib_1000_callbacks": {
+        "before": 0,
+        "after": 0
+      },
+      "median_change_percent": -15.390813859790487
+    },
+    "native_only": {
+      "before": {
+        "median_ms": 0.193,
+        "p95_ms": 0.231,
+        "samples_ms": [
+          0.26,
+          0.2076,
+          0.204,
+          0.1887,
+          0.2211,
+          0.1891,
+          0.189,
+          0.2097,
+          0.1896,
+          0.231,
+          0.1964,
+          0.1937,
+          0.193,
+          0.1902,
+          0.197,
+          0.1916,
+          0.1913,
+          0.189,
+          0.1971,
+          0.218,
+          0.1949,
+          0.1904,
+          0.1919,
+          0.1926,
+          0.1931,
+          0.1902,
+          0.1895,
+          0.193,
+          0.1935,
+          0.1925
+        ]
+      },
+      "after": {
+        "median_ms": 0.1755,
+        "p95_ms": 0.2005,
+        "samples_ms": [
+          0.2143,
+          0.174,
+          0.1904,
+          0.1707,
+          0.1913,
+          0.1763,
+          0.1756,
+          0.1707,
+          0.1726,
+          0.2005,
+          0.1838,
+          0.178,
+          0.1778,
+          0.1761,
+          0.1847,
+          0.1717,
+          0.1724,
+          0.1727,
+          0.1724,
+          0.1758,
+          0.191,
+          0.1729,
+          0.1734,
+          0.1747,
+          0.1748,
+          0.1741,
+          0.1785,
+          0.1754,
+          0.1787,
+          0.1748
+        ]
+      },
+      "lua_gc_heap_growth_kib_1000_callbacks": {
+        "before": 0,
+        "after": 0
+      },
+      "median_change_percent": -9.067357512953379
+    },
+    "active_passive": {
+      "before": {
+        "median_ms": 0.26765,
+        "p95_ms": 0.3104,
+        "samples_ms": [
+          0.3667,
+          0.3029,
+          0.279,
+          0.2676,
+          0.3015,
+          0.2711,
+          0.2657,
+          0.2746,
+          0.2657,
+          0.3104,
+          0.2703,
+          0.2702,
+          0.2675,
+          0.2672,
+          0.2673,
+          0.2682,
+          0.2651,
+          0.2666,
+          0.2945,
+          0.2754,
+          0.2677,
+          0.2633,
+          0.2646,
+          0.2654,
+          0.2634,
+          0.2719,
+          0.2651,
+          0.2662,
+          0.2704,
+          0.2649
+        ]
+      },
+      "after": {
+        "median_ms": 0.24989999999999998,
+        "p95_ms": 0.2894,
+        "samples_ms": [
+          0.2985,
+          0.2605,
+          0.2605,
+          0.2539,
+          0.2698,
+          0.2588,
+          0.2495,
+          0.2437,
+          0.2496,
+          0.2894,
+          0.2544,
+          0.2502,
+          0.2519,
+          0.2458,
+          0.2581,
+          0.2485,
+          0.2486,
+          0.2451,
+          0.261,
+          0.26,
+          0.2573,
+          0.2457,
+          0.2453,
+          0.2602,
+          0.2458,
+          0.2492,
+          0.2441,
+          0.2479,
+          0.2437,
+          0.2438
+        ]
+      },
+      "lua_gc_heap_growth_kib_1000_callbacks": {
+        "before": 0,
+        "after": 0
+      },
+      "median_change_percent": -6.631795254997208
+    }
+  }
+}

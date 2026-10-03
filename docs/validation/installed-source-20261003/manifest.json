@@ -1,0 +1,84 @@
+{
+  "captured_utc": "2026-10-03T17:02:29.9182924Z",
+  "game_root": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE",
+  "steam_build": "25606770",
+  "steam_depot_manifests": {
+    "1361212": "7488139965064667169",
+    "1361213": "5456051176845852840",
+    "1361211": "2981460983667067232"
+  },
+  "executable_file_version": "1.3.802.934",
+  "public_source": "D:\\Projects\\game-data\\source",
+  "public_commit": "7e662fcda16219d775b84af50322be2e9cd9d62e",
+  "modules": 14,
+  "matched_modules": 14,
+  "missing_modules": 0,
+  "tools": {
+    "decompiler": {
+      "source_commit": "166658ffe9eaf64e94887cd8df9d9340f695d9a9",
+      "path": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mod-work\\HavocDirectorStudio\\tools\\luajit-decompiler-v2\\build-166658ffe9eaf64e94887cd8df9d9340f695d9a9\\luajit-decompiler-v2.exe",
+      "sha256": "FF56EE49320A609CCB5357B8C4EC0578EBC67A14546FADAE1A3D9BFE2E014D88"
+    },
+    "limn": {
+      "path": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\mod-work\\HavocDirectorStudio\\tools\\limn\\0.7.2\\limn-0.7.2-x86_64-pc-windows-msvc\\limn.exe",
+      "folder_label": "0.7.2",
+      "reported_help_version": "0.7.1",
+      "sha256": "03EA9AD220E3D217414362B365ACC64B0E47A37ADAF7CF5F478B0C68C6A5EC67"
+    }
+  },
+  "input_before": [
+    {
+      "path": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\bundle\\bundle_database.data",
+      "length": 16421204,
+      "sha256": "36DA6AC68790E64F02A1653EBE6D47C1BCE309F71FF2D86EA8C1ED63C422EB31"
+    },
+    {
+      "path": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\Darktide.exe",
+      "length": 19912328,
+      "sha256": "28B843BC2905FAAA0F27329D68E5DE989DF908F2552D80BF2B3C79B86E259775"
+    },
+    {
+      "path": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\oo2core_9_win64.dll",
+      "length": 645120,
+      "sha256": "8595A4795F1E0C7F548598F3E2AA528B6BE5456C6D934C665182EAECB04156C0"
+    }
+  ],
+  "input_after": [
+    {
+      "path": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\bundle\\bundle_database.data",
+      "length": 16421204,
+      "sha256": "36DA6AC68790E64F02A1653EBE6D47C1BCE309F71FF2D86EA8C1ED63C422EB31"
+    },
+    {
+      "path": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\Darktide.exe",
+      "length": 19912328,
+      "sha256": "28B843BC2905FAAA0F27329D68E5DE989DF908F2552D80BF2B3C79B86E259775"
+    },
+    {
+      "path": "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\oo2core_9_win64.dll",
+      "length": 645120,
+      "sha256": "8595A4795F1E0C7F548598F3E2AA528B6BE5456C6D934C665182EAECB04156C0"
+    }
+  ],
+  "mod_gate_sha256": "9A43E5CDA727810DEEF69997D86A8020430457913B678155BC2C3675D4133B6D",
+  "extraction_arguments": [
+    "-i",
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\bundle",
+    "-o",
+    "D:\\Projects\\game-data\\hcm-installed-source-20261003\\bytecode",
+    "--dict",
+    "D:\\Projects\\game-data\\hcm-installed-source-20261003\\dictionary.txt",
+    "-j",
+    "1",
+    "lua"
+  ],
+  "decompiler_arguments": [
+    "D:\\Projects\\game-data\\hcm-installed-source-20261003\\bytecode",
+    "-e",
+    "lua",
+    "-o",
+    "D:\\Projects\\game-data\\hcm-installed-source-20261003\\decoded",
+    "-s"
+  ],
+  "limits": "Offline bytecode/decompiled-token correspondence for the 14 selected module paths; no gameplay/live loaded-module or full-game compatibility claim. No installations or game/Studio/mod source edits."
+}
