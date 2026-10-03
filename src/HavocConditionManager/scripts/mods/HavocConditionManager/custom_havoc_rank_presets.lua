@@ -94,18 +94,23 @@ return function(api,mod,base)
         view._hcm_refresh=true
     end
     local function wrap(target,key,make)
-        if type(target[key])~="function" then return end
-        local original=target[key];local adapted=make(original);local token=installation
+        -- Track absent/non-function methods too: the same optional owner can
+        -- publish them later, without replacing its presets or codec tables.
+        local original=target[key]
+        local binding={target=target,key=key,original=original}
+        bindings[#bindings+1]=binding
+        if type(original)~="function" then return end
+        local adapted=make(original);local token=installation
         local function wrapper(...)
             if not token.active or not mod:is_enabled() or get_mod("HavocEnemyDirector")~=token.director or token.director.presets~=token.presets or token.presets.codec~=token.codec then return original(...) end
             return adapted(...)
         end
-        bindings[#bindings+1]={target=target,key=key,original=original,wrapper=wrapper}
+        binding.wrapper=wrapper
         target[key]=wrapper
     end
     function api.uninstall_presets()
         if installation then installation.active=false end
-        for i=#bindings,1,-1 do local b=bindings[i];if b.target[b.key]==b.wrapper then b.target[b.key]=b.original end end
+        for i=#bindings,1,-1 do local b=bindings[i];if b.wrapper and b.target[b.key]==b.wrapper then b.target[b.key]=b.original end end
         bindings={};installation=nil
         if mod._custom_havoc_preset_bridge and mod._custom_havoc_preset_bridge.api==api then mod._custom_havoc_preset_bridge=nil end
     end
@@ -117,7 +122,9 @@ return function(api,mod,base)
         local previous=mod._custom_havoc_preset_bridge
         if previous and previous.api==api and previous.director==director and previous.presets==presets and previous.codec==presets.codec then
             local owned=true
-            for _,binding in ipairs(bindings) do if binding.target[binding.key]~=binding.wrapper then owned=false;break end end
+            for _,binding in ipairs(bindings) do
+                if binding.target[binding.key]~=(binding.wrapper or binding.original) then owned=false;break end
+            end
             if owned then return true end
         end
         if previous then previous.api.uninstall_presets() end

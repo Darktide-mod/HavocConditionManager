@@ -484,3 +484,91 @@ assert(solo.set==third and base._custom_havoc_preset_bridge==nil)
 assert(third_capture("unloaded").hcm_custom_havoc_v1==nil)
 print("Actual DMF callback body: reload(false), exit(true), disabled unload, setter/preset wrappers behind third-party ownership, no stale depth guards, replaced optional API and absent HED: PASS")
 ''')
+
+# Same owner/tables can publish individual optional functions after installation.
+# Exercise the actual HED HCM-mode capture, which bypasses presets.capture.
+L.execute('''
+local base,solo,director=mods.HavocConditionManager,mods.SoloPlay,mods.HavocEnemyDirector
+base._enabled=true;Rank.uninstall_presets()
+assert(director.set_studio_mode("hcm"));assert(Rank.set(50))
+local presets,codec=director.presets,director.presets.codec
+local methods={
+ {target=codec,key="validate"},
+ {target=presets,key="capture"},{target=presets,key="apply"},
+ {target=director,key="studio_capture_context"},
+ {target=director,key="studio_refresh_view"},{target=director,key="set_studio_mode"},
+}
+local function identities()
+ local values={}
+ for i,entry in ipairs(methods) do values[i]={value=entry.target[entry.key]} end
+ return values
+end
+local function stable(before)
+ for i,entry in ipairs(methods) do assert(entry.target[entry.key]==before[i].value,"Repeated installation changed "..entry.key) end
+end
+local function captured_rank()
+ local snapshot=assert(director.studio_capture_context())
+ assert(snapshot.mode=="hcm" and snapshot.document.config.studio.mission.rank==40)
+ assert(snapshot.document.hcm_custom_havoc_v1.requested_rank==50)
+end
+for _,missing in ipairs({{}, {value=false}}) do
+ for i=2,#methods do
+  local entry=methods[i];local original=entry.target[entry.key]
+  entry.target[entry.key]=missing.value
+  assert(Rank.install_presets())
+  local before=identities()
+  for _=1,5 do assert(Rank.install_presets());stable(before) end
+  entry.target[entry.key]=original
+  assert(Rank.install_presets() and entry.target[entry.key]~=original)
+  before=identities()
+  for _=1,5 do assert(Rank.install_presets());stable(before) end
+  assert(director.presets==presets and director.presets.codec==codec)
+  captured_rank()
+  Rank.uninstall_presets();assert(entry.target[entry.key]==original)
+ end
+end
+-- A slot HCM never wrapped can be published before uninstall: preserve it.
+local capture=director.studio_capture_context
+director.studio_capture_context=nil;assert(Rank.install_presets())
+director.studio_capture_context=capture
+Rank.uninstall_presets();assert(director.studio_capture_context==capture)
+assert(Rank.install_presets());captured_rank();Rank.uninstall_presets()
+-- Required codec readiness still refuses absent validation without overwriting
+-- the method when its owner subsequently publishes it.
+local validate=codec.validate
+codec.validate=nil;assert(not Rank.install_presets())
+codec.validate=validate;assert(Rank.install_presets());captured_rank();Rank.uninstall_presets()
+-- Existing functions can be replaced in place on every supported slot.
+for _,entry in ipairs(methods) do
+ local original=entry.target[entry.key]
+ assert(Rank.install_presets())
+ local replacement=function(...) return original(...) end
+ entry.target[entry.key]=replacement
+ assert(Rank.install_presets() and entry.target[entry.key]~=replacement)
+ local before=identities()
+ for _=1,5 do assert(Rank.install_presets());stable(before) end
+ captured_rank()
+ Rank.uninstall_presets();assert(entry.target[entry.key]==replacement)
+ entry.target[entry.key]=original
+end
+-- A third party retains its outer wrapper across reinstall/uninstall, while
+-- its captured old HCM adapter becomes inactive. Metadata is injected once.
+assert(Rank.install_presets())
+local previous=director.studio_capture_context
+local foreign_calls=0
+local foreign=function(...) foreign_calls=foreign_calls+1;return previous(...) end
+director.studio_capture_context=foreign
+assert(Rank.install_presets())
+local rules=Rank.rules;local preset=rules.preset;local owned_captures=0
+rules.preset=function(...) owned_captures=owned_captures+1;return preset(...) end
+captured_rank();assert(foreign_calls==1 and owned_captures==1)
+local before=identities();assert(Rank.install_presets());stable(before)
+captured_rank();assert(foreign_calls==2 and owned_captures==2)
+Rank.uninstall_presets()
+assert(director.studio_capture_context==foreign)
+assert(director.studio_capture_context().document.hcm_custom_havoc_v1==nil)
+assert(foreign_calls==3 and owned_captures==2)
+Rank.uninstall_presets();assert(director.studio_capture_context==foreign)
+rules.preset=preset
+print("Optional HED APIs: same-owner/same-table nil/false-to-function appearance on all five optional methods, actual HCM capture native40/requested50, six function replacements, repeated installation idempotency, mandatory codec readiness and third-party uninstall ownership: PASS")
+''')
