@@ -1,0 +1,118 @@
+{
+  "version": "4.6.1",
+  "source_commit": "a9a29b8f9ee58d5e750da46383dadaa3c41080da",
+  "verified_at_utc": "2026-10-07T15:55:28.674644+00:00",
+  "published": true,
+  "page": "https://www.nexusmods.com/warhammer40kdarktide/mods/1267?tab=files&file_id=8853",
+  "game_scoped_file_id": "8853",
+  "global_file_version_id": "21230023352981",
+  "update_group_id": "7919115",
+  "sha256": "8650f3ca8f5f733f3207d9c5bdbab8acac64a3e0a088e0903473a52df2649aaf",
+  "upload_bytes": 245357,
+  "remote_metadata": {
+    "file_id": 8853,
+    "uid": 21230023352981,
+    "name": "HavocConditionManager",
+    "version": "4.6.1",
+    "category_id": 1,
+    "category_name": "MAIN",
+    "is_primary": true,
+    "file_name": "HavocConditionManager 1267 4.6.1 2026-10-07T15-52Z txMvExeXr.zip",
+    "size_in_bytes": 245357,
+    "uploaded_time": "2026-10-07T15:52:14.000+00:00"
+  },
+  "page_text": {
+    "version": "4.6.1",
+    "summary_match": true,
+    "description_match": true,
+    "summary_chars": 290,
+    "description_chars": 29733,
+    "content_text_sha256": "f83a52d5f3d8efba4373d4dea07fc711d344769f3d6368f02ea0a3bee550f1f7"
+  },
+  "changelog_verified": true,
+  "all_previous_files_archived": true,
+  "previous_stable_archived": true,
+  "archived_previous_file_count": 12,
+  "archived_previous_files": [
+    {
+      "id": "21230023352190",
+      "game_scoped_id": "8062",
+      "version": "2.4.10",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352979",
+      "game_scoped_id": "8851",
+      "version": "4.6.0-test.3",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352980",
+      "game_scoped_id": "8852",
+      "version": "4.6.0",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352403",
+      "game_scoped_id": "8275",
+      "version": "4.5.0",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352357",
+      "game_scoped_id": "8229",
+      "version": "4.4.9",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352312",
+      "game_scoped_id": "8184",
+      "version": "3.6.11",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352245",
+      "game_scoped_id": "8117",
+      "version": "2.4.15",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352242",
+      "game_scoped_id": "8114",
+      "version": "2.4.14",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352207",
+      "game_scoped_id": "8079",
+      "version": "2.4.12",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352140",
+      "game_scoped_id": "8012",
+      "version": "2.4.8",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352139",
+      "game_scoped_id": "8011",
+      "version": "2.4.8",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352131",
+      "game_scoped_id": "8003",
+      "version": "2.4.6",
+      "category": "archived"
+    }
+  ],
+  "full_offline_checks": 42,
+  "runtime_entries": 79,
+  "installed_payload_equal": true,
+  "live_gameplay": "not performed",
+  "remote_client_custom_rank_sync": "not implemented or validated",
+  "download_hash_verified": false,
+  "virus_scan_verdict": "not asserted",
+  "credentials": "outside repository; omitted"
+}

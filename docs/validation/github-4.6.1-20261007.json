@@ -1,0 +1,21 @@
+{
+  "assets": [
+    {
+      "digest": "sha256:8650f3ca8f5f733f3207d9c5bdbab8acac64a3e0a088e0903473a52df2649aaf",
+      "name": "HavocConditionManager-4.6.1.zip",
+      "size": 245357,
+      "url": "https://github.com/Darktide-mod/HavocConditionManager/releases/download/v4.6.1/HavocConditionManager-4.6.1.zip"
+    }
+  ],
+  "draft": false,
+  "id": 405928571,
+  "prerelease": false,
+  "published_at": "2026-10-07T15:56:51Z",
+  "tag": "v4.6.1",
+  "target": "a9a29b8f9ee58d5e750da46383dadaa3c41080da",
+  "url": "https://github.com/Darktide-mod/HavocConditionManager/releases/tag/v4.6.1",
+  "archive_sha256": "8650f3ca8f5f733f3207d9c5bdbab8acac64a3e0a088e0903473a52df2649aaf",
+  "remote_digest_matches": true,
+  "offline_scripts_passed": 42,
+  "live_gameplay": "not performed"
+}

@@ -2,7 +2,7 @@
 
 **Formal release: 4.6.1.** Apply custom Havoc ranks41–60 and EFL III/IV on authoritative Realms local hosts, and safely skip unsupported extensions in training grounds/Psykhanium. Retain the environment/EFL dropdown repair. See [EFL I–IV values and behavior](docs/efl-tiers-20261007.md) and [Nexus upload workflow](docs/nexus-automation.zh-CN.md). Live gameplay and remote-client custom-rank synchronization remain unverified.
 
-[Nexus Main Files](https://www.nexusmods.com/warhammer40kdarktide/mods/1267?tab=files) · [Runtime installation ZIP](release/4.6.1-r2/HavocConditionManager-4.6.1.zip). English/Chinese explanations include all four EFL pacing values. The formal publication replaces4.6.0 and archives that version.
+[Nexus Main Files](https://www.nexusmods.com/warhammer40kdarktide/mods/1267?tab=files&file_id=8853) · [GitHub Release](https://github.com/Darktide-mod/HavocConditionManager/releases/tag/v4.6.1) · [Runtime installation ZIP](release/4.6.1-r2/HavocConditionManager-4.6.1.zip). English/Chinese explanations include all four EFL pacing values. File8853 is the verified primary download; all12 previous files are archived. See [Nexus publication verification](docs/validation/nexus-4.6.1-20261007.json) and [GitHub asset digest verification](docs/validation/github-4.6.1-20261007.json).
 
 当前功能版本：4.6.1。内置「禁止医疗」直接从模组目录加载，无需解压模板；保留外部 DIY 与作者接口。「狂暴攻势」、动画资源和安装器已独立分发至 [HavocConditionPacks](https://github.com/Darktide-mod/HavocConditionPacks)。
 
