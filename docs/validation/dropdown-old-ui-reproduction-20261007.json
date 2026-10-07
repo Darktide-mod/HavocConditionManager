@@ -1,0 +1,6 @@
+{
+  "reproduced": true,
+  "trigger": "Havoc mission callback recreates the initially hidden environment dropdown",
+  "failure": "[string \"<python>\"]:240: havoc_theme_circumstance leaked\nstack traceback:\n\t[string \"<python>\"]:273: in main chunk\n\t[string \"<python>\"]:240: in function 'assert_hidden'\n\t[C]: in function 'assert'",
+  "source": "HEAD view source before this fix"
+}

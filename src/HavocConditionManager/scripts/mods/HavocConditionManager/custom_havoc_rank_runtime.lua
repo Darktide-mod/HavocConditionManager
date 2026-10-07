@@ -63,7 +63,7 @@ function api.decorate(context)
     assert(type(context)=="table" and type(context.havoc_data)=="string","Missing SoloPlay Havoc context")
     local parsed=require("scripts/utilities/havoc").parse_data(context.havoc_data)
     local mission=require("scripts/settings/mission/mission_templates")[parsed.mission]
-    assert(mission and mission.game_mode_name~="training_grounds" and mission.game_mode_name~="shooting_range","Custom Havoc ranks41-50 require a supported SoloPlay mission")
+    assert(mission and mission.game_mode_name~="training_grounds" and mission.game_mode_name~="shooting_range","Custom Havoc ranks41-60 require a supported SoloPlay mission")
     assert(parsed.havoc_rank==40,"Custom Havoc launch requires its separate native rank40 identity")
     local snapshot=R.capture(rank,parsed.modifiers)
     snapshot.native_data=context.havoc_data

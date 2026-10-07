@@ -1,4 +1,4 @@
-"""Rank50 adapter against native generation, initialization and stat consumers."""
+"""Rank60 adapter against native generation, initialization and stat consumers."""
 from pathlib import Path
 import hashlib, json, math, os, re
 exec(Path(__file__).with_name('native_integration_tests.py').read_text(encoding='utf-8'),globals())
@@ -33,7 +33,7 @@ cache['scripts/settings/mission/mission_templates']=tbl({'cm_archives':{'game_mo
     'om_basic_combat_01':{'game_mode_name':'training_grounds'},'tg_shooting_range':{'game_mode_name':'shooting_range'}})
 L.globals().Havoc=cache['scripts/utilities/havoc']
 L.globals().hcm_context_wrapper=L.globals().mods.SoloPlay.gen_havoc_mission_context
-solo_source=Path(os.environ.get('DARKTIDE_SOLO_SOURCE',PROJECT.parent/'dev-support/installed-mod-fixtures/SoloPlay-2.6.5'))
+solo_source=Path(os.environ.get('DARKTIDE_SOLO_SOURCE',PROJECT/'.assistant-support/dev-support/installed-mod-fixtures/SoloPlay-2.6.5'))
 solo_text=(solo_source/'SoloPlay.lua').read_text(encoding='utf-8-sig')
 assert hashlib.sha256((solo_source/'SoloPlay.lua').read_bytes()).hexdigest()=='c99f4507258779dff1ac29a06deb54b18e805aa1cb1a74573d60d8dc38899807'
 assert hashlib.sha256((solo_source/'havoc.lua').read_bytes()).hexdigest()=='434c7c74daca7eff1a4a82b2c50e0c775c0ce0a7961d34e7a2e5e401f032cd6c'
@@ -66,7 +66,7 @@ function same(a,b)
 end
 native_settings_before=Rules.copy(require("scripts/settings/havoc_settings"))
 native_buffs_before=Rules.copy(require("scripts/settings/buff/buff_templates"))
-for _,bad in ipairs({0,51,40.5,math.huge,-math.huge,"50",false}) do
+for _,bad in ipairs({0,61,40.5,math.huge,-math.huge,"60",false}) do
  local old=solo:get("havoc_difficulty");assert(not Rank.set(bad));assert(solo:get("havoc_difficulty")==old)
  assert(not pcall(Rank.generate,Havoc.generate_havoc_data,bad,1))
 end
@@ -77,7 +77,7 @@ for rank=1,40 do
  assert(same(Rank.generate(solo.gen_havoc_data,rank),solo.gen_havoc_data(rank)))
  assert(Rules.capture(rank,{})==nil)
 end
-assert(Rank.set(50) and solo:get("havoc_difficulty")==40 and Rank.get()==50)
+assert(Rank.set(60) and solo:get("havoc_difficulty")==40 and Rank.get()==60)
 local selected=Havoc.parse_data(Havoc.generate_havoc_data(40,1)).modifiers
 for _,choice in ipairs(selected) do solo:set("havoc_modifier_"..choice.name,choice.level) end
 ''')
@@ -149,7 +149,17 @@ end
 ''')
 health=(GAME/'scripts/extension_systems/health/player_unit_health_extension.lua').read_text(encoding='utf-8-sig')
 tough=(GAME/'scripts/extension_systems/toughness/player_unit_toughness_extension.lua').read_text(encoding='utf-8-sig')
-L.execute('NativeHealth={};NativeToughness={};local PlayerUnitHealthExtension=NativeHealth;local PlayerUnitToughnessExtension=NativeToughness;'+method(health,'PlayerUnitHealthExtension','max_health')+'\n'+method(tough,'PlayerUnitToughnessExtension','max_toughness'))
+L.execute('NativeHealth={};NativeToughness={};local PlayerUnitHealthExtension=NativeHealth;local PlayerUnitToughnessExtension=NativeToughness;'+method(health,'PlayerUnitHealthExtension','max_health')+'\n'+method(health,'PlayerUnitHealthExtension','max_wounds')+'\n'+method(tough,'PlayerUnitToughnessExtension','max_toughness'))
+archetypes={}
+toughness_source=(GAME/'scripts/settings/toughness/archetype_toughness_templates.lua').read_text(encoding='utf-8-sig')
+for path in (GAME/'scripts/settings/archetype/archetypes').glob('*_archetype.lua'):
+    name=path.stem.removesuffix('_archetype')
+    source=path.read_text(encoding='utf-8-sig')
+    hp=re.search(r'\n\thealth = (\d+)',source)
+    toughness=re.search(r'archetype_toughness_templates\.'+re.escape(name)+r' = \{\s*max = (\d+)',toughness_source)
+    if hp and toughness: archetypes[name]={'health':int(hp.group(1)),'toughness':int(toughness.group(1))}
+assert set(archetypes)=={'adamant','broker','cryptic','ogryn','psyker','veteran','zealot'}
+L.globals().rank60_archetypes=tbl(archetypes)
 skin=re.search(r'local function _get_damage_reduction_value\(\)(.*?)\nend',buff_source,re.S).group(1)
 L.globals().skin_value=L.execute('return function()'+skin+'\nend')
 spillway=(GAME/'scripts/managers/pacing/bosses/spillway_wizard.lua').read_text(encoding='utf-8-sig')
@@ -183,7 +193,7 @@ end
 ''')
 L.execute('''
 results={}
-for rank=40,50 do
+for rank=40,60 do
  local extension,context=begin(rank)
  assert(extension:get_current_rank()==40 and Havoc.parse_data(context.havoc_data).havoc_rank==40)
  near(skin_value(),.5)
@@ -225,12 +235,40 @@ for rank=40,50 do
  end
  results[#results+1]={rank=rank,health_factor=player.stats.max_health_modifier,max_health_base200=health,toughness_base75=toughness,regen=player.stats.toughness_regen_rate_modifier,ammo=output.ammo,special_bonus=extension._modifiers.add_max_alive_specials,slots_on_base5=math.ceil(5+extension._modifiers.add_max_alive_specials),native_rank=extension:get_current_rank(),skin=skin_value(),twin_eligibility=true,modifier_fields=Rules.copy(extension._modifiers),vent=player.stats.vent_warp_charge_speed,minion_hit_mass=minion.hit_mass,minion_stats={melee_attack_speed=minion.stats.melee_attack_speed,ranged_attack_speed=minion.stats.ranged_attack_speed,minion_num_shots_modifier=minion.stats.minion_num_shots_modifier,permanent_damage_ratio=minion.stats.permanent_damage_ratio}}
 end
+rank60_tier_checks=0;rank60_players={}
+for rank=51,60 do
+ for _,name in ipairs({"reduce_health_and_wounds","reduce_toughness","reduce_toughness_regen","ammo_pickup_modifier"}) do
+  for tier=1,#require("scripts/settings/havoc_settings").modifier_templates[name] do
+   local extension=begin(rank,{{name=name,level=tier}})
+   local player=new_unit({});extension:_on_player_unit_spawned({player_unit=player})
+   local stats=player.stats;local buff={stat_buffs=function() return stats end}
+   assert(stats.max_health_modifier>0 and stats.toughness_regen_rate_modifier>0)
+   for _,bases in pairs(rank60_archetypes) do
+    assert(NativeHealth.max_health({_health=bases.health,_buff_extension=buff})>0)
+    assert(NativeToughness.max_toughness({_max_toughness=bases.toughness,_buff_extension=buff})>0)
+   end
+   if output.ammo then assert(output.ammo>0) end
+   rank60_tier_checks=rank60_tier_checks+1
+  end
+ end
+end
+assert(rank60_tier_checks==200)
+local extension=begin(60);local player=new_unit({});extension:_on_player_unit_spawned({player_unit=player})
+local buff={stat_buffs=function() return player.stats end}
+for name,bases in pairs(rank60_archetypes) do
+ rank60_players[name]={base_health=bases.health,base_toughness=bases.toughness,
+  health=NativeHealth.max_health({_health=bases.health,_buff_extension=buff}),
+  toughness=NativeToughness.max_toughness({_max_toughness=bases.toughness,_buff_extension=buff}),
+  wounds_on_base2=NativeHealth.max_wounds({_base_max_wounds=2,_buff_extension=buff})}
+ assert(rank60_players[name].wounds_on_base2==2)
+end
+assert(NativeHealth.max_wounds({_base_max_wounds=0,_buff_extension=buff})==1)
 local selected={{name="buff_elites",level=2},{name="reduce_health_and_wounds",level=1}}
-local extension=begin(50,selected)
-near(extension._modifiers.modify_elite_health,.4)
+local extension=begin(60,selected)
+near(extension._modifiers.modify_elite_health,.65)
 assert(extension._modifiers.add_max_alive_specials==nil and extension._modifiers.ammo_pickup_modifier==nil)
 local player=new_unit({});extension:_on_player_unit_spawned({player_unit=player})
-near(player.stats.max_health_modifier,.85-1/6)
+near(player.stats.max_health_modifier,.85-1/3)
 assert(player.added.havoc_toughness_modifier_5==nil)
 for _,hook in ipairs(hooks) do if hook.target==NativeHavocExtension and hook.name=="_on_player_unit_spawned" then
  assert(not pcall(hook.fn,function() error("native event failure") end,extension,{player_unit=player}))
@@ -250,8 +288,8 @@ assert(same(native_buffs_before,require("scripts/settings/buff/buff_templates"))
 ''')
 plain=lambda t:{k:(plain(v) if hasattr(v,'items') else v) for k,v in t.items()}
 record=[plain(v) for v in L.globals().results.values()]
-(CHECKS/'custom-havoc-rank-results.json').write_text(json.dumps({'scope':'offline native Lua plus explicit engine/VO boundaries; no game launch','ranks':record},indent=2)+'\n',encoding='utf-8')
-print('Custom rank50: native1-40 generation equivalence, all41-50 exact selected curves, real modifier/buff initialization and stat consumers, source immutability, DIY separation, mission snapshots and singleplay boundaries: PASS')
+(CHECKS/'custom-havoc-rank-results.json').write_text(json.dumps({'scope':'offline native Lua plus explicit engine/VO boundaries; no game launch','ranks':record,'rank60_selected_tier_checks':L.globals().rank60_tier_checks,'rank60_archetypes':plain(L.globals().rank60_players)},indent=2)+'\n',encoding='utf-8')
+print('Custom rank60: native1-40 generation equivalence, all41-60 exact selected curves, real modifier/buff initialization and stat consumers, source immutability, DIY separation, mission snapshots and singleplay boundaries: PASS')
 
 # Execute the actual rank setup/refresh/randomize callbacks; rendering is a boundary.
 view_text=(SOURCES/'HavocConditionManager/scripts/mods/HavocConditionManager/condition_manager_view/condition_manager_view.lua').read_text(encoding='utf-8-sig')
@@ -284,18 +322,18 @@ assert(view._current_havoc_difficulty==16 and solo:get("havoc_difficulty")==16)
 local expected=Havoc.parse_data(Havoc.generate_havoc_data(16,1)).modifiers
 for _,choice in ipairs(expected) do assert(view._current_modifier[choice.name]==choice.level) end
 local entry=view._havoc_difficulty_slider_widget.content.entry
-assert(entry.max_value==50)
-for _,rank in ipairs({40,41,45,50}) do
+assert(entry.max_value==60)
+for _,rank in ipairs({40,41,45,50,55,60}) do
  entry.on_activated(rank,entry);assert(view._current_havoc_difficulty==rank and Rank.get()==rank and badge_rank==rank)
  for _,choice in ipairs(Havoc.parse_data(Havoc.generate_havoc_data(math.min(rank,40),1)).modifiers) do assert(view._current_modifier[choice.name]==choice.level) end
 end
-local previous=Rank.get();entry.on_activated(51,entry);assert(Rank.get()==previous and badge_rank==50)
+local previous=Rank.get();entry.on_activated(61,entry);assert(Rank.get()==previous and badge_rank==60)
 entry.on_activated(40.5,entry);entry.on_activated(0/0,entry);assert(Rank.get()==previous)
 view._modifier_customizable=true;view._current_modifier.buff_elites=2;solo:set("havoc_modifier_buff_elites",2)
 entry.on_activated(45,entry);assert(solo:get("havoc_modifier_buff_elites")==2 and view._current_modifier.buff_elites==2)
 view:_regen_havoc();assert(view._current_modifier.buff_elites==5)
-test_language="en";assert(entry.format_value_function(50)=="50 (custom)")
-print("Actual HCM rank callbacks: first-open16,50 cap,40/41/45/50 refresh,bounds,custom label,locked/manual selections and native Randomize behavior: PASS")
+test_language="en";assert(entry.format_value_function(60)=="60 (custom)")
+print("Actual HCM rank callbacks: first-open16,60 cap,40/41/45/50/55/60 refresh,bounds,custom label,locked/manual selections and native Randomize behavior: PASS")
 ''')
 
 
@@ -304,7 +342,7 @@ print("Actual HCM rank callbacks: first-open16,50 cap,40/41/45/50 refresh,bounds
 assert L.eval('not Rank.install_presets()')
 load_mod=original_load_mod
 L.globals().load_mod_file=load_mod
-hed_root=Path(os.environ.get('DARKTIDE_HED_SOURCE',PROJECT.parent/'dev-support/installed-mod-fixtures'))/'HavocEnemyDirector/scripts/mods/HavocEnemyDirector'
+hed_root=Path(os.environ.get('DARKTIDE_HED_SOURCE',PROJECT/'.assistant-support/dev-support/installed-mod-fixtures'))/'HavocEnemyDirector/scripts/mods/HavocEnemyDirector'
 director_text=(hed_root/'native_director.lua').read_text(encoding='utf-8-sig')
 L.execute('new_test_mod("HavocEnemyDirector");Managers.state.game_mode={game_mode_name=function() return "hub" end};Rank.finish();Rank.start()')
 L.execute(director_text[:director_text.index('mod:io_dofile("HavocEnemyDirector/scripts/mods/HavocEnemyDirector/native_relative")')])
@@ -334,15 +372,15 @@ solo:set("hcm_condition_selection_v3","")
 solo:set("havoc_theme_circumstance","default");solo:set("havoc_difficulty_circumstance","default")
 base:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/diy/diy_seed").new(base).set(123)
 assert(Rank.install_presets())
-assert(Rank.set(50))
+assert(Rank.set(60))
 solo:set("havoc_modifier_buff_elites",2);solo:set("havoc_modifier_buff_specials",0);solo:set("havoc_modifiers_customizable",true)
 local cfg=director.get_saved_config()
 cfg.studio={version=1,recycling=base:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/recycling_config").validate(base:get("recycling_v1")),spatial={},policies={}}
 cfg.studio.mission={id="cm_archives",level="cm_archives",rank=30}
 assert(director.save_config(cfg))
-custom_doc=assert(director.presets.capture("Rank50 roundtrip"))
+custom_doc=assert(director.presets.capture("Rank60 roundtrip"))
 assert(custom_doc.config.studio.mission.rank==40 and director.peek_config().studio.mission.rank==30)
-assert(custom_doc.hcm_custom_havoc_v1.requested_rank==50 and custom_doc.hcm_custom_havoc_v1.modifiers.buff_elites==2 and custom_doc.hcm_custom_havoc_v1.modifiers.buff_specials==0)
+assert(custom_doc.hcm_custom_havoc_v1.requested_rank==60 and custom_doc.hcm_custom_havoc_v1.modifiers.buff_elites==2 and custom_doc.hcm_custom_havoc_v1.modifiers.buff_specials==0)
 assert(custom_doc.hcm_custom_havoc_v1.customizable)
 local decoded=assert(director.presets.decode(cjson.encode(custom_doc)))
 assert(same(decoded,custom_doc))
@@ -350,16 +388,21 @@ assert(Rank.set(16))
 preset_view={_current={},_current_modifier={buff_elites=5,buff_specials=5},_modifier_customizable=false,_current_havoc_difficulty=16}
 preset_view._setup_havoc_badge=function(self) shown_badge=self._current_havoc_difficulty end
 assert(director.presets.apply(decoded,preset_view))
-assert(Rank.get()==50 and solo:get("havoc_difficulty")==40 and shown_badge==50)
+assert(Rank.get()==60 and solo:get("havoc_difficulty")==40 and shown_badge==60)
 assert(solo:get("havoc_modifier_buff_elites")==2 and solo:get("havoc_modifier_buff_specials")==0)
 assert(preset_view._current_modifier.buff_elites==2 and preset_view._modifier_customizable)
-assert(director.studio_capture_context().document.hcm_custom_havoc_v1.requested_rank==50)
+assert(director.studio_capture_context().document.hcm_custom_havoc_v1.requested_rank==60)
+-- Previously saved custom50 metadata remains valid under the expanded cap.
+local custom50_doc=Rules.copy(custom_doc);custom50_doc.hcm_custom_havoc_v1.requested_rank=50
+assert(director.presets.codec.validate(custom50_doc))
+assert(director.presets.apply(custom50_doc,preset_view) and Rank.get()==50 and shown_badge==50)
+assert(director.presets.apply(custom_doc,preset_view) and Rank.get()==60 and shown_badge==60)
 function complete_state()
  return {base=Rules.copy(base.values),solo=Rules.copy(solo.values),director=Rules.copy(director.values),config=director.get_saved_config(),diy=Rules.copy(base.diy_library.options)}
 end
 local before=complete_state()
 for _,mutate in ipairs({
- function(v) v.hcm_custom_havoc_v1.requested_rank=51 end,
+ function(v) v.hcm_custom_havoc_v1.requested_rank=61 end,
  function(v) v.hcm_custom_havoc_v1.requested_rank=0/0 end,
  function(v) v.hcm_custom_havoc_v1.modifiers.buff_elites=nil end,
  function(v) v.hcm_custom_havoc_v1.modifiers.buff_elites=6 end,
@@ -375,14 +418,14 @@ end
 -- Older documents remain readable without changing current state; explicit old
 -- native-rank40 apply and same-value native writes invalidate custom metadata.
 legacy_doc=Rules.copy(custom_doc);legacy_doc.hcm_custom_havoc_v1=nil
-assert(director.presets.codec.validate(legacy_doc) and Rank.get()==50)
+assert(director.presets.codec.validate(legacy_doc) and Rank.get()==60)
 assert(director.presets.apply(legacy_doc,preset_view) and Rank.get()==40)
-assert(Rank.set(50));local old_dirty=dirties
+assert(Rank.set(60));local old_dirty=dirties
 solo:set("havoc_difficulty",40);assert(Rank.get()==40 and dirties>old_dirty)
-assert(Rank.set(50))
+assert(Rank.set(60))
 assert(director.set_studio_mode("hcm") and Rank.get()==40)
 assert(Rank.set(45));solo:set("havoc_modifier_buff_elites",1)
-assert(director.set_studio_mode("hed") and Rank.get()==50 and solo:get("havoc_modifier_buff_elites")==2)
+assert(director.set_studio_mode("hed") and Rank.get()==60 and solo:get("havoc_modifier_buff_elites")==2)
 assert(director.set_studio_mode("hcm") and Rank.get()==45 and solo:get("havoc_modifier_buff_elites")==1)
 -- Invalid persisted mode records reject before any native writes.
 for _,bad in ipairs({true,"bad",{other=custom_doc.hcm_custom_havoc_v1},{hed={version=1}},setmetatable({},{})}) do
@@ -407,7 +450,7 @@ local ui_before={rank=preset_view._current_havoc_difficulty,modifiers=Rules.copy
 before=complete_state()
 local setter=base.set;local fail=true
 base.set=function(self,key,value)
- if fail and key==Rules.storage_key and value and value.requested_rank==50 then fail=false;error("owned write fault") end
+ if fail and key==Rules.storage_key and value and value.requested_rank==60 then fail=false;error("owned write fault") end
  return setter(self,key,value)
 end
 assert(not pcall(director.presets.apply,custom_doc,preset_view));base.set=setter
@@ -441,7 +484,7 @@ base._enabled=false;base.on_disabled(false)
 assert(base._custom_havoc_preset_bridge==nil)
 solo:set("havoc_difficulty",40);assert(base:get(Rules.storage_key)==nil)
 base._enabled=true;base.on_enabled(false);assert(base._custom_havoc_preset_bridge)
-print("Actual HED codec/presets/modes: rank50 JSON roundtrip, selected tiers/zeros/lock, old native presets, malformed data, mission no-op refusal, complete state/UI rollback and disable/re-enable: PASS")
+print("Actual HED codec/presets/modes: rank60 JSON roundtrip, selected tiers/zeros/lock, old native presets, malformed data, mission no-op refusal, complete state/UI rollback and disable/re-enable: PASS")
 ''')
 # Real reload callback body, with explicit DMF hook removal boundary.
 L.execute('''
@@ -463,15 +506,15 @@ hooks=filtered
 Rank=base:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/custom_havoc_rank_runtime")
 base.custom_havoc_rank=Rank
 base:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/custom_havoc_rank_presets")(Rank,base,solo)
-assert(Rank.install_presets());assert(Rank.set(50) and Rank.get()==50)
+assert(Rank.install_presets());assert(Rank.set(60) and Rank.get()==60)
 local expected_calls=third_calls
 assert(Rank.set(45) and Rank.get()==45 and third_calls==expected_calls+1)
 solo:set("havoc_difficulty",40);assert(Rank.get()==40)
 -- Same director object with replaced exported tables must be wrapped anew.
 Rank.uninstall_presets()
 local replacement=director:io_dofile("HavocEnemyDirector/scripts/mods/HavocEnemyDirector/native_presets")
-assert(Rank.install_presets());assert(Rank.set(50))
-assert(replacement.capture("replacement").hcm_custom_havoc_v1.requested_rank==50)
+assert(Rank.install_presets());assert(Rank.set(60))
+assert(replacement.capture("replacement").hcm_custom_havoc_v1.requested_rank==60)
 local old_capture=replacement.capture
 director.presets=nil
 assert(not Rank.install_presets() and base._custom_havoc_preset_bridge==nil)
@@ -490,7 +533,7 @@ print("Actual DMF callback body: reload(false), exit(true), disabled unload, set
 L.execute('''
 local base,solo,director=mods.HavocConditionManager,mods.SoloPlay,mods.HavocEnemyDirector
 base._enabled=true;Rank.uninstall_presets()
-assert(director.set_studio_mode("hcm"));assert(Rank.set(50))
+assert(director.set_studio_mode("hcm"));assert(Rank.set(60))
 local presets,codec=director.presets,director.presets.codec
 local methods={
  {target=codec,key="validate"},
@@ -509,7 +552,7 @@ end
 local function captured_rank()
  local snapshot=assert(director.studio_capture_context())
  assert(snapshot.mode=="hcm" and snapshot.document.config.studio.mission.rank==40)
- assert(snapshot.document.hcm_custom_havoc_v1.requested_rank==50)
+ assert(snapshot.document.hcm_custom_havoc_v1.requested_rank==60)
 end
 for _,missing in ipairs({{}, {value=false}}) do
  for i=2,#methods do

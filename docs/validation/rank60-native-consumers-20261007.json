@@ -1,0 +1,1678 @@
+{
+  "scope": "Hypothetical extension in disposable Lua VM only; actual source and installed cap unchanged at50. Uses current extracted native settings/Buff initialization/HP/toughness/wound consumers; engine and real gameplay are boundaries.",
+  "passed": true,
+  "ranks": [
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 80,
+          "health": 195,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 35,
+          "health": 130,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 55,
+          "health": 98,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 30,
+          "health": 98,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 75,
+          "health": 98,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 80,
+          "health": 130,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 55,
+          "health": 98,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.65,
+      "toughness_flat": -45,
+      "regen_factor": 0.5,
+      "ammo_factor": 0.4,
+      "special_slots_on_base5": 11,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 1,
+        "modify_monster_health": 0.7,
+        "add_more_ogryns": 0.8,
+        "ammo_pickup_modifier": 0.4,
+        "modify_elite_health": 0.5,
+        "horde_spawn_rate_modifier": 1.4,
+        "modify_special_health": 0.5,
+        "terror_event_point_modifier": 0.85,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.5,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.3,
+        "modify_horde_hit_mass": 1.7,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 6
+      },
+      "rank": 40,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 80,
+          "health": 190,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 35,
+          "health": 127,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 55,
+          "health": 95,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 30,
+          "health": 95,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 75,
+          "health": 95,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 80,
+          "health": 127,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 55,
+          "health": 95,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.6333333333333333,
+      "toughness_flat": -45.55555555555556,
+      "regen_factor": 0.48888888888888893,
+      "ammo_factor": 0.3916666666666667,
+      "special_slots_on_base5": 12,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 1.125,
+        "modify_monster_health": 0.73,
+        "add_more_ogryns": 0.8500000000000001,
+        "ammo_pickup_modifier": 0.3916666666666667,
+        "modify_elite_health": 0.525,
+        "horde_spawn_rate_modifier": 1.44,
+        "modify_special_health": 0.5208333333333334,
+        "terror_event_point_modifier": 0.88125,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.525,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.305,
+        "modify_horde_hit_mass": 1.72,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 6.1
+      },
+      "rank": 41,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 79,
+          "health": 185,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 34,
+          "health": 124,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 54,
+          "health": 93,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 29,
+          "health": 93,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 74,
+          "health": 93,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 79,
+          "health": 124,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 54,
+          "health": 93,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.6166666666666667,
+      "toughness_flat": -46.111111111111114,
+      "regen_factor": 0.47777777777777775,
+      "ammo_factor": 0.38333333333333336,
+      "special_slots_on_base5": 12,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 1.25,
+        "modify_monster_health": 0.7599999999999999,
+        "add_more_ogryns": 0.9,
+        "ammo_pickup_modifier": 0.38333333333333336,
+        "modify_elite_health": 0.55,
+        "horde_spawn_rate_modifier": 1.48,
+        "modify_special_health": 0.5416666666666666,
+        "terror_event_point_modifier": 0.9125,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.55,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.31,
+        "modify_horde_hit_mass": 1.74,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 6.2
+      },
+      "rank": 42,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 79,
+          "health": 181,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 34,
+          "health": 121,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 54,
+          "health": 91,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 29,
+          "health": 91,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 74,
+          "health": 91,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 79,
+          "health": 121,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 54,
+          "health": 91,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.6000000000000001,
+      "toughness_flat": -46.666666666666664,
+      "regen_factor": 0.4666666666666667,
+      "ammo_factor": 0.375,
+      "special_slots_on_base5": 12,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 1.375,
+        "modify_monster_health": 0.7899999999999999,
+        "add_more_ogryns": 0.9500000000000001,
+        "ammo_pickup_modifier": 0.375,
+        "modify_elite_health": 0.575,
+        "horde_spawn_rate_modifier": 1.5199999999999998,
+        "modify_special_health": 0.5625,
+        "terror_event_point_modifier": 0.94375,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.575,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.315,
+        "modify_horde_hit_mass": 1.76,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 6.3
+      },
+      "rank": 43,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 78,
+          "health": 175,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 33,
+          "health": 117,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 53,
+          "health": 88,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 28,
+          "health": 88,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 73,
+          "health": 88,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 78,
+          "health": 117,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 53,
+          "health": 88,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.5833333333333334,
+      "toughness_flat": -47.22222222222222,
+      "regen_factor": 0.4555555555555556,
+      "ammo_factor": 0.3666666666666667,
+      "special_slots_on_base5": 12,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 1.5,
+        "modify_monster_health": 0.82,
+        "add_more_ogryns": 1,
+        "ammo_pickup_modifier": 0.3666666666666667,
+        "modify_elite_health": 0.6,
+        "horde_spawn_rate_modifier": 1.5599999999999998,
+        "modify_special_health": 0.5833333333333334,
+        "terror_event_point_modifier": 0.975,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.6,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.32,
+        "modify_horde_hit_mass": 1.78,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 6.4
+      },
+      "rank": 44,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 78,
+          "health": 170,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 33,
+          "health": 114,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 53,
+          "health": 85,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 28,
+          "health": 85,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 73,
+          "health": 85,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 78,
+          "health": 114,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 53,
+          "health": 85,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.5666666666666667,
+      "toughness_flat": -47.77777777777778,
+      "regen_factor": 0.4444444444444444,
+      "ammo_factor": 0.3583333333333334,
+      "special_slots_on_base5": 12,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 1.625,
+        "modify_monster_health": 0.8499999999999999,
+        "add_more_ogryns": 1.05,
+        "ammo_pickup_modifier": 0.3583333333333334,
+        "modify_elite_health": 0.625,
+        "horde_spawn_rate_modifier": 1.5999999999999999,
+        "modify_special_health": 0.6041666666666666,
+        "terror_event_point_modifier": 1.00625,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.625,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.32499999999999996,
+        "modify_horde_hit_mass": 1.7999999999999998,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 6.5
+      },
+      "rank": 45,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 77,
+          "health": 165,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 32,
+          "health": 111,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 52,
+          "health": 83,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 27,
+          "health": 83,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 72,
+          "health": 83,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 77,
+          "health": 111,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 52,
+          "health": 83,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.55,
+      "toughness_flat": -48.333333333333336,
+      "regen_factor": 0.43333333333333335,
+      "ammo_factor": 0.35000000000000003,
+      "special_slots_on_base5": 12,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 1.75,
+        "modify_monster_health": 0.8799999999999999,
+        "add_more_ogryns": 1.1,
+        "ammo_pickup_modifier": 0.35000000000000003,
+        "modify_elite_health": 0.65,
+        "horde_spawn_rate_modifier": 1.64,
+        "modify_special_health": 0.625,
+        "terror_event_point_modifier": 1.0375,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.6499999999999999,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.32999999999999996,
+        "modify_horde_hit_mass": 1.8199999999999998,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 6.6
+      },
+      "rank": 46,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 77,
+          "health": 161,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 32,
+          "health": 107,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 52,
+          "health": 81,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 27,
+          "health": 81,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 72,
+          "health": 81,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 77,
+          "health": 107,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 52,
+          "health": 81,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.5333333333333334,
+      "toughness_flat": -48.888888888888886,
+      "regen_factor": 0.4222222222222223,
+      "ammo_factor": 0.3416666666666667,
+      "special_slots_on_base5": 12,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 1.875,
+        "modify_monster_health": 0.9099999999999999,
+        "add_more_ogryns": 1.1500000000000001,
+        "ammo_pickup_modifier": 0.3416666666666667,
+        "modify_elite_health": 0.675,
+        "horde_spawn_rate_modifier": 1.68,
+        "modify_special_health": 0.6458333333333333,
+        "terror_event_point_modifier": 1.06875,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.6749999999999999,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.33499999999999996,
+        "modify_horde_hit_mass": 1.8399999999999999,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 6.7
+      },
+      "rank": 47,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 76,
+          "health": 156,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 31,
+          "health": 104,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 51,
+          "health": 78,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 26,
+          "health": 78,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 71,
+          "health": 78,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 76,
+          "health": 104,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 51,
+          "health": 78,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.5166666666666667,
+      "toughness_flat": -49.44444444444444,
+      "regen_factor": 0.4111111111111111,
+      "ammo_factor": 0.33333333333333337,
+      "special_slots_on_base5": 12,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 2,
+        "modify_monster_health": 0.94,
+        "add_more_ogryns": 1.2000000000000002,
+        "ammo_pickup_modifier": 0.33333333333333337,
+        "modify_elite_health": 0.7,
+        "horde_spawn_rate_modifier": 1.7199999999999998,
+        "modify_special_health": 0.6666666666666666,
+        "terror_event_point_modifier": 1.1,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.7,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.33999999999999997,
+        "modify_horde_hit_mass": 1.8599999999999999,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 6.8
+      },
+      "rank": 48,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 75,
+          "health": 150,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 30,
+          "health": 100,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 50,
+          "health": 75,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 25,
+          "health": 75,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 70,
+          "health": 75,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 75,
+          "health": 100,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 50,
+          "health": 75,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.5,
+      "toughness_flat": -50,
+      "regen_factor": 0.4,
+      "ammo_factor": 0.32500000000000007,
+      "special_slots_on_base5": 12,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 2.125,
+        "modify_monster_health": 0.9699999999999999,
+        "add_more_ogryns": 1.25,
+        "ammo_pickup_modifier": 0.32500000000000007,
+        "modify_elite_health": 0.725,
+        "horde_spawn_rate_modifier": 1.7599999999999998,
+        "modify_special_health": 0.6875,
+        "terror_event_point_modifier": 1.13125,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.725,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.345,
+        "modify_horde_hit_mass": 1.88,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 6.9
+      },
+      "rank": 49,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 75,
+          "health": 146,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 30,
+          "health": 97,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 50,
+          "health": 73,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 25,
+          "health": 73,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 70,
+          "health": 73,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 75,
+          "health": 97,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 50,
+          "health": 73,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.4833333333333334,
+      "toughness_flat": -50.55555555555556,
+      "regen_factor": 0.38888888888888895,
+      "ammo_factor": 0.3166666666666667,
+      "special_slots_on_base5": 12,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 2.25,
+        "modify_monster_health": 0.9999999999999999,
+        "add_more_ogryns": 1.3000000000000003,
+        "ammo_pickup_modifier": 0.3166666666666667,
+        "modify_elite_health": 0.75,
+        "horde_spawn_rate_modifier": 1.7999999999999998,
+        "modify_special_health": 0.7083333333333333,
+        "terror_event_point_modifier": 1.1625,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.75,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.35,
+        "modify_horde_hit_mass": 1.9,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 7
+      },
+      "rank": 50,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 74,
+          "health": 141,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 29,
+          "health": 94,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 49,
+          "health": 71,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 24,
+          "health": 71,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 69,
+          "health": 71,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 74,
+          "health": 94,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 49,
+          "health": 71,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.4666666666666668,
+      "toughness_flat": -51.111111111111114,
+      "regen_factor": 0.37777777777777777,
+      "ammo_factor": 0.30833333333333335,
+      "special_slots_on_base5": 13,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 2.375,
+        "modify_monster_health": 1.0299999999999998,
+        "add_more_ogryns": 1.35,
+        "ammo_pickup_modifier": 0.30833333333333335,
+        "modify_elite_health": 0.775,
+        "horde_spawn_rate_modifier": 1.8399999999999999,
+        "modify_special_health": 0.7291666666666666,
+        "terror_event_point_modifier": 1.19375,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.7749999999999999,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.355,
+        "modify_horde_hit_mass": 1.92,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 7.1
+      },
+      "rank": 51,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 74,
+          "health": 136,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 29,
+          "health": 91,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 49,
+          "health": 68,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 24,
+          "health": 68,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 69,
+          "health": 68,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 74,
+          "health": 91,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 49,
+          "health": 68,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.45000000000000007,
+      "toughness_flat": -51.666666666666664,
+      "regen_factor": 0.3666666666666667,
+      "ammo_factor": 0.30000000000000004,
+      "special_slots_on_base5": 13,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 2.5,
+        "modify_monster_health": 1.0599999999999998,
+        "add_more_ogryns": 1.4000000000000001,
+        "ammo_pickup_modifier": 0.30000000000000004,
+        "modify_elite_health": 0.8,
+        "horde_spawn_rate_modifier": 1.88,
+        "modify_special_health": 0.75,
+        "terror_event_point_modifier": 1.225,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.7999999999999999,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.36,
+        "modify_horde_hit_mass": 1.94,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 7.2
+      },
+      "rank": 52,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 73,
+          "health": 130,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 28,
+          "health": 87,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 48,
+          "health": 65,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 23,
+          "health": 65,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 68,
+          "health": 65,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 73,
+          "health": 87,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 48,
+          "health": 65,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.43333333333333335,
+      "toughness_flat": -52.22222222222222,
+      "regen_factor": 0.3555555555555556,
+      "ammo_factor": 0.29166666666666674,
+      "special_slots_on_base5": 13,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 2.625,
+        "modify_monster_health": 1.0899999999999999,
+        "add_more_ogryns": 1.4500000000000002,
+        "ammo_pickup_modifier": 0.29166666666666674,
+        "modify_elite_health": 0.825,
+        "horde_spawn_rate_modifier": 1.92,
+        "modify_special_health": 0.7708333333333333,
+        "terror_event_point_modifier": 1.25625,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.825,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.365,
+        "modify_horde_hit_mass": 1.96,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 7.3
+      },
+      "rank": 53,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 73,
+          "health": 126,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 28,
+          "health": 84,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 48,
+          "health": 63,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 23,
+          "health": 63,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 68,
+          "health": 63,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 73,
+          "health": 84,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 48,
+          "health": 63,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.41666666666666674,
+      "toughness_flat": -52.77777777777778,
+      "regen_factor": 0.34444444444444455,
+      "ammo_factor": 0.2833333333333334,
+      "special_slots_on_base5": 13,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 2.75,
+        "modify_monster_health": 1.1199999999999999,
+        "add_more_ogryns": 1.5000000000000002,
+        "ammo_pickup_modifier": 0.2833333333333334,
+        "modify_elite_health": 0.8500000000000001,
+        "horde_spawn_rate_modifier": 1.96,
+        "modify_special_health": 0.7916666666666666,
+        "terror_event_point_modifier": 1.2875,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.8499999999999999,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.37,
+        "modify_horde_hit_mass": 1.98,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 7.4
+      },
+      "rank": 54,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 72,
+          "health": 121,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 27,
+          "health": 81,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 47,
+          "health": 61,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 22,
+          "health": 61,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 67,
+          "health": 61,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 72,
+          "health": 81,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 47,
+          "health": 61,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.40000000000000013,
+      "toughness_flat": -53.333333333333336,
+      "regen_factor": 0.33333333333333337,
+      "ammo_factor": 0.275,
+      "special_slots_on_base5": 13,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 2.875,
+        "modify_monster_health": 1.15,
+        "add_more_ogryns": 1.5500000000000003,
+        "ammo_pickup_modifier": 0.275,
+        "modify_elite_health": 0.875,
+        "horde_spawn_rate_modifier": 1.9999999999999998,
+        "modify_special_health": 0.8125,
+        "terror_event_point_modifier": 1.31875,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.8749999999999999,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.375,
+        "modify_horde_hit_mass": 2,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 7.5
+      },
+      "rank": 55,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 72,
+          "health": 116,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 27,
+          "health": 77,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 47,
+          "health": 58,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 22,
+          "health": 58,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 67,
+          "health": 58,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 72,
+          "health": 77,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 47,
+          "health": 58,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.3833333333333334,
+      "toughness_flat": -53.888888888888886,
+      "regen_factor": 0.3222222222222223,
+      "ammo_factor": 0.2666666666666667,
+      "special_slots_on_base5": 13,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 3,
+        "modify_monster_health": 1.1799999999999997,
+        "add_more_ogryns": 1.6,
+        "ammo_pickup_modifier": 0.2666666666666667,
+        "modify_elite_health": 0.9,
+        "horde_spawn_rate_modifier": 2.04,
+        "modify_special_health": 0.8333333333333333,
+        "terror_event_point_modifier": 1.35,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.8999999999999999,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.38,
+        "modify_horde_hit_mass": 2.02,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 7.6
+      },
+      "rank": 56,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 71,
+          "health": 111,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 26,
+          "health": 74,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 46,
+          "health": 56,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 21,
+          "health": 56,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 66,
+          "health": 56,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 71,
+          "health": 74,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 46,
+          "health": 56,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.3666666666666667,
+      "toughness_flat": -54.44444444444444,
+      "regen_factor": 0.3111111111111111,
+      "ammo_factor": 0.2583333333333334,
+      "special_slots_on_base5": 13,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 3.125,
+        "modify_monster_health": 1.21,
+        "add_more_ogryns": 1.6500000000000004,
+        "ammo_pickup_modifier": 0.2583333333333334,
+        "modify_elite_health": 0.925,
+        "horde_spawn_rate_modifier": 2.08,
+        "modify_special_health": 0.8541666666666666,
+        "terror_event_point_modifier": 1.38125,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.9249999999999999,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.385,
+        "modify_horde_hit_mass": 2.04,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 7.7
+      },
+      "rank": 57,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 70,
+          "health": 106,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 25,
+          "health": 71,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 45,
+          "health": 53,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 20,
+          "health": 53,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 65,
+          "health": 53,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 70,
+          "health": 71,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 45,
+          "health": 53,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.3500000000000001,
+      "toughness_flat": -55,
+      "regen_factor": 0.30000000000000004,
+      "ammo_factor": 0.25000000000000006,
+      "special_slots_on_base5": 13,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 3.25,
+        "modify_monster_health": 1.2399999999999998,
+        "add_more_ogryns": 1.7000000000000002,
+        "ammo_pickup_modifier": 0.25000000000000006,
+        "modify_elite_health": 0.95,
+        "horde_spawn_rate_modifier": 2.1199999999999997,
+        "modify_special_health": 0.875,
+        "terror_event_point_modifier": 1.4125,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.95,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.38999999999999996,
+        "modify_horde_hit_mass": 2.06,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 7.8
+      },
+      "rank": 58,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 70,
+          "health": 101,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 25,
+          "health": 67,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 45,
+          "health": 51,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 20,
+          "health": 51,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 65,
+          "health": 51,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 70,
+          "health": 67,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 45,
+          "health": 51,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.3333333333333335,
+      "toughness_flat": -55.55555555555556,
+      "regen_factor": 0.288888888888889,
+      "ammo_factor": 0.24166666666666672,
+      "special_slots_on_base5": 13,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 3.375,
+        "modify_monster_health": 1.2699999999999998,
+        "add_more_ogryns": 1.7500000000000002,
+        "ammo_pickup_modifier": 0.24166666666666672,
+        "modify_elite_health": 0.9750000000000001,
+        "horde_spawn_rate_modifier": 2.1599999999999997,
+        "modify_special_health": 0.8958333333333333,
+        "terror_event_point_modifier": 1.44375,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.9749999999999999,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.39499999999999996,
+        "modify_horde_hit_mass": 2.08,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 7.9
+      },
+      "rank": 59,
+      "native_rank": 40
+    },
+    {
+      "archetypes": {
+        "ogryn": {
+          "base_health": 300,
+          "base_toughness": 125,
+          "toughness": 69,
+          "health": 96,
+          "wounds_on_base2": 2
+        },
+        "adamant": {
+          "base_health": 200,
+          "base_toughness": 80,
+          "toughness": 24,
+          "health": 64,
+          "wounds_on_base2": 2
+        },
+        "broker": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 44,
+          "health": 48,
+          "wounds_on_base2": 2
+        },
+        "psyker": {
+          "base_health": 150,
+          "base_toughness": 75,
+          "toughness": 19,
+          "health": 48,
+          "wounds_on_base2": 2
+        },
+        "veteran": {
+          "base_health": 150,
+          "base_toughness": 120,
+          "toughness": 64,
+          "health": 48,
+          "wounds_on_base2": 2
+        },
+        "zealot": {
+          "base_health": 200,
+          "base_toughness": 125,
+          "toughness": 69,
+          "health": 64,
+          "wounds_on_base2": 2
+        },
+        "cryptic": {
+          "base_health": 150,
+          "base_toughness": 100,
+          "toughness": 44,
+          "health": 48,
+          "wounds_on_base2": 2
+        }
+      },
+      "health_factor": 0.31666666666666676,
+      "toughness_flat": -56.111111111111114,
+      "regen_factor": 0.2777777777777779,
+      "ammo_factor": 0.2333333333333334,
+      "special_slots_on_base5": 13,
+      "modifier_fields": {
+        "melee_minion_permanent_damage_buff": "havoc_melee_permanent_damage_05",
+        "add_more_elites": 3.5,
+        "modify_monster_health": 1.2999999999999998,
+        "add_more_ogryns": 1.8000000000000003,
+        "ammo_pickup_modifier": 0.2333333333333334,
+        "modify_elite_health": 1,
+        "horde_spawn_rate_modifier": 2.1999999999999997,
+        "modify_special_health": 0.9166666666666666,
+        "terror_event_point_modifier": 1.475,
+        "add_num_monsters": 3,
+        "melee_minion_power_level_modifier": 0.9999999999999999,
+        "melee_minion_attack_speed_buff": "havoc_melee_attack_speed_05",
+        "modify_horde_health": 0.39999999999999997,
+        "modify_horde_hit_mass": 2.0999999999999996,
+        "ranged_minion_attack_speed_buff": "havoc_ranged_attack_speed_05",
+        "add_max_alive_specials": 8
+      },
+      "rank": 60,
+      "native_rank": 40
+    }
+  ],
+  "selected_tier_checks": 200,
+  "archetypes": {
+    "adamant": {
+      "health": 200,
+      "toughness": 80
+    },
+    "broker": {
+      "health": 150,
+      "toughness": 100
+    },
+    "cryptic": {
+      "health": 150,
+      "toughness": 100
+    },
+    "ogryn": {
+      "health": 300,
+      "toughness": 125
+    },
+    "psyker": {
+      "health": 150,
+      "toughness": 75
+    },
+    "veteran": {
+      "health": 150,
+      "toughness": 120
+    },
+    "zealot": {
+      "health": 200,
+      "toughness": 125
+    }
+  },
+  "stacking_limit": "At rank60 the ordinary HP modifier is +0.3166666667 after native base1. Another additive penalty of -0.33 makes native max_health negative; final HP/toughness have no minimum clamp.",
+  "source_report": "F:\\SteamLibrary\\steamapps\\common\\darktide-hcm-rank60-ui-20261007\\source-report.json",
+  "hcm_rank_rules_sha256": "fbabc1f5bc7abc7f585c8b30ff2b22bb221ca099d0e215a3e681b78149d1b1c1"
+}

@@ -49,6 +49,13 @@ local function visible(widget,value)
     if widget.content.hotspot then widget.content.hotspot.disabled=not value end
 end
 Paging.set_visible=visible
+-- Recreated native dropdowns must obey the same page policy immediately.
+-- The environment selector lives on the conditions page; its native widget
+-- retains the options/callback only and shares the EFL scenegraph position.
+Paging.dropdown_visible=function(view,id)
+    return (view._hcm_page or 1)==1 and id~="havoc_theme_circumstance"
+        and id~="havoc_add_circumstance" and id~="havoc_remove_circumstance"
+end
 local function control_definition(node)
     return UIWidget.create_definition({
         {pass_type="hotspot",content_id="hotspot",style_id="hotspot",style={size={1,1}}},
@@ -429,7 +436,7 @@ Paging.refresh=function(view,settings)
         if not name:find("^hcm_") and name~="background" and name~="title_text" and name~="offline_tip_text" then visible(widget,main) end
     end
     for _,id in ipairs({"havoc_theme_circumstance_label","normal_tip_text","havoc_conditions_summary","havoc_add_circumstance_label","havoc_remove_circumstance_label"}) do visible(view._widgets_by_name[id],false) end
-    for id,widget in pairs(view._dropdown_widgets) do visible(widget,main and id~="havoc_theme_circumstance" and id~="havoc_add_circumstance" and id~="havoc_remove_circumstance") end
+    for id,widget in pairs(view._dropdown_widgets) do visible(widget,Paging.dropdown_visible(view,id)) end
     visible(view._havoc_difficulty_slider_widget,main); visible(view._havoc_difficulty_badge_widget,main)
     if view._modifier_grid then view._modifier_grid:set_visibility(main) end
     for i=1,Paging.control_count do

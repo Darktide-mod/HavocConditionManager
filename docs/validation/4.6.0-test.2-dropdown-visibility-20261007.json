@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "scope": "Native UIWidget factory/init, native hotspot hit testing and actual HCM callbacks; decorations and engine rendering are boundaries",
+  "cases": [
+    "mission-linked recreation",
+    "EFL click at three scales in both draw orders",
+    "hidden focus rejection",
+    "environment callback persistence",
+    "randomize/preset-style recreation",
+    "focused instance replacement",
+    "recreation on pages 2-4"
+  ],
+  "source_sha256": {
+    "F:\\SteamLibrary\\steamapps\\common\\darktide-hcm-compatibility-20261007\\test-source\\scripts\\managers\\ui\\ui_widget.lua": "96b6d48d34f7e5c761b09701e85128a17184e839ec4c80a5498887314e5dad86",
+    "F:\\SteamLibrary\\steamapps\\common\\darktide-hcm-compatibility-20261007\\test-source\\scripts\\managers\\ui\\ui_passes.lua": "aef115fcfe84532c940f5ce87430e5ba11c4fcfed6c01f2e161059a1d322b521"
+  }
+}

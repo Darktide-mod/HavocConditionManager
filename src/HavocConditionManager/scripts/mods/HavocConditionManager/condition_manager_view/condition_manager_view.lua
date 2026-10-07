@@ -252,6 +252,9 @@ HavocConditionManagerView._refresh_condition_dropdowns = function (self)
 end
 
 HavocConditionManagerView._recreate_dropdown = function (self, id)
+	if self._selected_setting and self._selected_setting == self._dropdown_widgets[id] then
+		self:_set_exclusive_focus_on_setting(nil)
+	end
 	self._options[id] = make_options[id](self._current)
 	self._current[id] = self:_load_dropdown_selection(
 		view_settings.dropdown_setting_keys[id],
@@ -394,6 +397,7 @@ HavocConditionManagerView._setup_dropdown = function (self, entry)
 	local spacing = 0
 	local scroll_amount = scroll_length > 0 and (size[2] + spacing) / scroll_length or 0
 	content.scroll_amount = scroll_amount
+	Paging.set_visible(widget, Paging.dropdown_visible(self, entry.id))
 
 	return widget
 end
@@ -475,7 +479,7 @@ HavocConditionManagerView._set_exclusive_focus_on_setting = function (self, widg
 
 	local selected_widget = nil
 	for _, widget in ipairs(widgets) do
-		local selected = widget.name == widget_name
+		local selected = widget.visible ~= false and widget.name == widget_name
 		local content = widget.content
 		content.exclusive_focus = selected
 		local hotspot = content.hotspot or content.button_hotspot
@@ -491,11 +495,7 @@ HavocConditionManagerView._set_exclusive_focus_on_setting = function (self, widg
 
 	for _, widget in ipairs(widgets) do
 		if widget.content.hotspot then
-			if selected_widget then
-				widget.content.hotspot.disabled = widget ~= selected_widget
-			else
-				widget.content.hotspot.disabled = false
-			end
+			widget.content.hotspot.disabled = widget.visible == false or selected_widget ~= nil and widget ~= selected_widget
 		end
 	end
 

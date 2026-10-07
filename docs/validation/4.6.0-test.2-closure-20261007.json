@@ -1,0 +1,20 @@
+{
+  "version": "4.6.0-test.2",
+  "full_suite_passed": 41,
+  "archive": "D:\\Projects\\GamesAndMods\\HavocConditionManager\\build\\local-candidates\\4.6.0-test.2\\HavocConditionManager-4.6.0-test.2.zip",
+  "archive_sha256": "e71f74a07c05586e7e8f28aca8706331448d67c3c081791eb84924eed2f77c8c",
+  "source_evidence": {
+    "D:\\Projects\\GamesAndMods\\HavocConditionManager\\docs\\validation\\4.6.0-test.2-full-suite-result-20261007.json": "03e4cac6726c0a6f58e46fef1ddac4ed5dd3892b00ddbf18ca4abcd6520158ac",
+    "D:\\Projects\\GamesAndMods\\HavocConditionManager\\docs\\validation\\4.6.0-test.2-full-suite-20261007.txt": "f88c9cf20e36471c171800dc4e804a079f0087a6a99c6f57c144ecdeb258063d",
+    "D:\\Projects\\GamesAndMods\\HavocConditionManager\\docs\\validation\\4.6.0-test.2-dropdown-visibility-20261007.json": "e6c9c03275571b840cc9897e76d09356883b2293b6ab4ecbb591cdc4c68b8644",
+    "D:\\Projects\\GamesAndMods\\HavocConditionManager\\docs\\validation\\4.6.0-test.2-package-validation-20261007.json": "b0c88fc8fea04185eb47dd836917edbe384f551950f0026b19701aa21d35a06b",
+    "D:\\Projects\\GamesAndMods\\HavocConditionManager\\docs\\validation\\rank60-native-consumers-20261007.json": "6a472ad39aed691f1f0c508fe68e245201cf400b46f491cc17f918ae90a781e6",
+    "D:\\Projects\\GamesAndMods\\HavocConditionManager\\docs\\validation\\dropdown-old-ui-reproduction-20261007.json": "61e50cfe733856783089a94d98706a1eee5f1164e45154644b5a97d8fbc44a5e",
+    "D:\\Projects\\GamesAndMods\\HavocConditionManager\\docs\\validation\\rank60-ui-source-report-20261007.json": "7fff2b3110f36fa741b0039c369291d4ea09cc91421e4f5dbb01e8a8ee6e4b4f"
+  },
+  "old_candidate_unchanged": true,
+  "installed_hcm_unchanged": true,
+  "rank_cap": 50,
+  "hypothetical_rank60_only": true,
+  "live_ui_validation": "not performed"
+}

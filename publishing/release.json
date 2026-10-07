@@ -1,7 +1,7 @@
 {
   "mod": "HavocConditionManager",
-  "release_id": "4.6.0-test.1",
+  "release_id": "4.6.0-test.3",
   "file_category": "Optional Files",
   "stable_release": "4.5.0-r2",
-  "notes": "Unpublished local custom rank50 and EFL III/IV test candidate. Runtime payload only; offline validation, live SoloPlay/Realms checks pending."
+  "notes": "Unpublished local custom rank60 and dropdown visibility candidate. Native rank40 identity and EFL III/IV retained. Runtime payload only; live SoloPlay/Realms checks pending."
 }

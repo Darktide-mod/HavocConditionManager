@@ -1,0 +1,21 @@
+{
+  "version": "4.6.0-test.3",
+  "archive": "D:\\Projects\\GamesAndMods\\HavocConditionManager\\build\\local-candidates\\4.6.0-test.3\\HavocConditionManager-4.6.0-test.3.zip",
+  "archive_sha256": "2a214032bad8300614c28f5c3a8511b84f985e35f8df1bc44330eca4baa5b863",
+  "full_suite_passed": 41,
+  "installed_soloplay_checks_passed": true,
+  "implemented_cap": 60,
+  "native_identity": 40,
+  "native_stat_tier_checks": 200,
+  "evidence": {
+    "4.6.0-test.3-full-suite-result-20261007.json": "7dadc1e4e123edc93be0375dfa2d32935bb1ae23975a081d7695e4bed7940608",
+    "4.6.0-test.3-full-suite-20261007.txt": "43c04f06a2294a1ac047b1402ef6c99862daf3b487c3cee36d6bdaaa73b67d21",
+    "4.6.0-test.3-dropdown-visibility-20261007.json": "e6c9c03275571b840cc9897e76d09356883b2293b6ab4ecbb591cdc4c68b8644",
+    "4.6.0-test.3-native-rank-results-20261007.json": "e991f56f706adcca3fe362efef279e50f73c6dec674aefe943da51c2a93d8c19",
+    "4.6.0-test.3-package-validation-20261007.json": "380dd4e631ad307da8b8dd61a5a88646af6979ad2143b8727c8f7a7284b698b4",
+    "4.6.0-test.3-installed-soloplay-20261007.json": "c208853fdb9cbc8acb613c8d2eac71826324a926e0ee516891daf341d986fce8"
+  },
+  "previous_candidates_unchanged": true,
+  "installed_hcm_unchanged": true,
+  "live_ui_and_gameplay": "not performed"
+}

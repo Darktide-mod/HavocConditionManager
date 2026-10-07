@@ -1,8 +1,8 @@
--- HCM-owned 41-50 extension. Native modifier IDs, tiers and rank tables stay intact.
+-- HCM-owned 41-60 extension. Native modifier IDs, tiers and rank tables stay intact.
 local Settings=require("scripts/settings/havoc_settings")
 local Config=require("scripts/settings/havoc/havoc_modifier_config")
 local BuffTemplates=require("scripts/settings/buff/buff_templates")
-local R={max=50,native_max=40,storage_key="hcm_custom_havoc_v1"}
+local R={max=60,native_max=40,storage_key="hcm_custom_havoc_v1"}
 -- Extend selected definitions only. Fractions remain fractions until native
 -- consumers quantize actual counts (special slots use ceil; roamer limits ceil).
 local fields={
@@ -39,7 +39,7 @@ function R.validate_record(value)
     return {version=1,requested_rank=value.requested_rank,native_rank=value.native_rank}
 end
 function R.record(rank)
-    assert(R.validate(rank),"Custom Havoc rank must be a finite integer from 1 to 50")
+    assert(R.validate(rank),"Custom Havoc rank must be a finite integer from 1 to 60")
     return {version=1,requested_rank=rank,native_rank=math.min(rank,R.native_max)}
 end
 local function modifier_names()
@@ -90,7 +90,7 @@ function R.validate_modes(value)
     return result
 end
 function R.generate(fn,rank,...)
-    assert(R.validate(rank),"Custom Havoc rank must be a finite integer from 1 to 50")
+    assert(R.validate(rank),"Custom Havoc rank must be a finite integer from 1 to 60")
     return fn(math.min(rank,R.native_max),...)
 end
 local function values(definition,allowed)

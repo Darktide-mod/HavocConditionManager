@@ -1,0 +1,101 @@
+{
+  "steam_build": "25681127",
+  "inputs": {
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\bundle\\bundle_database.data": "d00218f759a187175be494b19c10f5dc296baead3b1d620ceb920785888bf168",
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\Darktide.exe": "a7131fecade52ad4758eb7c7fa26986aa2c32edd545cb50cc61585ebfb4f9deb",
+    "F:\\SteamLibrary\\steamapps\\common\\Warhammer 40,000 DARKTIDE\\binaries\\oo2core_9_win64.dll": "8595a4795f1e0c7f548598f3e2aa528b6be5456c6d934c665182eaecb04156c0"
+  },
+  "modules": [
+    {
+      "path": "scripts/foundation/utilities/table.lua",
+      "native_sha256": "99b222efa493239a5697ce12b39f2b60fc14f8316e8ed9c37f1c52cb3c290f5f",
+      "bytecode_sha256": "e01dc4007dc6aab562ed94360e07854d973cdf7be609e4964406899305254b20",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/managers/ui/ui_widget.lua",
+      "native_sha256": "96b6d48d34f7e5c761b09701e85128a17184e839ec4c80a5498887314e5dad86",
+      "bytecode_sha256": "cf396e6fc680521ff0b5f6327c1642b118a9ccf7a7624c756233854fa9302591",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/managers/ui/ui_passes.lua",
+      "native_sha256": "aef115fcfe84532c940f5ce87430e5ba11c4fcfed6c01f2e161059a1d322b521",
+      "bytecode_sha256": "556eb9b5e43a0323ee62984e035256857ad9dee9255b48b26e28716dcf327b88",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/ui/default_pass_values.lua",
+      "native_sha256": "ec3ddfa97c183dd4f1c1608ff50afface773ca6deb315fe5caedd3c77a960226",
+      "bytecode_sha256": "8005da112b78cb220efba63d4eef3c8e725784c28ee4eaf4bfbfa9d336c05945",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/ui/default_pass_styles.lua",
+      "native_sha256": "e4a38dc0826d33ea51e338f6623b2102eba3b2101f8bbe9a245391da29dc3047",
+      "bytecode_sha256": "2ddc70aab3d0ab274fe8b25480184b973e4ac7579efc220ef322adcffcf850aa",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/ui/pass_templates/dropdown_pass_templates.lua",
+      "native_sha256": "4ce4beb2f2018e11309ed392168c85f40ec22e5a9dc882b204ef7ecd840557c2",
+      "bytecode_sha256": "f79ab9dd789eb70d7bd28c30f67c32c78cbeb13a153558ce060bd4c3458a1013",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/ui/views/base_view.lua",
+      "native_sha256": "f3fb18ff2b859b961a0fa68afcd4d6981011e1a45da9a2154211b7905675a765",
+      "bytecode_sha256": "eb2de836daba3c18f05496370c7645fdbf298143cb258c6d573457c4fae392df",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/settings/toughness/archetype_toughness_templates.lua",
+      "native_sha256": "70b6c0900090060fedbb70c1949835d9f1eb868064c41cde5c8d77b3ff183560",
+      "bytecode_sha256": "8162baee2ddccb1f2f3b8fb59644151e7e9eb2f0eb53074bef68c1dfc5758ba6",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/settings/archetype/archetypes/adamant_archetype.lua",
+      "native_sha256": "d7df76344f323819665d2ad90369c92e6b7e6482491a42066fc08501edab9748",
+      "bytecode_sha256": "2998abf0a676c35a175ec843ca881d7c2ce7c1af0775875bb204de9e60f316e1",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/settings/archetype/archetypes/broker_archetype.lua",
+      "native_sha256": "5212d55633fd9477bed34a38c8c5a09de155e73ba1d1b3cb6b0588dd53b5edb4",
+      "bytecode_sha256": "baba82c920b556617433dae2a34f513892465d54055e83a34f0f3c5ddcd9b545",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/settings/archetype/archetypes/cryptic_archetype.lua",
+      "native_sha256": "5e2995187efb6f498f68d1ef92c6a3b64a9e57f9fac61ea47e7c0355843ccf83",
+      "bytecode_sha256": "43fa8c8e5b2f069c47c9430c303bf3fe59dc6561c111a0ce4105ca0a09930a2d",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/settings/archetype/archetypes/ogryn_archetype.lua",
+      "native_sha256": "62c59c67ccc182d39708279c49490a42bf59bf6c6e7de84b751d727993cbcbfb",
+      "bytecode_sha256": "84f38c0e2b98d6419397adfa6ce4b1cca958ff45fb2d49f130cbe53ef0301438",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/settings/archetype/archetypes/psyker_archetype.lua",
+      "native_sha256": "a0c1bb04452ded9a66fc5ac3236e1f52386f2d50eebff55edc8e1b208657af07",
+      "bytecode_sha256": "b6a7d6a90baf4b1169005123a68d3ea47ddea83270bd1202a483bc73507a60b7",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/settings/archetype/archetypes/veteran_archetype.lua",
+      "native_sha256": "49c2b52293214d65ccc3be7d9498d7b654d9f94a2ac66058958a17942eb7d2fb",
+      "bytecode_sha256": "80e58bdec689b7faabc1d17d962944f5fcb6b2cf629a8d780cef9fe3a1dca87c",
+      "public_tokens_match": true
+    },
+    {
+      "path": "scripts/settings/archetype/archetypes/zealot_archetype.lua",
+      "native_sha256": "6ac05953c76de5b6965d99a2d847fef955338f242c0218ffe3555be5bcb9117f",
+      "bytecode_sha256": "9732a761c2949310c33e7360330fe426a84fcf6e09c2f6e2d80dfc3d03025835",
+      "public_tokens_match": true
+    }
+  ],
+  "complete": true
+}

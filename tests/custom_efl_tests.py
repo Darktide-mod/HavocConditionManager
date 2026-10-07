@@ -28,7 +28,7 @@ for _,bad in ipairs({0,5,1.5,math.huge,-math.huge,"3",false}) do assert(not EFL.
 assert(not EFL.set_tier(0/0) and not EFL.set("unknown"))
 for _,bad in ipairs({{},true,{version=1,tier=5,native_id=EF.native_ii},{version=1,tier=3,native_id=EF.native_i},
  {version=1,tier=3,native_id=EF.native_ii,extra=true},setmetatable(EF.record(3),{})}) do assert(not EF.validate_record(bad)) end
-for rank=1,50 do
+for rank=1,60 do
  for tier=1,4 do
   local _,context,parsed=efl_begin(rank,tier)
   assert(Rank.get()==rank and solo:get("havoc_difficulty")==math.min(rank,40))
@@ -78,7 +78,7 @@ singleplay=false;assert(EFL.session()==nil);singleplay=true
 local authority=base.has_local_gameplay_authority;base.has_local_gameplay_authority=function() return false end
 assert(EFL.session()==nil);base.has_local_gameplay_authority=authority
 EFL.start();context.hcm_custom_efl_v1.tier=5;assert(EFL.session()==nil)
-_,context,parsed=efl_begin(50,4);EFL.start();Managers.mechanism._mechanism._mechanism_data.havoc_data="different";assert(EFL.session()==nil)
+_,context,parsed=efl_begin(60,4);EFL.start();Managers.mechanism._mechanism._mechanism_data.havoc_data="different";assert(EFL.session()==nil)
 _,context,parsed=efl_begin(40,3);EFL.start();parsed.mission="another_mission";assert(EFL.session()==nil)
 assert(not EF.native_ii_only({circumstances={EF.native_i,EF.native_ii}}))
 assert(not EF.native_ii_only({circumstances={EF.native_ii,EF.native_ii}}))
@@ -123,7 +123,7 @@ local gated=E.prepare(efl_root("hordes/mutator_horde/havoc_02"),"hordes")
 assert(E.has_gate(gated) and not E.allowed(gated))
 EFL.finish();assert(E.has_gate(gated) and not E.allowed(gated))
 E.context=context;mods.HavocEnemyDirector=nil;E.reset()
-print("Custom EFL: all ranks1-50 x tiersI-IV, four exact curves, native I/II identity, unchanged II remainder, no cumulative scaling/shared mutation, invalid metadata and launch/authority gates: PASS")
+print("Custom EFL: all ranks1-60 x tiersI-IV, four exact curves, native I/II identity, unchanged II remainder, no cumulative scaling/shared mutation, invalid metadata and launch/authority gates: PASS")
 ''')
 
 # Execute native callback bodies. Physics/rendering, asset loading and navigation
@@ -237,7 +237,7 @@ for tier=1,4 do
 end
 view:_setup_havoc_difficulty();local entry=view._havoc_difficulty_slider_widget.content.entry
 entry.on_activated(40,entry);assert(EFL.get()==EF.choices[4])
-entry.on_activated(50,entry);assert(EFL.get()==EF.choices[4])
+entry.on_activated(60,entry);assert(EFL.get()==EF.choices[4])
 view:_regen_havoc();assert(EFL.get()==EF.native_ii and base:get(EF.storage_key)==nil)
 for _,lang in ipairs({"en","zh-cn","zh-tw"}) do test_language=lang;assert(base:localize("hcm_efl_3")~="hcm_efl_3" and base:localize("hcm_efl_4")~="hcm_efl_4") end
 test_language="en"
@@ -248,7 +248,7 @@ assert(EFL.set_tier(3));for _=1,25 do
  assert(EFL.get()==EF.choices[3] and fresh._current.havoc_difficulty_circumstance==EF.choices[3])
 end
 efl_view=view
-print("Actual EFL UI: None plus exclusive I-IV, first-open I, 25 reopens, rank40/50 preserves manual choice, Randomize returns native generated tier, English/Chinese labels: PASS")
+print("Actual EFL UI: None plus exclusive I-IV, first-open I, 25 reopens, rank40/60 preserves manual choice, Randomize returns native generated tier, English/Chinese labels: PASS")
 ''')
 
 L.execute('''
@@ -256,7 +256,7 @@ local base,solo=mods.HavocConditionManager,mods.SoloPlay
 mods.HavocEnemyDirector=efl_director;local D=efl_director
 Managers.state.game_mode={game_mode_name=function() return "hub" end};EFL.start();Rank.finish();Rank.start()
 assert(Rank.install_presets())
-for _,rank in ipairs({16,40,50}) do for tier=3,4 do
+for _,rank in ipairs({16,40,50,60}) do for tier=3,4 do
  assert(Rank.set(rank) and EFL.set_tier(tier))
  local doc=assert(D.presets.capture("EFL roundtrip"))
  assert(doc.hcm_custom_efl_v1.tier==tier and doc.hcm.difficulty==EF.native_ii)
@@ -281,7 +281,7 @@ assert(D.set_studio_mode("hed") and EFL.get()==EF.choices[4])
 local modes=base:get(EF.mode_key);base:set(EF.mode_key,{hed={version=1,tier=5,native_id=EF.native_ii}})
 local previous=complete_state();assert(not D.set_studio_mode("hcm"));assert(same(previous,complete_state()));base:set(EF.mode_key,modes)
 -- Fault after native apply and after mode writes: restore owned keys and display.
-assert(Rank.set(50) and EFL.set_tier(3));local doc=assert(D.presets.capture("rollback"))
+assert(Rank.set(60) and EFL.set_tier(3));local doc=assert(D.presets.capture("rollback"))
 assert(EFL.set_tier(4));efl_view:_recreate_dropdown("havoc_difficulty_circumstance")
 local old_set=base.set;local fail=true
 base.set=function(self,key,value,...)
@@ -311,20 +311,20 @@ held_capture=D.presets.capture;held_studio=D.studio_capture_context
 base.on_unload(false)
 assert(held_capture("unloaded").hcm_custom_efl_v1==nil and held_studio().document.hcm_custom_efl_v1==nil)
 base.custom_efl=base:io_dofile("HavocConditionManager/scripts/mods/HavocConditionManager/custom_efl_runtime");EFL=base.custom_efl
-print("Actual installed HED: EFL III/IV JSON/capture/apply at ranks16/40/50, legacy records, native II identity, malformed context, independent mode slots, post-write rollback/UI and late API idempotency: PASS")
+print("Actual installed HED: EFL III/IV JSON/capture/apply at ranks16/40/50/60, legacy records, native II identity, malformed context, independent mode slots, post-write rollback/UI and late API idempotency: PASS")
 ''')
 
 L.execute('''
 local base,solo=mods.HavocConditionManager,mods.SoloPlay
-mods.HavocEnemyDirector=nil;efl_begin(50,4);local captain,monster,horde=efl_templates()
+mods.HavocEnemyDirector=nil;efl_begin(60,4);local captain,monster,horde=efl_templates()
 base._enabled=false;base.on_disabled(false)
 assert(EFL.session()==nil and same(horde,efl_root("hordes/mutator_horde/havoc_02")))
 base._enabled=true;base.on_enabled(false);assert(EFL.session()==nil)
 efl_begin(40,3);captain,monster,horde=efl_templates();assert(EFL.set_tier(2))
 assert(EFL.session()==nil and same(horde,efl_root("hordes/mutator_horde/havoc_02")))
-efl_begin(50,4);captain,monster,horde=efl_templates();base.on_game_state_changed("exit","GameplayStateRun")
+efl_begin(60,4);captain,monster,horde=efl_templates();base.on_game_state_changed("exit","GameplayStateRun")
 assert(EFL.session()==nil and same(horde,efl_root("hordes/mutator_horde/havoc_02")))
-efl_begin(50,3);captain,monster,horde=efl_templates()
+efl_begin(60,3);captain,monster,horde=efl_templates()
 local old=EFL;local wrapped=solo.set;local calls=0
 local foreign=function(...) calls=calls+1;return wrapped(...) end;solo.set=foreign
 base.on_unload(false);assert(solo.set==foreign and old.session()==nil)

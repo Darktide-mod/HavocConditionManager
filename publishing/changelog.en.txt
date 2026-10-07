@@ -1,3 +1,16 @@
+4.6.0-test.3 (unpublished local rank60 and UI fix candidate)
+- Open custom Havoc ranks 51-60 using the existing selected modifier curves and native rank40 mission identity.
+- Update picker and validation limits; retain compatibility with saved custom50 presets.
+- Check all custom ranks through60 and 200 selected player-stat/ammo combinations at51-60 against native consumers.
+- Retain the environment/EFL dropdown fix. Offline validation only; live rendering/gameplay checks remain pending.
+
+4.6.0-test.2 (unpublished local UI fix candidate)
+- Fix the hidden environment dropdown overlapping Emperor's Fading Light after changing Havoc missions.
+- Apply current-page visibility immediately to recreated controls and keep hidden controls disabled during focus changes.
+- Preserve the conditions-page environment callback and release replaced focused dropdowns.
+- Add native widget/hotspot regression coverage; hypothetical rank60 assessment does not change the rank50 cap.
+- Offline validation only; live rendering/gameplay checks remain pending.
+
 4.6.0-test.1 (unpublished local feature candidate)
 - Add custom Havoc ranks 41-50 with native rank40 identity, selected modifier curves and HCM-owned metadata.
 - Add exclusive custom Emperor's Fading Light III/IV choices using native II identity and four source-derived pacing extensions.

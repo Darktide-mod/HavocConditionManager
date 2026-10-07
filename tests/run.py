@@ -9,7 +9,7 @@ CHECKS.mkdir(parents=True,exist_ok=True)
 environment=dict(os.environ, PYTHONIOENCODING='utf-8')
 CASES = [
     'syntax_tests.py', 'game_1_13_compat_tests.py', 'native_replacement_loading_tests.py',
-    'custom_havoc_rank_tests.py', 'custom_efl_tests.py', 'suite_evidence_tests.py',
+    'custom_havoc_rank_tests.py', 'custom_efl_tests.py', 'dropdown_visibility_tests.py', 'suite_evidence_tests.py',
     'filesystem_ffi_tests.py', 'diy_minion_lifecycle_tests.py', 'minion_stat_gate_tests.py', 'native_template_tests.py',
     'native_intensity_profile_tests.py', 'native_elite_balance_tests.py', 'native_coordinated_load_tests.py',
     'native_runtime_tests.py', 'native_pressure_tests.py', 'native_encounter_location_tests.py',

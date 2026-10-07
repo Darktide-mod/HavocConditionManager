@@ -1,3 +1,15 @@
+# Local candidate 4.6.0-test.3 — 2026-10-07
+
+Extend HCM-owned custom Havoc ranks to60 using the existing selected-tier curves and native rank40 launch identity. Update picker and validation boundaries together; existing custom50 presets remain valid. Native consumer tests cover all41–60 profiles plus200 selected health/toughness/regen/ammo combinations at51–60; ordinary player stats remain positive at60.
+
+Retain the mission-linked environment/EFL dropdown visibility fix from test.2. Live rendering/gameplay validation remains pending.
+
+# Local candidate 4.6.0-test.2 — 2026-10-07
+
+Fix the hidden environment dropdown becoming visible over Emperor's Fading Light after changing a Havoc mission. Recreated controls immediately follow the current page's visibility rules; focus changes keep hidden controls disabled and replacement releases the old focused instance. The environment selection callback remains available on the conditions page.
+
+Add native widget/hotspot regression coverage for mission changes, repeated recreation, three UI scales, both draw orders and pages2–4. Assess hypothetical rank60 in a disposable offline Lua VM only; the selectable rank cap remains50. Live rendering/gameplay validation remains pending.
+
 # Local candidate 4.6.0-test.1 — 2026-10-03
 
 Unpublished local feature candidate. Custom Havoc ranks1–50 and Emperor's Fading Light III/IV have bounded offline acceptance; SoloPlay mission data retains native rank40/II identity with separate HCM metadata. III/IV extend only captain travel, monster-slot chance/cooldown and horde timer pacing from native I/II anchors. Native I/II, eligibility, concurrency and remaining mechanics are preserved.

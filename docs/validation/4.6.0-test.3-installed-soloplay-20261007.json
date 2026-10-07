@@ -1,0 +1,25 @@
+{
+  "purpose": "Additional installed SoloPlay 2.6.9 check, separate from the original full suite",
+  "gen_havoc_mission_context_body_unchanged": false,
+  "reviewed_context_changes": "Empty circumstance and modifier lists serialize as colon to retain native semicolon field positions; all other context function bytes unchanged after its new comment is removed",
+  "havoc_lua_bytes_unchanged": true,
+  "only_assertion_adaptation": {
+    "old_solo_lua_sha256": "c99f4507258779dff1ac29a06deb54b18e805aa1cb1a74573d60d8dc38899807",
+    "installed_solo_lua_sha256": "a1f88907dee67c6bf101918ba32990700672cdd52b30927ec43298ab6e8b10db"
+  },
+  "results": [
+    {
+      "case": "custom_havoc_rank_tests.py",
+      "exit_code": 0,
+      "seconds": 0.875,
+      "original_test_sha256": "5c9ef053b5eb655a1afdfb620f8d2409065c950f70b94864e5bfc168e1ed0a01"
+    },
+    {
+      "case": "custom_efl_tests.py",
+      "exit_code": 0,
+      "seconds": 1.2969999999986612,
+      "original_test_sha256": "fa0bc5bda94842a020b25c8bba395746c1aac0b215aae81b411066eacb210bb0"
+    }
+  ],
+  "passed": true
+}

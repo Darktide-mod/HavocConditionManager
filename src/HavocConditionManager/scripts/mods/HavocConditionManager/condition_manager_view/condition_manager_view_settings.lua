@@ -55,7 +55,7 @@ local havoc_rank_badges = {
 }
 
 local view_settings = {
-	havoc_max_level = 50,
+	havoc_max_level = 60,
 	havoc_rank_badges = havoc_rank_badges,
 	havoc_badge_size = { 160, 128 },
 	sub_title_color = { 255, 0, 198, 255 },
