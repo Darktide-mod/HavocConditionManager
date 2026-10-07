@@ -1,5 +1,10 @@
 local mod = get_mod("HavocConditionManager")
 local localization = {
+    custom_havoc_training_skipped = {
+        en = "Training grounds and the Psykhanium skip custom Havoc ranks and Emperor's Fading Light extensions. Your selections are kept for the next regular mission.",
+        ["zh-cn"] = "训练关卡和灵能室跳过自定义浩劫层数及帝皇之光扩展。已保留选择，下次普通任务生效。",
+        ["zh-tw"] = "訓練關卡和靈能室略過自訂浩劫層數及帝皇之光擴展。已保留選擇，下次一般任務生效。",
+    },
     hcm_efl_3 = {en="Emperor's Fading Light III (custom)",["zh-cn"]="帝皇黯光 III（自定义）",["zh-tw"]="帝皇黯光 III（自訂）"},
     hcm_efl_4 = {en="Emperor's Fading Light IV (custom)",["zh-cn"]="帝皇黯光 IV（自定义）",["zh-tw"]="帝皇黯光 IV（自訂）"},
     custom_havoc_rank_value = {

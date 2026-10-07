@@ -1,0 +1,17 @@
+{
+  "version": "4.6.1",
+  "release_id": "4.6.1-r2",
+  "archive_sha256": "8650f3ca8f5f733f3207d9c5bdbab8acac64a3e0a088e0903473a52df2649aaf",
+  "bytes": 245357,
+  "runtime_files": 79,
+  "local_checkpoint_payload_equal": true,
+  "installed_payload_equal": true,
+  "category": "main",
+  "primary_download": true,
+  "replace_file_id": "7919115",
+  "previous_version_id": "21230023352980",
+  "bilingual_summary_chars": 290,
+  "efl_value_documentation": "four baseline values, I-IV, limits and host/session behavior in English and Chinese",
+  "live_gameplay": "not performed",
+  "remote_client_custom_rank_sync": "not implemented or validated"
+}

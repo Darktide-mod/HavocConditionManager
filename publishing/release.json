@@ -1,8 +1,8 @@
 {
   "mod": "HavocConditionManager",
-  "release_id": "4.6.0",
+  "release_id": "4.6.1-r2",
   "file_category": "Main Files",
-  "stable_release": "4.6.0",
+  "stable_release": "4.6.1",
   "runtime_only": true,
-  "notes": "Formal runtime-only release replacing the previous Nexus version. Custom ranks through60, EFL III/IV, current-game compatibility and dropdown visibility repairs; full offline validation, live gameplay not performed."
+  "notes": "Formal Main Files release replacing4.6.0 and archiving that version. Restore ranks41-60 and EFL III/IV on authoritative Realms local hosts; avoid custom-extension assertions in training/Psykhanium. Explain I-IV pacing values in both languages. Publishing-only r2 keeps the immutable local4.6.1 checkpoint. Live gameplay and remote-client custom-rank synchronization remain unverified."
 }

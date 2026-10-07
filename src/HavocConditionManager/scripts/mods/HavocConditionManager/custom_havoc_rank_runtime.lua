@@ -63,7 +63,8 @@ function api.decorate(context)
     assert(type(context)=="table" and type(context.havoc_data)=="string","Missing SoloPlay Havoc context")
     local parsed=require("scripts/utilities/havoc").parse_data(context.havoc_data)
     local mission=require("scripts/settings/mission/mission_templates")[parsed.mission]
-    assert(mission and mission.game_mode_name~="training_grounds" and mission.game_mode_name~="shooting_range","Custom Havoc ranks41-60 require a supported SoloPlay mission")
+    assert(mission,"Unknown SoloPlay Havoc mission")
+    if mission.game_mode_name=="training_grounds" or mission.game_mode_name=="shooting_range" then return context end
     assert(parsed.havoc_rank==40,"Custom Havoc launch requires its separate native rank40 identity")
     local snapshot=R.capture(rank,parsed.modifiers)
     snapshot.native_data=context.havoc_data
@@ -77,7 +78,9 @@ function api.finish()
 end
 function api.start() owner=nil;snapshot=nil;buff_cache=nil;finished_owner=nil end
 local function eligible()
-    return mod.has_local_gameplay_authority() and base.is_soloplay and base.is_soloplay()
+    -- Realms takes over SoloPlay launches as a player host. Authority, rather
+    -- than the singleplay transport type, owns these local gameplay changes.
+    return mod.has_local_gameplay_authority()
 end
 function api.session()
     if not eligible() then return end
@@ -93,6 +96,8 @@ function api.session()
     local parsed=difficulty:get_parsed_havoc_data()
     local data=mechanism and mechanism._mechanism_data
     if not custom or not parsed or parsed.havoc_rank~=40 or not data or data.havoc_data~=custom.native_data then return end
+    local mission=require("scripts/settings/mission/mission_templates")[parsed.mission]
+    if not mission or mission.game_mode_name=="training_grounds" or mission.game_mode_name=="shooting_range" then return end
     local record=R.validate_record(custom.record)
     if not record or record.requested_rank<=40 or context.havoc_data~=custom.native_data or not R.same_modifiers(custom.modifiers,parsed.modifiers) then return end
     snapshot=R.copy(custom)

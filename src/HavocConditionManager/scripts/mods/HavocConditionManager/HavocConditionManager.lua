@@ -183,7 +183,12 @@ if not base_mod._havoc_condition_manager_context_wrapper then
 		-- validation applies once a real rank or custom record is present.
 		if base_mod:get("havoc_difficulty")~=nil or mod:get("hcm_custom_havoc_v1")~=nil then mod.custom_havoc_rank.validate_launch() end
 		mod.validate_environment_selection()
-		return mod.custom_havoc_rank.decorate(mod.custom_efl.decorate(mod.apply_havoc_conditions(base_mod._havoc_condition_manager_context_wrapper(...))))
+		local context=mod.custom_havoc_rank.decorate(mod.custom_efl.decorate(mod.apply_havoc_conditions(base_mod._havoc_condition_manager_context_wrapper(...))))
+		if type(context)=="table" and not context.hcm_custom_havoc_v1 and not context.hcm_custom_efl_v1 and
+			((mod.custom_havoc_rank.get() or 0)>40 or mod.custom_efl.record()) then
+			mod:notify(mod:localize("custom_havoc_training_skipped"))
+		end
+		return context
 	end
 end
 

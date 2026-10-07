@@ -72,18 +72,20 @@ for rank=1,60 do
  end
 end
 for id,before in pairs(native_efl_before) do assert(same(before,efl_root(id)),id) end
--- Context provenance, multiplayer/client gates and unsupported mission refusal.
+-- Context provenance, local host/client gates and safe training-room launch.
 local _,context,parsed=efl_begin(40,3)
-singleplay=false;assert(EFL.session()==nil);singleplay=true
+singleplay=false;assert(EFL.session(),"A local player host must retain custom EFL");singleplay=true
 local authority=base.has_local_gameplay_authority;base.has_local_gameplay_authority=function() return false end
 assert(EFL.session()==nil);base.has_local_gameplay_authority=authority
-EFL.start();context.hcm_custom_efl_v1.tier=5;assert(EFL.session()==nil)
+_,context,parsed=efl_begin(40,3);context.hcm_custom_efl_v1.tier=5;assert(EFL.session()==nil)
 _,context,parsed=efl_begin(60,4);EFL.start();Managers.mechanism._mechanism._mechanism_data.havoc_data="different";assert(EFL.session()==nil)
 _,context,parsed=efl_begin(40,3);EFL.start();parsed.mission="another_mission";assert(EFL.session()==nil)
 assert(not EF.native_ii_only({circumstances={EF.native_i,EF.native_ii}}))
 assert(not EF.native_ii_only({circumstances={EF.native_ii,EF.native_ii}}))
 assert(not EF.native_ii_only({circumstances={EF.choices[3]}}))
-solo:set("havoc_mission","tg_shooting_range");assert(EFL.set_tier(3));assert(not pcall(solo.gen_havoc_mission_context))
+solo:set("havoc_mission","tg_shooting_range");assert(EFL.set_tier(3))
+local ok,room=pcall(solo.gen_havoc_mission_context)
+assert(ok and room.hcm_custom_efl_v1==nil and EFL.get()==EF.choices[3])
 solo:set("havoc_mission","cm_archives")
 assert(EFL.set_tier(3));solo:set("havoc_difficulty_circumstance",EF.native_ii)
 assert(EFL.get()==EF.native_ii and base:get(EF.storage_key)==nil)

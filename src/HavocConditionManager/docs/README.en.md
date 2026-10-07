@@ -1,6 +1,6 @@
 # Havoc Condition Manager
 
-**Formal release 4.6.0.** Custom Havoc ranks 1–60 and Emperor's Fading Light I–IV require local SoloPlay. See the [changelog](../CHANGELOG.md) for validation coverage; live gameplay remains untested.
+**Formal release 4.6.1.** Custom Havoc ranks 1–60 and Emperor's Fading Light I–IV run in local SoloPlay and on an authoritative Realms local host. See the [changelog](../CHANGELOG.md) for validation coverage; live gameplay remains untested.
 
 Choose SoloPlay mission conditions and adjust enemy pacing. HCM provides broad controls; the optional Havoc Enemy Director edits individual fields in the same game templates. Realms sessions use the local host's settings.
 
@@ -30,7 +30,24 @@ Three-language guides, templates, the complete native identifier catalog and a r
 
 ## Conditions and mission setup
 
-HCM offers Havoc ranks 1–60 and exclusive Emperor's Fading Light I–IV choices in the mission page. Custom ranks above 40 continue the selected modifier curves. Custom III/IV extend captain travel, monster-slot chance/cooldown and horde timers. These extensions require a local SoloPlay session; native ranks 1–40 and I/II retain their existing behavior. The game receives native rank40/II identity plus HCM-owned local settings, without expanding official progression or rewards. The ordinary rank60 player-stat penalties remain positive for native base archetypes; additional penalties from other mods can still make combined values unsafe.
+HCM offers Havoc ranks 1–60 and exclusive Emperor's Fading Light I–IV choices in the mission page. Custom ranks above 40 continue the selected modifier curves. Custom III/IV extend captain travel, monster-slot chance/cooldown and horde timers; they do not independently change player health. These extensions run in local SoloPlay and on an authoritative Realms local host; native ranks 1–40 and I/II retain their existing behavior. The game receives native rank40/II identity plus HCM-owned local settings, without expanding official progression or rewards. Training grounds and the Psykhanium skip these extensions, show a notice and retain the selections for a regular mission. The ordinary rank60 player-stat penalties remain positive for native base archetypes; additional penalties from other mods can still make combined values unsafe. Remote-client custom-rank metadata/stat synchronization has not been implemented or validated by this fix.
+
+### Emperor's Fading Light I-IV
+
+I/II use the game's native rules. HCM III/IV start from II and extend only these four pacing values. The table shows default template values before Havoc rank, overall tuning and optional fine overrides affect the scheduling.
+
+| Parameter | I (native) | II (native) | III (custom) | IV (custom) |
+| --- | --- | --- | --- | --- |
+| Captain trigger travel-distance range | 240-360 | 120-240 | 60-160 | 30-106.67 |
+| Eligible special-slot monster replacement chance | 5% | 10% | 20% | 40% |
+| Monster replacement cooldown (seconds) | 550-600 | 450-500 | 368.18-416.67 | 301.24-347.22 |
+| Horde timer range (seconds) | 140-240 | 100-200 | 71.43-166.67 | 51.02-138.89 |
+
+Shorter travel spacing creates denser captain candidate plans. The replacement chance applies to eligible special-spawn attempts and retains native cooldown and slot checks. The monster-duration parameter is used as the next-replacement cooldown. Shorter horde timers raise scheduling frequency. Actual spawns also depend on available points, navigation, events and the native pacing state.
+
+III/IV retain II's remaining rules: this special-slot monster channel caps concurrent monsters at1, uses the same three breeds and0.4 health modifier, and retains the horde template's110 active-minion cap and7-second wave spacing. That monster cap belongs to this channel; other encounter systems have their own rules. III/IV do not independently reduce player maximum health/toughness or increase these caps. Havoc rank penalties are separate.
+
+For each of the four values, III multiplies the prepared II baseline by the native II/I ratio once, and IV twice; range endpoints use their own ratios. Probability is capped at100%. Overall/fine tuning composes with this baseline, and each mission retains its launch selection without repeated multiplication.
 
 - Import the current SoloPlay condition list and group eligible entries as Havoc, Auric/Maelstrom, events and general conditions.
 - Add or remove conditions without a fixed slot count. A shared native mutator loads once even when several selected conditions include it.

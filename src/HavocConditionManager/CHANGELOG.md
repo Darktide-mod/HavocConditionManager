@@ -1,3 +1,11 @@
+# 4.6.1 — 2026-10-07
+
+Apply custom Havoc ranks41–60 and Emperor's Fading Light III/IV on an authoritative Realms local host. Realms converts SoloPlay launches to a player-host session, so the previous singleplay-only check silently left native rank40/II parameters active despite custom selections. Retain native launch identity, metadata provenance, selected modifiers and client/official-session authority guards.
+
+Skip custom extensions in training grounds/Psykhanium without throwing an assertion; notify once and retain selections for a regular mission. Production SoloPlay2.6.9 authority/context and Realms host-type methods exercise rank40/60 native health/buff consumers, EFLIV pacing, mission lifecycle, eight rejected roles and16 safe training launches. The complete42-script offline suite passes. Explain the four EFL pacing values for I-IV in English and Chinese, including cooldown/slot limits and the distinction from Havoc rank stat penalties. Live gameplay and remote-client custom-rank stat synchronization remain unverified.
+
+Publish as the primary formal Main Files download, replacing4.6.0 and archiving the previous version. Publishing-only release folder4.6.1-r2 preserves the immutable local4.6.1 checkpoint; gameplay payload bytes are unchanged.
+
 # 4.6.0 — 2026-10-07
 
 Formal release: custom Havoc ranks 1–60, Emperor's Fading Light I–IV, current-game compatibility and the mission-linked environment/EFL dropdown fix. Preserve the tested gameplay implementation, rename the installed version, and publish the runtime-only package as the default Main Files download. English and Chinese page text, summaries and changelog are synchronized. Full offline validation is included; live gameplay has not been performed.

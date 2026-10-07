@@ -277,10 +277,14 @@ for _,hook in ipairs(hooks) do if hook.target==NativeHavocExtension and hook.nam
 end end
 for _,mission in ipairs({"om_basic_combat_01","tg_shooting_range"}) do
  mods.SoloPlay:set("havoc_mission",mission)
- assert(not pcall(mods.SoloPlay.gen_havoc_mission_context))
+ local ok,context=pcall(mods.SoloPlay.gen_havoc_mission_context)
+ assert(ok and context.hcm_custom_havoc_v1==nil and Rank.get()==60)
 end
 mods.SoloPlay:set("havoc_mission","cm_archives")
-singleplay=false;Rank.start();assert(Rank.session()==nil);singleplay=true
+singleplay=false;Rank.start();assert(Rank.session(),"A local player host must retain the custom rank")
+local authority=mods.SoloPlay.has_local_gameplay_authority
+mods.SoloPlay.has_local_gameplay_authority=function() return false end
+assert(Rank.session()==nil);mods.SoloPlay.has_local_gameplay_authority=authority;singleplay=true
 Rank.start();assert(Rank.session());Rank.finish();assert(Rank.session()==nil)
 Rank.start();Managers.mechanism._mechanism._mechanism_data.havoc_data="different mission";assert(Rank.session()==nil)
 assert(same(native_settings_before,require("scripts/settings/havoc_settings")))
@@ -290,6 +294,7 @@ plain=lambda t:{k:(plain(v) if hasattr(v,'items') else v) for k,v in t.items()}
 record=[plain(v) for v in L.globals().results.values()]
 (CHECKS/'custom-havoc-rank-results.json').write_text(json.dumps({'scope':'offline native Lua plus explicit engine/VO boundaries; no game launch','ranks':record,'rank60_selected_tier_checks':L.globals().rank60_tier_checks,'rank60_archetypes':plain(L.globals().rank60_players)},indent=2)+'\n',encoding='utf-8')
 print('Custom rank60: native1-40 generation equivalence, all41-60 exact selected curves, real modifier/buff initialization and stat consumers, source immutability, DIY separation, mission snapshots and singleplay boundaries: PASS')
+exec(Path(__file__).with_name('custom_local_host_regressions.py').read_text(encoding='utf-8'), globals())
 
 # Execute the actual rank setup/refresh/randomize callbacks; rendering is a boundary.
 view_text=(SOURCES/'HavocConditionManager/scripts/mods/HavocConditionManager/condition_manager_view/condition_manager_view.lua').read_text(encoding='utf-8-sig')

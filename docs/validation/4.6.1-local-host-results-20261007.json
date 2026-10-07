@@ -1,0 +1,101 @@
+{
+  "kind": "offline_production_methods_and_native_consumers",
+  "fixture_sha256": "88418349c07f6cae28220cfe561304da3dd180663a304aff1e3b139f1855e102",
+  "rows": [
+    {
+      "health_base300": 195,
+      "native_rank": 40,
+      "custom_rank_active": false,
+      "custom_efl_active": true,
+      "captain_distance": [
+        30,
+        106.66666666666666
+      ],
+      "monster_chance": 0.4,
+      "horde_interval": [
+        51.02040816326531,
+        138.8888888888889
+      ],
+      "ammo": 0.4,
+      "authority": true,
+      "toughness_delta": -45,
+      "host_type": "singleplay",
+      "is_soloplay": true,
+      "health_factor": 0.65,
+      "selected_rank": 40,
+      "selected_efl": 4
+    },
+    {
+      "health_base300": 96,
+      "native_rank": 40,
+      "custom_rank_active": true,
+      "custom_efl_active": true,
+      "captain_distance": [
+        30,
+        106.66666666666666
+      ],
+      "monster_chance": 0.4,
+      "horde_interval": [
+        51.02040816326531,
+        138.8888888888889
+      ],
+      "ammo": 0.2333333333333334,
+      "authority": true,
+      "toughness_delta": -56.111111111111114,
+      "host_type": "singleplay",
+      "is_soloplay": true,
+      "health_factor": 0.31666666666666676,
+      "selected_rank": 60,
+      "selected_efl": 4
+    },
+    {
+      "health_base300": 195,
+      "native_rank": 40,
+      "custom_rank_active": false,
+      "custom_efl_active": true,
+      "captain_distance": [
+        30,
+        106.66666666666666
+      ],
+      "monster_chance": 0.4,
+      "horde_interval": [
+        51.02040816326531,
+        138.8888888888889
+      ],
+      "ammo": 0.4,
+      "authority": true,
+      "toughness_delta": -45,
+      "host_type": "player",
+      "is_soloplay": false,
+      "health_factor": 0.65,
+      "selected_rank": 40,
+      "selected_efl": 4
+    },
+    {
+      "health_base300": 96,
+      "native_rank": 40,
+      "custom_rank_active": true,
+      "custom_efl_active": true,
+      "captain_distance": [
+        30,
+        106.66666666666666
+      ],
+      "monster_chance": 0.4,
+      "horde_interval": [
+        51.02040816326531,
+        138.8888888888889
+      ],
+      "ammo": 0.2333333333333334,
+      "authority": true,
+      "toughness_delta": -56.111111111111114,
+      "host_type": "player",
+      "is_soloplay": false,
+      "health_factor": 0.31666666666666676,
+      "selected_rank": 60,
+      "selected_efl": 4
+    }
+  ],
+  "rejected_role_cases": 8,
+  "safe_training_launch_cases": 16,
+  "limit": "No live gameplay, network transport, navigation, actors or remote-client stat synchronization test."
+}

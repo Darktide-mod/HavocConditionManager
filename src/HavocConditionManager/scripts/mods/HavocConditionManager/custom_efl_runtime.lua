@@ -38,7 +38,8 @@ function api.decorate(context)
     assert(type(context)=="table" and type(context.havoc_data)=="string","Missing SoloPlay EFL context")
     local parsed=require("scripts/utilities/havoc").parse_data(context.havoc_data)
     local mission=require("scripts/settings/mission/mission_templates")[parsed.mission]
-    assert(mission and mission.game_mode_name~="training_grounds" and mission.game_mode_name~="shooting_range","Custom EFL requires a supported SoloPlay mission")
+    assert(mission,"Unknown SoloPlay EFL mission")
+    if mission.game_mode_name=="training_grounds" or mission.game_mode_name=="shooting_range" then return context end
     assert(R.native_ii_only(parsed),"Custom EFL launch requires exactly one native II circumstance")
     context.hcm_custom_efl_v1={version=record.version,tier=record.tier,native_id=record.native_id,native_data=context.havoc_data}
     return context
@@ -60,7 +61,8 @@ function api.start()
     api.finish();finished_owner=nil
 end
 function api.session()
-    if not alive or not mod:is_enabled() or not mod.has_local_gameplay_authority() or not base.is_soloplay or not base.is_soloplay() then return end
+    -- A Realms listen host has local gameplay authority but is_soloplay=false.
+    if not alive or not mod:is_enabled() or not mod.has_local_gameplay_authority() then return end
     local difficulty=Managers.state and Managers.state.difficulty
     if not difficulty or difficulty==finished_owner then return end
     if owner==difficulty then return snapshot end
