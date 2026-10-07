@@ -1,3 +1,7 @@
+# 4.6.0 — 2026-10-07
+
+Formal release: custom Havoc ranks 1–60, Emperor's Fading Light I–IV, current-game compatibility and the mission-linked environment/EFL dropdown fix. Preserve the tested gameplay implementation, rename the installed version, and publish the runtime-only package as the default Main Files download. English and Chinese page text, summaries and changelog are synchronized. Full offline validation is included; live gameplay has not been performed.
+
 # Local candidate 4.6.0-test.3 — 2026-10-07
 
 Extend HCM-owned custom Havoc ranks to60 using the existing selected-tier curves and native rank40 launch identity. Update picker and validation boundaries together; existing custom50 presets remain valid. Native consumer tests cover all41–60 profiles plus200 selected health/toughness/regen/ammo combinations at51–60; ordinary player stats remain positive at60.

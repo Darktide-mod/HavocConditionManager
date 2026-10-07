@@ -31,7 +31,8 @@ if config.get('runtime_only'):
     expected = {name: data for name, data in expected.items()
                 if name.startswith((PROJECT.name+'/scripts/', PROJECT.name+'/diy/'))
                 or name in {PROJECT.name+'/'+PROJECT.name+'.mod', PROJECT.name+'/info.json', PROJECT.name+'/THIRD_PARTY.md'}}
-    assert config['candidate_sha256'] and len(expected) < len(normal)
+    assert len(expected) < len(normal)
+    if is_test: assert config['candidate_sha256']
 assert built==expected and not documents['changelog.en.txt'].startswith('Packaging variant:')
 assert 'comparison_debug_build' not in json.loads(clean[PROJECT.name+'/info.json'])
 assert PACKAGE_LOG_ADAPTER in clean[PACKAGE_FACTORY].decode('utf-8')

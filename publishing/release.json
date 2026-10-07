@@ -1,9 +1,8 @@
 {
   "mod": "HavocConditionManager",
-  "release_id": "4.6.0-test.3",
-  "file_category": "Optional Files",
-  "stable_release": "4.5.0-r2",
+  "release_id": "4.6.0",
+  "file_category": "Main Files",
+  "stable_release": "4.6.0",
   "runtime_only": true,
-  "candidate_sha256": "2a214032bad8300614c28f5c3a8511b84f985e35f8df1bc44330eca4baa5b863",
-  "notes": "Optional custom rank60 and dropdown visibility test build. Native rank40 identity and EFL III/IV retained. Promote the validated runtime-only candidate without repacking; live SoloPlay/Realms checks pending."
+  "notes": "Formal runtime-only release replacing the previous Nexus version. Custom ranks through60, EFL III/IV, current-game compatibility and dropdown visibility repairs; full offline validation, live gameplay not performed."
 }

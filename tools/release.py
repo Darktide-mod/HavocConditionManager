@@ -125,8 +125,9 @@ def collect_sources(strip_debug=False):
     assert not any(path.endswith('.dll') for path in payloads), 'Current runtime needs no native helper.'
     payloads = diagnostics.payloads(payloads,strip_debug)
     if config.get('runtime_only'):
-        assert category == 'Optional Files' and '-test.' in version and not strip_debug
-        assert re.fullmatch(r'[0-9a-f]{64}', config['candidate_sha256'])
+        if config.get('candidate_sha256'):
+            assert category == 'Optional Files' and '-test.' in version and not strip_debug
+            assert re.fullmatch(r'[0-9a-f]{64}', config['candidate_sha256'])
         payloads = runtime_payload(payloads, name)
     assert_no_nested_archives(payloads)
     if strip_debug:
@@ -155,7 +156,7 @@ def vortex_check(name, payloads):
 def validate(batch, config, version, documents, payloads):
     name = config['mod']
     archive = batch / f'{name}-{version}.zip'
-    if config.get('runtime_only'):
+    if config.get('candidate_sha256'):
         assert hashlib.sha256(archive.read_bytes()).hexdigest() == config['candidate_sha256'], 'The published ZIP must be the validated candidate without repacking.'
     assert {p.name for p in batch.iterdir()} == set(documents) | {archive.name}, 'Release must contain exactly one ZIP and three documents.'
     assert all(p.is_file() for p in batch.iterdir()), 'No release subfolders.'
@@ -195,7 +196,7 @@ def build(config, version, documents, payloads):
         for filename, body in documents.items():
             (staged / filename).write_text(body, encoding='utf-8', newline='\n')
         archive = staged / f'{config["mod"]}-{version}.zip'
-        if config.get('runtime_only'):
+        if config.get('candidate_sha256'):
             check = subprocess.run([sys.executable, str(ROOT / 'tools/local_candidate.py'), '--check'], cwd=ROOT)
             assert check.returncode == 0, 'Candidate validation failed; no release created.'
             candidate = ROOT / 'build/local-candidates' / version / archive.name

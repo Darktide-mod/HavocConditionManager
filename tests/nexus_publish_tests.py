@@ -13,34 +13,45 @@ from publish_nexus import Nexus, current_changelog, publish
 
 
 class FakeNexus:
-    def __init__(self):
+    def __init__(self, formal=False):
         self.calls = []
         self.parts = []
         self.created = False
         self.changelog_failure = False
+        self.formal = formal
 
     def api(self, path, method='GET', body=None):
         self.calls.append((path, method, body))
         if path.startswith('/games/'):
             return dict(id='mod-global', game_scoped_id='1267', name='HavocConditionManager')
         if path == '/mods/mod-global/files':
-            return {'mod_files': [dict(id='old'), *([dict(id='new')] if self.created else [])]}
-        if path.endswith('/versions'):
-            return {'versions': [dict(id='version-global', game_scoped_id='123', category='optional', version='4.6.0-test.3')]
-                    if '/new/' in path else [dict(version='4.4.9')]}
+            return {'mod_files': [dict(id='old'), *([dict(id='new')] if self.created and not self.formal else [])]}
+        if path.endswith('/versions') and method == 'GET':
+            current = dict(id='version-global', game_scoped_id='123', category='main' if self.formal else 'optional',
+                           version='4.6.0' if self.formal else '4.6.0-test.3', is_primary=self.formal)
+            if '/new/' in path: return {'versions': [current]}
+            return {'versions': [dict(id='old-version', version='4.4.9', category='archived' if self.created and self.formal else 'main'),
+                                 *([current] if self.created and self.formal else [])]}
         if path == '/uploads/multipart':
             assert body == dict(filename='HavocConditionManager-4.6.0-test.3.zip', size_bytes=9)
             return dict(id='upload', part_size_bytes=4, part_presigned_urls=['https://storage/1', 'https://storage/2', 'https://storage/3'], complete_presigned_url='https://storage/complete')
         if path == '/uploads/upload':
             return dict(state='available')
-        if path == '/mod-files':
+        if path == '/mod-files' or path == '/mod-files/old/versions':
             assert not self.created
-            assert body['file_category'] == 'optional'
-            assert not body['primary_mod_manager_download'] and not body['update_mod_version']
+            assert body['file_category'] == ('main' if self.formal else 'optional')
+            assert body['primary_mod_manager_download'] == self.formal and body['update_mod_version'] == self.formal
             assert body['allow_mod_manager_download'] and body['show_requirements_pop_up']
-            assert 'archive_existing_file' not in body
+            if self.formal:
+                assert body['archive_existing_file'] is True and body['previous_version_id'] == 'old-version'
+            else: assert 'archive_existing_file' not in body
             self.created = True
-            return dict(id='new', file_category='optional')
+            file = dict(id='old' if self.formal else 'new', file_category='main' if self.formal else 'optional')
+            return {'file': file} if self.formal else file
+        if path == '/mods/mod-global' and method == 'PATCH':
+            assert 'English' in body['description'] and '简体中文' in body['description']
+            assert body['summary'] == 'English 简介'
+            return {}
         if path.endswith('/changelogs'):
             if self.changelog_failure:
                 raise RuntimeError('Submission outcome unknown')
@@ -102,9 +113,22 @@ with tempfile.TemporaryDirectory(prefix='nexus-tests-', dir=CHECKS) as temporary
         raise AssertionError('An uncertain file creation must block automatic retries.')
     assert all(call[1] == 'GET' for call in fresh.calls)
 
+    # Formal publishing updates the existing chain and synchronizes both languages.
+    formal = FakeNexus(formal=True)
+    formal_plan = dict(plan, version='4.6.0', category='main', replace_file_id='old', previous_version_id='old-version',
+                       description='English and 简体中文', summary='English 简介')
+    formal_receipt = root / 'formal-receipt.json'
+    result = publish(formal, settings, formal_plan, formal_receipt, wait=lambda seconds: None)
+    assert result['state'] == 'complete' and result['verified_category'] == 'main' and result['page_synced']
+    assert formal.api('/mod-files/old/versions')['versions'][0]['category'] == 'archived'
+    writes = len([c for c in formal.calls if c[1] != 'GET'])
+    publish(formal, settings, formal_plan, formal_receipt, wait=lambda seconds: None)
+    assert len([c for c in formal.calls if c[1] != 'GET']) == writes
+
 class Response:
     def __init__(self, headers=None):
         self.headers = headers or {}
+        self.status = 200
     def __enter__(self): return self
     def __exit__(self, *args): pass
     def read(self): return b'{"data":{"ok":true}}'
@@ -127,4 +151,4 @@ with patch.object(client.opener, 'open', reject):
         assert '403' in str(error) and 'SECRET' not in str(error)
     else: raise AssertionError('API error must be reported without secrets.')
 assert current_changelog('4.6.0-test.3\n- Current\n\n4.5.0\n- Older') == '4.6.0-test.3\n- Current'
-print('Nexus publisher: multipart byte identity, optional-only settings, verified receipt, duplicate/uncertain-write guards and credential isolation: PASS')
+print('Nexus publisher: multipart byte identity, optional/formal policies, version replacement, archived prior file, bilingual page sync, verified receipts, duplicate/uncertain-write guards and credential isolation: PASS')
