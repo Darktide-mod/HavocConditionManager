@@ -24,9 +24,11 @@ Conditions can select players or enemies by breed and tags, adjust initial enemy
 
 Havoc Enemy Director is optional for reinforcement actions. HED deployment and native-template rules can check active DIY condition IDs and named signals. Ordinary DIY reinforcements carry their source through the shared spawn path. Queue admission still follows native placement, capacity and pacing checks.
 
-Three-language guides, templates, the complete native identifier catalog and a row-by-row assessment of 120 supplied design rows are included in docs/diy. The assessment separates supported, partial, adapter-dependent and underspecified designs; the templates do not implement every proposed effect. Realms clients receive host-approved effects for their own player and clear stale effects when synchronization expires.
+Three-language guides, templates, the complete native identifier catalog and a row-by-row assessment of 120 supplied design rows are available in the source repository's docs/diy. The assessment separates supported, partial, adapter-dependent and underspecified designs; the templates do not implement every proposed effect. Realms clients receive host-approved effects for their own player and clear stale effects when synchronization expires.
 
 ## Conditions and mission setup
+
+[color=#ff6666]HCM's optional custom-Havoc build offers ranks 1–60 and exclusive Emperor's Fading Light I–IV choices in the mission page.[/color] Custom ranks above 40 continue the selected modifier curves. Custom III/IV extend captain travel, monster-slot chance/cooldown and horde timers. These extensions require a local SoloPlay session; native ranks 1–40 and I/II retain their existing behavior. The game receives native rank40/II identity plus HCM-owned local settings, without expanding official progression or rewards. The ordinary rank60 player-stat penalties remain positive for native base archetypes; additional penalties from other mods can still make combined values unsafe.
 
 - Import the current SoloPlay condition list and group eligible entries as Havoc, Auric/Maelstrom, events and general conditions.
 - Add or remove conditions without a fixed slot count. A shared native mutator loads once even when several selected conditions include it.

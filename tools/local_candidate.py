@@ -49,7 +49,7 @@ def suite_evidence(files):
     assert all(type(result['exit_code']) is int and result['exit_code']==0 for result in evidence['results']), 'Every required check must exit zero.'
     expected={name:hashlib.sha256(data).hexdigest() for name,data in files.items()}
     assert evidence['source_before_sha256']==evidence['source_after_sha256']==evidence['source_payload_sha256']==expected, 'Test source must stay unchanged and match every packaged byte.'
-    inputs=list((ROOT/'tests').rglob('*.py'))+[ROOT/'tools/local_candidate.py',ROOT/'tools/release.py',ROOT/'tools/archive_guard.py']
+    inputs=list((ROOT/'tests').rglob('*.py'))+[ROOT/'tools/local_candidate.py',ROOT/'tools/release.py',ROOT/'tools/archive_guard.py',ROOT/'tools/publish_nexus.py']
     current={path.relative_to(ROOT).as_posix():hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(inputs)}
     assert evidence['test_inputs_before_sha256']==evidence['test_inputs_after_sha256']==current, 'Test and package code must match both sides of the recorded run.'
     return evidence_path, evidence

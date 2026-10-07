@@ -26,6 +26,19 @@ VERSION = r'[0-9]+\.[0-9]+\.[0-9]+(?:-(?:test|experimental)\.[0-9]+)?'
 FORBIDDEN_COPY = re.compile(r'\bbundle\b|整合包|整合安装|整合安裝|SoloPlayMoreHavoc|Will of the Emperor', re.I)
 
 
+def runtime_payload(files, name):
+    kept = {}
+    for path, data in files.items():
+        parts = PurePosixPath(path).parts
+        if (len(parts) >= 3 and parts[0] == name and parts[1] in ('scripts', 'diy')) or (
+                len(parts) == 2 and parts[0] == name and parts[1] in (name + '.mod', 'info.json', 'THIRD_PARTY.md')):
+            kept[path] = data
+    for required in (name + '/' + name + '.mod', name + '/info.json',
+                     f'{name}/scripts/mods/{name}/{name}.lua', name + '/diy/index.json'):
+        assert required in kept, required
+    return kept
+
+
 def read_json(path):
     return json.loads(path.read_text(encoding='utf-8-sig'))
 
@@ -111,6 +124,10 @@ def collect_sources(strip_debug=False):
         assert required in payloads, required
     assert not any(path.endswith('.dll') for path in payloads), 'Current runtime needs no native helper.'
     payloads = diagnostics.payloads(payloads,strip_debug)
+    if config.get('runtime_only'):
+        assert category == 'Optional Files' and '-test.' in version and not strip_debug
+        assert re.fullmatch(r'[0-9a-f]{64}', config['candidate_sha256'])
+        payloads = runtime_payload(payloads, name)
     assert_no_nested_archives(payloads)
     if strip_debug:
         if category == 'Optional Files':
@@ -138,6 +155,8 @@ def vortex_check(name, payloads):
 def validate(batch, config, version, documents, payloads):
     name = config['mod']
     archive = batch / f'{name}-{version}.zip'
+    if config.get('runtime_only'):
+        assert hashlib.sha256(archive.read_bytes()).hexdigest() == config['candidate_sha256'], 'The published ZIP must be the validated candidate without repacking.'
     assert {p.name for p in batch.iterdir()} == set(documents) | {archive.name}, 'Release must contain exactly one ZIP and three documents.'
     assert all(p.is_file() for p in batch.iterdir()), 'No release subfolders.'
     for filename, body in documents.items():
@@ -175,9 +194,16 @@ def build(config, version, documents, payloads):
         staged.mkdir()
         for filename, body in documents.items():
             (staged / filename).write_text(body, encoding='utf-8', newline='\n')
-        with zipfile.ZipFile(staged / f'{config["mod"]}-{version}.zip', 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
-            for path, data in sorted(payloads.items()):
-                z.writestr(path, data)
+        archive = staged / f'{config["mod"]}-{version}.zip'
+        if config.get('runtime_only'):
+            check = subprocess.run([sys.executable, str(ROOT / 'tools/local_candidate.py'), '--check'], cwd=ROOT)
+            assert check.returncode == 0, 'Candidate validation failed; no release created.'
+            candidate = ROOT / 'build/local-candidates' / version / archive.name
+            shutil.copyfile(candidate, archive)
+        else:
+            with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+                for path, data in sorted(payloads.items()):
+                    z.writestr(path, data)
         report = validate(staged, config, version, documents, payloads)
         staged.rename(batch)
     return batch, report

@@ -1,6 +1,6 @@
 [English guide](src/HavocConditionManager/docs/README.en.md) · [简体中文](src/HavocConditionManager/docs/README.zh-CN.md) · [繁體中文](src/HavocConditionManager/docs/README.zh-TW.md)
 
-**Local unpublished candidate: 4.6.0-test.3.** Open HCM-owned custom Havoc ranks1–60 and retain EFL III/IV. Fix mission changes exposing the hidden environment dropdown over EFL. See [UI fix and rank60 validation](docs/rank60-and-dropdown-fix-20261007.md). Live rendering/gameplay validation remains pending.
+**Optional test build: 4.6.0-test.3.** Open HCM-owned custom Havoc ranks1–60 and retain EFL III/IV. Fix mission changes exposing the hidden environment dropdown over EFL. See [UI fix and rank60 validation](docs/rank60-and-dropdown-fix-20261007.md) and [Nexus upload workflow](docs/nexus-automation.zh-CN.md). Live rendering/gameplay validation remains pending.
 
 当前功能版本：4.5.0；说明修订：4.5.0-r2。内置「禁止医疗」直接从模组目录加载，无需解压模板；保留外部 DIY 与作者接口。「狂暴攻势」、动画资源和安装器已独立分发至 [HavocConditionPacks](https://github.com/Darktide-mod/HavocConditionPacks)。
 

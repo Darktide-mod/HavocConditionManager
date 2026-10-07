@@ -19,7 +19,7 @@ CASES = [
     'native_recycling_recovery_tests.py', 'native_recovery_safety_tests.py', 'native_retirement_regression_tests.py',
     'native_integration_tests.py', 'startup_failure_tests.py', 'native_ui_tests.py', 'diy_package_page_tests.py',
     'diy_bundled_tests.py', 'diy_package_reload_tests.py', 'diy_reload_cache_tests.py', 'diy_medical_map_tests.py',
-    'presence_compat_tests.py', 'condition_cleanup_tests.py', 'release_debug_tests.py', 'archive_guard_tests.py',
+    'presence_compat_tests.py', 'condition_cleanup_tests.py', 'release_debug_tests.py', 'archive_guard_tests.py', 'nexus_publish_tests.py',
 ]
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--only', nargs='+', choices=CASES)
@@ -30,7 +30,7 @@ def source_hashes():
     return {path.relative_to(PROJECT/'src').as_posix():hashlib.sha256(path.read_bytes()).hexdigest()
             for path in sorted((PROJECT/'src').rglob('*')) if path.is_file()}
 def test_input_hashes():
-    paths=list(TESTS.rglob('*.py'))+[PROJECT/'tools/local_candidate.py',PROJECT/'tools/release.py',PROJECT/'tools/archive_guard.py']
+    paths=list(TESTS.rglob('*.py'))+[PROJECT/'tools/local_candidate.py',PROJECT/'tools/release.py',PROJECT/'tools/archive_guard.py',PROJECT/'tools/publish_nexus.py']
     return {path.relative_to(PROJECT).as_posix():hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(paths)}
 source_before=source_hashes()
 inputs_before=test_input_hashes()

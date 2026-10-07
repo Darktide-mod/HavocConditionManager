@@ -3,5 +3,7 @@
   "release_id": "4.6.0-test.3",
   "file_category": "Optional Files",
   "stable_release": "4.5.0-r2",
-  "notes": "Unpublished local custom rank60 and dropdown visibility candidate. Native rank40 identity and EFL III/IV retained. Runtime payload only; live SoloPlay/Realms checks pending."
+  "runtime_only": true,
+  "candidate_sha256": "2a214032bad8300614c28f5c3a8511b84f985e35f8df1bc44330eca4baa5b863",
+  "notes": "Optional custom rank60 and dropdown visibility test build. Native rank40 identity and EFL III/IV retained. Promote the validated runtime-only candidate without repacking; live SoloPlay/Realms checks pending."
 }

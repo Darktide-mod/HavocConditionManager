@@ -9,7 +9,7 @@ function=next(node for node in tree.body if isinstance(node,ast.FunctionDef) and
 with tempfile.TemporaryDirectory(prefix='suite-evidence-',dir=CHECKS) as temporary:
     root=Path(temporary).resolve()
     assert root.is_relative_to(CHECKS.resolve())
-    for path in list((PROJECT/'tests').rglob('*.py'))+[builder,PROJECT/'tools/release.py',PROJECT/'tools/archive_guard.py']:
+    for path in list((PROJECT/'tests').rglob('*.py'))+[builder,PROJECT/'tools/release.py',PROJECT/'tools/archive_guard.py',PROJECT/'tools/publish_nexus.py']:
         target=root/path.relative_to(PROJECT)
         target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(path.read_bytes())
     checks=root/'build/checks';checks.mkdir(parents=True)
@@ -18,7 +18,7 @@ with tempfile.TemporaryDirectory(prefix='suite-evidence-',dir=CHECKS) as tempora
                   and any(isinstance(t,ast.Name) and t.id=='CASES' for t in n.targets))
     files={'HavocConditionManager/example.lua':b'return true\n'}
     source={name:hashlib.sha256(data).hexdigest() for name,data in files.items()}
-    paths=list((root/'tests').rglob('*.py'))+[root/'tools/local_candidate.py',root/'tools/release.py',root/'tools/archive_guard.py']
+    paths=list((root/'tests').rglob('*.py'))+[root/'tools/local_candidate.py',root/'tools/release.py',root/'tools/archive_guard.py',root/'tools/publish_nexus.py']
     inputs={path.relative_to(root).as_posix():hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(paths)}
     valid=dict(passed=True,selected=False,required=required,requested=required,
         results=[dict(case=case,exit_code=0) for case in required],source_payload_sha256=source,
