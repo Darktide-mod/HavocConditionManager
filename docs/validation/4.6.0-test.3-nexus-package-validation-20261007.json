@@ -1,0 +1,21 @@
+{
+  "mod": "HavocConditionManager",
+  "release_id": "4.6.0-test.3",
+  "version": "4.6.0-test.3",
+  "status": "passed",
+  "files": [
+    "HavocConditionManager-4.6.0-test.3.zip",
+    "changelog.en.txt",
+    "description.bbcode.txt",
+    "summary.en.txt"
+  ],
+  "archive_entries": 79,
+  "nested_archives": 0,
+  "diagnostics_stripped": false,
+  "vortex_installer": {
+    "status": "passed",
+    "mods": 1,
+    "installed_paths": 79,
+    "unexpected_root_install_warnings": 0
+  }
+}

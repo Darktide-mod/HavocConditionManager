@@ -13,7 +13,9 @@ Nexus 模组页为 https://www.nexusmods.com/warhammer40kdarktide/mods/1267 。�
 3. 执行 `python tools/publish_nexus.py --publish`。脚本认证并核对模组，检查远端是否已有同版本，通过官方分片接口上传 ZIP，完成上传并等待处理，创建新的 Optional Files 文件，加入本次英文 changelog，读回文件版本确认。
 4. 上传回执保存在 `build/nexus/4.6.0-test.3/receipt.json`。它不包含密钥或签名存储地址；保留上传与文件 ID，可用于检查未完成的步骤。若写入请求结果不明，脚本不会盲目重试或重复上传。
 
-此测试包不成为默认下载，不改变模组页的正式版本，不归档既有 Main Files。上传完成不代表病毒扫描通过；仍需检查 Nexus 的文件可下载状态。个人密钥已经能认证本模组的只读接口，发布权限和扫描结果需由实际上传验证。
+此测试包不成为默认下载，不改变模组页的正式版本，不归档既有 Main Files。上传完成不代表病毒扫描通过；仍需检查 Nexus 的文件可下载状态。
+
+本次已实际发布 `4.6.0-test.3`，文件编号 `8851`，并读回 Optional Files 类别、版本、非默认下载标志和 `246323` 字节的大小；本次英文 changelog 已同步。当前账号未获 Premium API 下载权限，下载链接接口返回 403 并说明需在网页获取链接，因此未通过 API 下载后重新比对远端哈希，不能把这个 403 当作文件被隔离。发布记录见 `docs/validation/nexus-4.6.0-test.3-20261007.json`。
 
 ## 页面说明
 

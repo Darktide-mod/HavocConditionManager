@@ -2,6 +2,8 @@
 
 **Optional test build: 4.6.0-test.3.** Open HCM-owned custom Havoc ranks1–60 and retain EFL III/IV. Fix mission changes exposing the hidden environment dropdown over EFL. See [UI fix and rank60 validation](docs/rank60-and-dropdown-fix-20261007.md) and [Nexus upload workflow](docs/nexus-automation.zh-CN.md). Live rendering/gameplay validation remains pending.
 
+[Nexus Optional Files](https://www.nexusmods.com/warhammer40kdarktide/mods/1267?tab=files&file_id=8851) · [Validated runtime ZIP](release/4.6.0-test.3/HavocConditionManager-4.6.0-test.3.zip). File version, category and uploaded size have been read back through the official API; the page description still needs manual synchronization.
+
 当前功能版本：4.5.0；说明修订：4.5.0-r2。内置「禁止医疗」直接从模组目录加载，无需解压模板；保留外部 DIY 与作者接口。「狂暴攻势」、动画资源和安装器已独立分发至 [HavocConditionPacks](https://github.com/Darktide-mod/HavocConditionPacks)。
 
 [HCM 安装包](release/4.5.0-r2/HavocConditionManager-4.5.0.zip) · [功能与安装说明](src/HavocConditionManager/docs/README.zh-CN.md)

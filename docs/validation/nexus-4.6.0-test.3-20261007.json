@@ -1,0 +1,42 @@
+{
+  "version": "4.6.0-test.3",
+  "source_commit": "a2b60bbe02985c3a9c8d2af3ae9afb546c1872f7",
+  "uploaded": true,
+  "page": "https://www.nexusmods.com/warhammer40kdarktide/mods/1267?tab=files",
+  "game_scoped_file_id": "8851",
+  "global_file_id": "21230023352979",
+  "sha256": "2a214032bad8300614c28f5c3a8511b84f985e35f8df1bc44330eca4baa5b863",
+  "upload_bytes": 246323,
+  "remote_metadata": {
+    "file_id": 8851,
+    "uid": 21230023352979,
+    "name": "HavocConditionManager - Custom Havoc test",
+    "version": "4.6.0-test.3",
+    "category_id": 3,
+    "category_name": "OPTIONAL",
+    "is_primary": false,
+    "file_name": "HavocConditionManager - Custom Havoc test 1267 4.6.0-test.3 2026-10-07T13-46Z q4A7x4Gkn.zip",
+    "size_kb": 240,
+    "size_in_bytes": 246323,
+    "uploaded_timestamp": 1791380769,
+    "uploaded_time": "2026-10-07T13:46:09.000+00:00"
+  },
+  "changelog_synced": true,
+  "full_offline_checks": 42,
+  "full_suite_sha256": "4ab3081e4c4356301cd0763027a00f2c7963a9fb203072301de3d05bb7fadd97",
+  "runtime_entries": 79,
+  "previous_candidates_unchanged": true,
+  "live_gameplay": "not performed",
+  "page_description_synced": false,
+  "page_description_limit": "Computer Use stopped because the current browser URL could not be determined reliably.",
+  "download_verification": {
+    "file_id": 8851,
+    "version": "4.6.0-test.3",
+    "metadata_verified": true,
+    "download_verified": false,
+    "download_endpoint_http_status": 403,
+    "download_endpoint_message": "You don't have permission to get download links from the API without visting nexusmods.com -\n                          this is for premium users only."
+  },
+  "virus_scan_verdict": "not asserted",
+  "credentials": "outside repository; omitted from receipts"
+}
