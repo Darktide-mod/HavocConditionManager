@@ -1,7 +1,7 @@
 """Publish the validated release ZIP through Nexus Mods' official v3 API.
 
-Default mode checks the local release only. --publish uploads a new optional
-file, current changelog and page text. Credentials come from the environment or a
+Default mode checks the local release only. --publish uploads the configured
+release, current changelog and page text. Credentials come from the environment or a
 local config file outside the repository; no browser session is required.
 """
 import argparse
@@ -43,7 +43,12 @@ class Nexus:
             with self.opener.open(req, timeout=45) as response:
                 if response.status == 204:
                     return {}
-                return json.load(response)['data']
+                payload = json.load(response)
+                # Bulk moves return their documented result without a data envelope.
+                if path == '/mod-file-versions/move':
+                    assert 'versions' in payload and 'target_mod_file' in payload
+                    return payload
+                return payload['data']
         except HTTPError as error:
             raise RuntimeError(f'Nexus {method} {path}: HTTP {error.code}; no automatic retry of writes.') from None
         except URLError:
@@ -55,12 +60,22 @@ class Nexus:
         assert parts.scheme == 'https' and parts.hostname and not parts.username and not parts.password
         req = Request(url, data=data, method=method, headers={
             'Content-Type': content_type, 'Content-Length': str(len(data))})
-        try:
-            with self.opener.open(req, timeout=60) as response:
-                response.read()
-                return response.headers.get('ETag')
-        except (HTTPError, URLError):
-            raise RuntimeError('Signed storage upload failed; credential URLs are omitted from output.') from None
+        for attempt in range(3 if method == 'PUT' else 1):
+            try:
+                with self.opener.open(req, timeout=60) as response:
+                    response.read()
+                    return response.headers.get('ETag')
+            except HTTPError as error:
+                reason = f'HTTP {error.code}'
+                retryable = error.code in (408, 429, 500, 502, 503, 504)
+            except URLError as error:
+                reason = 'connection error (' + type(error.reason).__name__ + ')'
+                retryable = True
+            if method != 'PUT' or not retryable or attempt == 2:
+                raise RuntimeError(f'Signed storage {method} failed: {reason}; credential URLs omitted.') from None
+            # Repeating the same part PUT is idempotent; completion POSTs are not retried.
+            print('Retrying the same storage part:', reason, flush=True)
+            time.sleep(2 * (attempt + 1))
 
 
 def read_key(path=KEY_FILE):

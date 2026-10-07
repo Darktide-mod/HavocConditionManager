@@ -2,7 +2,7 @@
 
 **Formal release: 4.6.0.** Open HCM-owned custom Havoc ranks1–60 and retain EFL III/IV. Fix mission changes exposing the hidden environment dropdown over EFL. See [UI fix and rank60 validation](docs/rank60-and-dropdown-fix-20261007.md) and [Nexus upload workflow](docs/nexus-automation.zh-CN.md). Live rendering/gameplay validation remains pending.
 
-[Nexus Main Files](https://www.nexusmods.com/warhammer40kdarktide/mods/1267?tab=files) · [Runtime installation ZIP](release/4.6.0/HavocConditionManager-4.6.0.zip).
+[Nexus Main Files](https://www.nexusmods.com/warhammer40kdarktide/mods/1267?tab=files&file_id=8852) · [Runtime installation ZIP](release/4.6.0/HavocConditionManager-4.6.0.zip). File 8852 is the verified primary download; the English/Chinese page text and bilingual summary are synchronized. See [publication verification](docs/validation/nexus-4.6.0-20261007.json) for remote checks and historical-file archive status.
 
 当前功能版本与正式发布编号：4.6.0。内置「禁止医疗」直接从模组目录加载，无需解压模板；保留外部 DIY 与作者接口。「狂暴攻势」、动画资源和安装器已独立分发至 [HavocConditionPacks](https://github.com/Darktide-mod/HavocConditionPacks)。
 
@@ -26,7 +26,7 @@
 
 原版游戏源码与 LuaJIT 测试运行库默认位于工作区 `dev-support/`。可通过 DARKTIDE_DEV_SUPPORT、DARKTIDE_SOURCE 和 DARKTIDE_TEST_RUNTIME 指定位置。两个工程仅在联动检查中读取彼此声明的源码依赖，发布入口每次只生成本项目产物。
 
-正式源码已移除门状态检查、Debug、生成记录和局末统计；Main Files 打包检查诊断代码残留。原版方法回归和离线界面布局检查不替代游戏内游玩测试。测试和发布不会部署游戏或上传 Nexus。
+正式源码已移除门状态检查、Debug、生成记录和局末统计；Main Files 打包检查诊断代码残留。原版方法回归和离线界面布局检查不替代游戏内游玩测试。测试与本地打包不会部署游戏或上传 Nexus；明确执行发布工具的 `--publish` 才会上传及同步网页。
 
 包的安装、版本、依赖、Lua 与资源接口见 [包规范](docs/diy/PACKAGES.zh-CN.md)。
 

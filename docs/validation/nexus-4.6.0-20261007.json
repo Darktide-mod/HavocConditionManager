@@ -1,0 +1,117 @@
+{
+  "version": "4.6.0",
+  "source_commit": "f37b8dab7d9fb8f2a3cb0259aa276fcfbad19e0b",
+  "verified_at_utc": "2026-10-07T14:25:19.155739+00:00",
+  "published": true,
+  "page": "https://www.nexusmods.com/warhammer40kdarktide/mods/1267?tab=files&file_id=8852",
+  "game_scoped_file_id": "8852",
+  "global_file_version_id": "21230023352980",
+  "update_group_id": "7919115",
+  "sha256": "dd68a1775264ae3c4f42a908082193d5f60ad3df273bb5cf8ed2539f277a57d2",
+  "upload_bytes": 244956,
+  "remote_metadata": {
+    "file_id": 8852,
+    "uid": 21230023352980,
+    "name": "HavocConditionManager",
+    "version": "4.6.0",
+    "category_id": 1,
+    "category_name": "MAIN",
+    "is_primary": true,
+    "file_name": "HavocConditionManager 1267 4.6.0 2026-10-07T14-19Z JvbS2v8gJ.zip",
+    "size_in_bytes": 244956,
+    "uploaded_time": "2026-10-07T14:19:26.000+00:00"
+  },
+  "page_text": {
+    "version": "4.6.0",
+    "summary_match": true,
+    "description_match": true,
+    "summary_chars": 254,
+    "description_chars": 28637,
+    "description_normalization": "HTML entity unescape, remove editor-inserted <br /> tags, normalize CRLF and trim.",
+    "content_text_sha256": "08fc3a50b6fe14307d639a76513d98304afa8a9d4b42b9f5ff44c6b45a88fefd"
+  },
+  "changelog_verified": true,
+  "full_offline_checks": 42,
+  "full_suite_sha256": "bb42d32cca8b6300c97f95d9871ce47a36313571a2e2dea60a7b00d653891fb8",
+  "publisher_sha256": "c237a54e97c8b55094a3e3ac56e47cf9193709f21d269cbd4bbb3975e0cdb64d",
+  "publisher_tests_sha256": "df619b48111c292d39f9abb9e9c924076435ecba804f89d81f0d35f2776dcbb0",
+  "runtime_entries": 79,
+  "previous_stable_archived": true,
+  "all_previous_files_archived": true,
+  "pending_archive": [],
+  "archive_limit": "Official v3 archived the replaced stable version; the user archived all remaining files through the website. Computer Use stopped on physical Escape.",
+  "live_gameplay": "not performed",
+  "download_hash_verified": false,
+  "virus_scan_verdict": "not asserted",
+  "credentials": "outside repository; omitted",
+  "full_suite_original_receipt_sha256": "51e2f3d69fe081c4fc8011e6d5a8ef969afc00cae2a30dd6a5e9f0ef2caee2fa",
+  "test_version_archived": true,
+  "archived_previous_files": [
+    {
+      "id": "21230023352190",
+      "game_scoped_id": "8062",
+      "version": "2.4.10",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352979",
+      "game_scoped_id": "8851",
+      "version": "4.6.0-test.3",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352403",
+      "game_scoped_id": "8275",
+      "version": "4.5.0",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352357",
+      "game_scoped_id": "8229",
+      "version": "4.4.9",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352312",
+      "game_scoped_id": "8184",
+      "version": "3.6.11",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352245",
+      "game_scoped_id": "8117",
+      "version": "2.4.15",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352242",
+      "game_scoped_id": "8114",
+      "version": "2.4.14",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352207",
+      "game_scoped_id": "8079",
+      "version": "2.4.12",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352140",
+      "game_scoped_id": "8012",
+      "version": "2.4.8",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352139",
+      "game_scoped_id": "8011",
+      "version": "2.4.8",
+      "category": "archived"
+    },
+    {
+      "id": "21230023352131",
+      "game_scoped_id": "8003",
+      "version": "2.4.6",
+      "category": "archived"
+    }
+  ]
+}

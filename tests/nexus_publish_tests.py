@@ -143,6 +143,19 @@ with patch.object(client.opener, 'open', capture):
     client.storage('https://storage.example/part?signature=private', 'PUT', b'123', 'application/octet-stream')
 assert requests[0].get_header('Apikey') == 'SECRET-TEST-KEY'
 assert not requests[1].get_header('Apikey')
+
+class MoveResponse(Response):
+    def read(self): return b'{"versions":[],"target_mod_file":{"id":"old"}}'
+with patch.object(client.opener, 'open', lambda request, timeout: MoveResponse()):
+    assert client.api('/mod-file-versions/move', 'POST', {})['target_mod_file']['id'] == 'old'
+
+class EmptyResponse(Response):
+    def __init__(self):
+        super().__init__()
+        self.status = 204
+    def read(self): raise AssertionError('A 204 response must not be parsed as JSON.')
+with patch.object(client.opener, 'open', lambda request, timeout: EmptyResponse()):
+    assert client.api('/mods/mod-global', 'PATCH', {}) == {}
 def reject(request, timeout):
     raise HTTPError(request.full_url, 403, 'SECRET-TEST-KEY', {}, None)
 with patch.object(client.opener, 'open', reject):
@@ -150,5 +163,22 @@ with patch.object(client.opener, 'open', reject):
     except RuntimeError as error:
         assert '403' in str(error) and 'SECRET' not in str(error)
     else: raise AssertionError('API error must be reported without secrets.')
+
+storage_calls = []
+def transient_storage(request, timeout):
+    storage_calls.append(request)
+    if len(storage_calls) == 1:
+        raise HTTPError(request.full_url, 503, 'private signature', {}, None)
+    return Response({'ETag': '"part"'})
+with patch.object(client.opener, 'open', transient_storage), patch('publish_nexus.time.sleep'):
+    assert client.storage('https://storage.example/part?signature=private', 'PUT', b'123', 'application/octet-stream') == '"part"'
+assert len(storage_calls) == 2 and storage_calls[0].data == storage_calls[1].data == b'123'
+storage_calls.clear()
+with patch.object(client.opener, 'open', transient_storage), patch('publish_nexus.time.sleep'):
+    try: client.storage('https://storage.example/complete?signature=private', 'POST', b'xml', 'application/xml')
+    except RuntimeError as error:
+        assert 'HTTP 503' in str(error) and 'signature' not in str(error)
+    else: raise AssertionError('Storage completion writes must not be blindly retried.')
+assert len(storage_calls) == 1
 assert current_changelog('4.6.0-test.3\n- Current\n\n4.5.0\n- Older') == '4.6.0-test.3\n- Current'
 print('Nexus publisher: multipart byte identity, optional/formal policies, version replacement, archived prior file, bilingual page sync, verified receipts, duplicate/uncertain-write guards and credential isolation: PASS')
